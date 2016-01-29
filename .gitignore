@@ -41,7 +41,7 @@ userconf.ini
 *.pyc
 cocos2d/plugin/plugins/*
 
-Branch.framework
+# Branch.framework
 
 IF/libs/boost.framework/boost
 IF/libs/boost.framework/Versions/A/boost
@@ -147,4 +147,31 @@ proj.android/assets_tmp
 
 proj.android/ChatServices/.idea/dictionaries
 proj.android/ChatServices/.idea/workspace.xml
+
+
+################################################
+
+Publish.old
+Publish.XG
+
+COK_360
+COK_Amazon
+COK_Baidu
+COK_Beta
+COK_Cafebazaar
+COK_CN1
+COK_Common
+COK_Gash
+COK_Goodgames
+COK_Mi
+COK_MiHy
+COK_Mol
+COK_Mycard
+COK_Nstore
+COK_Tencent
+COK_UC
+COK_XG
+COK_XG2
+IF_Inner
+IF_Tstore
 
