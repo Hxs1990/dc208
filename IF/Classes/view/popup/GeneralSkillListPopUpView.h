@@ -80,6 +80,10 @@ private:
     CCSafeObject<CCControlButton> m_tab2;
     CCSafeObject<CCControlButton> m_tab3;
     
+    CCSafeObject<CCNode> m_fireNode1;
+    CCSafeObject<CCNode> m_fireNode2;
+    CCSafeObject<CCNode> m_buttombar;
+    
     CCSafeObject<CCLabelIF> m_tabTxt1;
     CCSafeObject<CCLabelIF> m_tabValue1;
     CCSafeObject<CCLabelIF> m_tabTxt2;
