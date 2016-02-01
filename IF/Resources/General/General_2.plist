@@ -7,7 +7,7 @@
             <key>g032_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,4},{500,500}}</string>
+                <string>{{510,510},{500,500}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>g038_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,510},{500,500}}</string>
+                <string>{{510,4},{500,500}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>g041_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{510,4},{500,500}}</string>
+                <string>{{4,510},{500,500}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>g044_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{510,510},{500,500}}</string>
+                <string>{{4,4},{500,500}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -64,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>General_2.pvr.ccz</string>
             <key>size</key>
-            <string>{1014,1014}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4340483faaa3e62863953ad13a742b68:f59cc323ca9d24c411c296068ffcb0b9:06beb979737857ec6649d04b4dce005a$</string>
+            <string>$TexturePacker:SmartUpdate:8a09946f7e8c7caca3d1dd748490a625:1/1$</string>
             <key>textureFileName</key>
             <string>General_2.pvr.ccz</string>
         </dict>

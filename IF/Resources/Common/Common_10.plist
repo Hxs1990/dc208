@@ -381,19 +381,6 @@
                 <key>sourceSize</key>
                 <string>{214,154}</string>
             </dict>
-            <key>world_zhandou-1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{4,1413},{95,83}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{95,83}}</string>
-                <key>sourceSize</key>
-                <string>{95,83}</string>
-            </dict>
             <key>world_zhandou-2.png</key>
             <dict>
                 <key>frame</key>
@@ -430,7 +417,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:62bcaff60a6c07165840cde2c9699e18:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:059ded52754bc46a2e5e4acfed79d3b9:1/1$</string>
             <key>textureFileName</key>
             <string>Common_10.pvr.ccz</string>
         </dict>

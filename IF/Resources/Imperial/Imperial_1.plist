@@ -7,7 +7,7 @@
             <key>GatesBroken_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{403,354}}</string>
+                <string>{{360,360},{403,354}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,19 +20,6 @@
             <key>GatesBroken_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{409,2},{403,354}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{403,354}}</string>
-                <key>sourceSize</key>
-                <string>{403,354}</string>
-            </dict>
-            <key>GatesBroken_3.png</key>
-            <dict>
-                <key>frame</key>
                 <string>{{2,360},{403,354}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -43,10 +30,23 @@
                 <key>sourceSize</key>
                 <string>{403,354}</string>
             </dict>
+            <key>GatesBroken_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{409,2},{403,354}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{403,354}}</string>
+                <key>sourceSize</key>
+                <string>{403,354}</string>
+            </dict>
             <key>GatesBroken_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{360,360},{403,354}}</string>
+                <string>{{2,2},{403,354}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -92,7 +92,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ac37c47136a8e5607cb6cbd9c2f6b06c:deacfe5c03ca834ef48bb0d68be6e7a8:fe259e514ba2abf5a8f610b7f4717ec4$</string>
+            <string>$TexturePacker:SmartUpdate:467b5c8b8a8d72b7d3ca80483f869dea:1/1$</string>
             <key>textureFileName</key>
             <string>Imperial_1.pvr.ccz</string>
         </dict>

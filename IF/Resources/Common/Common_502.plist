@@ -358,7 +358,7 @@
             <key>bottom_side.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3,342},{80,48}}</string>
+                <string>{{3,428},{80,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,7 +384,7 @@
             <key>lef_top.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{975,3},{40,48}}</string>
+                <string>{{975,165},{40,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -397,11 +397,11 @@
             <key>left.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{182,522},{304,142}}</string>
+                <string>{{95,832},{304,142}}</string>
                 <key>offset</key>
                 <string>{2,-4}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{4,8},{304,142}}</string>
                 <key>sourceSize</key>
@@ -410,7 +410,7 @@
             <key>left_bottom.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{975,57},{40,48}}</string>
+                <string>{{975,111},{40,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -423,7 +423,7 @@
             <key>left_side.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{975,251},{40,24}}</string>
+                <string>{{975,281},{40,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -462,11 +462,11 @@
             <key>right.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{95,832},{304,142}}</string>
+                <string>{{182,522},{304,142}}</string>
                 <key>offset</key>
                 <string>{2,-4}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{4,8},{304,142}}</string>
                 <key>sourceSize</key>
@@ -475,7 +475,7 @@
             <key>right_bottom.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{975,111},{40,48}}</string>
+                <string>{{975,57},{40,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -488,7 +488,7 @@
             <key>right_side.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{975,281},{40,24}}</string>
+                <string>{{975,251},{40,24}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -501,7 +501,7 @@
             <key>right_top.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{975,165},{40,48}}</string>
+                <string>{{975,3},{40,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -618,7 +618,7 @@
             <key>top_side.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3,428},{80,48}}</string>
+                <string>{{3,342},{80,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -638,7 +638,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3dedc10696c26ed7b748f57ca65f870e:d53632dbc6c80c1b12967e714f9b693f:f04637ffcd05b10bc2e08dc9c10a15b1$</string>
+            <string>$TexturePacker:SmartUpdate:492ca3c6c628615dde8b26f56b761236:1/1$</string>
             <key>textureFileName</key>
             <string>Common_502.pvr.ccz</string>
         </dict>

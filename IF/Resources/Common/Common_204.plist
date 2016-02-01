@@ -7,7 +7,7 @@
             <key>ico107000_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,690},{66,104}}</string>
+                <string>{{224,698},{66,104}}</string>
                 <key>offset</key>
                 <string>{-1,14}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>ico107003_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,610},{74,104}}</string>
+                <string>{{334,610},{74,104}}</string>
                 <key>offset</key>
                 <string>{0,14}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>ico107007_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{224,698},{66,104}}</string>
+                <string>{{4,690},{66,104}}</string>
                 <key>offset</key>
                 <string>{4,14}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>ico107100_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{228,128},{104,104}}</string>
+                <string>{{116,210},{104,104}}</string>
                 <key>offset</key>
                 <string>{12,14}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>ico107101_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{334,610},{74,104}}</string>
+                <string>{{4,610},{74,104}}</string>
                 <key>offset</key>
                 <string>{0,14}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>ico107103_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{224,620},{72,104}}</string>
+                <string>{{334,690},{72,104}}</string>
                 <key>offset</key>
                 <string>{3,14}</string>
                 <key>rotated</key>
@@ -202,7 +202,7 @@
             <key>ico107105_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,222},{102,104}}</string>
+                <string>{{338,218},{102,104}}</string>
                 <key>offset</key>
                 <string>{-11,14}</string>
                 <key>rotated</key>
@@ -215,7 +215,7 @@
             <key>ico107106_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{116,210},{104,104}}</string>
+                <string>{{228,128},{104,104}}</string>
                 <key>offset</key>
                 <string>{14,14}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>ico107107_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{338,218},{102,104}}</string>
+                <string>{{4,222},{102,104}}</string>
                 <key>offset</key>
                 <string>{10,14}</string>
                 <key>rotated</key>
@@ -254,7 +254,7 @@
             <key>ico107109_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{334,430},{86,104}}</string>
+                <string>{{114,516},{86,104}}</string>
                 <key>offset</key>
                 <string>{4,14}</string>
                 <key>rotated</key>
@@ -280,7 +280,7 @@
             <key>ico107201_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{334,690},{72,104}}</string>
+                <string>{{224,620},{72,104}}</string>
                 <key>offset</key>
                 <string>{-1,14}</string>
                 <key>rotated</key>
@@ -319,7 +319,7 @@
             <key>ico107204_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{114,516},{86,104}}</string>
+                <string>{{334,430},{86,104}}</string>
                 <key>offset</key>
                 <string>{3,14}</string>
                 <key>rotated</key>
@@ -397,7 +397,7 @@
             <key>ico107300_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{334,522},{82,104}}</string>
+                <string>{{224,532},{82,104}}</string>
                 <key>offset</key>
                 <string>{-4,10}</string>
                 <key>rotated</key>
@@ -449,7 +449,7 @@
             <key>ico107304_small.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{224,532},{82,104}}</string>
+                <string>{{334,522},{82,104}}</string>
                 <key>offset</key>
                 <string>{-4,11}</string>
                 <key>rotated</key>
@@ -534,7 +534,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:13af8d235e7934bae67636ad095a7608:6bdd2553e822c265c5f5279514a1c70b:73cca12148b5afed5c6b5d9d97e0bcd4$</string>
+            <string>$TexturePacker:SmartUpdate:91a415662638d9465ae67c22655d1fb2:1/1$</string>
             <key>textureFileName</key>
             <string>Common_204.pvr.ccz</string>
         </dict>
