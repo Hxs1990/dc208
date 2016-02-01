@@ -13,7 +13,6 @@
 		060A7FB31B9EB76E00488AD4 /* IFWingNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 060A7FB11B9EB76E00488AD4 /* IFWingNode.cpp */; };
 		060A7FB61B9FCD6400488AD4 /* IFSupermanTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 060A7FB41B9FCD6400488AD4 /* IFSupermanTip.cpp */; };
 		061E39911B833C2F00E8CD32 /* IFShakeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 061E398F1B833C2F00E8CD32 /* IFShakeLayer.cpp */; };
-		06290E8E1B4664FB0021F04F /* WorldMap1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 06290E8D1B4664FB0021F04F /* WorldMap1.tmx */; };
 		065D03C21C4627EE0052303A /* IFPanelLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 065D03C01C4627EE0052303A /* IFPanelLayer.cpp */; };
 		06705ED41B836B8E00CEF154 /* ShakeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 06705ED21B836B8E00CEF154 /* ShakeController.cpp */; };
 		067119721B4F66B0004C7B35 /* IFMapMaskLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 067119701B4F66B0004C7B35 /* IFMapMaskLayer.cpp */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -1227,6 +1226,16 @@
 		B2B7F7361C05550C00EA6F28 /* TroopBuildingDetailView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2B7F7341C05550C00EA6F28 /* TroopBuildingDetailView.cpp */; };
 		B2BE4F011C152B9A00CF2868 /* KingBattleRewardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BE4EFF1C152B9A00CF2868 /* KingBattleRewardView.cpp */; };
 		B2C2D7C91C0E870D005D5B70 /* KingBattleRankView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C2D7C71C0E870D005D5B70 /* KingBattleRankView.cpp */; };
+		B80876B91C5F23B3008704DC /* nb_world_link_area.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B80876B71C5F23B3008704DC /* nb_world_link_area.tmx */; };
+		B80876BA1C5F23B3008704DC /* nb_world.tmx in Resources */ = {isa = PBXBuildFile; fileRef = B80876B81C5F23B3008704DC /* nb_world.tmx */; };
+		B80876D21C5F26B9008704DC /* NBWaterMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80876C31C5F26B9008704DC /* NBWaterMap.cpp */; };
+		B80876D31C5F26B9008704DC /* NBWaterSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80876C51C5F26B9008704DC /* NBWaterSprite.cpp */; };
+		B80876D41C5F26B9008704DC /* NBWorldMapDecoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80876C71C5F26B9008704DC /* NBWorldMapDecoration.cpp */; };
+		B80876D51C5F26B9008704DC /* NBWorldMapMainCity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80876C91C5F26B9008704DC /* NBWorldMapMainCity.cpp */; };
+		B80876D61C5F26B9008704DC /* NBWorldMonster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80876CB1C5F26B9008704DC /* NBWorldMonster.cpp */; };
+		B80876D71C5F26B9008704DC /* NBWorldNPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80876CD1C5F26B9008704DC /* NBWorldNPC.cpp */; };
+		B80876D81C5F26B9008704DC /* NBWorldUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B80876CF1C5F26B9008704DC /* NBWorldUtils.cpp */; };
+		B80876DA1C5F31D9008704DC /* shaders in Resources */ = {isa = PBXBuildFile; fileRef = B80876D91C5F31D9008704DC /* shaders */; };
 		BA19245118C87ED7009C1CEA /* CCLabelIFBMFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA19244D18C87ED7009C1CEA /* CCLabelIFBMFont.cpp */; };
 		BA19245218C87ED7009C1CEA /* CCLabelIFTTF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA19244F18C87ED7009C1CEA /* CCLabelIFTTF.cpp */; };
 		BA2EB25818E2A0DA00DB3D83 /* DefaultTableViewDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA2EB25618E2A0DA00DB3D83 /* DefaultTableViewDelegate.cpp */; };
@@ -1491,7 +1500,6 @@
 		FDC9E79818BDED8700F0962F /* PlayerTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDC9E79618BDED8700F0962F /* PlayerTile.cpp */; };
 		FDCCE58918F64ACA00A4C0B1 /* CCLineSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDCCE58718F64ACA00A4C0B1 /* CCLineSprite.cpp */; };
 		FDD1FD5D182374C900AB2208 /* ScienceView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDD1FD5B182374C900AB2208 /* ScienceView.cpp */; };
-		FDD956EC18DFC36100946C40 /* WorldMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = FDD956EB18DFC36100946C40 /* WorldMap.tmx */; };
 		FDD9697317E2C4DB0091A6FA /* CCThreadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDD9697117E2C4DA0091A6FA /* CCThreadManager.cpp */; };
 		FDE39D7419172D2D00ECEAA5 /* MinimapView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDE39D7219172D2D00ECEAA5 /* MinimapView.cpp */; };
 		FDE5C9D918F4F67E0047D3FD /* CCLabelBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDE5C9D718F4F67E0047D3FD /* CCLabelBatch.cpp */; };
@@ -1548,7 +1556,6 @@
 		060A7FB51B9FCD6400488AD4 /* IFSupermanTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFSupermanTip.h; sourceTree = "<group>"; };
 		061E398F1B833C2F00E8CD32 /* IFShakeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IFShakeLayer.cpp; sourceTree = "<group>"; };
 		061E39901B833C2F00E8CD32 /* IFShakeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFShakeLayer.h; sourceTree = "<group>"; };
-		06290E8D1B4664FB0021F04F /* WorldMap1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = WorldMap1.tmx; path = Resources/WorldMap1.tmx; sourceTree = "<group>"; };
 		065D03C01C4627EE0052303A /* IFPanelLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IFPanelLayer.cpp; sourceTree = "<group>"; };
 		065D03C11C4627EE0052303A /* IFPanelLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IFPanelLayer.hpp; sourceTree = "<group>"; };
 		06705ED21B836B8E00CEF154 /* ShakeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShakeController.cpp; sourceTree = "<group>"; };
@@ -3900,6 +3907,23 @@
 		B2BE4F001C152B9A00CF2868 /* KingBattleRewardView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KingBattleRewardView.hpp; sourceTree = "<group>"; };
 		B2C2D7C71C0E870D005D5B70 /* KingBattleRankView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KingBattleRankView.cpp; sourceTree = "<group>"; };
 		B2C2D7C81C0E870D005D5B70 /* KingBattleRankView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KingBattleRankView.hpp; sourceTree = "<group>"; };
+		B80876B71C5F23B3008704DC /* nb_world_link_area.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = nb_world_link_area.tmx; path = Resources/nb_world_link_area.tmx; sourceTree = "<group>"; };
+		B80876B81C5F23B3008704DC /* nb_world.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = nb_world.tmx; path = Resources/nb_world.tmx; sourceTree = "<group>"; };
+		B80876C31C5F26B9008704DC /* NBWaterMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBWaterMap.cpp; sourceTree = "<group>"; };
+		B80876C41C5F26B9008704DC /* NBWaterMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBWaterMap.h; sourceTree = "<group>"; };
+		B80876C51C5F26B9008704DC /* NBWaterSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBWaterSprite.cpp; sourceTree = "<group>"; };
+		B80876C61C5F26B9008704DC /* NBWaterSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NBWaterSprite.hpp; sourceTree = "<group>"; };
+		B80876C71C5F26B9008704DC /* NBWorldMapDecoration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBWorldMapDecoration.cpp; sourceTree = "<group>"; };
+		B80876C81C5F26B9008704DC /* NBWorldMapDecoration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NBWorldMapDecoration.hpp; sourceTree = "<group>"; };
+		B80876C91C5F26B9008704DC /* NBWorldMapMainCity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBWorldMapMainCity.cpp; sourceTree = "<group>"; };
+		B80876CA1C5F26B9008704DC /* NBWorldMapMainCity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NBWorldMapMainCity.hpp; sourceTree = "<group>"; };
+		B80876CB1C5F26B9008704DC /* NBWorldMonster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBWorldMonster.cpp; sourceTree = "<group>"; };
+		B80876CC1C5F26B9008704DC /* NBWorldMonster.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NBWorldMonster.hpp; sourceTree = "<group>"; };
+		B80876CD1C5F26B9008704DC /* NBWorldNPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBWorldNPC.cpp; sourceTree = "<group>"; };
+		B80876CE1C5F26B9008704DC /* NBWorldNPC.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NBWorldNPC.hpp; sourceTree = "<group>"; };
+		B80876CF1C5F26B9008704DC /* NBWorldUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBWorldUtils.cpp; sourceTree = "<group>"; };
+		B80876D01C5F26B9008704DC /* NBWorldUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NBWorldUtils.hpp; sourceTree = "<group>"; };
+		B80876D91C5F31D9008704DC /* shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shaders; path = Resources/shaders; sourceTree = "<group>"; };
 		BA19244D18C87ED7009C1CEA /* CCLabelIFBMFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLabelIFBMFont.cpp; sourceTree = "<group>"; };
 		BA19244E18C87ED7009C1CEA /* CCLabelIFBMFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLabelIFBMFont.h; sourceTree = "<group>"; };
 		BA19244F18C87ED7009C1CEA /* CCLabelIFTTF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLabelIFTTF.cpp; sourceTree = "<group>"; };
@@ -4389,7 +4413,6 @@
 		FDCCE58818F64ACA00A4C0B1 /* CCLineSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLineSprite.h; sourceTree = "<group>"; };
 		FDD1FD5B182374C900AB2208 /* ScienceView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScienceView.cpp; sourceTree = "<group>"; };
 		FDD1FD5C182374C900AB2208 /* ScienceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScienceView.h; sourceTree = "<group>"; };
-		FDD956EB18DFC36100946C40 /* WorldMap.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = WorldMap.tmx; path = Resources/WorldMap.tmx; sourceTree = "<group>"; };
 		FDD9697117E2C4DA0091A6FA /* CCThreadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCThreadManager.cpp; sourceTree = "<group>"; };
 		FDD9697217E2C4DB0091A6FA /* CCThreadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCThreadManager.h; sourceTree = "<group>"; };
 		FDE39D7219172D2D00ECEAA5 /* MinimapView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MinimapView.cpp; sourceTree = "<group>"; };
@@ -7274,6 +7297,27 @@
 			path = libs/extensions/crashhelper;
 			sourceTree = "<group>";
 		};
+		B80876C01C5F26B9008704DC /* map */ = {
+			isa = PBXGroup;
+			children = (
+				B80876C31C5F26B9008704DC /* NBWaterMap.cpp */,
+				B80876C41C5F26B9008704DC /* NBWaterMap.h */,
+				B80876C51C5F26B9008704DC /* NBWaterSprite.cpp */,
+				B80876C61C5F26B9008704DC /* NBWaterSprite.hpp */,
+				B80876C71C5F26B9008704DC /* NBWorldMapDecoration.cpp */,
+				B80876C81C5F26B9008704DC /* NBWorldMapDecoration.hpp */,
+				B80876C91C5F26B9008704DC /* NBWorldMapMainCity.cpp */,
+				B80876CA1C5F26B9008704DC /* NBWorldMapMainCity.hpp */,
+				B80876CB1C5F26B9008704DC /* NBWorldMonster.cpp */,
+				B80876CC1C5F26B9008704DC /* NBWorldMonster.hpp */,
+				B80876CD1C5F26B9008704DC /* NBWorldNPC.cpp */,
+				B80876CE1C5F26B9008704DC /* NBWorldNPC.hpp */,
+				B80876CF1C5F26B9008704DC /* NBWorldUtils.cpp */,
+				B80876D01C5F26B9008704DC /* NBWorldUtils.hpp */,
+			);
+			path = map;
+			sourceTree = "<group>";
+		};
 		BAC692771A2DC2820014C752 /* Adjust */ = {
 			isa = PBXGroup;
 			children = (
@@ -7453,40 +7497,41 @@
 		DB9F590717CD9A520037F7E5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				83B52B2D1BFC6C5F00F6ABCB /* UIComponent */,
-				5A6CE7B01B8F023D005CCFAA /* hdccbi */,
-				DB35489E1B6A336C001B7FA0 /* number.fnt */,
-				DB35489F1B6A336C001B7FA0 /* number.png */,
-				06290E8D1B4664FB0021F04F /* WorldMap1.tmx */,
-				1C49506F1AA0576200333C5E /* Spine */,
-				96F6B7E71A79D67C0032D9C0 /* particleImg */,
-				C280C8AE1A4C1147002C7860 /* footprintsingle.png */,
 				DB784C96198F836100DB5CBB /* Arial_Bold_Border.fnt */,
 				DB784C97198F836100DB5CBB /* Arial_Bold_Border.png */,
-				DB58DA23197FDF1800E0A29D /* Arial_Gradient.fnt */,
-				DB58DA24197FDF1800E0A29D /* Arial_Gradient.png */,
 				DBEEF72D19764FA7009D9327 /* Arial_Bold_Regular.fnt */,
 				DBEEF72E19764FA7009D9327 /* Arial_Bold_Regular.png */,
+				DB368DA618EAC5BF00C886DF /* Arial_Bold.fnt */,
+				DB368DA718EAC5BF00C886DF /* Arial_Bold.png */,
+				DB58DA23197FDF1800E0A29D /* Arial_Gradient.fnt */,
+				DB58DA24197FDF1800E0A29D /* Arial_Gradient.png */,
 				96F1C258195166B20032C08D /* Battle */,
+				FDC0AF2117D6DAF7006E79E6 /* ccbi */,
+				E6402A0718AC5BEF00CCE64C /* cloud2.tmx */,
+				FDB0D5C918209D7D00C11959 /* Common */,
+				C280C8AE1A4C1147002C7860 /* footprintsingle.png */,
+				FD868B2318213DF200DAA8AA /* General */,
+				5A6CE7B01B8F023D005CCFAA /* hdccbi */,
+				5736A1AC18225C9D007C431C /* Imperial */,
+				DB9F591E17CD9A520037F7E5 /* Info.plist */,
+				DB9F591C17CD9A520037F7E5 /* iTunesArtwork */,
+				FDB0D5CB18209D7D00C11959 /* Loading */,
+				366E1C7417D09868006CCCBF /* local */,
+				B80876B71C5F23B3008704DC /* nb_world_link_area.tmx */,
+				B80876B81C5F23B3008704DC /* nb_world.tmx */,
+				DB35489E1B6A336C001B7FA0 /* number.fnt */,
+				DB35489F1B6A336C001B7FA0 /* number.png */,
+				DBB37B1617D7475500C7AB15 /* particle */,
+				96F6B7E71A79D67C0032D9C0 /* particleImg */,
 				B15628AD18FEB62000902628 /* pve_fnt_boss.fnt */,
 				B15628AE18FEB62000902628 /* pve_fnt_boss.png */,
 				B15628AF18FEB62000902628 /* pve_fnt_title.fnt */,
 				B15628B018FEB62000902628 /* pve_fnt_title.png */,
-				DB368DA618EAC5BF00C886DF /* Arial_Bold.fnt */,
-				DB368DA718EAC5BF00C886DF /* Arial_Bold.png */,
-				FDD956EB18DFC36100946C40 /* WorldMap.tmx */,
-				FD81B87418B4C9AE002A1B57 /* World */,
-				E6402A0718AC5BEF00CCE64C /* cloud2.tmx */,
-				5736A1AC18225C9D007C431C /* Imperial */,
-				FD868B2318213DF200DAA8AA /* General */,
-				FDB0D5C918209D7D00C11959 /* Common */,
-				FDB0D5CB18209D7D00C11959 /* Loading */,
-				DBB37B1617D7475500C7AB15 /* particle */,
-				FDC0AF2117D6DAF7006E79E6 /* ccbi */,
-				366E1C7417D09868006CCCBF /* local */,
+				B80876D91C5F31D9008704DC /* shaders */,
 				366E1C6517D04F8E006CCCBF /* sounds */,
-				DB9F591C17CD9A520037F7E5 /* iTunesArtwork */,
-				DB9F591E17CD9A520037F7E5 /* Info.plist */,
+				1C49506F1AA0576200333C5E /* Spine */,
+				83B52B2D1BFC6C5F00F6ABCB /* UIComponent */,
+				FD81B87418B4C9AE002A1B57 /* World */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -7951,6 +7996,7 @@
 		FD3E3809183B3F19005596BD /* world */ = {
 			isa = PBXGroup;
 			children = (
+				B80876C01C5F26B9008704DC /* map */,
 				06CFA9511B84BECC0056E76A /* IFShakeGuideLayer.cpp */,
 				06CFA9521B84BECC0056E76A /* IFShakeGuideLayer.h */,
 				06C0EFE41AEE541200228485 /* AAreaBuildCCB.cpp */,
@@ -8686,13 +8732,13 @@
 				5945BDCC1B7B7F6A002B23D6 /* VKSdkResources.bundle in Resources */,
 				597D8D201C23266D00B6DEA7 /* HelpshiftLocalizable.strings in Resources */,
 				DB4B32661A371DC700A47ED7 /* sounds in Resources */,
-				FDD956EC18DFC36100946C40 /* WorldMap.tmx in Resources */,
 				27AD60581B5D014A00B6AD40 /* MJRefresh.bundle in Resources */,
 				272AB6441B15C7BC0052E896 /* g012.png in Resources */,
 				6CD847B41B2EAC1600C8AF0D /* PersonSelectVC.xib in Resources */,
 				272AB6571B15C7BC0052E896 /* icon01.jpg in Resources */,
 				272AB6431B15C7BC0052E896 /* g008.png in Resources */,
 				FD81B87518B4C9AE002A1B57 /* World in Resources */,
+				B80876DA1C5F31D9008704DC /* shaders in Resources */,
 				272AB62E1B15C7BC0052E896 /* but_back.png in Resources */,
 				5A71E3981BF45BB50060FF7D /* RoleInfoViewOC.xib in Resources */,
 				272AB6251B15C7BC0052E896 /* alliance_gold1.png in Resources */,
@@ -8709,6 +8755,7 @@
 				1C4950701AA0576200333C5E /* Spine in Resources */,
 				DBEEF73019764FA7009D9327 /* Arial_Bold_Regular.png in Resources */,
 				597D8D1F1C23266D00B6DEA7 /* HelpshiftAssetCatalog.xcassets in Resources */,
+				B80876B91C5F23B3008704DC /* nb_world_link_area.tmx in Resources */,
 				DB368DA818EAC5BF00C886DF /* Arial_Bold.fnt in Resources */,
 				27882BC61C02FCDA009D6ABA /* down@2x.png in Resources */,
 				6C896B521B3CEE3800908D3F /* TopButtonView.xib in Resources */,
@@ -8724,6 +8771,7 @@
 				272AB6391B15C7BC0052E896 /* chat_system_right_bg_pressed.png in Resources */,
 				272AB6461B15C7BC0052E896 /* g017.png in Resources */,
 				B15628B118FEB62000902628 /* pve_fnt_boss.fnt in Resources */,
+				B80876BA1C5F23B3008704DC /* nb_world.tmx in Resources */,
 				272AB6401B15C7BC0052E896 /* forum_forward.png in Resources */,
 				272AB62B1B15C7BC0052E896 /* btn_qieye_02.png in Resources */,
 				272AB6151B15C7BC0052E896 /* TipPopUpController.xib in Resources */,
@@ -8786,7 +8834,6 @@
 				DB368DA918EAC5BF00C886DF /* Arial_Bold.png in Resources */,
 				6C5AECB61BD9495000EE3A74 /* sr_refresh@2X.png in Resources */,
 				272AB65F1B15C7BC0052E896 /* mod.png in Resources */,
-				06290E8E1B4664FB0021F04F /* WorldMap1.tmx in Resources */,
 				272AB6481B15C7BC0052E896 /* g026.png in Resources */,
 				272AB65C1B15C7BC0052E896 /* input.png in Resources */,
 				272AB64D1B15C7BC0052E896 /* g044_middle.png in Resources */,
@@ -8998,6 +9045,7 @@
 				5725C4C917F539AD0066BAA6 /* ChatInfo.cpp in Sources */,
 				E63E21191988F70900123A6F /* MonsterAttackPopUpView.cpp in Sources */,
 				96D9D5051991DFB700FF2BDB /* AllianceLeaderTransCommand.cpp in Sources */,
+				B80876D31C5F26B9008704DC /* NBWaterSprite.cpp in Sources */,
 				6C1F66A21C18372400EE33E1 /* YYLabel.m in Sources */,
 				964694CB1C1801A10002DE0B /* CrossServerStateLSCommand.cpp in Sources */,
 				B12FD9341915EEC10082F745 /* PayPush.cpp in Sources */,
@@ -9109,6 +9157,7 @@
 				57E2CAFA19D010990078F3D6 /* FlyCBuildView.cpp in Sources */,
 				606FD2B11BFD6A86009EF3D1 /* HongBaoGetView.cpp in Sources */,
 				6C7B01D31BA934AC002A7689 /* EditBarView.m in Sources */,
+				B80876D41C5F26B9008704DC /* NBWorldMapDecoration.cpp in Sources */,
 				E6C38D9C1A1C9C6900447864 /* MODView.cpp in Sources */,
 				96E73CDA1973E81B0079F370 /* PushAllianceUpdate.cpp in Sources */,
 				27F736251C069FBB00EA95BA /* CSAlertRedPackageView.mm in Sources */,
@@ -9346,6 +9395,7 @@
 				59DEBDF11B058B40007FC5CB /* ADJActivityKind.m in Sources */,
 				961BAF481AA4706F00FB16C8 /* LuaController.cpp in Sources */,
 				1D94C6901BE85C8B00FC5219 /* GoldExchangeView_NEW.cpp in Sources */,
+				B80876D71C5F26B9008704DC /* NBWorldNPC.cpp in Sources */,
 				277232371BC933FA00137B69 /* WorldBossMailContents.m in Sources */,
 				9638FFC71B941F3600D0B2CD /* DragonBattlePlayCommand.cpp in Sources */,
 				94913B691B256E5D000DB0B7 /* TerritoryTowerTile.cpp in Sources */,
@@ -9365,6 +9415,7 @@
 				57D7340518B4789300B884D1 /* QueueInfo.cpp in Sources */,
 				9441E4861ADBDAA50077035B /* TerritoryInformationPush.cpp in Sources */,
 				6CA8C91D1B4573BE0061F829 /* AFNetworkReachabilityManager.m in Sources */,
+				B80876D81C5F26B9008704DC /* NBWorldUtils.cpp in Sources */,
 				E6B781D31ABACDA100CF75CD /* AchievementController.cpp in Sources */,
 				FDE39D7419172D2D00ECEAA5 /* MinimapView.cpp in Sources */,
 				96EFB2F619A1DF46003A2C20 /* CancelAllianceTeamCommand.cpp in Sources */,
@@ -9407,6 +9458,7 @@
 				6C1F66AE1C18372400EE33E1 /* YYTransaction.m in Sources */,
 				FD6F417B17CDD218008FDB9C /* CCEditLabel.cpp in Sources */,
 				FD6F417C17CDD218008FDB9C /* CCModelLayer.cpp in Sources */,
+				B80876D51C5F26B9008704DC /* NBWorldMapMainCity.cpp in Sources */,
 				57E414CE18BDF9C600B7286E /* MainCityMoreView.cpp in Sources */,
 				6C1F666D1C18372400EE33E1 /* CALayer+YYAdd.m in Sources */,
 				FD6F417D17CDD218008FDB9C /* CCMultiColTableView.cpp in Sources */,
@@ -9575,6 +9627,7 @@
 				B2B7F7361C05550C00EA6F28 /* TroopBuildingDetailView.cpp in Sources */,
 				6C9E82C11B30380900D7EAB2 /* TopHeadView.m in Sources */,
 				5725C4C617F5399F0066BAA6 /* ChatController.cpp in Sources */,
+				B80876D21C5F26B9008704DC /* NBWaterMap.cpp in Sources */,
 				6C1F66A11C18372400EE33E1 /* YYTextUtilities.m in Sources */,
 				57233E7D1820D0CC00C04BFD /* ChatCell.cpp in Sources */,
 				A8B7A6951B26E64300441850 /* QuitChatRoomArrayCommand.cpp in Sources */,
@@ -9778,6 +9831,7 @@
 				A817139A1B660629008DE4D4 /* ChatTestCommand.cpp in Sources */,
 				6C1F66601C18372400EE33E1 /* NSBundle+YYAdd.m in Sources */,
 				96D5913F1868543700BC9DF3 /* AchievementPush.cpp in Sources */,
+				B80876D61C5F26B9008704DC /* NBWorldMonster.cpp in Sources */,
 				272AB6171B15C7BC0052E896 /* ChatAllianceTableViewController.mm in Sources */,
 				96D591421868699800BC9DF3 /* AchieveReceiveCommand.cpp in Sources */,
 				96D5914518692C5B00BC9DF3 /* AchieveGetCommand.cpp in Sources */,

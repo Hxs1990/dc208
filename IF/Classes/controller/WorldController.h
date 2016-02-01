@@ -191,6 +191,8 @@ enum WorldCityType {
     ,tile_wareHouse//21
     ,tile_wareHouseRange
     ,tile_banner//联盟国旗
+	,tile_island//fusheng 空白小岛 24
+	
     // ----- dragon building
     ,Crystal //24水晶
     ,Crystal_Range //25水晶周边
@@ -988,6 +990,7 @@ public:
     time_t monsterAttEndTime;
     //  cityIndex     cityInfo
     unordered_map<unsigned int, WorldCityInfo> m_cityInfo;
+	unordered_map<unsigned int, WorldCityInfo>& getCityInfos() { return m_cityInfo; }
     
     //  cityIndex     favoriteInfo
     map<double, FavoriteTile> m_favoriteTiles;
