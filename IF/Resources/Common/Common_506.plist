@@ -20,7 +20,7 @@
             <key>57002_ad1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,730},{640,300}}</string>
+                <string>{{4,706},{640,300}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>57003_ad1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,367},{640,357}}</string>
+                <string>{{4,343},{640,357}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>57007_ad1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{650,4},{640,357}}</string>
+                <string>{{659,4},{640,357}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,15 +59,15 @@
             <key>activity_ad_beiyong.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,4},{640,357}}</string>
+                <string>{{4,4},{649,333}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{640,357}}</string>
+                <string>{{0,0},{649,333}}</string>
                 <key>sourceSize</key>
-                <string>{640,357}</string>
+                <string>{649,333}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -79,7 +79,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fd240b72c7d5bbf370421a769365f1d1:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:f0a308386aeb8e11595af86c87bec101:1/1$</string>
             <key>textureFileName</key>
             <string>Common_506.pvr.ccz</string>
         </dict>
