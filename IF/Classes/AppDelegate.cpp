@@ -63,8 +63,6 @@ AppDelegate::AppDelegate()
     g_IS_NEON_SUPPORT = isNeonSupport();
     g_IS_SOFTFP_SUPPORT = isSoftFPSupport();
 #endif
-    
-    CCTexture2D::setDownloadFlag(false);
 }
 
 AppDelegate::~AppDelegate()
@@ -74,6 +72,9 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    CCTexture2D::setDownloadFlag(false);
+    CCLoadSprite::init();
+    
     // lzy  内部服务器打点
     CCCommonUtils::postEventLogToServer("AppDelegate_clickIcon_1");
     CCCommonUtils::setLoadingStartTime();

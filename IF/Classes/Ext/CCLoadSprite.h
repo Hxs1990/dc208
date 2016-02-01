@@ -56,7 +56,12 @@ enum CCLoadSpriteType{
     
 };
 class CCLoadSprite {
-public:    
+public:
+    static void init();
+    
+    static void retain_texture(const std::string& texture);
+    static bool release_texture(const std::string& texture);
+    
     static void loadResourceBySceneId(int sceneId,cocos2d::CCDictionary *dict = NULL);
     static void releaseResourceBySceneId(int sceneId,cocos2d::CCDictionary *dict = NULL);
     static void loadCommonResource();

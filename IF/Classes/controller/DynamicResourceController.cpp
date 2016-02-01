@@ -1055,7 +1055,8 @@ void DynamicResourceController::loadNameTypeResource(std::string name, bool rele
         }
 #endif
         cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(fileName.c_str());
-    }else{
+        CCLoadSprite::retain_texture(fileName);
+    }else if (CCLoadSprite::release_texture(fileName)){
         cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile(fileName.c_str());
         
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
