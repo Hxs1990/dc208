@@ -624,8 +624,6 @@ private:
     bool m_isIosAndroidPad;
     
     void update_water_shader(const Vec2& position);
-    Texture2D* m_water_wave2;
-    Texture2D* m_water_wave1;
     
     friend class DynamicTiledMap;
     friend class NBWorldMonster;
