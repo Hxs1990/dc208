@@ -36,7 +36,8 @@ using namespace std;
 #define UpdateMANAGER_MESSAGE_ERROR                         3
 #define UpdateMANAGER_MESSAGE_OVER                          4
 
-#define XML_USE_LOCAL 0  //1 本地 0 线上
+// TODO
+#define XML_USE_LOCAL 1  //1 本地 0 线上
 
 const std::string _xmlFileName = "database.local.xml";
 const std::string _iniFileName = "text_";

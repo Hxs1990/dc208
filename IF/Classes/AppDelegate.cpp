@@ -63,6 +63,8 @@ AppDelegate::AppDelegate()
     g_IS_NEON_SUPPORT = isNeonSupport();
     g_IS_SOFTFP_SUPPORT = isSoftFPSupport();
 #endif
+    
+    CCTexture2D::setDownloadFlag(false);
 }
 
 AppDelegate::~AppDelegate()

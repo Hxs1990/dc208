@@ -543,6 +543,9 @@ bool DynamicResourceController::hasNameTypeResource(std::string name,int needSiz
 
 bool DynamicResourceController::hasVersionTypeResource(std::string name,std::string newV,int needSize,std::string md5)
 {
+    // TODO:
+    return true;
+    
     if (isDownloading(name)) {
         return false;
     }
