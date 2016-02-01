@@ -4,57 +4,57 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>g008_bust.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{510,510},{500,500}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{500,500}}</string>
-                <key>sourceSize</key>
-                <string>{500,500}</string>
-            </dict>
             <key>g015_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{510,4},{500,500}}</string>
+                <string>{{494,379},{484,369}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{500,500}}</string>
+                <string>{{0,0},{484,369}}</string>
                 <key>sourceSize</key>
-                <string>{500,500}</string>
+                <string>{484,369}</string>
             </dict>
             <key>g024_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,510},{500,500}}</string>
+                <string>{{4,379},{484,369}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{500,500}}</string>
+                <string>{{0,0},{484,369}}</string>
                 <key>sourceSize</key>
-                <string>{500,500}</string>
+                <string>{484,369}</string>
             </dict>
             <key>g026_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,4},{500,500}}</string>
+                <string>{{341,4},{484,369}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{500,500}}</string>
+                <string>{{0,0},{484,369}}</string>
                 <key>sourceSize</key>
-                <string>{500,500}</string>
+                <string>{484,369}</string>
+            </dict>
+            <key>nb_flagBG1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{4,4},{304,331}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{304,331}}</string>
+                <key>sourceSize</key>
+                <string>{304,331}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -66,7 +66,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:99c4f8f4788cda7d33c13d19095f49a9:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:359f78d1cde260c6e4a89790b38d69ad:1/1$</string>
             <key>textureFileName</key>
             <string>General_1.pvr.ccz</string>
         </dict>

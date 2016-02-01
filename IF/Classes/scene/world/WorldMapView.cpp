@@ -1837,8 +1837,6 @@ void WorldMapView::onExit() {
     mcitySkin.clear();
     clearCityCustomSkin();
 	
-    CC_SAFE_RELEASE_NULL(m_water_wave1);
-    CC_SAFE_RELEASE_NULL(m_water_wave2);
     CCLayer::onExit();
 }
 

@@ -10,6 +10,8 @@
 #include "BattleView.h"
 #include "WorldMapView.h"
 #include "WorldMarchCheck.h"
+#include "NBWorldUtils.hpp"
+
 WildMonsterPopUp *WildMonsterPopUp::create(WorldCityInfo &info){
     WildMonsterPopUp *ret = new WildMonsterPopUp(info);
     if(ret && ret->init()){
@@ -24,14 +26,15 @@ bool WildMonsterPopUp::init(){
     bool ret = false;
     if(PopupBaseView::init()){
         setIsHDPanel(true);
-        auto bg = CCBLoadFile("MonsterAttackCCB", this, this);
-        this->setContentSize(bg->getContentSize());
         
         CCLoadSprite::doResourceByCommonIndex(206, true);
         setCleanFunction([](){
             CCLoadSprite::doResourceByCommonIndex(206, false);
             CCLoadSprite::releaseDynamicResourceByType(CCLoadSpriteType_MONSTERLAYERBUST);
         });
+        
+        auto bg = CCBLoadFile("MonsterAttackCCB", this, this);
+        this->setContentSize(bg->getContentSize());
         
         this->setModelLayerTouchCallback([&](cocos2d::CCTouch *pTouch){
             if(!isTouchInside(m_tileBg, pTouch) && (!isTouchInside(m_btn, pTouch) || !m_btn->isVisible())){
@@ -71,8 +74,9 @@ bool WildMonsterPopUp::init(){
         
         m_iconNode->removeAllChildren();
         int picAddX = 0;
-        std::string icon = CCCommonUtils::getPropById(m_info.fieldMonsterInfo.monsterId, "monster") + "_bust.png";
+        std::string icon = NBWorldUtils::getMonsterBustImage(m_info.fieldMonsterInfo.monsterId);
         auto sprite  = CCLoadSprite::createSprite(icon.c_str(),true,CCLoadSpriteType_MONSTERLAYERBUST);
+		sprite->setAnchorPoint({0.5, 0});
         if (icon == "Shixianggui_bust.png" || icon == "Griffin_bust.png")
         {
             picAddX = -60;
