@@ -83,6 +83,17 @@
 
 #include <ctime>
 
+#include "NBWorldNPC.hpp"
+#include "NBWorldMonster.hpp"
+#include "NBWorldMapMainCity.hpp"
+#include "NBWaterSprite.hpp"
+#include "NBWorldUtils.hpp"
+
+//begin a by ljf
+#include "NBWaterMap.h"
+//#include "RecommendAllianceController.h"
+//end a by ljf
+
 #define THREADPARAM_KEY "wolrdmapview::cityInfos"
 
 
@@ -152,7 +163,7 @@ void DynamicTiledMap::setPosition(const cocos2d::CCPoint &position) {
     if(WorldMapView::instance()->m_touchDelegateView){
         WorldMapView::instance()->m_touchDelegateView->setMovable(true);
     }
-    if (this->getTag() == WM_BETWEEN_SERVER_MAP_TAG) {
+    if (this->getTag() == WM_BETWEEN_SERVER_MAP_TAG || getTag() == WM_BG_TAG) {
         return;
     }
     CCSize winsize = CCDirector::sharedDirector()->getWinSize();
@@ -537,7 +548,23 @@ void DynamicTiledMap::updateDynamicMap(CCPoint point,int forceType/* = -1*/) {
             auto map = dynamic_cast<DynamicTiledMap*>(node->getChildByTag(WM_BETWEEN_SERVER_MAP_TAG));
             if(map){
                 map->updateMap(currentTilePoint, serverViewPoint);
+				NBWorldNPC::updateOctopus(currentTilePoint, WorldMapView::instance()->m_layers[WM_BETWEEN_SERVER_MAP]);
             }
+        }
+        
+        auto bg_node = this->getChildByTag(WM_BG_TAG);
+        if (bg_node)
+        {
+            auto map = dynamic_cast<DynamicTiledMap*>(bg_node->getChildByTag(WM_BG_TAG));
+            if (map)
+            {
+                map->updateMap(currentTilePoint, serverViewPoint);
+            }
+        }
+        
+        if (getTag() == WM_MAP_TAG && WorldMapView::instance()->m_layers[WM_SKY])
+        {
+            NBWorldNPC::updateBirds(currentTilePoint, WorldMapView::instance()->m_layers[WM_SKY]);
         }
     }
     if(!GuideController::share()->updateWorldInfo){
@@ -651,6 +678,7 @@ bool WorldMapView::init(cocos2d::CCPoint &viewPoint, MapType mapType) {
     unsigned long ulc = clock();
     // because map is moved by touch delegate view , we must add BG CITY ROAD layer at map
     std::string tmxPath = "WorldMap.tmx";
+	tmxPath = "nb_world.tmx";
     int loopSize = _big_tilecountX;
     if(m_mapType == SERVERFIGHT_MAP || m_mapType == DRAGON_MAP){
         std::string _writeablePath = CCFileUtils::sharedFileUtils()->getWritablePath();
@@ -661,6 +689,7 @@ bool WorldMapView::init(cocos2d::CCPoint &viewPoint, MapType mapType) {
         }
     }
     m_map = DynamicTiledMap::create(tmxPath.c_str(), gotoPoint, loopSize);
+	m_map->setTag(WM_MAP_TAG);
     CCLOG("tmx Load Time %lu",clock() - ulc);
     
     this->addChild(m_map);
@@ -668,27 +697,37 @@ bool WorldMapView::init(cocos2d::CCPoint &viewPoint, MapType mapType) {
     for (int i=0; i<LAYER_COUNT; i++) {
         m_layers[i] = CCNode::create();
     }
+
+	m_map->addChild(m_layers[WM_BG], WM_BG);
+	m_layers[WM_BG]->setTag(WM_BG_TAG);
     if(m_mapType == NORMAL_MAP){
-        m_map->addChild(m_layers[WM_BETWEEN_SERVER_MAP], 2);
+        m_map->addChild(m_layers[WM_BETWEEN_SERVER_MAP], WM_BETWEEN_SERVER_MAP);
         m_layers[WM_BETWEEN_SERVER_MAP]->setTag(WM_BETWEEN_SERVER_MAP_TAG);
-        auto map = DynamicTiledMap::create("WorldMap1.tmx", gotoPoint, loopSize);
-        m_layers[WM_BETWEEN_SERVER_MAP]->addChild(map);
-        map->setTag(WM_BETWEEN_SERVER_MAP_TAG);
-        map->setPosition(-ccp(256 * (_big_tilecountX - _tile_count_x) / 2, 128 * (_big_tilecountY - _tile_count_y)));
+        // auto map = DynamicTiledMap::create("WorldMap1.tmx", gotoPoint, loopSize);
+        // m_layers[WM_BETWEEN_SERVER_MAP]->addChild(map);
+        // map->setTag(WM_BETWEEN_SERVER_MAP_TAG);
+        // map->setPosition(-ccp(256 * (_big_tilecountX - _tile_count_x) / 2, 128 * (_big_tilecountY - _tile_count_y)));
+		
+		auto link_area_pos = Vec2(-256 * (_big_tilecountX - _tile_count_x) / 2, -128 * (_big_tilecountY - _tile_count_y));
+        auto link_area = DynamicTiledMap::create("nb_world_link_area.tmx", gotoPoint, loopSize);
+        link_area->setTag(WM_BETWEEN_SERVER_MAP_TAG);
+        link_area->setPosition(link_area_pos);
+		m_layers[WM_BETWEEN_SERVER_MAP]->addChild(link_area);
     }
-    m_map->addChild(m_layers[WM_CITY], 3);
-    m_map->addChild(m_layers[WM_ROAD], 4);
-    m_map->addChild(m_layers[WM_TILE], 5);
+    m_map->addChild(m_layers[WM_CITY], WM_CITY);
+    m_map->addChild(m_layers[WM_ROAD], WM_ROAD);
+    m_map->addChild(m_layers[WM_SKY], WM_SKY);
+    m_map->addChild(m_layers[WM_TILE], WM_TILE);
     m_layers[WM_GUI]->setTag(WM_GUI_TAG);
     m_layers[WM_POPUP]->setTag(WM_POPUP_TAG);
     
     //    auto scene = CCDirector::sharedDirector()->getRunningScene();
     auto scene = SceneController::getInstance()->getCurrentLayerByLevel(LEVEL_WORLD_UI);
-    scene->addChild(m_layers[WM_GUI]);
-    scene->addChild(m_layers[WM_POPUP]);
+    scene->addChild(m_layers[WM_GUI], WM_GUI);
+    scene->addChild(m_layers[WM_POPUP], WM_POPUP);
     
     auto layer = SceneController::getInstance()->getCurrentLayerByLevel(LEVEL_MINIMAP);
-    layer->addChild(m_layers[WM_COVER]);
+    layer->addChild(m_layers[WM_COVER], WM_COVER);
     
     addCover();
     // todo : add fog
@@ -871,6 +910,9 @@ bool WorldMapView::init(cocos2d::CCPoint &viewPoint, MapType mapType) {
     
     m_mapMonsterNode = IFSkeletonBatchLayer::create();
     m_layers[WM_CITY]->addChild(m_mapMonsterNode, ++cityZorderIndex);
+    
+    m_mapMonstersNode = Node::create();
+    m_layers[WM_CITY]->addChild(m_mapMonstersNode, ++cityZorderIndex);
     
     m_kufuWangZhan = IFSkeletonBatchLayer::create();
     m_layers[WM_CITY]->addChild(m_kufuWangZhan, ++cityZorderIndex);
@@ -1364,6 +1406,10 @@ void WorldMapView::openTilePanel(unsigned int index) {
         }
             break;
         case MonsterTile:{//探索
+            // guojiang
+            CCCommonUtils::flyHint("", "", _lang("E100008"));
+            return;
+            
             // todo
             SoundController::sharedSound()->playEffects(Music_Sfx_city_castle);
             int index = info.parentCityIndex;
@@ -1405,7 +1451,11 @@ void WorldMapView::openTilePanel(unsigned int index) {
             view1 = ActBossPopUp::create(info);
         }
             break;
-        case Throne:{
+        case Throne:
+        {
+            // TODO:
+            break;
+            
             SoundController::sharedSound()->playEffects(Music_Sfx_city_castle);
             if(info.kingBuildInfo.openTime == 0){
                 //                CCCommonUtils::flyHint("", "", _lang("110020"));
@@ -1423,7 +1473,11 @@ void WorldMapView::openTilePanel(unsigned int index) {
             view3 = ThroneTile::create(info);
         }
             break;
-        case Trebuchet:{
+        case Trebuchet:
+        {
+            // TODO:
+            break;
+            
             SoundController::sharedSound()->playEffects(Music_Sfx_city_military);
             if(info.trebuchetInfo.openTime == 0){
                 CCCommonUtils::flyHint("", "", _lang("110020"));
@@ -1766,11 +1820,11 @@ void WorldMapView::onExit() {
     }
     for(auto it = m_marchArmy.begin(); it != m_marchArmy.end(); it++){
         it->second->armyDelete();
-        it->second->release();
+        CC_SAFE_RELEASE(it->second);
     }
     if(tilePops){
         tilePops->removeAllObjects();
-        tilePops->release();
+        CC_SAFE_RELEASE(tilePops);
         tilePops = NULL;
     }
     m_marchArmy.clear();
@@ -1782,6 +1836,9 @@ void WorldMapView::onExit() {
     }
     mcitySkin.clear();
     clearCityCustomSkin();
+	
+    CC_SAFE_RELEASE_NULL(m_water_wave1);
+    CC_SAFE_RELEASE_NULL(m_water_wave2);
     CCLayer::onExit();
 }
 
@@ -2098,7 +2155,7 @@ void WorldMapView::asyncCityInfoParse(cocos2d::CCObject *obj) {
 void WorldMapView::asyncReleaseInMainThread(CCObject* obj)
 {
     if( obj != NULL ) {
-        obj->release();
+        CC_SAFE_RELEASE(obj);
     }
 }
 
@@ -2250,7 +2307,7 @@ void WorldMapView::clearAllMarch(){
     if(needClearAll){
         for(auto it = m_marchArmy.begin(); it != m_marchArmy.end(); it++){
             it->second->armyDelete();
-            it->second->release();
+            CC_SAFE_RELEASE(it->second);
         }
         m_marchArmy.clear();
         WorldMapView::instance()->m_mapMarchNode1->removeAllChildren();
@@ -2754,6 +2811,7 @@ void WorldMapView::gotoTilePoint(const cocos2d::CCPoint &point,bool forceUpdate,
         }
     }
     m_map->isSendCmd = false;
+    update_water_shader(Vec2(x, y));
 }
 
 void WorldMapView::gotoTilePoint(const CCPoint &point, int serverId, bool isForceUpdate){
@@ -3680,6 +3738,7 @@ void WorldMapView::doTeleport(unsigned int type, unsigned int index, const strin
     auto cityNode = CCNode::create();
     
     int level = player.cityLv;
+	/*
     int mapIndex = 3;
     while (mapIndex >= 0) {
         auto arr = WorldController::getInstance()->getCityPicArr(mapIndex, level, player.officer == KINGDOM_KING_ID);
@@ -3709,6 +3768,12 @@ void WorldMapView::doTeleport(unsigned int type, unsigned int index, const strin
         }
         mapIndex--;
     }
+	*/
+	
+    auto house = NBWorldMapMainCity::getMainCity(0, player.cityLv, NBWorldMapMainCity::isKing(info), -1);
+    house->setPosition(0, _tile_height / 2);
+    house->setAnchorPoint({.5, .5});
+    cityNode->addChild(house);
     
     cityNode->setTag(index);
     auto pos = m_map->getViewPointByTilePoint(info.cityTilePoint);
@@ -4145,7 +4210,7 @@ void WorldMapView::finishBattleAni(cocos2d::CCObject *obj) {
     map<unsigned int, MarchArmy*>::iterator it = m_marchArmy.find(info.marchTag);
     if(it != m_marchArmy.end()){
         it->second->armyDelete();
-        it->second->release();
+        CC_SAFE_RELEASE(it->second);
         m_marchArmy.erase(it);
     }
     if(m_drawRoadNode->getChildByTag(info.marchTag)){
@@ -4302,7 +4367,7 @@ bool WorldMapView::updateMarchTarget(MarchInfo &info, double now, float delta) {
             map<unsigned int, MarchArmy*>::iterator it = m_marchArmy.find(info.marchTag);
             if(it != m_marchArmy.end()){
                 it->second->armyDelete();
-                it->second->release();
+                CC_SAFE_RELEASE(it->second);
                 m_marchArmy.erase(it);
             }
             node->removeFromParentAndCleanup(true);
@@ -4336,8 +4401,12 @@ bool WorldMapView::updateMarchTarget(MarchInfo &info, double now, float delta) {
     };
     
     auto drawMarchNode = [&](CCNode* node,MarchInfo& info) {
-        auto endPos = m_map->getViewPointByTilePoint(WorldController::getPointByIndex(info.endPointIndex),info.serverId);
-        auto startPos = m_map->getViewPointByTilePoint(WorldController::getPointByIndex(info.startPointIndex),info.serverId);
+        auto endPoint = WorldController::getPointByIndex(info.endPointIndex);
+        auto startPoint = WorldController::getPointByIndex(info.startPointIndex);
+        
+        auto endPos = m_map->getViewPointByTilePoint(endPoint, info.serverId);
+        auto startPos = m_map->getViewPointByTilePoint(startPoint, info.serverId);
+        
         auto currentPos = ccp(-1, -1);
         auto realEndPos = ccp(-1, -1);
         auto realStartPos = ccp(-1, -1);
@@ -4665,6 +4734,56 @@ bool WorldMapView::updateMarchTarget(MarchInfo &info, double now, float delta) {
             float x = halfWinSize.width - nextPos.x*scaleX;
             float y = halfWinSize.height - nextPos.y*scaleY;
             m_map->setPosition(ccp(x, y));
+        }
+        
+        if (node)
+        {
+            // 船进出岛屿时的半透明效果
+            for (auto c : node->getChildren())
+            {
+                if (c->getTag() == SOILDERTYPE::TITAN)
+                    continue;
+                
+                bool bResourceTile = false;
+                int oResourceTile = 255;
+                if (info.targetType == ResourceTile)
+                {
+                    int tile_length = _tile_width * _tile_width / 16;
+                    Vec2 offset;
+                    if (info.stateType != StateReturn) // arrive Resource Tile
+                    {
+                        offset = c->getPosition() + node->getPosition() - realEndPos;
+                    }
+                    else // leave Resource Tile
+                    {
+                        offset = c->getPosition() + node->getPosition() - realStartPos;
+                    }
+                    
+                    float distance = offset.x * offset.x + offset.y * offset.y;
+                    bResourceTile = distance - tile_length < 0;
+                    oResourceTile = 255 * distance / tile_length;
+                }
+             
+                int tile_length = _tile_width * _tile_width / 4;
+                Vec2 offset;
+                if (info.stateType != StateReturn)
+                {
+                    offset = c->getPosition() + node->getPosition() - realStartPos;
+                }
+                else
+                {
+                    offset = c->getPosition() + node->getPosition() - realEndPos;
+                }
+                float distance = offset.x * offset.x + offset.y * offset.y;
+                if (bResourceTile)
+                {
+                    c->setOpacity(oResourceTile);
+                }
+                else
+                {
+                    c->setOpacity(distance - tile_length < 0 ? 255 * distance / tile_length : 255);
+                }
+            }
         }
     };
     
@@ -5072,6 +5191,7 @@ void WorldMapView::update(float delta) {
         WorldMapView::instance()->m_simNameUnbatchNode->removeAllChildren();
         WorldMapView::instance()->m_aAreaUnbachLbNode->removeAllChildren();
         WorldMapView::instance()->m_mapMonsterNode->removeAllChildren();
+        WorldMapView::instance()->m_mapMonstersNode->removeAllChildren();
         WorldMapView::instance()->m_mapMonsterShadowNode->removeAllChildren();
         WorldMapView::instance()->m_lianNode->removeAllChildren();
         WorldMapView::instance()->m_csNode->removeAllChildren();
@@ -5292,6 +5412,7 @@ void WorldMapView::update(float delta) {
     
 
     m_currentState = WorldController::getInstance()->getKingActivityStateByType(FIGHT_OF_KING);
+	update_water_shader(m_map->getViewPointByTilePoint(m_map->currentTilePoint));
 }
 IFHeiqishiNode* WorldMapView::createHeiqishiSoldier(MarchInfo& info){//default info for （info.marchType MethodHeiqishi）、(info.targetType CityTile)
     float fNodeScale = 0.8;
@@ -5507,7 +5628,7 @@ CCSprite* WorldMapView::createMarchSprite(MarchInfo& info) {
                         sp1->retain();
                         sp1->removeFromParentAndCleanup(false);
                         m_cityAttackNode->addChild(sp1);
-                        sp1->release();
+                        CC_SAFE_RELEASE(sp1);
                     }
                     return sp1;
                 }
@@ -5969,6 +6090,7 @@ void WorldMapView::createCity(WorldCityInfo &info) {
         case TransferPoint:
         case LuaItemTile:
         case LuaItemTile1:
+		case tile_island:
         {
             isCityBuilding = true;
         }
@@ -6110,10 +6232,34 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
     auto pos = m_map->getViewPointByTilePoint(WorldController::getPointByIndex(index),info.tileServerId);
     switch (info.cityType) {
         case ResourceTile:{
-            auto under = CCLoadSprite::createSprite(getSpriteName(info).c_str());
+            // auto under = CCLoadSprite::createSprite(getSpriteName(info).c_str());
+			auto under = Node::create();
             under->setAnchorPoint(ccp(0, 0));
             under->setTag(index);
             under->setPosition(ccp(pos.x-_halfTileSize.width,pos.y-_halfTileSize.height)); // left-bottom corner
+			
+			auto island = CCLoadSprite::createSprite("z_decor_002.png");
+            island->setAnchorPoint(Vec2(0, 0));
+            under->addChild(island);
+
+            string house_img = getSpriteName(info);
+            auto house = CCLoadSprite::createSprite(house_img.c_str());
+            house->setAnchorPoint(Vec2(0, 0));
+            if (house_img == "0020.png")
+            {
+                house->setPositionY(11);
+            }
+            else if (house_img == "0019.png")
+            {
+                house->setPositionY(6);
+            }
+            else if (house_img == "0021.png")
+            {
+                house->setPositionY(19);
+            }
+            under->addChild(house);
+            under->setContentSize(house->getContentSize());
+			
             cityitem.push_back(under);
             m_cityBatchNode->addChild(under, index);
             
@@ -6163,10 +6309,18 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                 }else{
                     spStr = "allianceTowerBad.png";
                 }
-                auto under = CCLoadSprite::createSprite(spStr.c_str());
+                // auto under = CCLoadSprite::createSprite(spStr.c_str());
+				Node* under = Node::create();
                 under->setAnchorPoint(ccp(0, 0));
                 under->setTag(index);
-                under->setPosition(ccp(pos.x-_halfTileSize.width,pos.y-_halfTileSize.height) + ccp(59, 29)); // left-bottom corner
+                // under->setPosition(ccp(pos.x-_halfTileSize.width,pos.y-_halfTileSize.height) + ccp(59, 29)); // left-bottom corner
+				auto island = CCLoadSprite::createSprite("z_decor_002.png");
+                under->addChild(island);
+                
+                auto tower = CCLoadSprite::createSprite(spStr.c_str());
+                tower->setPosition(ccp(-15, 52)); // left-bottom corner
+                under->addChild(tower);
+				
                 cityitem.push_back(under);
                 m_batchNode->addChild(under, index);
                 
@@ -6314,6 +6468,7 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
             break;
         case tile_superMine:{
             if (true) {
+			/*
                 auto arr = WorldController::getInstance()->getCityPicArr(info, 1,getPicIdByCityInfo(info));
                 int i = 0;
                 int picSize = arr.size();
@@ -6330,24 +6485,56 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                     m_batchNode->addChild(under, index + i);
                     i++;
                 }
+				*/
                 if(info.parentCityIndex == info.cityIndex){
                     string fullName = "";
-                    switch (info.m_superMineInfo.type) {
+                    string tower_fullName = "";
+                    switch (info.m_superMineInfo.type)
+                    {
                         case Food:
                             fullName = _lang("115376");
+                            tower_fullName = "super_mine_farm.png";
                             break;
                         case Wood:
                             fullName = _lang("115377");
+                            tower_fullName = "super_mine_sawmill.png";
                             break;
                         case Iron:
                             fullName = _lang("115378");
+                            tower_fullName = "super_mine_Mithril.png";
                             break;
                         case Stone:
                             fullName = _lang("115379");
+                            tower_fullName = "super_mine_EssenceShrine.png";
                             break;
                         default:
                             break;
                     }
+                    
+                    //
+                    
+                    Node* under = Node::create();
+                    under->setAnchorPoint(ccp(0, 0));
+                    under->setPosition(ccp(pos.x, pos.y + _halfTileSize.height)); // left-bottom corner
+                    m_cityItem[index].push_back(under);
+                    m_batchNode->addChild(under, index);
+
+                    auto island = NBWorldMapMainCity::getMainCityIslandImage(0, pos.x, pos.y);
+                    if (island)
+                    {
+                        island->setPosition(-_halfTileSize.width * 1.5, -_halfTileSize.height * 1.5);
+                        under->addChild(island);
+                    }
+
+                    if (tower_fullName.length() > 0)
+                    {
+                        auto tower = CCLoadSprite::createSprite(tower_fullName.c_str());
+                        tower->setPosition(ccp(-25, 52)); // left-bottom corner
+                        under->addChild(tower);
+                    }
+                    
+                    //
+                    
                     AAreaState _state = AAreaState(info.m_superMineInfo.trstat);
                     string stateStr("");
                     string ccbName("");
@@ -6403,6 +6590,7 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
         }
             break;
         case tile_wareHouse:{
+		/*
             auto arr = WorldController::getInstance()->getCityPicArr(info, 1,getPicIdByCityInfo(info));
             int i = 0;
             int picSize = arr.size();
@@ -6419,7 +6607,26 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                 m_batchNode->addChild(under, index + i);
                 i++;
             }
+			*/
             if(info.parentCityIndex == info.cityIndex){
+			
+			Node* under = Node::create();
+                under->setAnchorPoint(ccp(0, 0));
+                under->setPosition(ccp(pos.x, pos.y + _halfTileSize.height)); // left-bottom corner
+                m_cityItem[index].push_back(under);
+                m_batchNode->addChild(under, index);
+                
+                auto island = NBWorldMapMainCity::getMainCityIslandImage(0, pos.x, pos.y);
+                if (island)
+                {
+                    island->setPosition(-_halfTileSize.width * 1.5, -_halfTileSize.height * 1.5);
+                    under->addChild(island);
+                }
+                
+                auto tower = CCLoadSprite::createSprite("territory_warehouse.png");
+                tower->setPosition(ccp(-25, 62)); // left-bottom corner
+                under->addChild(tower);
+				
                 string fullName = info.m_aArea_nickname;
                 if (fullName == "") {
                     fullName = _lang("115364");
@@ -6471,6 +6678,7 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
         }
             break;
         case CityTile:{
+            /*
             auto &player = WorldController::getInstance()->m_playerInfo[info.playerName];
             bool bCustom = false;
             bool bOpenCustom = WorldController::getInstance()->getCastleSkinSwitch();
@@ -6536,10 +6744,40 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                     i++;
                 }
             }
+            */
             
             if(info.parentCityIndex == info.cityIndex){
                 
                 auto &player = WorldController::getInstance()->m_playerInfo[info.playerName];
+                
+                Node* under = Node::create();
+                under->setAnchorPoint(ccp(0, 0));
+                under->setTag(index);
+                under->setPosition(ccp(pos.x - _halfTileSize.width, pos.y - _halfTileSize.height));
+                cityitem.push_back(under);
+                m_cityBatchNode->addChild(under, index);
+                
+                Node* house = nullptr;
+                int island_idx = NBWorldMapMainCity::getMainCityIslandImageIndex(&info, player.cityLv, -1);
+                if (island_idx >= 0)
+                {
+                    if (island_idx == 0)
+                    {
+                        auto island = NBWorldMapMainCity::getMainCityIslandImage(island_idx, pos.x, pos.y);
+                        if (island)
+                        {
+                            under->addChild(island);
+                        }
+                    }
+                    
+                    house = NBWorldMapMainCity::getMainCity(island_idx, player.cityLv, NBWorldMapMainCity::isKing(info), -1);
+                }
+                if (house)
+                {
+                    under->addChild(house);
+                    under->setContentSize(house->getContentSize());
+                }
+                
                 auto now = WorldController::getInstance()->getTime();
                 CCPoint fixPos = ccp(30, 10);
                 int playerCityLv = player.cityLv;
@@ -6748,6 +6986,7 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                 if (m_aAreaAniNode->getChildByTag(info.cityIndex)) {
                     m_aAreaAniNode->removeChildByTag(info.cityIndex);
                 }
+                /*
                 auto arr = WorldController::getInstance()->getCityPicArr(info, 1,getPicIdByCityInfo(info));
                 int i = 0;
                 int picSize = arr.size();
@@ -6764,7 +7003,23 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                     m_batchNode->addChild(under, index + i);
                     i++;
                 }
+                 */
                 if(info.parentCityIndex == info.cityIndex){
+                    Node* under = Node::create();
+                    under->setAnchorPoint(ccp(0, 0));
+                    under->setPosition(ccp(pos.x, pos.y + _halfTileSize.height)); // left-bottom corner
+                    cityitem.push_back(under);
+                    m_batchNode->addChild(under, index);
+                    auto island = NBWorldMapMainCity::getMainCityIslandImage(0, pos.x, pos.y);
+                    if (island)
+                    {
+                        island->setPosition(-_halfTileSize.width * 1.5, -_halfTileSize.height * 1.5);
+                        under->addChild(island);
+                    }
+                    auto tower = CCLoadSprite::createSprite("territory_fort.png");
+                    tower->setPosition(ccp(-25, 62)); // left-bottom corner
+                    under->addChild(tower);
+                    
                     if (0 < info.m_allianceAreaInfo.range && info.m_allianceAreaInfo.range < 100) {
                         initAAreaBlankInfo(info.cityIndex, info.m_allianceAreaInfo.range,isMyalliance);
                     }
@@ -7012,6 +7267,7 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                 }
             }
             else{
+                /*
                 auto under = CCLoadSprite::createSprite(getSpriteName(info).c_str());
                 under->setAnchorPoint(ccp(0, 0));
                 under->setTag(index);
@@ -7023,10 +7279,40 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                 if(index1 == index2){//&& info.mc_state==1
                     addBatchItem(Partical_fieldMonster, index);
                 }
+                 */
+                
+                string picName = getSpriteName(info);
+                
+                if (picName == "0013.png")
+                {
+                    picName = "MonsterTile_0013-0016.png";
+                }
+                else if (picName == "0014.png" || picName == "0015.png" || picName == "0016.png")
+                {
+                    break;
+                }
+                
+                auto under = CCLoadSprite::createSprite(picName.c_str());
+                under->setAnchorPoint(ccp(0, 0));
+                under->setTag(index);
+                under->setPosition(ccp(pos.x-_halfTileSize.width,pos.y-_halfTileSize.height)); // left-bottom corner
+                m_cityItem[index].push_back(under);
+                m_cityBatchNode->addChild(under, index);
+                int index1 = info.parentCityIndex;
+                int index2 = info.cityIndex;
+                if(index1 == index2){//&& info.mc_state==1
+                    addBatchItem(Partical_fieldMonster, index);
+                }
+                
+                if (picName == "0013.png" || picName == "0014.png" || picName == "0015.png" || picName == "0016.png")
+                {
+                    CCCommonUtils::setSpriteGray(under, true);
+                }
             }
         }
             break;
         case FieldMonster:{
+            /*
             addBatchItem(Shadow, index);
             if(info.fieldMonsterInfo.isHpChange){
                 if(info.fieldMonsterInfo.currentHp == 0){
@@ -7074,9 +7360,13 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
             nameText->setPosition(ccp(-20, -55)+pos);
             nameText->setString(nameStr.c_str());
             cityitem.push_back(nameText);
+             */
+            
+            NBWorldMonster::addFieldMonsterUnderNode(info, pos, index);
         }
             break;
         case ActBossTile:{
+            /*
             if(info.parentCityIndex == info.cityIndex) {
 //                addBatchItem(Shadow, index);
                 if(info.fieldMonsterInfo.isHpChange){
@@ -7109,7 +7399,10 @@ void WorldMapView::addUnderNode(WorldCityInfo &info,unsigned int index) {
                 nameText->setPosition(ccp(-20, -55)+pos);
                 nameText->setString(nameStr.c_str());
                 cityitem.push_back(nameText);
-            }
+             }
+             */
+            
+            NBWorldMonster::addActBossTileUnderNode(info, pos, index);
         }
             break;
         case Trebuchet:{
@@ -7478,24 +7771,24 @@ void WorldMapView::addZhengYing(WorldCityInfo &info){
         }
     }
 }
-void WorldMapView::refreshMonster(CCObject *obj){
-    CCInteger *in = dynamic_cast<CCInteger*>(obj);
-    if(in){
-        auto city = m_cityInfo.find(in->getValue());
-        if(city != m_cityInfo.end()){
-            if(city->second.fieldMonsterInfo.currentHp == 0 && city->second.cityType == MonsterTile){
-                releaseCity(city->second);
-                delBatchItem(MonsterDead, city->second.cityIndex);
-                delBatchItem(MonsterDead1, city->second.cityIndex);
-                
-                city->second.cityIcon = -1;
-                city->second.cityType = OriginTile;
-            }else{
-                createCity(city->second);
-            }
-        }
-    }
-}
+//void WorldMapView::refreshMonster(CCObject *obj){
+//    CCInteger *in = dynamic_cast<CCInteger*>(obj);
+//    if(in){
+//        auto city = m_cityInfo.find(in->getValue());
+//        if(city != m_cityInfo.end()){
+//            if(city->second.fieldMonsterInfo.currentHp == 0 && city->second.cityType == MonsterTile){
+//                releaseCity(city->second);
+//                delBatchItem(MonsterDead, city->second.cityIndex);
+//                delBatchItem(MonsterDead1, city->second.cityIndex);
+//                
+//                city->second.cityIcon = -1;
+//                city->second.cityType = OriginTile;
+//            }else{
+//                createCity(city->second);
+//            }
+//        }
+//    }
+//}
 
 std::string WorldMapView::getSpriteName(WorldCityInfo &info){
     std::string picName = "0022.png";
@@ -7708,46 +8001,46 @@ void WorldMapView::addWalkParticleToBatch(CCParticleSystemQuad* particle,unsigne
     m_walkparticleVec[batchTag].push_back(particle);
 }
 
-void WorldMapView::monsterDeathCB(CCObject* obj)
-{
-    CCArray* arr = dynamic_cast<CCArray*>(obj);
-    if(arr)
-    {
-        int index = ((CCInteger*)arr->objectAtIndex(0))->getValue();
-        IFFieldMonsterNode* monster = dynamic_cast<IFFieldMonsterNode*>(m_mapMonsterNode->getChildByTag(getBatchTag(MonsterDead, index)));
-        
-        if (monster)
-        {
-            string name = ((CCString*)arr->objectAtIndex(1))->getCString();
-            int direction = ((CCInteger*)arr->objectAtIndex(2))->getValue();
-            monster->setSpineState(name, MonsterDead, direction,false);
-            
-            auto city = m_cityInfo.find(index);
-            if(city != m_cityInfo.end()){
-                int curCityIdx = city->second.cityIndex;
-                auto items = m_cityItem.find(curCityIdx);
-                if (items != m_cityItem.end()) {
-                    vector<CCSafeObject<CCNode> >::iterator it = m_cityItem[curCityIdx].begin();
-                    for (; it<m_cityItem[curCityIdx].end(); it++) {
-                        CCSprite* tmpSpr = dynamic_cast<CCSprite*>( it->getObject() );
-                        if (tmpSpr) {
-                            CCFadeOut* fadeOutt = CCFadeOut::create(1.5f);
-                            tmpSpr->runAction(fadeOutt);
-                        }
-                    }
-                }
-            }
-            
-            CCDelayTime* delayTime = CCDelayTime::create(3.0f);
-            CCFadeOut* fadeOut = CCFadeOut::create(2.0f);
-            CCCallFuncO* callFunc = CCCallFuncO::create(this, callfuncO_selector(WorldMapView::refreshMonster), CCInteger::create(index));
-            CCSequence* seq = CCSequence::create(delayTime, fadeOut, callFunc, nullptr);
-            monster->runAction(seq);
-        }
-        
-        CC_SAFE_RELEASE_NULL(arr);
-    }
-}
+//void WorldMapView::monsterDeathCB(CCObject* obj)
+//{
+//    CCArray* arr = dynamic_cast<CCArray*>(obj);
+//    if(arr)
+//    {
+//        int index = ((CCInteger*)arr->objectAtIndex(0))->getValue();
+//        IFFieldMonsterNode* monster = dynamic_cast<IFFieldMonsterNode*>(m_mapMonsterNode->getChildByTag(getBatchTag(MonsterDead, index)));
+//        
+//        if (monster)
+//        {
+//            string name = ((CCString*)arr->objectAtIndex(1))->getCString();
+//            int direction = ((CCInteger*)arr->objectAtIndex(2))->getValue();
+//            monster->setSpineState(name, MonsterDead, direction,false);
+//            
+//            auto city = m_cityInfo.find(index);
+//            if(city != m_cityInfo.end()){
+//                int curCityIdx = city->second.cityIndex;
+//                auto items = m_cityItem.find(curCityIdx);
+//                if (items != m_cityItem.end()) {
+//                    vector<CCSafeObject<CCNode> >::iterator it = m_cityItem[curCityIdx].begin();
+//                    for (; it<m_cityItem[curCityIdx].end(); it++) {
+//                        CCSprite* tmpSpr = dynamic_cast<CCSprite*>( it->getObject() );
+//                        if (tmpSpr) {
+//                            CCFadeOut* fadeOutt = CCFadeOut::create(1.5f);
+//                            tmpSpr->runAction(fadeOutt);
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            CCDelayTime* delayTime = CCDelayTime::create(3.0f);
+//            CCFadeOut* fadeOut = CCFadeOut::create(2.0f);
+//            CCCallFuncO* callFunc = CCCallFuncO::create(this, callfuncO_selector(WorldMapView::refreshMonster), CCInteger::create(index));
+//            CCSequence* seq = CCSequence::create(delayTime, fadeOut, callFunc, nullptr);
+//            monster->runAction(seq);
+//        }
+//        
+//        CC_SAFE_RELEASE_NULL(arr);
+//    }
+//}
 
 void WorldMapView::addBatchItem(BatchTagType type, unsigned int index,CCObject* obj) {
     if (m_batchNode->getChildByTag(getBatchTag(type, index))) {
@@ -8363,6 +8656,7 @@ void WorldMapView::addBatchItem(BatchTagType type, unsigned int index,CCObject* 
         case MonsterAppear:
         case MonsterAttack:
         {
+            /*
             if(true)
             {
                 string monsterId = info.fieldMonsterInfo.monsterId;
@@ -8716,6 +9010,7 @@ void WorldMapView::addBatchItem(BatchTagType type, unsigned int index,CCObject* 
                 
                 return;
             }
+             */
             break;
         }
         case CSProtectTag:{
@@ -8870,47 +9165,47 @@ void WorldMapView::addBatchItem(BatchTagType type, unsigned int index,CCObject* 
     }
 }
 
-void WorldMapView::addAttackParticle(CCObject *obj){
-    CCDictionary* dict = dynamic_cast<CCDictionary*>(obj);
-    std::string directionStr = dict->valueForKey("str")->getCString();
-    int index = dict->valueForKey("index")->intValue();
-    int x = dict->valueForKey("x")->intValue();
-    int y = dict->valueForKey("y")->intValue();
-    int count = dict->valueForKey("total")->intValue();
-    if (count > 0 )
-    {
-        for (int i = 1; i <= count; i++) {
-            string pName = directionStr + CC_ITOA(i);
-            auto particle = ParticleController::createParticleInPool(pName);
-            particle->setPosition(ccp(x, y));
-            addParticleToBatch(particle,getBatchTag(MonsterAttackParticle, index));
-            m_cityItem[index].push_back(particle);
-        }
-    }
-    else {
-        vector<string> particlesVec;
-        CCCommonUtils::splitString(directionStr, "|", particlesVec);
-        for (int m=0; m<particlesVec.size(); m++)
-        {
-            vector<string> partNameVec;
-            CCCommonUtils::splitString(particlesVec[m], ";", partNameVec);
-            if (partNameVec.size() == 2)
-            {
-                string partName = partNameVec[0];
-                vector<string> partIdxVec;
-                CCCommonUtils::splitString(partNameVec[1], ",", partIdxVec);
-                for (int j=0; j<partIdxVec.size(); j++) {
-                    string pName = partName + partIdxVec[j];
-                    auto particle = ParticleController::createParticleInPool(pName);
-                    particle->setPosition(ccp(x, y));
-                    addParticleToBatch(particle,getBatchTag(MonsterAttackParticle, index));
-                    m_cityItem[index].push_back(particle);
-                }
-                
-            }
-        }
-    }
-}
+//void WorldMapView::addAttackParticle(CCObject *obj){
+//    CCDictionary* dict = dynamic_cast<CCDictionary*>(obj);
+//    std::string directionStr = dict->valueForKey("str")->getCString();
+//    int index = dict->valueForKey("index")->intValue();
+//    int x = dict->valueForKey("x")->intValue();
+//    int y = dict->valueForKey("y")->intValue();
+//    int count = dict->valueForKey("total")->intValue();
+//    if (count > 0 )
+//    {
+//        for (int i = 1; i <= count; i++) {
+//            string pName = directionStr + CC_ITOA(i);
+//            auto particle = ParticleController::createParticleInPool(pName);
+//            particle->setPosition(ccp(x, y));
+//            addParticleToBatch(particle,getBatchTag(MonsterAttackParticle, index));
+//            m_cityItem[index].push_back(particle);
+//        }
+//    }
+//    else {
+//        vector<string> particlesVec;
+//        CCCommonUtils::splitString(directionStr, "|", particlesVec);
+//        for (int m=0; m<particlesVec.size(); m++)
+//        {
+//            vector<string> partNameVec;
+//            CCCommonUtils::splitString(particlesVec[m], ";", partNameVec);
+//            if (partNameVec.size() == 2)
+//            {
+//                string partName = partNameVec[0];
+//                vector<string> partIdxVec;
+//                CCCommonUtils::splitString(partNameVec[1], ",", partIdxVec);
+//                for (int j=0; j<partIdxVec.size(); j++) {
+//                    string pName = partName + partIdxVec[j];
+//                    auto particle = ParticleController::createParticleInPool(pName);
+//                    particle->setPosition(ccp(x, y));
+//                    addParticleToBatch(particle,getBatchTag(MonsterAttackParticle, index));
+//                    m_cityItem[index].push_back(particle);
+//                }
+//                
+//            }
+//        }
+//    }
+//}
 
 void WorldMapView::removeWalkParticle(int tag){
     auto vec = m_walkparticleVec.find(tag);
@@ -8951,7 +9246,15 @@ void WorldMapView::delBatchItem(BatchTagType type, unsigned int index) {
     if (item) {
         item->removeFromParentAndCleanup(true);
     }
-    auto monster = m_mapMonsterNode->getChildByTag(getBatchTag(type, index));
+    
+    int monsterTag = getBatchTag(type, index);
+    auto monster = m_mapMonsterNode->getChildByTag(monsterTag);
+    if (monster) {
+        monster->removeFromParentAndCleanup(true);
+    }
+    // guo.jiang
+    int tag = NB_WORLD_MONSTER_START_TAG + monsterTag;
+    monster = m_mapMonstersNode->getChildByTag(tag);
     if (monster) {
         monster->removeFromParentAndCleanup(true);
     }
@@ -10931,6 +11234,90 @@ int WorldMapView::getHeartParTag(int index, int type, int i)
 }
 
 
+void WorldMapView::update_water_shader(const Vec2& position)
+{
+    static const int WATER_SHADER_TAG = WM_BG_TAG + 1;
+    static const int OFFSET = 25 * 512;
+    NBWaterMap* m_pWaterSprite0 = dynamic_cast<NBWaterMap*>(m_layers[WM_BG]->getChildByTag(WATER_SHADER_TAG + 0));
+    NBWaterMap* m_pWaterSprite1 = dynamic_cast<NBWaterMap*>(m_layers[WM_BG]->getChildByTag(WATER_SHADER_TAG + 1));
+    NBWaterMap* m_pWaterSprite2 = dynamic_cast<NBWaterMap*>(m_layers[WM_BG]->getChildByTag(WATER_SHADER_TAG + 2));
+    NBWaterMap* m_pWaterSprite3 = dynamic_cast<NBWaterMap*>(m_layers[WM_BG]->getChildByTag(WATER_SHADER_TAG + 3));
+    if (!m_pWaterSprite0)
+    {
+        m_pWaterSprite0 = NBWaterMap::create("shaders/spritemap.png");
+        m_pWaterSprite0->setScale(25.0f);
+        m_pWaterSprite0->setTag(WATER_SHADER_TAG + 0);
+        m_pWaterSprite0->setPosition(0, 0);
+        m_layers[WM_BG]->addChild(m_pWaterSprite0);
+    }
+    if (!m_pWaterSprite1)
+    {
+        m_pWaterSprite1 = NBWaterMap::create("shaders/spritemap.png");
+        m_pWaterSprite1->setScale(25.0f);
+        m_pWaterSprite1->setTag(WATER_SHADER_TAG + 1);
+        m_pWaterSprite1->setPosition(OFFSET, 0);
+        m_layers[WM_BG]->addChild(m_pWaterSprite1);
+    }
+    if (!m_pWaterSprite2)
+    {
+        m_pWaterSprite2 = NBWaterMap::create("shaders/spritemap.png");
+        m_pWaterSprite2->setScale(25.0f);
+        m_pWaterSprite2->setTag(WATER_SHADER_TAG + 2);
+        m_pWaterSprite2->setPosition(0, OFFSET);
+        m_layers[WM_BG]->addChild(m_pWaterSprite2);
+    }
+    if (!m_pWaterSprite3)
+    {
+        m_pWaterSprite3 = NBWaterMap::create("shaders/spritemap.png");
+        m_pWaterSprite3->setScale(25.0f);
+        m_pWaterSprite3->setTag(WATER_SHADER_TAG + 3);
+        m_pWaterSprite3->setPosition(OFFSET, OFFSET);
+        m_layers[WM_BG]->addChild(m_pWaterSprite3);
+    }
+    //begin a by ljf
+    /*
+     CCSprite* pWaterHighLight = dynamic_cast<CCSprite*>(m_layers[WM_BG]->getChildByTag(WATER_SHADER_TAG + 4));
+     if(!pWaterHighLight)
+     {
+     auto pWaterHighLight = CCLoadSprite::createSprite("water_center_high_light.png");
+     pWaterHighLight->setTag(WATER_SHADER_TAG + 4);
+     pWaterHighLight->setZOrder(m_pWaterSprite3->getZOrder() + 1);
+     pWaterHighLight->setScale(2.0f);
+     m_layers[WM_BG]->addChild(pWaterHighLight);
+     }
+     */
+    //end a by ljf
+    int xs = (int)position.x / OFFSET;
+    int ys = (int)position.y / OFFSET;
+    if (m_pWaterSprite0)
+    {
+        // 2 * OFFSET, 2 * OFFSET
+        int x = xs % 2 == 0 ? xs * OFFSET : (xs + 1) * OFFSET;
+        int y = ys % 2 == 0 ? ys * OFFSET : (ys + 1) * OFFSET;
+        m_pWaterSprite0->setPosition(x, y);
+    }
+    if (m_pWaterSprite1)
+    {
+        // 1 * OFFSET, 2 * OFFSET
+        int x = xs % 2 == 1 ? xs * OFFSET : (xs + 1) * OFFSET;
+        int y = ys % 2 == 0 ? ys * OFFSET : (ys + 1) * OFFSET;
+        m_pWaterSprite1->setPosition(x, y);
+    }
+    if (m_pWaterSprite2)
+    {
+        // 2 * OFFSET, 1 * OFFSET
+        int x = xs % 2 == 0 ? xs * OFFSET : (xs + 1) * OFFSET;
+        int y = ys % 2 == 1 ? ys * OFFSET : (ys + 1) * OFFSET;
+        m_pWaterSprite2->setPosition(x, y);
+    }
+    if (m_pWaterSprite3)
+    {
+        // 1 * OFFSET, 1 * OFFSET
+        int x = xs % 2 == 1 ? xs * OFFSET : (xs + 1) * OFFSET;
+        int y = ys % 2 == 1 ? ys * OFFSET : (ys + 1) * OFFSET;
+        m_pWaterSprite3->setPosition(x, y);
+    }
+}
 
 
 

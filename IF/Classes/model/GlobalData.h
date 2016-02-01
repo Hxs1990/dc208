@@ -127,6 +127,7 @@ enum SOILDERTYPE{
     GONG,
     CHE,
     SENG,
+    TITAN,//fusheng 原本是SENG 现在改成TITAN
 };
 
 enum SpecialSteps{

@@ -21,24 +21,31 @@
 #include "NewBaseTileInfo.h"
 #include "IFSkeletonBatchLayer.h"
 #include "IFHeiqishiNode.h"
-#define LAYER_COUNT  7
+
 #define  MSG_SHAKETIME              "shakeTime"
 #define  MSG_SHAKECMDTIME              "shakeCmdTime"
 #define  MSG_SHAKEGUIDETIME              "shakeGuideTime"
 #define  MSG_NOSHOWSHAKE                 "noshowshake"
 
-
+#define WM_BG_TAG 10010
+#define WM_MAP_TAG (WM_BG_TAG + 1)
 #define WM_BETWEEN_SERVER_MAP_TAG 100000
 #define WM_MASK_TAG 200000
 #define WM_COVER_TAG 10000
 
-#define WM_BETWEEN_SERVER_MAP 0
-#define WM_CITY      1
-#define WM_ROAD      2
-#define WM_TILE      3
-#define WM_GUI       4
-#define WM_POPUP     5
-#define WM_COVER     6
+enum
+{
+WM_BG                 = 0,
+WM_BETWEEN_SERVER_MAP,
+WM_CITY              ,
+WM_ROAD              ,
+WM_SKY               ,
+WM_TILE              ,
+WM_GUI               ,
+WM_POPUP             ,
+WM_COVER             ,
+    LAYER_COUNT
+};
 
 #define WM_GUI_TAG 453567
 #define WM_POPUP_TAG 453568
@@ -93,6 +100,7 @@ enum BatchTagType {
     ,MonsterTalkLine
     ,AllianceParticle
     ,MonsterAttackParticle
+    ,MonsterParticle
     ,TrebuchetWait
     ,TrebuchetAttack
     ,OfficerTagBG
@@ -134,6 +142,7 @@ enum MarchAniType {
     // double frame
     ,AniCollect
     ,AniCollectCloth
+    ,AniCollectTitan
     ,AniScout
     ,AniScoutCloth
     ,AniDeal
@@ -154,6 +163,8 @@ struct CellMap{
     double locateTime;
     int cityIndex;
 };
+
+class DynamicTiledMap;
 
 class WorldMapView;
 
@@ -404,6 +415,7 @@ public:
     CCSafeObject<CCNode> m_flagBatch;//旗帜
     CCSafeObject<CCWorldMapSpriteBatchNode> m_mapMarchNode;//侦查，交易
     CCSafeObject<IFSkeletonBatchLayer> m_mapMonsterNode;
+    Node* m_mapMonstersNode; // guo.jiang
     //    IFSkeletonBatchLayer* m_mapMonsterBossNode;//世界boss
     CCSafeObject<IFSkeletonBatchLayer> m_mapHeiqishiMarchNode;//黑骑士
     CCSafeObject<IFSkeletonBatchLayer> m_wingNode;//wing
@@ -496,6 +508,12 @@ public:
     std::map<int, unsigned int> getCurrentTile(CCPoint &pt, int rowNum, int colNum, int tileX);
     CCPoint getMarchPoint(MarchInfo &info);
     bool needClearAll;
+    
+    // pos : 根据坐标和城市开始索引计算岛的外观，不用存储数据到服务器
+    static CCArray *getCityPicArr(int addIndex, int level, bool isKing ,int nSpecialId = -1, const Vec2& pos = Vec2::ZERO);
+    // pos : 根据坐标和城市开始索引计算岛的外观，不用存储数据到服务器
+    static CCArray *getCityPicArr(WorldCityInfo &info, int level,int nSpecialId = -1, const Vec2& pos = Vec2::ZERO);
+    
     bool isCrossServer;
     void addAllianceArea(int cityIndex,bool isMyAlliance);
     bool isDownloadingMinimap;
@@ -604,6 +622,13 @@ private:
     
     vector<FlagParInfo> m_flagParDatas;
     bool m_isIosAndroidPad;
+    
+    void update_water_shader(const Vec2& position);
+    Texture2D* m_water_wave2;
+    Texture2D* m_water_wave1;
+    
+    friend class DynamicTiledMap;
+    friend class NBWorldMonster;
 };
 
 #endif /* defined(__IF__WorldMapView__) */
