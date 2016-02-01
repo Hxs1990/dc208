@@ -2475,7 +2475,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Red_02.png</string>
 										</array>
 									</dict>
@@ -2498,7 +2498,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Red_02.png</string>
 										</array>
 									</dict>
@@ -2521,7 +2521,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Red_01.png</string>
 										</array>
 									</dict>
@@ -3072,7 +3072,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Blue_02.png</string>
 										</array>
 									</dict>
@@ -3095,7 +3095,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Blue_02.png</string>
 										</array>
 									</dict>
@@ -3118,7 +3118,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Blue_01.png</string>
 										</array>
 									</dict>
@@ -3669,7 +3669,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Green_02.png</string>
 										</array>
 									</dict>
@@ -3692,7 +3692,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Green_02.png</string>
 										</array>
 									</dict>
@@ -3715,7 +3715,7 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_2.plist</string>
+											<string>Common/Common_3.plist</string>
 											<string>Btn_Skill_Green_01.png</string>
 										</array>
 									</dict>
