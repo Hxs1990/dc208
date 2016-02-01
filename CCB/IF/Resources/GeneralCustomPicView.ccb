@@ -299,7 +299,7 @@
 								<key>value</key>
 								<array>
 									<real>-320</real>
-									<real>-25</real>
+									<real>-55</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -1189,7 +1189,7 @@
 								<key>value</key>
 								<array>
 									<real>0.0</real>
-									<real>-126.9840087890625</real>
+									<real>-142.9840087890625</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -1264,7 +1264,7 @@
 								<key>value</key>
 								<array>
 									<real>580</real>
-									<real>180</real>
+									<real>100</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -1282,7 +1282,7 @@
 								<key>type</key>
 								<string>IntegerLabeled</string>
 								<key>value</key>
-								<integer>1</integer>
+								<integer>0</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -1290,11 +1290,9 @@
 								<key>type</key>
 								<string>Text</string>
 								<key>value</key>
-								<string>ма, религиозного экстремизма, затрагивающие политические вопросы и т. д. В случае нарушения правил, другие лорды смогут подать жалобу, после рассмотрения и утверждения которой аватара будет удалена, а также станет невозможным повторная загрузка аватары на протяжении {0} дней. За подробностями обращайтесь в раздел «Правил игры».</string>
+								<string>RecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecordRecord</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
