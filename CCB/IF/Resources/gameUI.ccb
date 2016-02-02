@@ -11689,8 +11689,8 @@
 										<string>ScaleLock</string>
 										<key>value</key>
 										<array>
-											<real>0.68240809440612793</real>
-											<real>0.4724658727645874</real>
+											<real>1</real>
+											<real>1</real>
 											<true/>
 											<integer>0</integer>
 										</array>
@@ -11768,8 +11768,8 @@
 										<string>Size</string>
 										<key>value</key>
 										<array>
-											<real>51</real>
-											<real>65</real>
+											<real>43</real>
+											<real>40</real>
 											<integer>0</integer>
 										</array>
 									</dict>
