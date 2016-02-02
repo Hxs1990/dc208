@@ -1479,8 +1479,6 @@
 										<string>Sample Text</string>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 							</dict>
 							<dict>
 								<key>baseClass</key>
@@ -2144,8 +2142,8 @@
 										<string>Position</string>
 										<key>value</key>
 										<array>
-											<real>233.33456420898438</real>
-											<real>247.35791015625</real>
+											<real>272.33456420898438</real>
+											<real>134.35791015625</real>
 											<integer>0</integer>
 										</array>
 									</dict>
@@ -2329,6 +2327,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 							<dict>
 								<key>baseClass</key>
