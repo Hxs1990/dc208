@@ -51,7 +51,7 @@ AchievementNewPopUpView::~AchievementNewPopUpView(){
 }
 void AchievementNewPopUpView::onEnter(){
     PopupBaseView::onEnter();
-    CCLoadSprite::doResourceByCommonIndex(101, true);
+//    CCLoadSprite::doResourceByCommonIndex(101, true);
     setSwallowsTouches(true);
     setTouchMode(Touch::DispatchMode::ONE_BY_ONE);
     setTouchEnabled(true);
@@ -307,16 +307,19 @@ void AchievementNewPopUpView::updateRecommendTask()
         if(m_recommendinfo->state==COMPLETE){
             m_btnReward->setEnabled(true);
             CCCommonUtils::setButtonTitle(m_btnReward, _lang("107516").c_str());
-            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
+//            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
+            CCCommonUtils::setButtonSprite(m_btnReward, "btn_lt_fs.png");
         }else{
             m_btnReward->setEnabled(true);
             CCCommonUtils::setButtonTitle(m_btnReward, _lang("2000214").c_str());
-            CCCommonUtils::setButtonSprite(m_btnReward, "but_blue.png");
+//            CCCommonUtils::setButtonSprite(m_btnReward, "but_blue.png");
+            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
         }
         if(quest->curValue>=quest->maxValue){
             m_btnReward->setEnabled(true);
             CCCommonUtils::setButtonTitle(m_btnReward, _lang("107516").c_str());
-            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
+//            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
+            CCCommonUtils::setButtonSprite(m_btnReward, "btn_lt_fs.png");
         }
         m_descTxt->setString(quest->name);
         std::string str = CC_CMDITOA(quest->curValue>quest->maxValue?quest->maxValue:quest->curValue);
@@ -983,7 +986,7 @@ void AchievementNewTaskCell::refresh()
 {
     m_rewardClick = false;
     m_picHead->removeAllChildren();
-    m_picHead->setScale(1.f);
+    // m_picHead->setScale(1.f);
     if(m_waitInterface!=NULL){
         m_waitInterface->remove();
         m_waitInterface = NULL;
@@ -1058,7 +1061,8 @@ void AchievementNewTaskCell::refresh()
     float pro = m_info->curValue*1.0/m_info->maxValue;
     pro = pro>1?1:pro;
     m_progress->setScaleX(pro);
-    m_progressTxt->setString(str);
+    m_progressTxt->setString(CC_CMDITOA(m_info->curValue>m_info->maxValue?m_info->maxValue:m_info->curValue));
+    m_progressTotalTxt->setString(str);
     
     CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
     if ((m_info->itemId == "2900101" || m_info->itemId == "2900102" || m_info->itemId == "2900103") && m_info->state == ACCEPT) {
@@ -1097,6 +1101,7 @@ bool AchievementNewTaskCell::onAssignCCBMemberVariable(cocos2d::CCObject * pTarg
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_picHead", CCNode*, this->m_picHead);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_progress", CCScale9Sprite*, this->m_progress);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_progressTxt", CCLabelIF*, this->m_progressTxt);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_progressTotalTxt", CCLabelIF*, this->m_progressTotalTxt);
     return false;
 }
 

@@ -27,8 +27,10 @@ bool AddAllianceTipsView::init() {
     if(PopupBaseView::init()){
         setIsHDPanel(true);
         CCLoadSprite::doResourceByCommonIndex(504, true);
+        CCLoadSprite::doResourceByCommonIndex(6, true);
         setCleanFunction([](){
             CCLoadSprite::doResourceByCommonIndex(504, false);
+            CCLoadSprite::doResourceByCommonIndex(6, false);
         });
         
         auto ccb = CCBLoadFile("AddAllianceTipsView",this,this);
@@ -51,14 +53,14 @@ bool AddAllianceTipsView::init() {
             CCCommonUtils::setButtonTitle(m_btnAlliance, _lang("115589").c_str());
         }
         
-        m_titleLabel->setColor(Color3B(255,210,140));
-        m_rewardLabel->setColor(Color3B(255,198,0));
-        m_tip1Label->setColor(Color3B(245,214,176));
-        m_tip2Label->setColor(Color3B(245,214,176));
-        m_tip3Label->setColor(Color3B(245,214,176));
-        m_tip4Label->setColor(Color3B(245,214,176));
-        
-        CCCommonUtils::setButtonTitleColor(m_btnAlliance, Color3B(245,214,176));
+//        m_titleLabel->setColor(Color3B(255,210,140));
+//        m_rewardLabel->setColor(Color3B(255,198,0));
+//        m_tip1Label->setColor(Color3B(245,214,176));
+//        m_tip2Label->setColor(Color3B(245,214,176));
+//        m_tip3Label->setColor(Color3B(245,214,176));
+//        m_tip4Label->setColor(Color3B(245,214,176));
+//        
+//        CCCommonUtils::setButtonTitleColor(m_btnAlliance, Color3B(245,214,176));
         
         
         this->setModelLayerTouchCallback([&](cocos2d::CCTouch *pTouch){
