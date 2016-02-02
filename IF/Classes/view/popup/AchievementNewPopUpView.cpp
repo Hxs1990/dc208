@@ -307,16 +307,19 @@ void AchievementNewPopUpView::updateRecommendTask()
         if(m_recommendinfo->state==COMPLETE){
             m_btnReward->setEnabled(true);
             CCCommonUtils::setButtonTitle(m_btnReward, _lang("107516").c_str());
-            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
+//            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
+            CCCommonUtils::setButtonSprite(m_btnReward, "btn_lt_fs.png");
         }else{
             m_btnReward->setEnabled(true);
             CCCommonUtils::setButtonTitle(m_btnReward, _lang("2000214").c_str());
-            CCCommonUtils::setButtonSprite(m_btnReward, "but_blue.png");
+//            CCCommonUtils::setButtonSprite(m_btnReward, "but_blue.png");
+            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
         }
         if(quest->curValue>=quest->maxValue){
             m_btnReward->setEnabled(true);
             CCCommonUtils::setButtonTitle(m_btnReward, _lang("107516").c_str());
-            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
+//            CCCommonUtils::setButtonSprite(m_btnReward, "btn_green3.png");
+            CCCommonUtils::setButtonSprite(m_btnReward, "btn_lt_fs.png");
         }
         m_descTxt->setString(quest->name);
         std::string str = CC_CMDITOA(quest->curValue>quest->maxValue?quest->maxValue:quest->curValue);
