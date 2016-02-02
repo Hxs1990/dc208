@@ -1898,8 +1898,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -2166,8 +2164,8 @@
 										<string>Size</string>
 										<key>value</key>
 										<array>
-											<real>26</real>
-											<real>41</real>
+											<real>45</real>
+											<real>45</real>
 											<integer>0</integer>
 										</array>
 									</dict>
@@ -2582,8 +2580,8 @@
 										<string>Size</string>
 										<key>value</key>
 										<array>
-											<real>43</real>
-											<real>41</real>
+											<real>45</real>
+											<real>45</real>
 											<integer>0</integer>
 										</array>
 									</dict>
