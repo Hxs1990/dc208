@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -15,7 +15,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71m-MY-Mf9" userLabel="rootView" customClass="HeadEditView">
                     <rect key="frame" x="0.0" y="0.0" width="434" height="109"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_bg_default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="KG7-L5-e9h">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="KG7-L5-e9h">
                             <rect key="frame" x="0.0" y="0.0" width="434" height="109"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-8Y-yL7" userLabel="LableView">
@@ -50,7 +50,7 @@
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTm-pF-B8A">
                                     <rect key="frame" x="339" y="5" width="85" height="44"/>
-                                    <state key="normal" title="确定" backgroundImage="buttonBack_green">
+                                    <state key="normal" title="确定" backgroundImage="btn_green3.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -109,7 +109,7 @@
         </view>
     </objects>
     <resources>
-        <image name="buttonBack_green" width="244" height="74"/>
-        <image name="chat_bg_default.jpg" width="120" height="110"/>
+        <image name="bottom_bg.png" width="83" height="74"/>
+        <image name="btn_green3.png" width="128" height="55"/>
     </resources>
 </document>

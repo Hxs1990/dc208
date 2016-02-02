@@ -122,7 +122,7 @@
         
         
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        tableView.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail_list_bg"]];
+        tableView.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottom_bg.png"]];
         tableView.delegate = self;
         tableView.dataSource = self;
         _sysMailListTableView = tableView;

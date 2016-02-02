@@ -78,6 +78,120 @@
 		1D17A5AB1A4D6007003995E3 /* TimeExchangeView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D17A5A81A4D6007003995E3 /* TimeExchangeView.cpp */; };
 		1D1846001A1F660F00B2B872 /* InviteForGiftView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D1845FB1A1F660F00B2B872 /* InviteForGiftView.cpp */; };
 		1D1DE51D1B1E826900BC9826 /* ActivityView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D1DE51B1B1E826900BC9826 /* ActivityView.cpp */; };
+		1D1E45B31C609C4500712A22 /* [battlereport].png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45411C609C4500712A22 /* [battlereport].png */; };
+		1D1E45B41C609C4500712A22 /* [equip_share].png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45421C609C4500712A22 /* [equip_share].png */; };
+		1D1E45B51C609C4500712A22 /* [sysChat].png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45431C609C4500712A22 /* [sysChat].png */; };
+		1D1E45B61C609C4500712A22 /* btn_equip_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45441C609C4500712A22 /* btn_equip_grey.png */; };
+		1D1E45B71C609C4500712A22 /* btn_equip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45451C609C4500712A22 /* btn_equip.png */; };
+		1D1E45B81C609C4500712A22 /* btn_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45461C609C4500712A22 /* btn_red.png */; };
+		1D1E45B91C609C4500712A22 /* chat_notice_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45471C609C4500712A22 /* chat_notice_bg2.png */; };
+		1D1E45BA1C609C4500712A22 /* chat_notice_cha.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45481C609C4500712A22 /* chat_notice_cha.png */; };
+		1D1E45BB1C609C4500712A22 /* chat_notice_icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45491C609C4500712A22 /* chat_notice_icon1.png */; };
+		1D1E45BC1C609C4500712A22 /* chat_system_left_bg_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E454A1C609C4500712A22 /* chat_system_left_bg_pressed.png */; };
+		1D1E45BD1C609C4500712A22 /* chatroom_name_input.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E454B1C609C4500712A22 /* chatroom_name_input.9.png */; };
+		1D1E45BE1C609C4500712A22 /* equip_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E454C1C609C4500712A22 /* equip_share.png */; };
+		1D1E45BF1C609C4500712A22 /* g046.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E454D1C609C4500712A22 /* g046.png */; };
+		1D1E45C01C609C4500712A22 /* horn_bg_left.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E454E1C609C4500712A22 /* horn_bg_left.9.png */; };
+		1D1E45C11C609C4500712A22 /* horn_bg_right.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E454F1C609C4500712A22 /* horn_bg_right.9.png */; };
+		1D1E45C21C609C4500712A22 /* ic_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45501C609C4500712A22 /* ic_delete.png */; };
+		1D1E45C31C609C4500712A22 /* icon_add_mumber.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45511C609C4500712A22 /* icon_add_mumber.png */; };
+		1D1E45C41C609C4500712A22 /* icon_add_mumber2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45521C609C4500712A22 /* icon_add_mumber2.png */; };
+		1D1E45C51C609C4500712A22 /* icon_mail_name.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45531C609C4500712A22 /* icon_mail_name.png */; };
+		1D1E45C61C609C4500712A22 /* icon_mail_write.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45541C609C4500712A22 /* icon_mail_write.png */; };
+		1D1E45C71C609C4500712A22 /* input.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45551C609C4500712A22 /* input.9.png */; };
+		1D1E45C81C609C4500712A22 /* mail_bg_diban.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45561C609C4500712A22 /* mail_bg_diban.png */; };
+		1D1E45C91C609C4500712A22 /* mail_bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45571C609C4500712A22 /* mail_bg1.png */; };
+		1D1E45CA1C609C4500712A22 /* mail_btn_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45581C609C4500712A22 /* mail_btn_all.png */; };
+		1D1E45CB1C609C4500712A22 /* mail_btn_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45591C609C4500712A22 /* mail_btn_del.png */; };
+		1D1E45CC1C609C4500712A22 /* mail_btn_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E455A1C609C4500712A22 /* mail_btn_edit.png */; };
+		1D1E45CD1C609C4500712A22 /* mail_btn_fanhui.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E455B1C609C4500712A22 /* mail_btn_fanhui.png */; };
+		1D1E45CE1C609C4500712A22 /* mail_btn_save.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E455C1C609C4500712A22 /* mail_btn_save.png */; };
+		1D1E45CF1C609C4500712A22 /* mail_btn_write_mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E455D1C609C4500712A22 /* mail_btn_write_mail.png */; };
+		1D1E45D01C609C4500712A22 /* mail_btn_write.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E455E1C609C4500712A22 /* mail_btn_write.png */; };
+		1D1E45D11C609C4500712A22 /* mail_check_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E455F1C609C4500712A22 /* mail_check_bg.png */; };
+		1D1E45D21C609C4500712A22 /* mail_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45601C609C4500712A22 /* mail_checked.png */; };
+		1D1E45D31C609C4500712A22 /* mail_icon_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45611C609C4500712A22 /* mail_icon_bg.png */; };
+		1D1E45D41C609C4500712A22 /* mail_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45621C609C4500712A22 /* mail_line.png */; };
+		1D1E45D51C609C4500712A22 /* mail_list_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45631C609C4500712A22 /* mail_list_arrow.png */; };
+		1D1E45D61C609C4500712A22 /* mail_list_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45641C609C4500712A22 /* mail_list_bg.png */; };
+		1D1E45D71C609C4500712A22 /* mail_list_divider_title_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45651C609C4500712A22 /* mail_list_divider_title_bg.png */; };
+		1D1E45D81C609C4500712A22 /* mail_list_divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45661C609C4500712A22 /* mail_list_divider.png */; };
+		1D1E45D91C609C4500712A22 /* mail_list_edit_buttonbar_bg.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45671C609C4500712A22 /* mail_list_edit_buttonbar_bg.9.png */; };
+		1D1E45DA1C609C4500712A22 /* mail_list_edit_check_box_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45681C609C4500712A22 /* mail_list_edit_check_box_checked.png */; };
+		1D1E45DB1C609C4500712A22 /* mail_list_edit_check_box_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45691C609C4500712A22 /* mail_list_edit_check_box_unchecked.png */; };
+		1D1E45DC1C609C4500712A22 /* mail_list_edit_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E456A1C609C4500712A22 /* mail_list_edit_delete.png */; };
+		1D1E45DD1C609C4500712A22 /* mail_list_edit_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E456B1C609C4500712A22 /* mail_list_edit_favorite.png */; };
+		1D1E45DE1C609C4500712A22 /* mail_list_edit_gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E456C1C609C4500712A22 /* mail_list_edit_gift.png */; };
+		1D1E45DF1C609C4500712A22 /* mail_list_edit_write.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E456D1C609C4500712A22 /* mail_list_edit_write.png */; };
+		1D1E45E01C609C4500712A22 /* mail_list_head_battle_city_failure.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E456E1C609C4500712A22 /* mail_list_head_battle_city_failure.png */; };
+		1D1E45E11C609C4500712A22 /* mail_list_head_bg_battle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E456F1C609C4500712A22 /* mail_list_head_bg_battle.png */; };
+		1D1E45E21C609C4500712A22 /* mail_list_icon_announcement.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45701C609C4500712A22 /* mail_list_icon_announcement.png */; };
+		1D1E45E31C609C4500712A22 /* mail_list_icon_battle_camp.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45711C609C4500712A22 /* mail_list_icon_battle_camp.png */; };
+		1D1E45E41C609C4500712A22 /* mail_list_icon_battle_capture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45721C609C4500712A22 /* mail_list_icon_battle_capture.png */; };
+		1D1E45E51C609C4500712A22 /* mail_list_icon_battle_city_defent_failure.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45731C609C4500712A22 /* mail_list_icon_battle_city_defent_failure.png */; };
+		1D1E45E61C609C4500712A22 /* mail_list_icon_battle_city_defent_victory.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45741C609C4500712A22 /* mail_list_icon_battle_city_defent_victory.png */; };
+		1D1E45E71C609C4500712A22 /* mail_list_icon_battle_city_failure.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45751C609C4500712A22 /* mail_list_icon_battle_city_failure.png */; };
+		1D1E45E81C609C4500712A22 /* mail_list_icon_battle_city_victory.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45761C609C4500712A22 /* mail_list_icon_battle_city_victory.png */; };
+		1D1E45E91C609C4500712A22 /* mail_list_icon_battle_detect.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45771C609C4500712A22 /* mail_list_icon_battle_detect.png */; };
+		1D1E45EA1C609C4500712A22 /* mail_list_icon_battle_explore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45781C609C4500712A22 /* mail_list_icon_battle_explore.png */; };
+		1D1E45EB1C609C4500712A22 /* mail_list_icon_battle_knight.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45791C609C4500712A22 /* mail_list_icon_battle_knight.png */; };
+		1D1E45EC1C609C4500712A22 /* mail_list_icon_battle_monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E457A1C609C4500712A22 /* mail_list_icon_battle_monster.png */; };
+		1D1E45ED1C609C4500712A22 /* mail_list_icon_battle_report.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E457B1C609C4500712A22 /* mail_list_icon_battle_report.png */; };
+		1D1E45EE1C609C4500712A22 /* mail_list_icon_id_binding.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E457C1C609C4500712A22 /* mail_list_icon_id_binding.png */; };
+		1D1E45EF1C609C4500712A22 /* mail_list_icon_invite_join_alliance.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E457D1C609C4500712A22 /* mail_list_icon_invite_join_alliance.png */; };
+		1D1E45F01C609C4500712A22 /* mail_list_icon_invite_join.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E457E1C609C4500712A22 /* mail_list_icon_invite_join.png */; };
+		1D1E45F11C609C4500712A22 /* mail_list_icon_invite_kickedout.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E457F1C609C4500712A22 /* mail_list_icon_invite_kickedout.png */; };
+		1D1E45F21C609C4500712A22 /* mail_list_icon_invite_move.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45801C609C4500712A22 /* mail_list_icon_invite_move.png */; };
+		1D1E45F31C609C4500712A22 /* mail_list_icon_invite_rejected.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45811C609C4500712A22 /* mail_list_icon_invite_rejected.png */; };
+		1D1E45F41C609C4500712A22 /* mail_list_icon_reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45821C609C4500712A22 /* mail_list_icon_reward.png */; };
+		1D1E45F51C609C4500712A22 /* mail_list_icon_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45831C609C4500712A22 /* mail_list_icon_search.png */; };
+		1D1E45F61C609C4500712A22 /* mail_list_icon_studio.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45841C609C4500712A22 /* mail_list_icon_studio.png */; };
+		1D1E45F71C609C4500712A22 /* mail_list_icon_system_other.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45851C609C4500712A22 /* mail_list_icon_system_other.png */; };
+		1D1E45F81C609C4500712A22 /* mail_list_icon_system_vip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45861C609C4500712A22 /* mail_list_icon_system_vip.png */; };
+		1D1E45F91C609C4500712A22 /* mail_list_main_icon_announcement.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45871C609C4500712A22 /* mail_list_main_icon_announcement.png */; };
+		1D1E45FA1C609C4500712A22 /* mail_list_main_icon_battle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45881C609C4500712A22 /* mail_list_main_icon_battle.png */; };
+		1D1E45FB1C609C4500712A22 /* mail_list_main_icon_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45891C609C4500712A22 /* mail_list_main_icon_chat.png */; };
+		1D1E45FC1C609C4500712A22 /* mail_list_main_icon_explore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E458A1C609C4500712A22 /* mail_list_main_icon_explore.png */; };
+		1D1E45FD1C609C4500712A22 /* mail_list_main_icon_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E458B1C609C4500712A22 /* mail_list_main_icon_favorite.png */; };
+		1D1E45FE1C609C4500712A22 /* mail_list_main_icon_invite.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E458C1C609C4500712A22 /* mail_list_main_icon_invite.png */; };
+		1D1E45FF1C609C4500712A22 /* mail_list_main_icon_mod.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E458D1C609C4500712A22 /* mail_list_main_icon_mod.png */; };
+		1D1E46001C609C4500712A22 /* mail_list_main_icon_monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E458E1C609C4500712A22 /* mail_list_main_icon_monster.png */; };
+		1D1E46011C609C4500712A22 /* mail_list_main_icon_recycler.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E458F1C609C4500712A22 /* mail_list_main_icon_recycler.png */; };
+		1D1E46021C609C4500712A22 /* mail_list_main_icon_resource.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45901C609C4500712A22 /* mail_list_main_icon_resource.png */; };
+		1D1E46031C609C4500712A22 /* mail_list_main_icon_studio.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45911C609C4500712A22 /* mail_list_main_icon_studio.png */; };
+		1D1E46041C609C4500712A22 /* mail_list_main_icon_system.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45921C609C4500712A22 /* mail_list_main_icon_system.png */; };
+		1D1E46051C609C4500712A22 /* mail_mail_read.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45931C609C4500712A22 /* mail_mail_read.png */; };
+		1D1E46061C609C4500712A22 /* mail_pic_flag_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45941C609C4500712A22 /* mail_pic_flag_2.png */; };
+		1D1E46071C609C4500712A22 /* mail_pic_flag_4_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45951C609C4500712A22 /* mail_pic_flag_4_1.png */; };
+		1D1E46081C609C4500712A22 /* mail_pic_flag_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45961C609C4500712A22 /* mail_pic_flag_4.png */; };
+		1D1E46091C609C4500712A22 /* mail_pic_flag_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45971C609C4500712A22 /* mail_pic_flag_5.png */; };
+		1D1E460A1C609C4500712A22 /* mail_pic_flag_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45981C609C4500712A22 /* mail_pic_flag_8.png */; };
+		1D1E460B1C609C4500712A22 /* mail_pic_flag_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45991C609C4500712A22 /* mail_pic_flag_9.png */; };
+		1D1E460C1C609C4500712A22 /* mail_pic_flag_14.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E459A1C609C4500712A22 /* mail_pic_flag_14.png */; };
+		1D1E460D1C609C4500712A22 /* mail_pic_flag_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E459B1C609C4500712A22 /* mail_pic_flag_16.png */; };
+		1D1E460E1C609C4500712A22 /* mail_pic_flag_18.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E459C1C609C4500712A22 /* mail_pic_flag_18.png */; };
+		1D1E460F1C609C4500712A22 /* mail_pic_flag_31.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E459D1C609C4500712A22 /* mail_pic_flag_31.png */; };
+		1D1E46101C609C4500712A22 /* mail_reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E459E1C609C4500712A22 /* mail_reward.png */; };
+		1D1E46111C609C4500712A22 /* mail_separate3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E459F1C609C4500712A22 /* mail_separate3.png */; };
+		1D1E46121C609C4500712A22 /* mail_shoucang_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A01C609C4500712A22 /* mail_shoucang_02.png */; };
+		1D1E46131C609C4500712A22 /* mange_mod.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A11C609C4500712A22 /* mange_mod.png */; };
+		1D1E46141C609C4500712A22 /* mute.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A21C609C4500712A22 /* mute.png */; };
+		1D1E46151C609C4500712A22 /* new_msg_tooltip_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A31C609C4500712A22 /* new_msg_tooltip_arrow.png */; };
+		1D1E46161C609C4500712A22 /* shareImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A41C609C4500712A22 /* shareImg.png */; };
+		1D1E46171C609C4500712A22 /* sys.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A51C609C4500712A22 /* sys.png */; };
+		1D1E46181C609C4500712A22 /* text_field_bg2.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A61C609C4500712A22 /* text_field_bg2.9.png */; };
+		1D1E46191C609C4500712A22 /* tishikuang_full.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A71C609C4500712A22 /* tishikuang_full.9.png */; };
+		1D1E461A1C609C4500712A22 /* ui_food.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A81C609C4500712A22 /* ui_food.png */; };
+		1D1E461B1C609C4500712A22 /* ui_gold.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45A91C609C4500712A22 /* ui_gold.png */; };
+		1D1E461C1C609C4500712A22 /* ui_huitiao2.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45AA1C609C4500712A22 /* ui_huitiao2.9.png */; };
+		1D1E461D1C609C4500712A22 /* ui_iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45AB1C609C4500712A22 /* ui_iron.png */; };
+		1D1E461E1C609C4500712A22 /* ui_silver.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45AC1C609C4500712A22 /* ui_silver.png */; };
+		1D1E461F1C609C4500712A22 /* ui_stone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45AD1C609C4500712A22 /* ui_stone.png */; };
+		1D1E46201C609C4500712A22 /* ui_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45AE1C609C4500712A22 /* ui_wood.png */; };
+		1D1E46211C609C4500712A22 /* ui_write_mail_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45AF1C609C4500712A22 /* ui_write_mail_bg.png */; };
+		1D1E46221C609C4500712A22 /* vip_certification.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45B01C609C4500712A22 /* vip_certification.png */; };
+		1D1E46231C609C4500712A22 /* world_wild_reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45B11C609C4500712A22 /* world_wild_reward.png */; };
+		1D1E46241C609C4500712A22 /* xsearch_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1E45B21C609C4500712A22 /* xsearch_loading.png */; };
 		1D24E9EC1AF89EA0007F5AF3 /* ActivityDetailView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D24E9EA1AF89EA0007F5AF3 /* ActivityDetailView.cpp */; };
 		1D341ECA1BCBC38700A1B249 /* FriendsCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D341EC81BCBC38700A1B249 /* FriendsCommand.cpp */; };
 		1D341ECD1BCBC39F00A1B249 /* FriendsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D341ECB1BCBC39F00A1B249 /* FriendsController.cpp */; };
@@ -1684,6 +1798,120 @@
 		1D1845FC1A1F660F00B2B872 /* InviteForGiftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteForGiftView.h; sourceTree = "<group>"; };
 		1D1DE51B1B1E826900BC9826 /* ActivityView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActivityView.cpp; sourceTree = "<group>"; };
 		1D1DE51C1B1E826900BC9826 /* ActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityView.h; sourceTree = "<group>"; };
+		1D1E45411C609C4500712A22 /* [battlereport].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[battlereport].png"; sourceTree = "<group>"; };
+		1D1E45421C609C4500712A22 /* [equip_share].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[equip_share].png"; sourceTree = "<group>"; };
+		1D1E45431C609C4500712A22 /* [sysChat].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[sysChat].png"; sourceTree = "<group>"; };
+		1D1E45441C609C4500712A22 /* btn_equip_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_equip_grey.png; sourceTree = "<group>"; };
+		1D1E45451C609C4500712A22 /* btn_equip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_equip.png; sourceTree = "<group>"; };
+		1D1E45461C609C4500712A22 /* btn_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_red.png; sourceTree = "<group>"; };
+		1D1E45471C609C4500712A22 /* chat_notice_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_notice_bg2.png; sourceTree = "<group>"; };
+		1D1E45481C609C4500712A22 /* chat_notice_cha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_notice_cha.png; sourceTree = "<group>"; };
+		1D1E45491C609C4500712A22 /* chat_notice_icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_notice_icon1.png; sourceTree = "<group>"; };
+		1D1E454A1C609C4500712A22 /* chat_system_left_bg_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_system_left_bg_pressed.png; sourceTree = "<group>"; };
+		1D1E454B1C609C4500712A22 /* chatroom_name_input.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatroom_name_input.9.png; sourceTree = "<group>"; };
+		1D1E454C1C609C4500712A22 /* equip_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = equip_share.png; sourceTree = "<group>"; };
+		1D1E454D1C609C4500712A22 /* g046.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g046.png; sourceTree = "<group>"; };
+		1D1E454E1C609C4500712A22 /* horn_bg_left.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horn_bg_left.9.png; sourceTree = "<group>"; };
+		1D1E454F1C609C4500712A22 /* horn_bg_right.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horn_bg_right.9.png; sourceTree = "<group>"; };
+		1D1E45501C609C4500712A22 /* ic_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_delete.png; sourceTree = "<group>"; };
+		1D1E45511C609C4500712A22 /* icon_add_mumber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add_mumber.png; sourceTree = "<group>"; };
+		1D1E45521C609C4500712A22 /* icon_add_mumber2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add_mumber2.png; sourceTree = "<group>"; };
+		1D1E45531C609C4500712A22 /* icon_mail_name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mail_name.png; sourceTree = "<group>"; };
+		1D1E45541C609C4500712A22 /* icon_mail_write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mail_write.png; sourceTree = "<group>"; };
+		1D1E45551C609C4500712A22 /* input.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = input.9.png; sourceTree = "<group>"; };
+		1D1E45561C609C4500712A22 /* mail_bg_diban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_bg_diban.png; sourceTree = "<group>"; };
+		1D1E45571C609C4500712A22 /* mail_bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_bg1.png; sourceTree = "<group>"; };
+		1D1E45581C609C4500712A22 /* mail_btn_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_btn_all.png; sourceTree = "<group>"; };
+		1D1E45591C609C4500712A22 /* mail_btn_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_btn_del.png; sourceTree = "<group>"; };
+		1D1E455A1C609C4500712A22 /* mail_btn_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_btn_edit.png; sourceTree = "<group>"; };
+		1D1E455B1C609C4500712A22 /* mail_btn_fanhui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_btn_fanhui.png; sourceTree = "<group>"; };
+		1D1E455C1C609C4500712A22 /* mail_btn_save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_btn_save.png; sourceTree = "<group>"; };
+		1D1E455D1C609C4500712A22 /* mail_btn_write_mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_btn_write_mail.png; sourceTree = "<group>"; };
+		1D1E455E1C609C4500712A22 /* mail_btn_write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_btn_write.png; sourceTree = "<group>"; };
+		1D1E455F1C609C4500712A22 /* mail_check_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_check_bg.png; sourceTree = "<group>"; };
+		1D1E45601C609C4500712A22 /* mail_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_checked.png; sourceTree = "<group>"; };
+		1D1E45611C609C4500712A22 /* mail_icon_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_icon_bg.png; sourceTree = "<group>"; };
+		1D1E45621C609C4500712A22 /* mail_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_line.png; sourceTree = "<group>"; };
+		1D1E45631C609C4500712A22 /* mail_list_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_arrow.png; sourceTree = "<group>"; };
+		1D1E45641C609C4500712A22 /* mail_list_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_bg.png; sourceTree = "<group>"; };
+		1D1E45651C609C4500712A22 /* mail_list_divider_title_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_divider_title_bg.png; sourceTree = "<group>"; };
+		1D1E45661C609C4500712A22 /* mail_list_divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_divider.png; sourceTree = "<group>"; };
+		1D1E45671C609C4500712A22 /* mail_list_edit_buttonbar_bg.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_edit_buttonbar_bg.9.png; sourceTree = "<group>"; };
+		1D1E45681C609C4500712A22 /* mail_list_edit_check_box_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_edit_check_box_checked.png; sourceTree = "<group>"; };
+		1D1E45691C609C4500712A22 /* mail_list_edit_check_box_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_edit_check_box_unchecked.png; sourceTree = "<group>"; };
+		1D1E456A1C609C4500712A22 /* mail_list_edit_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_edit_delete.png; sourceTree = "<group>"; };
+		1D1E456B1C609C4500712A22 /* mail_list_edit_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_edit_favorite.png; sourceTree = "<group>"; };
+		1D1E456C1C609C4500712A22 /* mail_list_edit_gift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_edit_gift.png; sourceTree = "<group>"; };
+		1D1E456D1C609C4500712A22 /* mail_list_edit_write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_edit_write.png; sourceTree = "<group>"; };
+		1D1E456E1C609C4500712A22 /* mail_list_head_battle_city_failure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_head_battle_city_failure.png; sourceTree = "<group>"; };
+		1D1E456F1C609C4500712A22 /* mail_list_head_bg_battle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_head_bg_battle.png; sourceTree = "<group>"; };
+		1D1E45701C609C4500712A22 /* mail_list_icon_announcement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_announcement.png; sourceTree = "<group>"; };
+		1D1E45711C609C4500712A22 /* mail_list_icon_battle_camp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_camp.png; sourceTree = "<group>"; };
+		1D1E45721C609C4500712A22 /* mail_list_icon_battle_capture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_capture.png; sourceTree = "<group>"; };
+		1D1E45731C609C4500712A22 /* mail_list_icon_battle_city_defent_failure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_city_defent_failure.png; sourceTree = "<group>"; };
+		1D1E45741C609C4500712A22 /* mail_list_icon_battle_city_defent_victory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_city_defent_victory.png; sourceTree = "<group>"; };
+		1D1E45751C609C4500712A22 /* mail_list_icon_battle_city_failure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_city_failure.png; sourceTree = "<group>"; };
+		1D1E45761C609C4500712A22 /* mail_list_icon_battle_city_victory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_city_victory.png; sourceTree = "<group>"; };
+		1D1E45771C609C4500712A22 /* mail_list_icon_battle_detect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_detect.png; sourceTree = "<group>"; };
+		1D1E45781C609C4500712A22 /* mail_list_icon_battle_explore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_explore.png; sourceTree = "<group>"; };
+		1D1E45791C609C4500712A22 /* mail_list_icon_battle_knight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_knight.png; sourceTree = "<group>"; };
+		1D1E457A1C609C4500712A22 /* mail_list_icon_battle_monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_monster.png; sourceTree = "<group>"; };
+		1D1E457B1C609C4500712A22 /* mail_list_icon_battle_report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_battle_report.png; sourceTree = "<group>"; };
+		1D1E457C1C609C4500712A22 /* mail_list_icon_id_binding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_id_binding.png; sourceTree = "<group>"; };
+		1D1E457D1C609C4500712A22 /* mail_list_icon_invite_join_alliance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_invite_join_alliance.png; sourceTree = "<group>"; };
+		1D1E457E1C609C4500712A22 /* mail_list_icon_invite_join.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_invite_join.png; sourceTree = "<group>"; };
+		1D1E457F1C609C4500712A22 /* mail_list_icon_invite_kickedout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_invite_kickedout.png; sourceTree = "<group>"; };
+		1D1E45801C609C4500712A22 /* mail_list_icon_invite_move.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_invite_move.png; sourceTree = "<group>"; };
+		1D1E45811C609C4500712A22 /* mail_list_icon_invite_rejected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_invite_rejected.png; sourceTree = "<group>"; };
+		1D1E45821C609C4500712A22 /* mail_list_icon_reward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_reward.png; sourceTree = "<group>"; };
+		1D1E45831C609C4500712A22 /* mail_list_icon_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_search.png; sourceTree = "<group>"; };
+		1D1E45841C609C4500712A22 /* mail_list_icon_studio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_studio.png; sourceTree = "<group>"; };
+		1D1E45851C609C4500712A22 /* mail_list_icon_system_other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_system_other.png; sourceTree = "<group>"; };
+		1D1E45861C609C4500712A22 /* mail_list_icon_system_vip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_icon_system_vip.png; sourceTree = "<group>"; };
+		1D1E45871C609C4500712A22 /* mail_list_main_icon_announcement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_announcement.png; sourceTree = "<group>"; };
+		1D1E45881C609C4500712A22 /* mail_list_main_icon_battle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_battle.png; sourceTree = "<group>"; };
+		1D1E45891C609C4500712A22 /* mail_list_main_icon_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_chat.png; sourceTree = "<group>"; };
+		1D1E458A1C609C4500712A22 /* mail_list_main_icon_explore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_explore.png; sourceTree = "<group>"; };
+		1D1E458B1C609C4500712A22 /* mail_list_main_icon_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_favorite.png; sourceTree = "<group>"; };
+		1D1E458C1C609C4500712A22 /* mail_list_main_icon_invite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_invite.png; sourceTree = "<group>"; };
+		1D1E458D1C609C4500712A22 /* mail_list_main_icon_mod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_mod.png; sourceTree = "<group>"; };
+		1D1E458E1C609C4500712A22 /* mail_list_main_icon_monster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_monster.png; sourceTree = "<group>"; };
+		1D1E458F1C609C4500712A22 /* mail_list_main_icon_recycler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_recycler.png; sourceTree = "<group>"; };
+		1D1E45901C609C4500712A22 /* mail_list_main_icon_resource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_resource.png; sourceTree = "<group>"; };
+		1D1E45911C609C4500712A22 /* mail_list_main_icon_studio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_studio.png; sourceTree = "<group>"; };
+		1D1E45921C609C4500712A22 /* mail_list_main_icon_system.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_list_main_icon_system.png; sourceTree = "<group>"; };
+		1D1E45931C609C4500712A22 /* mail_mail_read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_mail_read.png; sourceTree = "<group>"; };
+		1D1E45941C609C4500712A22 /* mail_pic_flag_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_2.png; sourceTree = "<group>"; };
+		1D1E45951C609C4500712A22 /* mail_pic_flag_4_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_4_1.png; sourceTree = "<group>"; };
+		1D1E45961C609C4500712A22 /* mail_pic_flag_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_4.png; sourceTree = "<group>"; };
+		1D1E45971C609C4500712A22 /* mail_pic_flag_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_5.png; sourceTree = "<group>"; };
+		1D1E45981C609C4500712A22 /* mail_pic_flag_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_8.png; sourceTree = "<group>"; };
+		1D1E45991C609C4500712A22 /* mail_pic_flag_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_9.png; sourceTree = "<group>"; };
+		1D1E459A1C609C4500712A22 /* mail_pic_flag_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_14.png; sourceTree = "<group>"; };
+		1D1E459B1C609C4500712A22 /* mail_pic_flag_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_16.png; sourceTree = "<group>"; };
+		1D1E459C1C609C4500712A22 /* mail_pic_flag_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_18.png; sourceTree = "<group>"; };
+		1D1E459D1C609C4500712A22 /* mail_pic_flag_31.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_pic_flag_31.png; sourceTree = "<group>"; };
+		1D1E459E1C609C4500712A22 /* mail_reward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_reward.png; sourceTree = "<group>"; };
+		1D1E459F1C609C4500712A22 /* mail_separate3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_separate3.png; sourceTree = "<group>"; };
+		1D1E45A01C609C4500712A22 /* mail_shoucang_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_shoucang_02.png; sourceTree = "<group>"; };
+		1D1E45A11C609C4500712A22 /* mange_mod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mange_mod.png; sourceTree = "<group>"; };
+		1D1E45A21C609C4500712A22 /* mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mute.png; sourceTree = "<group>"; };
+		1D1E45A31C609C4500712A22 /* new_msg_tooltip_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_msg_tooltip_arrow.png; sourceTree = "<group>"; };
+		1D1E45A41C609C4500712A22 /* shareImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareImg.png; sourceTree = "<group>"; };
+		1D1E45A51C609C4500712A22 /* sys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sys.png; sourceTree = "<group>"; };
+		1D1E45A61C609C4500712A22 /* text_field_bg2.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_field_bg2.9.png; sourceTree = "<group>"; };
+		1D1E45A71C609C4500712A22 /* tishikuang_full.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tishikuang_full.9.png; sourceTree = "<group>"; };
+		1D1E45A81C609C4500712A22 /* ui_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_food.png; sourceTree = "<group>"; };
+		1D1E45A91C609C4500712A22 /* ui_gold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_gold.png; sourceTree = "<group>"; };
+		1D1E45AA1C609C4500712A22 /* ui_huitiao2.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_huitiao2.9.png; sourceTree = "<group>"; };
+		1D1E45AB1C609C4500712A22 /* ui_iron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_iron.png; sourceTree = "<group>"; };
+		1D1E45AC1C609C4500712A22 /* ui_silver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_silver.png; sourceTree = "<group>"; };
+		1D1E45AD1C609C4500712A22 /* ui_stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_stone.png; sourceTree = "<group>"; };
+		1D1E45AE1C609C4500712A22 /* ui_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_wood.png; sourceTree = "<group>"; };
+		1D1E45AF1C609C4500712A22 /* ui_write_mail_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui_write_mail_bg.png; sourceTree = "<group>"; };
+		1D1E45B01C609C4500712A22 /* vip_certification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vip_certification.png; sourceTree = "<group>"; };
+		1D1E45B11C609C4500712A22 /* world_wild_reward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = world_wild_reward.png; sourceTree = "<group>"; };
+		1D1E45B21C609C4500712A22 /* xsearch_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xsearch_loading.png; sourceTree = "<group>"; };
 		1D24E9EA1AF89EA0007F5AF3 /* ActivityDetailView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActivityDetailView.cpp; sourceTree = "<group>"; };
 		1D24E9EB1AF89EA0007F5AF3 /* ActivityDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailView.h; sourceTree = "<group>"; };
 		1D341EC81BCBC38700A1B249 /* FriendsCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FriendsCommand.cpp; sourceTree = "<group>"; };
@@ -4708,6 +4936,120 @@
 		272AB5781B15C7BA0052E896 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1D1E45411C609C4500712A22 /* [battlereport].png */,
+				1D1E45421C609C4500712A22 /* [equip_share].png */,
+				1D1E45431C609C4500712A22 /* [sysChat].png */,
+				1D1E45441C609C4500712A22 /* btn_equip_grey.png */,
+				1D1E45451C609C4500712A22 /* btn_equip.png */,
+				1D1E45461C609C4500712A22 /* btn_red.png */,
+				1D1E45471C609C4500712A22 /* chat_notice_bg2.png */,
+				1D1E45481C609C4500712A22 /* chat_notice_cha.png */,
+				1D1E45491C609C4500712A22 /* chat_notice_icon1.png */,
+				1D1E454A1C609C4500712A22 /* chat_system_left_bg_pressed.png */,
+				1D1E454B1C609C4500712A22 /* chatroom_name_input.9.png */,
+				1D1E454C1C609C4500712A22 /* equip_share.png */,
+				1D1E454D1C609C4500712A22 /* g046.png */,
+				1D1E454E1C609C4500712A22 /* horn_bg_left.9.png */,
+				1D1E454F1C609C4500712A22 /* horn_bg_right.9.png */,
+				1D1E45501C609C4500712A22 /* ic_delete.png */,
+				1D1E45511C609C4500712A22 /* icon_add_mumber.png */,
+				1D1E45521C609C4500712A22 /* icon_add_mumber2.png */,
+				1D1E45531C609C4500712A22 /* icon_mail_name.png */,
+				1D1E45541C609C4500712A22 /* icon_mail_write.png */,
+				1D1E45551C609C4500712A22 /* input.9.png */,
+				1D1E45561C609C4500712A22 /* mail_bg_diban.png */,
+				1D1E45571C609C4500712A22 /* mail_bg1.png */,
+				1D1E45581C609C4500712A22 /* mail_btn_all.png */,
+				1D1E45591C609C4500712A22 /* mail_btn_del.png */,
+				1D1E455A1C609C4500712A22 /* mail_btn_edit.png */,
+				1D1E455B1C609C4500712A22 /* mail_btn_fanhui.png */,
+				1D1E455C1C609C4500712A22 /* mail_btn_save.png */,
+				1D1E455D1C609C4500712A22 /* mail_btn_write_mail.png */,
+				1D1E455E1C609C4500712A22 /* mail_btn_write.png */,
+				1D1E455F1C609C4500712A22 /* mail_check_bg.png */,
+				1D1E45601C609C4500712A22 /* mail_checked.png */,
+				1D1E45611C609C4500712A22 /* mail_icon_bg.png */,
+				1D1E45621C609C4500712A22 /* mail_line.png */,
+				1D1E45631C609C4500712A22 /* mail_list_arrow.png */,
+				1D1E45641C609C4500712A22 /* mail_list_bg.png */,
+				1D1E45651C609C4500712A22 /* mail_list_divider_title_bg.png */,
+				1D1E45661C609C4500712A22 /* mail_list_divider.png */,
+				1D1E45671C609C4500712A22 /* mail_list_edit_buttonbar_bg.9.png */,
+				1D1E45681C609C4500712A22 /* mail_list_edit_check_box_checked.png */,
+				1D1E45691C609C4500712A22 /* mail_list_edit_check_box_unchecked.png */,
+				1D1E456A1C609C4500712A22 /* mail_list_edit_delete.png */,
+				1D1E456B1C609C4500712A22 /* mail_list_edit_favorite.png */,
+				1D1E456C1C609C4500712A22 /* mail_list_edit_gift.png */,
+				1D1E456D1C609C4500712A22 /* mail_list_edit_write.png */,
+				1D1E456E1C609C4500712A22 /* mail_list_head_battle_city_failure.png */,
+				1D1E456F1C609C4500712A22 /* mail_list_head_bg_battle.png */,
+				1D1E45701C609C4500712A22 /* mail_list_icon_announcement.png */,
+				1D1E45711C609C4500712A22 /* mail_list_icon_battle_camp.png */,
+				1D1E45721C609C4500712A22 /* mail_list_icon_battle_capture.png */,
+				1D1E45731C609C4500712A22 /* mail_list_icon_battle_city_defent_failure.png */,
+				1D1E45741C609C4500712A22 /* mail_list_icon_battle_city_defent_victory.png */,
+				1D1E45751C609C4500712A22 /* mail_list_icon_battle_city_failure.png */,
+				1D1E45761C609C4500712A22 /* mail_list_icon_battle_city_victory.png */,
+				1D1E45771C609C4500712A22 /* mail_list_icon_battle_detect.png */,
+				1D1E45781C609C4500712A22 /* mail_list_icon_battle_explore.png */,
+				1D1E45791C609C4500712A22 /* mail_list_icon_battle_knight.png */,
+				1D1E457A1C609C4500712A22 /* mail_list_icon_battle_monster.png */,
+				1D1E457B1C609C4500712A22 /* mail_list_icon_battle_report.png */,
+				1D1E457C1C609C4500712A22 /* mail_list_icon_id_binding.png */,
+				1D1E457D1C609C4500712A22 /* mail_list_icon_invite_join_alliance.png */,
+				1D1E457E1C609C4500712A22 /* mail_list_icon_invite_join.png */,
+				1D1E457F1C609C4500712A22 /* mail_list_icon_invite_kickedout.png */,
+				1D1E45801C609C4500712A22 /* mail_list_icon_invite_move.png */,
+				1D1E45811C609C4500712A22 /* mail_list_icon_invite_rejected.png */,
+				1D1E45821C609C4500712A22 /* mail_list_icon_reward.png */,
+				1D1E45831C609C4500712A22 /* mail_list_icon_search.png */,
+				1D1E45841C609C4500712A22 /* mail_list_icon_studio.png */,
+				1D1E45851C609C4500712A22 /* mail_list_icon_system_other.png */,
+				1D1E45861C609C4500712A22 /* mail_list_icon_system_vip.png */,
+				1D1E45871C609C4500712A22 /* mail_list_main_icon_announcement.png */,
+				1D1E45881C609C4500712A22 /* mail_list_main_icon_battle.png */,
+				1D1E45891C609C4500712A22 /* mail_list_main_icon_chat.png */,
+				1D1E458A1C609C4500712A22 /* mail_list_main_icon_explore.png */,
+				1D1E458B1C609C4500712A22 /* mail_list_main_icon_favorite.png */,
+				1D1E458C1C609C4500712A22 /* mail_list_main_icon_invite.png */,
+				1D1E458D1C609C4500712A22 /* mail_list_main_icon_mod.png */,
+				1D1E458E1C609C4500712A22 /* mail_list_main_icon_monster.png */,
+				1D1E458F1C609C4500712A22 /* mail_list_main_icon_recycler.png */,
+				1D1E45901C609C4500712A22 /* mail_list_main_icon_resource.png */,
+				1D1E45911C609C4500712A22 /* mail_list_main_icon_studio.png */,
+				1D1E45921C609C4500712A22 /* mail_list_main_icon_system.png */,
+				1D1E45931C609C4500712A22 /* mail_mail_read.png */,
+				1D1E45941C609C4500712A22 /* mail_pic_flag_2.png */,
+				1D1E45951C609C4500712A22 /* mail_pic_flag_4_1.png */,
+				1D1E45961C609C4500712A22 /* mail_pic_flag_4.png */,
+				1D1E45971C609C4500712A22 /* mail_pic_flag_5.png */,
+				1D1E45981C609C4500712A22 /* mail_pic_flag_8.png */,
+				1D1E45991C609C4500712A22 /* mail_pic_flag_9.png */,
+				1D1E459A1C609C4500712A22 /* mail_pic_flag_14.png */,
+				1D1E459B1C609C4500712A22 /* mail_pic_flag_16.png */,
+				1D1E459C1C609C4500712A22 /* mail_pic_flag_18.png */,
+				1D1E459D1C609C4500712A22 /* mail_pic_flag_31.png */,
+				1D1E459E1C609C4500712A22 /* mail_reward.png */,
+				1D1E459F1C609C4500712A22 /* mail_separate3.png */,
+				1D1E45A01C609C4500712A22 /* mail_shoucang_02.png */,
+				1D1E45A11C609C4500712A22 /* mange_mod.png */,
+				1D1E45A21C609C4500712A22 /* mute.png */,
+				1D1E45A31C609C4500712A22 /* new_msg_tooltip_arrow.png */,
+				1D1E45A41C609C4500712A22 /* shareImg.png */,
+				1D1E45A51C609C4500712A22 /* sys.png */,
+				1D1E45A61C609C4500712A22 /* text_field_bg2.9.png */,
+				1D1E45A71C609C4500712A22 /* tishikuang_full.9.png */,
+				1D1E45A81C609C4500712A22 /* ui_food.png */,
+				1D1E45A91C609C4500712A22 /* ui_gold.png */,
+				1D1E45AA1C609C4500712A22 /* ui_huitiao2.9.png */,
+				1D1E45AB1C609C4500712A22 /* ui_iron.png */,
+				1D1E45AC1C609C4500712A22 /* ui_silver.png */,
+				1D1E45AD1C609C4500712A22 /* ui_stone.png */,
+				1D1E45AE1C609C4500712A22 /* ui_wood.png */,
+				1D1E45AF1C609C4500712A22 /* ui_write_mail_bg.png */,
+				1D1E45B01C609C4500712A22 /* vip_certification.png */,
+				1D1E45B11C609C4500712A22 /* world_wild_reward.png */,
+				1D1E45B21C609C4500712A22 /* xsearch_loading.png */,
 				272AB5791B15C7BA0052E896 /* alliance_01.png */,
 				272AB57A1B15C7BA0052E896 /* alliance_01_full.png */,
 				272AB57B1B15C7BA0052E896 /* alliance_02.png */,
@@ -8730,104 +9072,200 @@
 			buildActionMask = 2147483647;
 			files = (
 				5945BDCC1B7B7F6A002B23D6 /* VKSdkResources.bundle in Resources */,
+				1D1E46131C609C4500712A22 /* mange_mod.png in Resources */,
 				597D8D201C23266D00B6DEA7 /* HelpshiftLocalizable.strings in Resources */,
+				1D1E45E01C609C4500712A22 /* mail_list_head_battle_city_failure.png in Resources */,
 				DB4B32661A371DC700A47ED7 /* sounds in Resources */,
+				1D1E45F01C609C4500712A22 /* mail_list_icon_invite_join.png in Resources */,
 				27AD60581B5D014A00B6AD40 /* MJRefresh.bundle in Resources */,
+				1D1E45C21C609C4500712A22 /* ic_delete.png in Resources */,
 				272AB6441B15C7BC0052E896 /* g012.png in Resources */,
 				6CD847B41B2EAC1600C8AF0D /* PersonSelectVC.xib in Resources */,
 				272AB6571B15C7BC0052E896 /* icon01.jpg in Resources */,
 				272AB6431B15C7BC0052E896 /* g008.png in Resources */,
 				FD81B87518B4C9AE002A1B57 /* World in Resources */,
+				1D1E45ED1C609C4500712A22 /* mail_list_icon_battle_report.png in Resources */,
+				1D1E461B1C609C4500712A22 /* ui_gold.png in Resources */,
 				B80876DA1C5F31D9008704DC /* shaders in Resources */,
+				1D1E45DB1C609C4500712A22 /* mail_list_edit_check_box_unchecked.png in Resources */,
 				272AB62E1B15C7BC0052E896 /* but_back.png in Resources */,
 				5A71E3981BF45BB50060FF7D /* RoleInfoViewOC.xib in Resources */,
+				1D1E45B81C609C4500712A22 /* btn_red.png in Resources */,
 				272AB6251B15C7BC0052E896 /* alliance_gold1.png in Resources */,
+				1D1E45C91C609C4500712A22 /* mail_bg1.png in Resources */,
+				1D1E46171C609C4500712A22 /* sys.png in Resources */,
 				272AB6581B15C7BC0052E896 /* icon02.jpg in Resources */,
+				1D1E45CD1C609C4500712A22 /* mail_btn_fanhui.png in Resources */,
+				1D1E45FC1C609C4500712A22 /* mail_list_main_icon_explore.png in Resources */,
+				1D1E45EB1C609C4500712A22 /* mail_list_icon_battle_knight.png in Resources */,
 				6CD847C01B2EE5C500C8AF0D /* MemberTableCell.xib in Resources */,
 				B15628B318FEB62000902628 /* pve_fnt_title.fnt in Resources */,
+				1D1E45BB1C609C4500712A22 /* chat_notice_icon1.png in Resources */,
+				1D1E45B31C609C4500712A22 /* [battlereport].png in Resources */,
 				272AB6661B15C7BC0052E896 /* toolbar_bottom_bar.png in Resources */,
 				272AB65B1B15C7BC0052E896 /* icon_kuang.png in Resources */,
+				1D1E45C01C609C4500712A22 /* horn_bg_left.9.png in Resources */,
+				1D1E460D1C609C4500712A22 /* mail_pic_flag_16.png in Resources */,
 				272AB6301B15C7BC0052E896 /* chat_bottom_keyboard_nor.png in Resources */,
+				1D1E45EE1C609C4500712A22 /* mail_list_icon_id_binding.png in Resources */,
 				272AB64E1B15C7BC0052E896 /* g045.png in Resources */,
 				272AB6231B15C7BC0052E896 /* alliance_01_full.png in Resources */,
+				1D1E45CE1C609C4500712A22 /* mail_btn_save.png in Resources */,
+				1D1E45D71C609C4500712A22 /* mail_list_divider_title_bg.png in Resources */,
+				1D1E45CC1C609C4500712A22 /* mail_btn_edit.png in Resources */,
 				6C5AECB51BD9495000EE3A74 /* sr_refresh.png in Resources */,
+				1D1E45E21C609C4500712A22 /* mail_list_icon_announcement.png in Resources */,
+				1D1E45D61C609C4500712A22 /* mail_list_bg.png in Resources */,
 				C280C8AF1A4C1147002C7860 /* footprintsingle.png in Resources */,
 				1C4950701AA0576200333C5E /* Spine in Resources */,
 				DBEEF73019764FA7009D9327 /* Arial_Bold_Regular.png in Resources */,
+				1D1E45EC1C609C4500712A22 /* mail_list_icon_battle_monster.png in Resources */,
 				597D8D1F1C23266D00B6DEA7 /* HelpshiftAssetCatalog.xcassets in Resources */,
 				B80876B91C5F23B3008704DC /* nb_world_link_area.tmx in Resources */,
 				DB368DA818EAC5BF00C886DF /* Arial_Bold.fnt in Resources */,
 				27882BC61C02FCDA009D6ABA /* down@2x.png in Resources */,
+				1D1E46241C609C4500712A22 /* xsearch_loading.png in Resources */,
 				6C896B521B3CEE3800908D3F /* TopButtonView.xib in Resources */,
+				1D1E45BC1C609C4500712A22 /* chat_system_left_bg_pressed.png in Resources */,
 				83B52B2E1BFC6C5F00F6ABCB /* UIComponent in Resources */,
+				1D1E45E71C609C4500712A22 /* mail_list_icon_battle_city_failure.png in Resources */,
+				1D1E45FE1C609C4500712A22 /* mail_list_main_icon_invite.png in Resources */,
+				1D1E46191C609C4500712A22 /* tishikuang_full.9.png in Resources */,
 				6CA8C8941B317A1A00E2E39F /* HeadEditView.xib in Resources */,
 				272AB6411B15C7BC0052E896 /* forum_refresh.png in Resources */,
 				DB971A8F1A26CA9F00A194DB /* Images.xcassets in Resources */,
 				59143E1C1B5F3F90005B101A /* WeiboSDK.bundle in Resources */,
 				6CE045D21BEB855900D9AC97 /* CSMailBottomOperationToolBarView.xib in Resources */,
 				272AB6561B15C7BC0052E896 /* horn_unchecked.png in Resources */,
+				1D1E45B41C609C4500712A22 /* [equip_share].png in Resources */,
+				1D1E45F71C609C4500712A22 /* mail_list_icon_system_other.png in Resources */,
 				272AB6631B15C7BC0052E896 /* text_field_bg2.png in Resources */,
+				1D1E46041C609C4500712A22 /* mail_list_main_icon_system.png in Resources */,
+				1D1E45C61C609C4500712A22 /* icon_mail_write.png in Resources */,
+				1D1E45D21C609C4500712A22 /* mail_checked.png in Resources */,
 				272AB6421B15C7BC0052E896 /* g007.png in Resources */,
 				272AB6391B15C7BC0052E896 /* chat_system_right_bg_pressed.png in Resources */,
+				1D1E45FF1C609C4500712A22 /* mail_list_main_icon_mod.png in Resources */,
+				1D1E45D51C609C4500712A22 /* mail_list_arrow.png in Resources */,
+				1D1E45C31C609C4500712A22 /* icon_add_mumber.png in Resources */,
+				1D1E45D41C609C4500712A22 /* mail_line.png in Resources */,
 				272AB6461B15C7BC0052E896 /* g017.png in Resources */,
+				1D1E45C11C609C4500712A22 /* horn_bg_right.9.png in Resources */,
+				1D1E45E91C609C4500712A22 /* mail_list_icon_battle_detect.png in Resources */,
 				B15628B118FEB62000902628 /* pve_fnt_boss.fnt in Resources */,
 				B80876BA1C5F23B3008704DC /* nb_world.tmx in Resources */,
+				1D1E460E1C609C4500712A22 /* mail_pic_flag_18.png in Resources */,
 				272AB6401B15C7BC0052E896 /* forum_forward.png in Resources */,
 				272AB62B1B15C7BC0052E896 /* btn_qieye_02.png in Resources */,
+				1D1E461D1C609C4500712A22 /* ui_iron.png in Resources */,
 				272AB6151B15C7BC0052E896 /* TipPopUpController.xib in Resources */,
+				1D1E46081C609C4500712A22 /* mail_pic_flag_4.png in Resources */,
+				1D1E45D91C609C4500712A22 /* mail_list_edit_buttonbar_bg.9.png in Resources */,
+				1D1E46031C609C4500712A22 /* mail_list_main_icon_studio.png in Resources */,
 				272AB6241B15C7BC0052E896 /* alliance_02.png in Resources */,
 				DB9F591D17CD9A520037F7E5 /* iTunesArtwork in Resources */,
+				1D1E46061C609C4500712A22 /* mail_pic_flag_2.png in Resources */,
+				1D1E46011C609C4500712A22 /* mail_list_main_icon_recycler.png in Resources */,
+				1D1E45E61C609C4500712A22 /* mail_list_icon_battle_city_defent_victory.png in Resources */,
 				272AB6691B15C7BC0052E896 /* ui_huitiao2.png in Resources */,
+				1D1E45D31C609C4500712A22 /* mail_icon_bg.png in Resources */,
 				272AB6131B15C7BC0052E896 /* BanPopUpController.xib in Resources */,
 				5A6CE7B11B8F023E005CCFAA /* hdccbi in Resources */,
+				1D1E45C71C609C4500712A22 /* input.9.png in Resources */,
+				1D1E46201C609C4500712A22 /* ui_wood.png in Resources */,
+				1D1E45BE1C609C4500712A22 /* equip_share.png in Resources */,
 				272AB6601B15C7BC0052E896 /* sendfailed.png in Resources */,
+				1D1E45F41C609C4500712A22 /* mail_list_icon_reward.png in Resources */,
+				1D1E45E11C609C4500712A22 /* mail_list_head_bg_battle.png in Resources */,
 				272AB6521B15C7BC0052E896 /* horn_bg_right.png in Resources */,
 				272AB6351B15C7BC0052E896 /* chat_from_bg_pressed.png in Resources */,
+				1D1E45D81C609C4500712A22 /* mail_list_divider.png in Resources */,
 				272AB66B1B15C7BC0052E896 /* ui_popup_bg.png in Resources */,
 				272AB6361B15C7BC0052E896 /* chat_right_bg_normal.png in Resources */,
 				272AB65E1B15C7BC0052E896 /* mail_battlereport.png in Resources */,
+				1D1E46051C609C4500712A22 /* mail_mail_read.png in Resources */,
 				DB3548A01B6A336C001B7FA0 /* number.fnt in Resources */,
+				1D1E46071C609C4500712A22 /* mail_pic_flag_4_1.png in Resources */,
+				1D1E46121C609C4500712A22 /* mail_shoucang_02.png in Resources */,
+				1D1E460F1C609C4500712A22 /* mail_pic_flag_31.png in Resources */,
 				FDB0D5D118209D7D00C11959 /* Loading in Resources */,
 				DB784C98198F836100DB5CBB /* Arial_Bold_Border.fnt in Resources */,
+				1D1E45E31C609C4500712A22 /* mail_list_icon_battle_camp.png in Resources */,
+				1D1E45BF1C609C4500712A22 /* g046.png in Resources */,
+				1D1E460A1C609C4500712A22 /* mail_pic_flag_8.png in Resources */,
 				272AB63A1B15C7BC0052E896 /* chat_to_bg_normal.png in Resources */,
+				1D1E45DD1C609C4500712A22 /* mail_list_edit_favorite.png in Resources */,
 				272AB6291B15C7BC0052E896 /* btn_green3.png in Resources */,
+				1D1E461A1C609C4500712A22 /* ui_food.png in Resources */,
 				272AB65D1B15C7BC0052E896 /* line_grey02.png in Resources */,
+				1D1E46001C609C4500712A22 /* mail_list_main_icon_monster.png in Resources */,
+				1D1E46161C609C4500712A22 /* shareImg.png in Resources */,
+				1D1E45EF1C609C4500712A22 /* mail_list_icon_invite_join_alliance.png in Resources */,
 				272AB63D1B15C7BC0052E896 /* check_box_checked.png in Resources */,
 				272AB6511B15C7BC0052E896 /* horn_bg_left.png in Resources */,
 				B15628B418FEB62000902628 /* pve_fnt_title.png in Resources */,
+				1D1E45F51C609C4500712A22 /* mail_list_icon_search.png in Resources */,
 				FDB0D5CF18209D7D00C11959 /* Common in Resources */,
 				272AB6321B15C7BC0052E896 /* chat_bottom_smile_nor.png in Resources */,
 				272AB62C1B15C7BC0052E896 /* btn_yellow.png in Resources */,
 				6CF5C1C31BA16DED00A07937 /* SysMailListCell.xib in Resources */,
+				1D1E45C41C609C4500712A22 /* icon_add_mumber2.png in Resources */,
 				6C9E82C31B304EB600D7EAB2 /* TopHeadView.xib in Resources */,
 				DB3548A11B6A336C001B7FA0 /* number.png in Resources */,
+				1D1E45FB1C609C4500712A22 /* mail_list_main_icon_chat.png in Resources */,
 				DB784C99198F836100DB5CBB /* Arial_Bold_Border.png in Resources */,
+				1D1E46211C609C4500712A22 /* ui_write_mail_bg.png in Resources */,
 				272AB62D1B15C7BC0052E896 /* btn_yellow2.9.png in Resources */,
+				1D1E461C1C609C4500712A22 /* ui_huitiao2.9.png in Resources */,
+				1D1E45FA1C609C4500712A22 /* mail_list_main_icon_battle.png in Resources */,
 				272AB6551B15C7BC0052E896 /* horn_text_bg.png in Resources */,
 				272AB64B1B15C7BC0052E896 /* g041.png in Resources */,
 				272AB62A1B15C7BC0052E896 /* btn_qieye_01.png in Resources */,
 				6CD92EC21B42A06F0049B8E1 /* ChattingVC.xib in Resources */,
 				96F6B7E81A79D67C0032D9C0 /* particleImg in Resources */,
 				272AB64C1B15C7BC0052E896 /* g044.png in Resources */,
+				1D1E46231C609C4500712A22 /* world_wild_reward.png in Resources */,
+				1D1E460C1C609C4500712A22 /* mail_pic_flag_14.png in Resources */,
 				DBEEF72F19764FA7009D9327 /* Arial_Bold_Regular.fnt in Resources */,
 				96F1C259195166B20032C08D /* Battle in Resources */,
 				273DFE9D1BDF9356000A0357 /* chat_from_bg_normal.png in Resources */,
+				1D1E45B71C609C4500712A22 /* btn_equip.png in Resources */,
 				272AB6381B15C7BC0052E896 /* chat_system_right_bg_normal.png in Resources */,
+				1D1E45B91C609C4500712A22 /* chat_notice_bg2.png in Resources */,
 				272AB6271B15C7BC0052E896 /* bnt_03.png in Resources */,
 				6C0AB99E1B32ABBD00CAF8F0 /* CSAlertView.xib in Resources */,
+				1D1E45FD1C609C4500712A22 /* mail_list_main_icon_favorite.png in Resources */,
+				1D1E45CA1C609C4500712A22 /* mail_btn_all.png in Resources */,
+				1D1E45E51C609C4500712A22 /* mail_list_icon_battle_city_defent_failure.png in Resources */,
 				272AB6471B15C7BC0052E896 /* g024.png in Resources */,
+				1D1E45CF1C609C4500712A22 /* mail_btn_write_mail.png in Resources */,
+				1D1E45F81C609C4500712A22 /* mail_list_icon_system_vip.png in Resources */,
+				1D1E45F31C609C4500712A22 /* mail_list_icon_invite_rejected.png in Resources */,
+				1D1E45D01C609C4500712A22 /* mail_btn_write.png in Resources */,
 				272AB63F1B15C7BC0052E896 /* forum_back.png in Resources */,
+				1D1E46111C609C4500712A22 /* mail_separate3.png in Resources */,
+				1D1E46021C609C4500712A22 /* mail_list_main_icon_resource.png in Resources */,
 				B15628B218FEB62000902628 /* pve_fnt_boss.png in Resources */,
+				1D1E45E81C609C4500712A22 /* mail_list_icon_battle_city_victory.png in Resources */,
+				1D1E46151C609C4500712A22 /* new_msg_tooltip_arrow.png in Resources */,
 				272AB6501B15C7BC0052E896 /* guide_player_icon.png in Resources */,
 				272AB6681B15C7BC0052E896 /* ui_gray_biaotilan.png in Resources */,
 				272AB64A1B15C7BC0052E896 /* g038.png in Resources */,
+				1D1E45C81C609C4500712A22 /* mail_bg_diban.png in Resources */,
 				366E1C7517D09868006CCCBF /* local in Resources */,
+				1D1E46221C609C4500712A22 /* vip_certification.png in Resources */,
+				1D1E45BA1C609C4500712A22 /* chat_notice_cha.png in Resources */,
 				272AB6641B15C7BC0052E896 /* tishikuang_full.png in Resources */,
 				272AB64F1B15C7BC0052E896 /* gm.png in Resources */,
+				1D1E46091C609C4500712A22 /* mail_pic_flag_5.png in Resources */,
 				272AB63E1B15C7BC0052E896 /* chuzheng_frame02.png in Resources */,
 				272AB63B1B15C7BC0052E896 /* chat_to_bg_pressed.png in Resources */,
 				FDC0AF2217D6DAF7006E79E6 /* ccbi in Resources */,
+				1D1E45DF1C609C4500712A22 /* mail_list_edit_write.png in Resources */,
 				272AB6261B15C7BC0052E896 /* alliance_gold2.png in Resources */,
+				1D1E45DC1C609C4500712A22 /* mail_list_edit_delete.png in Resources */,
+				1D1E46101C609C4500712A22 /* mail_reward.png in Resources */,
+				1D1E45EA1C609C4500712A22 /* mail_list_icon_battle_explore.png in Resources */,
 				272AB6651B15C7BC0052E896 /* tmod.png in Resources */,
 				272AB62F1B15C7BC0052E896 /* chat_bg_default.jpg in Resources */,
 				272AB6541B15C7BC0052E896 /* horn_icon.png in Resources */,
@@ -8835,8 +9273,12 @@
 				6C5AECB61BD9495000EE3A74 /* sr_refresh@2X.png in Resources */,
 				272AB65F1B15C7BC0052E896 /* mod.png in Resources */,
 				272AB6481B15C7BC0052E896 /* g026.png in Resources */,
+				1D1E46181C609C4500712A22 /* text_field_bg2.9.png in Resources */,
 				272AB65C1B15C7BC0052E896 /* input.png in Resources */,
 				272AB64D1B15C7BC0052E896 /* g044_middle.png in Resources */,
+				1D1E45DA1C609C4500712A22 /* mail_list_edit_check_box_checked.png in Resources */,
+				1D1E45B61C609C4500712A22 /* btn_equip_grey.png in Resources */,
+				1D1E45F91C609C4500712A22 /* mail_list_main_icon_announcement.png in Resources */,
 				597D8D221C23266D00B6DEA7 /* HelpshiftConfigDark.plist in Resources */,
 				272AB6371B15C7BC0052E896 /* chat_system_left_bg_normal.png in Resources */,
 				272AB6611B15C7BC0052E896 /* smod.png in Resources */,
@@ -8848,21 +9290,35 @@
 				6CDD45241B8491520023AFB8 /* MailListCell.xib in Resources */,
 				272AB6451B15C7BC0052E896 /* g015.png in Resources */,
 				272AB66A1B15C7BC0052E896 /* ui_paper_3c.png in Resources */,
+				1D1E461E1C609C4500712A22 /* ui_silver.png in Resources */,
+				1D1E45F61C609C4500712A22 /* mail_list_icon_studio.png in Resources */,
 				272AB6221B15C7BC0052E896 /* alliance_01.png in Resources */,
 				272AB6281B15C7BC0052E896 /* bottom_bg.png in Resources */,
 				272AB65A1B15C7BC0052E896 /* icon_chat_translate3.png in Resources */,
+				1D1E45B51C609C4500712A22 /* [sysChat].png in Resources */,
 				272AB6311B15C7BC0052E896 /* chat_bottom_keyboard_press.png in Resources */,
 				272AB6531B15C7BC0052E896 /* horn_checked.png in Resources */,
+				1D1E460B1C609C4500712A22 /* mail_pic_flag_9.png in Resources */,
+				1D1E45F11C609C4500712A22 /* mail_list_icon_invite_kickedout.png in Resources */,
 				272AB6341B15C7BC0052E896 /* chat_bottom_textfield.png in Resources */,
 				5736A1AD18225C9D007C431C /* Imperial in Resources */,
+				1D1E45C51C609C4500712A22 /* icon_mail_name.png in Resources */,
+				1D1E45D11C609C4500712A22 /* mail_check_bg.png in Resources */,
 				272AB6491B15C7BC0052E896 /* g032.png in Resources */,
 				DB58DA25197FDF1800E0A29D /* Arial_Gradient.fnt in Resources */,
+				1D1E461F1C609C4500712A22 /* ui_stone.png in Resources */,
 				272AB6331B15C7BC0052E896 /* chat_bottom_smile_press.png in Resources */,
 				DB58DA26197FDF1800E0A29D /* Arial_Gradient.png in Resources */,
+				1D1E45E41C609C4500712A22 /* mail_list_icon_battle_capture.png in Resources */,
+				1D1E45CB1C609C4500712A22 /* mail_btn_del.png in Resources */,
+				1D1E45DE1C609C4500712A22 /* mail_list_edit_gift.png in Resources */,
 				6C31E5A61B4A507F00D9C04D /* SearchEditView.xib in Resources */,
+				1D1E46141C609C4500712A22 /* mute.png in Resources */,
+				1D1E45F21C609C4500712A22 /* mail_list_icon_invite_move.png in Resources */,
 				BAD17E571AA5BDB400163E67 /* TwitterKitResources.bundle in Resources */,
 				272AB6591B15C7BC0052E896 /* icon_chat_translate2.png in Resources */,
 				272AB6671B15C7BC0052E896 /* ui_gold_coin.png in Resources */,
+				1D1E45BD1C609C4500712A22 /* chatroom_name_input.9.png in Resources */,
 				597D8D211C23266D00B6DEA7 /* HelpshiftConfig.plist in Resources */,
 				E6402A1018AC5BEF00CCE64C /* cloud2.tmx in Resources */,
 				6CE089771BC7984A00FF965C /* CSMailCategroyListTableCell.xib in Resources */,
