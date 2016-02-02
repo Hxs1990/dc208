@@ -21,7 +21,7 @@
 #include "IFCommonUtils.hpp"
 static const float FUNCTION_BUTTON_AREA_HEIGHT = 80;
 
-static const CCSize CELL_SIZE(620, 170);
+static const CCSize CELL_SIZE(605, 125);
 static const CCSize CELL_SIZE_HD(1450, 330);
 
 bool AllianceHelpView::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const char *pMemberVariableName, cocos2d::CCNode *pNode){
@@ -180,7 +180,7 @@ bool AllianceHelpView::init(){
             m_bgNode->setPositionY(m_bgNode->getPositionY() - addHeight);
         }
         
-        auto tbg = CCLoadSprite::createSprite("technology_09.png");
+        /*auto tbg = CCLoadSprite::createSprite("technology_09.png");
         auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
         int maxHeight = CCDirector::sharedDirector()->getWinSize().height;
         int curHeight = 0;
@@ -195,7 +195,7 @@ bool AllianceHelpView::init(){
             tBatchNode->addChild(bg);
             curHeight += bg->getContentSize().height;
         }
-        m_bgNode->addChild(tBatchNode);
+        m_bgNode->addChild(tBatchNode);*/
         
         CCSize designSize = CCDirector::sharedDirector()->getWinSize();
         float scrollAreaHeight = m_infoList->getContentSize().height;
@@ -240,6 +240,7 @@ bool AllianceHelpView::init(){
             CCCommonUtils::setButtonTitle(m_btnJoin, _lang("115068").c_str());
         }
         m_helpAll->setEnabled(false);
+        m_helpAll->getBackgroundSpriteForState(cocos2d::extension::Control::State::DISABLED)->setState(cocos2d::ui::Scale9Sprite::State::GRAY);//fusheng 置灰
         
         ParticleFireAni* par = ParticleFireAni::create();
         m_fireNode1->addChild(par);
@@ -476,7 +477,7 @@ bool AllianceHelpViewCell::init()
         CCSize size = node->getContentSize();
         setContentSize(size);
         
-        m_bgNode->removeAllChildrenWithCleanup(true);
+        /*m_bgNode->removeAllChildrenWithCleanup(true);
         auto tbg = CCLoadSprite::loadResource("cell_bg1.png");
         auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
         CCSprite* spr = nullptr;
@@ -511,7 +512,7 @@ bool AllianceHelpViewCell::init()
         }
         spr->setFlipX(true);
         tBatchNode->addChild(spr);
-        m_bgNode->addChild(tBatchNode);
+        m_bgNode->addChild(tBatchNode);*/
         
         m_headImgNode = HFHeadImgNode::create();
         CCCommonUtils::setButtonTitle(m_helpBtn, _lang("115078").c_str());
@@ -609,17 +610,18 @@ void AllianceHelpViewCell::bind(AllianceHelp* allianceHelp)
     m_picNode->removeAllChildrenWithCleanup(true);
     CCSprite* portrait = NULL;
     if(allianceHelp->getPic()==""||allianceHelp->getPic()=="0"){
-        portrait = CCLoadSprite::createSprite("g044.png",true,CCLoadSpriteType_HEAD_ICON);
+        portrait = CCLoadSprite::createSprite("g044.png");//,true,CCLoadSpriteType_HEAD_ICON);
     }else{
         std::string pic = allianceHelp->getPic();
         pic.append(".png");
-        portrait = CCLoadSprite::createSprite(pic.c_str(),true,CCLoadSpriteType_HEAD_ICON);
+        portrait = CCLoadSprite::createSprite(pic.c_str());//,true,CCLoadSpriteType_HEAD_ICON);
     }
     if (CCCommonUtils::isIosAndroidPad()) {
         CCCommonUtils::setSpriteMaxSize(portrait, 200);
     }
     else
         CCCommonUtils::setSpriteMaxSize(portrait, 95);
+    portrait->setAnchorPoint({0.5, 0});
     m_picNode->addChild(portrait);
     if (CCCommonUtils::isUseCustomPic(allianceHelp->getPicVer())) {
         if (CCCommonUtils::isIosAndroidPad()) {
