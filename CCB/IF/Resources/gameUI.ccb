@@ -20,6 +20,12 @@
 			<key>position</key>
 			<real>68</real>
 		</dict>
+		<dict>
+			<key>orientation</key>
+			<integer>0</integer>
+			<key>position</key>
+			<real>68</real>
+		</dict>
 	</array>
 	<key>jsControlled</key>
 	<false/>
@@ -10452,8 +10458,6 @@
 								<false/>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -18241,21 +18245,13 @@
 						<array>
 							<dict>
 								<key>name</key>
-								<string>visible</string>
-								<key>type</key>
-								<string>Check</string>
-								<key>value</key>
-								<false/>
-							</dict>
-							<dict>
-								<key>name</key>
 								<string>position</string>
 								<key>type</key>
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-55</real>
-									<real>71</real>
+									<real>-184</real>
+									<real>62</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -18292,6 +18288,8 @@
 								<false/>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -19730,8 +19728,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
