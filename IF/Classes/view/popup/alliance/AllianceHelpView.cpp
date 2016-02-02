@@ -637,11 +637,13 @@ void AllianceHelpViewCell::bind(AllianceHelp* allianceHelp)
     str.append(CC_ITOA(allianceHelp->getCurrentHelp()));
     str.append("/");
     str.append(CC_ITOA(allianceHelp->getAmount()));
+    // m_progressTxt->setFntFile(getNBFont(NB_FONT_Bold_Border));
     m_progressTxt->setString(str);
     float len = allianceHelp->getCurrentHelp()/(allianceHelp->getAmount()*1.0);
     len = MIN(len,1);
     len = MAX(len,0);
-    m_progress->setPreferredSize(CCSize(286*len,23));
+    m_progress->setPreferredSize(CCSize(248 * len, 20));
+    m_progress->setVisible(248 * len > 22); // left + right insets = 20
     if(allianceHelp->getStats()==1){
         m_helpBtn->setVisible(true);
     }else{
