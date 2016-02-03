@@ -118,9 +118,9 @@ private:
     CCSafeObject<CCNode> m_eventNode;
     CCSafeObject<CCLabelIFTTF> m_testTxt;
     
-    CCSafeObject<CCNode> m_guideNode1;
-    CCSafeObject<CCNode> m_guideNode2;
-    CCSafeObject<CCNode> m_guideNode3;
+    // CCSafeObject<CCNode> m_guideNode1;
+    // CCSafeObject<CCNode> m_guideNode2;
+    // CCSafeObject<CCNode> m_guideNode3;
     
     //new
     CCSafeObject<CCNode> m_btnNode;
@@ -148,6 +148,15 @@ private:
     
     //
     CCSafeObject<CCLabelIF> m_titleTxt;
+    
+    CCSafeObject<CCSprite> m_nb_alliance_info;
+    
+    CCSafeObject<CCNode> m_nb_allianceBottomNode;
+    
+    CCSafeObject<CCLayerColor> m_nb_bg1;
+    CCSafeObject<CCLayerColor> m_nb_bg2;
+    CCSafeObject<CCLayerColor> m_nb_bg3;
+
     
     WaitInterface* m_waitInterface;
     CCPoint m_touchPos;

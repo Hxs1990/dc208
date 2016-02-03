@@ -46,6 +46,8 @@ private:
 	virtual SEL_CCControlHandler onResolveCCBCCControlSelector(cocos2d::CCObject * pTarget, const char * pSelectorName);
 	virtual bool onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode);
     
+    virtual void scrollViewDidScroll(CCScrollView* view);
+    
     void onBtnAttClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void onBtnDefClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void openJoinAlliance(CCObject * pSender, Control::EventType pCCControlEvent);
@@ -93,6 +95,9 @@ public:
     static AllianceWarCell* create(AllianceTeamInfo* info,int index);
     AllianceWarCell(AllianceTeamInfo* info,int index):m_info(info),m_index(index){};
     void setData(AllianceTeamInfo* info);
+    
+    CCSafeObject<CCNode> m_liantiao1;
+    CCSafeObject<CCNode> m_liantiao2;
 private:
     bool init();
     virtual void onEnter();
@@ -169,6 +174,12 @@ private:
     CCSafeObject<CCLabelIF> m_tTimeTxt;
     CCSafeObject<CCNode> m_tPosNode;
     CCSafeObject<HFHeadImgNode> m_headImgNode;
+    
+    CCSafeObject<CCScale9Sprite> m_jijie_progress;
+    CCSafeObject<CCScale9Sprite> m_normal_progress;
+    
+    
+    
     int m_index;
     CCPoint m_touchPos;
     bool m_freshRally;

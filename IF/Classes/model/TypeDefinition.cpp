@@ -17,6 +17,8 @@
 
 #define __SERVER__P1IP "p1.cok.elexapp.com"
 
+//"10.1.4.107"
+
 // Server连接信息
 #if CHANGE_SERVER == 1
     // 本地服
