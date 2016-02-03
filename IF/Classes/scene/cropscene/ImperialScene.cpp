@@ -118,16 +118,6 @@ bool ImperialScene::init()
     //统计数据用，以后删除
     
     m_personArray = CCArray::create();
-    m_river1Array = CCArray::create();
-    m_river2Array = CCArray::create();
-    m_river3Array = CCArray::create();
-    m_river4Array = CCArray::create();
-    m_river5Array = CCArray::create();
-    m_river6Array = CCArray::create();
-    m_river7Array = CCArray::create();
-    m_wave1Array = CCArray::create();
-    m_wave2Array = CCArray::create();
-    m_wave3Array = CCArray::create();
     m_soldierArray = CCArray::create();
     m_princessRwdArr = Array::create();
     m_sSqerTouchArr = Array::create();
@@ -240,6 +230,7 @@ bool ImperialScene::init()
     else {
         string ccbName = "ImperialCities";
         ccbName = ccbName+"_"+CC_ITOA(GlobalData::shared()->contryResType);
+//        ccbName = "ImperialCities_2_old";
         auto node = CCBLoadFile(ccbName.c_str(),m_touchLayer,this);
         node->setZOrder(90);
     }
@@ -1005,14 +996,12 @@ void ImperialScene::onEnter()
         if (GlobalData::shared()->contryResType == 1) {
             
         }else if (GlobalData::shared()->contryResType == 2) {
-            makeWater(2);
             int rIdx = CCMathUtils::getRandomInt(0, 9);
             if (rIdx < 5) {
                 showRain();
             }
         }
         else {
-            makeWater(0);
             m_dropNode = CCNode::create();
             m_dropNode->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width/2,CCDirector::sharedDirector()->getWinSize().height/2));
             if (CCCommonUtils::isIosAndroidPad())
@@ -3974,46 +3963,7 @@ bool ImperialScene::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const
         m_nodeBuildings[cityIndex]->retain();
         return true;
     }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_river1",8) == 0) {
-        m_river1Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_river2",8) == 0) {
-        m_river2Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_river3",8) == 0) {
-        m_river3Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_river4",8) == 0) {
-        m_river4Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_river5",8) == 0) {
-        m_river5Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_river6",8) == 0) {
-        m_river6Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_river7",8) == 0) {
-        m_river7Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_wave1",7) == 0) {
-        m_wave1Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_wave2",7) == 0) {
-        m_wave2Array->addObject(pNode);
-        return true;
-    }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_wave3",7) == 0) {
-        m_wave3Array->addObject(pNode);
-        return true;
-    }
+
     else if (pTarget == this && strncmp(pMemberVariableName, "m_bigTileNode",13) == 0) {
         char index[5] = "";
         strncpy(index, pMemberVariableName + 13, strlen(pMemberVariableName) - 13);
@@ -4022,12 +3972,12 @@ bool ImperialScene::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const
         return true;
     }
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_sprBG1", CCSprite*, this->m_sprBG1);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg1", CCNode*, this->m_bg1);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg2", CCNode*, this->m_bg2);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg3", CCNode*, this->m_bg3);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg4", CCNode*, this->m_bg4);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg5", CCNode*, this->m_bg5);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg6", CCNode*, this->m_bg6);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg1", CCNode*, this->m_bg1);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg2", CCNode*, this->m_bg2);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg3", CCNode*, this->m_bg3);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg4", CCNode*, this->m_bg4);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg5", CCNode*, this->m_bg5);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg6", CCNode*, this->m_bg6);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_mcNode1", CCNode*, this->m_mcNode1);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_mcNode2", CCNode*, this->m_mcNode2);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_mcNode3", CCNode*, this->m_mcNode3);
@@ -4062,7 +4012,7 @@ bool ImperialScene::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lotteryNode", CCNode*, this->m_lotteryNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_xiongdiNode", CCNode*, this->m_xiongdiNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_qijiNode", CCNode*, this->m_qijiNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_forestNode", CCNode*, this->m_forestNode);
+
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_couldNode", CCNode*, this->m_couldNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_crossNode", CCNode*, this->m_crossNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_crossClickNode", CCNode*, this->m_crossClickNode);
@@ -4218,135 +4168,10 @@ void ImperialScene::addCloudParticleToBatch(cocos2d::CCParticleSystemQuad *parti
 
 void ImperialScene::makeWater(int type)
 {
-    m_waterLayer->removeAllChildren();
-    m_parVec.clear();
-    
-    CCObject* pObj;
-    if (type==1) {
-        CCARRAY_FOREACH(m_river1Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("Ripple_U");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-        CCARRAY_FOREACH(m_river2Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("River_RU");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-        CCARRAY_FOREACH(m_river3Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("River_R");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-        CCARRAY_FOREACH(m_river4Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("River_RD");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-        CCARRAY_FOREACH(m_river5Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("River_D");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-        
-        CCARRAY_FOREACH(m_river6Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("River_LD");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-        
-        CCARRAY_FOREACH(m_river7Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("River_L");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-        
-        auto m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathForFilename("particle/Ripple.plist");
-        m_ripple = CCDictionary::createWithContentsOfFileThreadSafe(m_sPlistFile.c_str());
-        this->schedule(schedule_selector(ImperialScene::playWaveParticle), 2.0);
-    }else if (type==0) {
-        //临时水波
-        CCARRAY_FOREACH(m_river3Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("River_R");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-        CCARRAY_FOREACH(m_river4Array,pObj)
-        {
-            CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-            auto particle = ParticleController::createParticle("River_RD");
-            particle->setPosition(pNode->getPosition());
-            addParticleToBatch(particle);
-        }
-    }
-    
-    do {
-        string tmpStart = "Fountain_";
-        int count = 5;
-        for (int i=1; i<count; i++) {
-            auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString());
-            int tmpH = (3 - (i+1)/2)*20;
-            particle->setPosition(ccp(1010, 1420+tmpH));
-            addCloudParticleToBatch(particle);
-        }
-    } while (0);
 }
 
 void ImperialScene::playWaveParticle(float _time)
 {
-    for (int i=0; i<m_waveVec.size(); i++) {
-        m_waveVec[i]->removeFromParent();
-    }
-    m_waveVec.clear();
-    
-    CCObject* pObj;
-    CCARRAY_FOREACH(m_wave1Array,pObj)
-    {
-        CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-        auto particle = ParticleController::createParticle("Ripple", CCPointZero,70, m_ripple);
-        particle->setStartSize(30);
-        particle->setStartSizeVar(20);
-        particle->setEndSize(60);
-        particle->setEndSizeVar(10);
-        
-        pNode->setScale(2.2);
-        pNode->addChild(particle);
-        pNode->setRotation(-29);
-        m_waveVec.push_back(particle);
-    }
-    CCARRAY_FOREACH(m_wave2Array,pObj)
-    {
-        CCNode* pNode=dynamic_cast<CCNode*>(pObj);
-        auto particle = ParticleController::createParticle("Ripple", CCPointZero,30, m_ripple);
-        
-        particle->setStartSize(75);
-        particle->setStartSizeVar(30);
-        particle->setEndSize(120);
-        particle->setEndSizeVar(15);
-        
-        pNode->addChild(particle);
-        pNode->setRotation(-29);
-        m_waveVec.push_back(particle);
-    }
-    CCARRAY_FOREACH(m_wave3Array,pObj)
-    {
-    }
 }
 
 void ImperialScene::showTmpBuild(int pos, int itemId)
@@ -4840,66 +4665,6 @@ void ImperialScene::refreashTile()
 
 void ImperialScene::initBgTree()
 {
-    auto & nodeArr = m_forestNode->getChildren();
-    if (true) {
-        for (int i=0; i<nodeArr.size(); i++)
-        {
-            CCNode* curNode = dynamic_cast<CCNode*>(nodeArr.at(i));
-            if (curNode) {
-                auto & treeArray = curNode->getChildren();
-                for (int j=0; j<treeArray.size(); j++)
-                {
-                    CCSprite* tmpSpr = dynamic_cast<CCSprite*>(treeArray.at(j));
-                    if (tmpSpr) {
-                        tmpSpr->retain();
-                        tmpSpr->removeFromParent();
-                        tmpSpr->getTexture()->setAntiAliasTexParameters();
-                        tmpSpr->setPosition(tmpSpr->getPosition()+curNode->getPosition());
-                        m_tilebatchNode->addChild(tmpSpr);
-                        tmpSpr->release();
-                        j--;
-                    }
-                }
-            }
-        }
-    }
-    
-    auto & couldArr = m_couldNode->getChildren();
-    if (true) {
-        for (int i=0; i<couldArr.size(); i++)
-        {
-            CCSprite* tmpSpr = dynamic_cast<CCSprite*>(couldArr.at(i));
-            if (tmpSpr) {
-                tmpSpr->retain();
-                tmpSpr->removeFromParent();
-                tmpSpr->getTexture()->setAntiAliasTexParameters();
-                tmpSpr->setPosition(tmpSpr->getPosition());
-                m_cludeBatchNode->addChild(tmpSpr);
-                tmpSpr->release();
-                i--;
-            }
-        }
-    }
-    this->getAnimationManager()->runAnimationsForSequenceNamed("Default");
-    return;
-    
-    int preW = 256;
-    int preH = 60;
-    int stictW = 3060+510;
-    int maxNum=stictW/preW + 2;
-    for (int j=0; j<14; j++) {
-        int cnt = maxNum;
-        int dx = -preW/2;
-        if(j%2==1) {
-            cnt -= 1;
-            dx = 0;
-        }
-        for (int i=0; i<cnt; i++) {
-            auto tree = CCLoadSprite::createSprite("fill_trees.png");
-            tree->setPosition(ccp(preW*i+dx, -j*preH+40));
-            m_tilebatchNode->addChild(tree);
-        }
-    }
 }
 
 void ImperialScene::onShowBtnsView(int x, int y, int buildId)

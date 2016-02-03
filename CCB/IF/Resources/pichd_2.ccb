@@ -13,7 +13,20 @@
 	<key>fileVersion</key>
 	<integer>4</integer>
 	<key>guides</key>
-	<array/>
+	<array>
+		<dict>
+			<key>orientation</key>
+			<integer>0</integer>
+			<key>position</key>
+			<real>0.0</real>
+		</dict>
+		<dict>
+			<key>orientation</key>
+			<integer>1</integer>
+			<key>position</key>
+			<real>0.0</real>
+		</dict>
+	</array>
 	<key>jsControlled</key>
 	<false/>
 	<key>nodeGraph</key>
@@ -42,6 +55,18 @@
 						<integer>2</integer>
 						<key>properties</key>
 						<array>
+							<dict>
+								<key>name</key>
+								<string>position</string>
+								<key>type</key>
+								<string>Position</string>
+								<key>value</key>
+								<array>
+									<real>-135</real>
+									<real>1</real>
+									<integer>0</integer>
+								</array>
+							</dict>
 							<dict>
 								<key>name</key>
 								<string>contentSize</string>
@@ -110,8 +135,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-43</real>
-									<real>-37</real>
+									<real>-137</real>
+									<real>0.0</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -170,6 +195,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>

@@ -354,12 +354,12 @@ private:
     CCSafeObject<WallBuild> m_wallBuild;
     CCSafeObject<SpeBuild> m_mailBuild;
     
-    CCSafeObject<CCNode> m_bg1;
-    CCSafeObject<CCNode> m_bg2;
-    CCSafeObject<CCNode> m_bg3;
-    CCSafeObject<CCNode> m_bg4;
-    CCSafeObject<CCNode> m_bg5;
-    CCSafeObject<CCNode> m_bg6;
+//    CCSafeObject<CCNode> m_bg1;
+//    CCSafeObject<CCNode> m_bg2;
+//    CCSafeObject<CCNode> m_bg3;
+//    CCSafeObject<CCNode> m_bg4;
+//    CCSafeObject<CCNode> m_bg5;
+//    CCSafeObject<CCNode> m_bg6;
     CCSafeObject<CCNode> m_mcNode1;
     CCSafeObject<CCNode> m_mcNode2;
     CCSafeObject<CCNode> m_mcNode3;
@@ -413,16 +413,7 @@ private:
     
     CCSafeObject<CCArray> m_personArray;
     CCSafeObject<CCArray> m_prinessPersonArray;
-    CCSafeObject<CCArray> m_river1Array;
-    CCSafeObject<CCArray> m_river2Array;
-    CCSafeObject<CCArray> m_river3Array;
-    CCSafeObject<CCArray> m_river4Array;
-    CCSafeObject<CCArray> m_river5Array;
-    CCSafeObject<CCArray> m_river6Array;
-    CCSafeObject<CCArray> m_river7Array;
-    CCSafeObject<CCArray> m_wave1Array;
-    CCSafeObject<CCArray> m_wave2Array;
-    CCSafeObject<CCArray> m_wave3Array;
+
     CCSafeObject<CCPointArray> m_ptArray;
     CCSafeObject<CCPointArray> m_pt1Array;
     CCSafeObject<CCPointArray> m_ptArrowClick;
@@ -440,7 +431,7 @@ private:
     CCSafeObject<CCNode> m_bigTileNode5;
     CCSafeObject<CCNode> m_FountainTouchNode;
     CCSafeObject<CCNode> m_fountainNode;
-    CCSafeObject<CCNode> m_forestNode;
+
     CCSafeObject<CCNode> m_couldNode;
     CCSafeObject<CCNode> m_crossNode;
     CCSafeObject<CCNode> m_crossClickNode;
