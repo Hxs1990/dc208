@@ -151,9 +151,9 @@ bool ImperialScene::init()
 
     auto winSize = CCDirector::sharedDirector()->getWinSize();
     
-    int sumWidth = 1020+1020+1020+505;
-    int extH = 150;
-    int sumHight = 1020+1020+extH;
+    int sumWidth = (1020+1020+1020)*1.5;
+    int extH = 0;
+    int sumHight = (1020+1020+300)*1.5+extH;
 //    auto waterSpr = CCLoadSprite::createScale9Sprite("water.png");
 //    waterSpr->setAnchorPoint(ccp(0, 0));
 //    waterSpr->setPosition(ccp(0,0));
@@ -606,8 +606,8 @@ void ImperialScene::buildingCallBack(CCObject* params)
     //发生 22资源释放不掉的 区域 end end end end end end
     
 //    initAnimals();
-    
-    initBgTree();
+    // tao.yu 不加载树
+//    initBgTree();
     UIComponent::getInstance()->updateBuildState(true);
     
     bool canMoveToRequest = true;

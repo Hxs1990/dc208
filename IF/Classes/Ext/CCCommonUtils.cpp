@@ -5782,23 +5782,23 @@ void CCCommonUtils::initImperialSceneTexture(CCDictionary *params, int index)
     if( index == InitImperialSceneBegin ) {
         CCLoadSprite::doResourceByImperialIndex(0, true);
     } else if ( index == InitImperialSceneBegin + 1 ) {
-        CCLoadSprite::doResourceByImperialIndex(21, true);
-    } else if ( index == InitImperialSceneBegin + 2 ) {
         CCLoadSprite::doResourceByImperialIndex(22, true);
-    } else if ( index == InitImperialSceneBegin + 3 ) {
-        CCLoadSprite::doResourceByImperialIndex(23, true);
-    } else if ( index == InitImperialSceneBegin + 4 ) {
-        CCLoadSprite::doResourceByImperialIndex(24, true);
-    } else if ( index == InitImperialSceneBegin + 5 ) {
-        CCLoadSprite::doResourceByImperialIndex(25, true);
-    } else if ( index == InitImperialSceneBegin + 6 ) {
-        CCLoadSprite::doResourceByImperialIndex(26, true);
-    } else if ( index == InitImperialSceneBegin + 7 ) {
-        CCLoadSprite::doResourceByImperialIndex(27, true);
-    } else if ( index == InitImperialSceneBegin + 8 ) {
+    } else if ( index == InitImperialSceneBegin + 2 ) {
         CCLoadSprite::doResourceByImperialIndex(28, true);
+    } else if ( index == InitImperialSceneBegin + 3 ) {
+        CCLoadSprite::doResourceByImperialIndex(101, true);
+    } else if ( index == InitImperialSceneBegin + 4 ) {
+        CCLoadSprite::doResourceByImperialIndex(102, true);
+    } else if ( index == InitImperialSceneBegin + 5 ) {
+        CCLoadSprite::doResourceByImperialIndex(103, true);
+    } else if ( index == InitImperialSceneBegin + 6 ) {
+        CCLoadSprite::doResourceByImperialIndex(104, true);
+    } else if ( index == InitImperialSceneBegin + 7 ) {
+        CCLoadSprite::doResourceByImperialIndex(105, true);
+    } else if ( index == InitImperialSceneBegin + 8 ) {
+        CCLoadSprite::doResourceByImperialIndex(106, true);
     } else if ( index == InitImperialSceneBegin + 9 ) {
-        CCLoadSprite::doResourceByImperialIndex(29, true);
+        CCLoadSprite::doResourceByImperialIndex(107, true);
     } else if ( index == InitImperialSceneBegin + 10 ) {
         CCLoadSprite::doResourceByImperialIndex(30, true);
     } else if ( index == InitImperialSceneBegin + 11 ) {

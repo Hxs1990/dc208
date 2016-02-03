@@ -35,7 +35,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCSprite</string>
+						<string>1</string>
 						<key>memberVarAssignmentName</key>
 						<string></string>
 						<key>memberVarAssignmentType</key>
@@ -49,8 +49,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3060</real>
 									<real>0.0</real>
+									<real>1320</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -93,8 +93,8 @@
 								<string>SpriteFrame</string>
 								<key>value</key>
 								<array>
-									<string>Imperial/Imperial_29.plist</string>
-									<string>BG_hall__08_2.png</string>
+									<string>Imperial/Imperial_101.plist</string>
+									<string>map101.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -118,7 +118,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCSprite</string>
+						<string>2</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_sprBG1</string>
 						<key>memberVarAssignmentType</key>
@@ -132,8 +132,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>0.0</real>
 									<real>1020</real>
+									<real>1320</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -176,8 +176,8 @@
 								<string>SpriteFrame</string>
 								<key>value</key>
 								<array>
-									<string>Imperial/Imperial_21.plist</string>
-									<string>BG_hall__01_2.png</string>
+									<string>Imperial/Imperial_102.plist</string>
+									<string>map102.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -201,90 +201,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCSprite</string>
-						<key>memberVarAssignmentName</key>
-						<string></string>
-						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>position</string>
-								<key>type</key>
-								<string>Position</string>
-								<key>value</key>
-								<array>
-									<real>1020</real>
-									<real>1020</real>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>anchorPoint</string>
-								<key>type</key>
-								<string>Point</string>
-								<key>value</key>
-								<array>
-									<real>0.0</real>
-									<real>0.0</real>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ignoreAnchorPointForPosition</string>
-								<key>type</key>
-								<string>Check</string>
-								<key>value</key>
-								<false/>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>displayFrame</string>
-								<key>type</key>
-								<string>SpriteFrame</string>
-								<key>value</key>
-								<array>
-									<string>Imperial/Imperial_23.plist</string>
-									<string>BG_hall__02_2.png</string>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>blendFunc</string>
-								<key>type</key>
-								<string>Blendmode</string>
-								<key>value</key>
-								<array>
-									<integer>770</integer>
-									<integer>771</integer>
-								</array>
-							</dict>
-						</array>
-					</dict>
-					<dict>
-						<key>baseClass</key>
-						<string>CCSprite</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>CCSprite</string>
+						<string>3</string>
 						<key>memberVarAssignmentName</key>
 						<string></string>
 						<key>memberVarAssignmentType</key>
@@ -299,7 +216,7 @@
 								<key>value</key>
 								<array>
 									<real>2040</real>
-									<real>1020</real>
+									<real>1320</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -342,8 +259,8 @@
 								<string>SpriteFrame</string>
 								<key>value</key>
 								<array>
-									<string>Imperial/Imperial_24.plist</string>
-									<string>BG_hall__03_2.png</string>
+									<string>Imperial/Imperial_103.plist</string>
+									<string>map103.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -367,7 +284,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCSprite</string>
+						<string>4</string>
 						<key>memberVarAssignmentName</key>
 						<string></string>
 						<key>memberVarAssignmentType</key>
@@ -381,8 +298,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3060</real>
-									<real>1020</real>
+									<real>0.0</real>
+									<real>300</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -425,8 +342,8 @@
 								<string>SpriteFrame</string>
 								<key>value</key>
 								<array>
-									<string>Imperial/Imperial_29.plist</string>
-									<string>BG_hall__07_2.png</string>
+									<string>Imperial/Imperial_104.plist</string>
+									<string>map104.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -450,78 +367,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCSprite</string>
-						<key>memberVarAssignmentName</key>
-						<string></string>
-						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>anchorPoint</string>
-								<key>type</key>
-								<string>Point</string>
-								<key>value</key>
-								<array>
-									<real>0.0</real>
-									<real>0.0</real>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ignoreAnchorPointForPosition</string>
-								<key>type</key>
-								<string>Check</string>
-								<key>value</key>
-								<false/>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>displayFrame</string>
-								<key>type</key>
-								<string>SpriteFrame</string>
-								<key>value</key>
-								<array>
-									<string>Imperial/Imperial_25.plist</string>
-									<string>BG_hall__04_2.png</string>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>blendFunc</string>
-								<key>type</key>
-								<string>Blendmode</string>
-								<key>value</key>
-								<array>
-									<integer>770</integer>
-									<integer>771</integer>
-								</array>
-							</dict>
-						</array>
-					</dict>
-					<dict>
-						<key>baseClass</key>
-						<string>CCSprite</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>CCSprite</string>
+						<string>5</string>
 						<key>memberVarAssignmentName</key>
 						<string></string>
 						<key>memberVarAssignmentType</key>
@@ -536,6 +382,243 @@
 								<key>value</key>
 								<array>
 									<real>1020</real>
+									<real>300</real>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>anchorPoint</string>
+								<key>type</key>
+								<string>Point</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>0.0</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ignoreAnchorPointForPosition</string>
+								<key>type</key>
+								<string>Check</string>
+								<key>value</key>
+								<false/>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>displayFrame</string>
+								<key>type</key>
+								<string>SpriteFrame</string>
+								<key>value</key>
+								<array>
+									<string>Imperial/Imperial_105.plist</string>
+									<string>map105.png</string>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>blendFunc</string>
+								<key>type</key>
+								<string>Blendmode</string>
+								<key>value</key>
+								<array>
+									<integer>770</integer>
+									<integer>771</integer>
+								</array>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>baseClass</key>
+						<string>CCSprite</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>6</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>position</string>
+								<key>type</key>
+								<string>Position</string>
+								<key>value</key>
+								<array>
+									<real>2040</real>
+									<real>300</real>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>anchorPoint</string>
+								<key>type</key>
+								<string>Point</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>0.0</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ignoreAnchorPointForPosition</string>
+								<key>type</key>
+								<string>Check</string>
+								<key>value</key>
+								<false/>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>displayFrame</string>
+								<key>type</key>
+								<string>SpriteFrame</string>
+								<key>value</key>
+								<array>
+									<string>Imperial/Imperial_106.plist</string>
+									<string>map106.png</string>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>blendFunc</string>
+								<key>type</key>
+								<string>Blendmode</string>
+								<key>value</key>
+								<array>
+									<integer>770</integer>
+									<integer>771</integer>
+								</array>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>baseClass</key>
+						<string>CCSprite</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>7</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>anchorPoint</string>
+								<key>type</key>
+								<string>Point</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>0.0</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ignoreAnchorPointForPosition</string>
+								<key>type</key>
+								<string>Check</string>
+								<key>value</key>
+								<false/>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>displayFrame</string>
+								<key>type</key>
+								<string>SpriteFrame</string>
+								<key>value</key>
+								<array>
+									<string>Imperial/Imperial_107.plist</string>
+									<string>map107.png</string>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>blendFunc</string>
+								<key>type</key>
+								<string>Blendmode</string>
+								<key>value</key>
+								<array>
+									<integer>770</integer>
+									<integer>771</integer>
+								</array>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>baseClass</key>
+						<string>CCSprite</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>8</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>position</string>
+								<key>type</key>
+								<string>Position</string>
+								<key>value</key>
+								<array>
+									<real>1020</real>
 									<real>0.0</real>
 									<integer>0</integer>
 								</array>
@@ -579,8 +662,8 @@
 								<string>SpriteFrame</string>
 								<key>value</key>
 								<array>
-									<string>Imperial/Imperial_26.plist</string>
-									<string>BG_hall__05_2.png</string>
+									<string>Imperial/Imperial_107.plist</string>
+									<string>map108.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -604,7 +687,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCSprite</string>
+						<string>9</string>
 						<key>memberVarAssignmentName</key>
 						<string></string>
 						<key>memberVarAssignmentType</key>
@@ -662,8 +745,8 @@
 								<string>SpriteFrame</string>
 								<key>value</key>
 								<array>
-									<string>Imperial/Imperial_27.plist</string>
-									<string>BG_hall__06_2.png</string>
+									<string>Imperial/Imperial_107.plist</string>
+									<string>map109.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -708,9 +791,9 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
+							<real>1.5</real>
+							<real>1.5</real>
+							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -737,7 +820,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_torchNode1</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_torchNode1</string>
 						<key>memberVarAssignmentType</key>
@@ -798,7 +881,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_torchNode2</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_torchNode2</string>
 						<key>memberVarAssignmentType</key>
@@ -859,7 +942,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_torchNode3</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_torchNode3</string>
 						<key>memberVarAssignmentType</key>
@@ -920,7 +1003,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_torchNode4</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_torchNode4</string>
 						<key>memberVarAssignmentType</key>
@@ -981,7 +1064,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_torchNode5</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_torchNode5</string>
 						<key>memberVarAssignmentType</key>
@@ -1042,7 +1125,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_torchNode6</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_torchNode6</string>
 						<key>memberVarAssignmentType</key>
@@ -1103,7 +1186,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_torchNode7</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_torchNode7</string>
 						<key>memberVarAssignmentType</key>
@@ -1164,7 +1247,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_torchNode8</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_torchNode8</string>
 						<key>memberVarAssignmentType</key>
@@ -1221,7 +1304,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_torchNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_torchNode</string>
 				<key>memberVarAssignmentType</key>
@@ -1270,7 +1353,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bg1</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bg1</string>
 				<key>memberVarAssignmentType</key>
@@ -1331,7 +1414,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bg2</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bg2</string>
 				<key>memberVarAssignmentType</key>
@@ -1392,7 +1475,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bg3</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bg3</string>
 				<key>memberVarAssignmentType</key>
@@ -1453,7 +1536,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bg4</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bg4</string>
 				<key>memberVarAssignmentType</key>
@@ -1502,7 +1585,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bg5</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bg5</string>
 				<key>memberVarAssignmentType</key>
@@ -1563,7 +1646,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bg6</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bg6</string>
 				<key>memberVarAssignmentType</key>
@@ -1624,7 +1707,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_xiongdiNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_xiongdiNode</string>
 				<key>memberVarAssignmentType</key>
@@ -1685,7 +1768,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode-m</string>
+				<string>m_qijiNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_qijiNode</string>
 				<key>memberVarAssignmentType</key>
@@ -1746,7 +1829,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_lotteryNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_lotteryNode</string>
 				<key>memberVarAssignmentType</key>
@@ -1807,7 +1890,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_desNode1</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_desNode1</string>
 				<key>memberVarAssignmentType</key>
@@ -1868,7 +1951,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_desNode2</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_desNode2</string>
 				<key>memberVarAssignmentType</key>
@@ -1929,7 +2012,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node5</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node5</string>
 				<key>memberVarAssignmentType</key>
@@ -1986,11 +2069,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic400000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node0</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node0</string>
 				<key>memberVarAssignmentType</key>
@@ -2004,8 +2126,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>500.36709594726562</real>
-							<real>1494.072265625</real>
+							<real>1242.085693359375</real>
+							<real>2149.79443359375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2051,7 +2173,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_mcNode1</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_mcNode1</string>
 				<key>memberVarAssignmentType</key>
@@ -2108,11 +2230,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic403000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node3</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node3</string>
 				<key>memberVarAssignmentType</key>
@@ -2126,8 +2287,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2196.186767578125</real>
-							<real>1062.3306884765625</real>
+							<real>4163.353515625</real>
+							<real>876.0052490234375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2169,11 +2330,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic400000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node1</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node1</string>
 				<key>memberVarAssignmentType</key>
@@ -2187,8 +2387,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1741.4886474609375</real>
-							<real>821.39825439453125</real>
+							<real>3679.989990234375</real>
+							<real>652.98870849609375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2230,11 +2430,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic403000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node7</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node7</string>
 				<key>memberVarAssignmentType</key>
@@ -2248,8 +2487,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>307.82293701171875</real>
-							<real>1262.060791015625</real>
+							<real>931.29656982421875</real>
+							<real>1487.80126953125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2291,11 +2530,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic404000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node12</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node12</string>
 				<key>memberVarAssignmentType</key>
@@ -2309,8 +2587,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1087.7581787109375</real>
-							<real>1593.609130859375</real>
+							<real>2918.58154296875</real>
+							<real>2977.82861328125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2352,11 +2630,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic403000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node14</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node14</string>
 				<key>memberVarAssignmentType</key>
@@ -2370,8 +2687,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1535.8060302734375</real>
-							<real>1525.79833984375</real>
+							<real>2377.687744140625</real>
+							<real>2008.947265625</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2417,7 +2734,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_mcNode2</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_mcNode2</string>
 				<key>memberVarAssignmentType</key>
@@ -2474,11 +2791,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic424000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node13</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node13</string>
 				<key>memberVarAssignmentType</key>
@@ -2492,8 +2848,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1236.185791015625</real>
-							<real>1473.2564697265625</real>
+							<real>1680.5003662109375</real>
+							<real>1580.751953125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2535,11 +2891,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic424000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node16</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node16</string>
 				<key>memberVarAssignmentType</key>
@@ -2553,8 +2948,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1735.74072265625</real>
-							<real>1412.2041015625</real>
+							<real>2269.634765625</real>
+							<real>1827.8531494140625</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2600,7 +2995,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_mcNode4</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_mcNode4</string>
 				<key>memberVarAssignmentType</key>
@@ -2657,11 +3052,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic424000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node15</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node15</string>
 				<key>memberVarAssignmentType</key>
@@ -2675,8 +3109,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1510.2518310546875</real>
-							<real>1302.54443359375</real>
+							<real>1958.1495361328125</real>
+							<real>2058.595703125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2718,11 +3152,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic424000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node9</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node9</string>
 				<key>memberVarAssignmentType</key>
@@ -2736,8 +3209,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>557.86895751953125</real>
-							<real>1148.6202392578125</real>
+							<real>1629.240234375</real>
+							<real>2288.072021484375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2779,11 +3252,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic424000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node11</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node11</string>
 				<key>memberVarAssignmentType</key>
@@ -2797,8 +3309,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>812.8992919921875</real>
-							<real>973.24224853515625</real>
+							<real>2110.010986328125</real>
+							<real>2284.686767578125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2844,7 +3356,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_mcNode3</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_mcNode3</string>
 				<key>memberVarAssignmentType</key>
@@ -2901,11 +3413,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic424000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node6</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node6</string>
 				<key>memberVarAssignmentType</key>
@@ -2919,8 +3470,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1835.5181884765625</real>
-							<real>1093.11669921875</real>
+							<real>764.14691162109375</real>
+							<real>2049.826171875</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2962,11 +3513,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic424000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node8</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node8</string>
 				<key>memberVarAssignmentType</key>
@@ -2980,8 +3570,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>335.39675903320312</real>
-							<real>925.41119384765625</real>
+							<real>1112.9471435546875</real>
+							<real>1799.70751953125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3023,11 +3613,50 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>baseClass</key>
+						<string>CCBFile</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>CCBFile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ccbFile</string>
+								<key>type</key>
+								<string>CCBFile</string>
+								<key>value</key>
+								<string>pic424000_2_1.ccb</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node10</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node10</string>
 				<key>memberVarAssignmentType</key>
@@ -3041,8 +3670,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>593.97979736328125</real>
-							<real>845.4755859375</real>
+							<real>1328.5321044921875</real>
+							<real>1468.94921875</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3088,7 +3717,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_mcNode5</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_mcNode5</string>
 				<key>memberVarAssignmentType</key>
@@ -3149,7 +3778,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node17</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node17</string>
 				<key>memberVarAssignmentType</key>
@@ -3210,7 +3839,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node18</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node18</string>
 				<key>memberVarAssignmentType</key>
@@ -3271,7 +3900,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node19</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node19</string>
 				<key>memberVarAssignmentType</key>
@@ -3332,7 +3961,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_desNode3</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_desNode3</string>
 				<key>memberVarAssignmentType</key>
@@ -3393,7 +4022,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node20</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node20</string>
 				<key>memberVarAssignmentType</key>
@@ -3454,7 +4083,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node21</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node21</string>
 				<key>memberVarAssignmentType</key>
@@ -3515,7 +4144,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node22</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node22</string>
 				<key>memberVarAssignmentType</key>
@@ -3576,7 +4205,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node23</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node23</string>
 				<key>memberVarAssignmentType</key>
@@ -3637,7 +4266,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node24</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node24</string>
 				<key>memberVarAssignmentType</key>
@@ -3698,7 +4327,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node25</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node25</string>
 				<key>memberVarAssignmentType</key>
@@ -3759,7 +4388,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node26</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node26</string>
 				<key>memberVarAssignmentType</key>
@@ -3820,7 +4449,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node27</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node27</string>
 				<key>memberVarAssignmentType</key>
@@ -3881,7 +4510,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node28</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node28</string>
 				<key>memberVarAssignmentType</key>
@@ -3942,7 +4571,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node29</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node29</string>
 				<key>memberVarAssignmentType</key>
@@ -4003,7 +4632,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node30</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node30</string>
 				<key>memberVarAssignmentType</key>
@@ -4064,7 +4693,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node31</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node31</string>
 				<key>memberVarAssignmentType</key>
@@ -4125,7 +4754,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node32</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node32</string>
 				<key>memberVarAssignmentType</key>
@@ -4186,7 +4815,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node33</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node33</string>
 				<key>memberVarAssignmentType</key>
@@ -4247,7 +4876,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node34</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node34</string>
 				<key>memberVarAssignmentType</key>
@@ -4308,7 +4937,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node35</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node35</string>
 				<key>memberVarAssignmentType</key>
@@ -4369,7 +4998,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node36</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node36</string>
 				<key>memberVarAssignmentType</key>
@@ -4430,7 +5059,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node37</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node37</string>
 				<key>memberVarAssignmentType</key>
@@ -4491,7 +5120,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node38</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node38</string>
 				<key>memberVarAssignmentType</key>
@@ -4552,7 +5181,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node39</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node39</string>
 				<key>memberVarAssignmentType</key>
@@ -4613,7 +5242,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node40</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node40</string>
 				<key>memberVarAssignmentType</key>
@@ -4674,7 +5303,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node41</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node41</string>
 				<key>memberVarAssignmentType</key>
@@ -4735,7 +5364,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node42</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node42</string>
 				<key>memberVarAssignmentType</key>
@@ -4796,7 +5425,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node43</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node43</string>
 				<key>memberVarAssignmentType</key>
@@ -4857,7 +5486,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node44</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node44</string>
 				<key>memberVarAssignmentType</key>
@@ -4918,7 +5547,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node45</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node45</string>
 				<key>memberVarAssignmentType</key>
@@ -4979,7 +5608,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node46</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node46</string>
 				<key>memberVarAssignmentType</key>
@@ -5040,7 +5669,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node47</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node47</string>
 				<key>memberVarAssignmentType</key>
@@ -5101,7 +5730,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node48</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node48</string>
 				<key>memberVarAssignmentType</key>
@@ -5162,7 +5791,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node49</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node49</string>
 				<key>memberVarAssignmentType</key>
@@ -5223,7 +5852,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node50</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node50</string>
 				<key>memberVarAssignmentType</key>
@@ -5284,7 +5913,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node51</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node51</string>
 				<key>memberVarAssignmentType</key>
@@ -5345,7 +5974,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node52</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node52</string>
 				<key>memberVarAssignmentType</key>
@@ -5406,7 +6035,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node53</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node53</string>
 				<key>memberVarAssignmentType</key>
@@ -5467,7 +6096,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode54</string>
+				<string>m_node54</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node54</string>
 				<key>memberVarAssignmentType</key>
@@ -5528,7 +6157,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode55</string>
+				<string>m_node55</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node55</string>
 				<key>memberVarAssignmentType</key>
@@ -5589,7 +6218,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node56</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node56</string>
 				<key>memberVarAssignmentType</key>
@@ -5650,7 +6279,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node57</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node57</string>
 				<key>memberVarAssignmentType</key>
@@ -5711,7 +6340,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node58</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node58</string>
 				<key>memberVarAssignmentType</key>
@@ -5772,7 +6401,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node2</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node2</string>
 				<key>memberVarAssignmentType</key>
@@ -5833,7 +6462,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_node4</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node4</string>
 				<key>memberVarAssignmentType</key>
@@ -6941,6 +7570,14 @@
 				<array>
 					<dict>
 						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>anchorPoint</string>
 						<key>type</key>
 						<string>Point</string>
@@ -6981,7 +7618,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bigTileNode1</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bigTileNode1</string>
 				<key>memberVarAssignmentType</key>
@@ -7065,7 +7702,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bigTileNode2</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bigTileNode2</string>
 				<key>memberVarAssignmentType</key>
@@ -7149,7 +7786,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bigTileNode3</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bigTileNode3</string>
 				<key>memberVarAssignmentType</key>
@@ -7222,7 +7859,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bigTileNode4</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bigTileNode4</string>
 				<key>memberVarAssignmentType</key>
@@ -7306,7 +7943,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_bigTileNode5</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_bigTileNode5</string>
 				<key>memberVarAssignmentType</key>
@@ -7390,7 +8027,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_flagNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_flagNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7451,7 +8088,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_hdNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_hdNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7465,8 +8102,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>64.953559875488281</real>
-							<real>1445.81201171875</real>
+							<real>380.27352905273438</real>
+							<real>2108.70068359375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -7503,6 +8140,8 @@
 						<false/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -7512,7 +8151,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_wallNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_wallNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7561,7 +8200,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_FountainTouchNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_FountainTouchNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7634,7 +8273,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_goldMineNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_goldMineNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7695,7 +8334,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_goldBoxNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_goldBoxNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7756,7 +8395,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_chrTreeNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_chrTreeNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7817,7 +8456,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_merchanteNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_merchanteNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7878,7 +8517,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_willOpenNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_willOpenNode</string>
 				<key>memberVarAssignmentType</key>
@@ -7939,7 +8578,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_shipNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_shipNode</string>
 				<key>memberVarAssignmentType</key>
@@ -8000,7 +8639,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_cargoNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_cargoNode</string>
 				<key>memberVarAssignmentType</key>
@@ -8061,7 +8700,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_newRDNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_newRDNode</string>
 				<key>memberVarAssignmentType</key>
@@ -8122,7 +8761,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_ziyuanmenNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_ziyuanmenNode</string>
 				<key>memberVarAssignmentType</key>
@@ -8183,7 +8822,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_dragonCaveGlow</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_dragonCaveGlow</string>
 				<key>memberVarAssignmentType</key>
@@ -8244,7 +8883,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_penquanRainbow</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_penquanRainbow</string>
 				<key>memberVarAssignmentType</key>
@@ -8310,7 +8949,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_crossClickNode</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_crossClickNode</string>
 						<key>memberVarAssignmentType</key>
@@ -8387,7 +9026,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode  cross bing</string>
+				<string>m_crossNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_crossNode</string>
 				<key>memberVarAssignmentType</key>
@@ -8448,7 +9087,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode  dragon</string>
+				<string>m_dragonNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_dragonNode</string>
 				<key>memberVarAssignmentType</key>
@@ -8514,7 +9153,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_wave1_1</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_wave1_1</string>
 						<key>memberVarAssignmentType</key>
@@ -8575,7 +9214,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_wave2_1</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_wave2_1</string>
 						<key>memberVarAssignmentType</key>
@@ -8681,7 +9320,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_failEffectNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_failEffectNode</string>
 				<key>memberVarAssignmentType</key>
@@ -8812,6 +9451,14 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>blendFunc</string>
 								<key>type</key>
 								<string>Blendmode</string>
@@ -8908,6 +9555,14 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>blendFunc</string>
 								<key>type</key>
 								<string>Blendmode</string>
@@ -9001,6 +9656,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -9112,8 +9775,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>1927.7698974609375</real>
-									<real>2704.480712890625</real>
+									<real>1883.8331298828125</real>
+									<real>2685.8232421875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -9167,6 +9830,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -9258,7 +9929,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-1831.431640625</real>
+									<real>-1454.4205322265625</real>
 									<real>2630.29443359375</real>
 									<integer>0</integer>
 								</array>
@@ -9313,6 +9984,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -9424,7 +10103,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>4262.791015625</real>
+									<real>4196.83203125</real>
 									<real>2733.489990234375</real>
 									<integer>0</integer>
 								</array>
@@ -9479,6 +10158,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -9606,7 +10293,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-77.45111083984375</real>
+									<real>298.5540771484375</real>
 									<real>2630.29443359375</real>
 									<integer>0</integer>
 								</array>
@@ -9661,6 +10348,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -9757,6 +10452,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -9900,8 +10603,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3524.39453125</real>
-									<real>2964.879638671875</real>
+									<real>3872.01025390625</real>
+									<real>2892.38623046875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -9955,6 +10658,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -10051,6 +10762,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -10178,8 +10897,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2084.995849609375</real>
-									<real>2875.6806640625</real>
+									<real>2414.738525390625</real>
+									<real>2849.09716796875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -10233,6 +10952,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -10329,6 +11056,14 @@
 									<string>Common/Common_9.plist</string>
 									<string>Cloud.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -10456,8 +11191,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>64.874458312988281</real>
-									<real>2519.38232421875</real>
+									<real>65.527511596679688</real>
+									<real>2518.818359375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -10514,6 +11249,14 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>opacity</string>
+								<key>type</key>
+								<string>Byte</string>
+								<key>value</key>
+								<integer>120</integer>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>blendFunc</string>
 								<key>type</key>
 								<string>Blendmode</string>
@@ -10529,7 +11272,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_couldNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_couldNode</string>
 				<key>memberVarAssignmentType</key>
@@ -10543,8 +11286,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>120</real>
+							<real>992</real>
+							<real>1536</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -35889,6 +36632,14 @@
 				<array>
 					<dict>
 						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>anchorPoint</string>
 						<key>type</key>
 						<string>Point</string>
@@ -36038,7 +36789,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>6.5</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
