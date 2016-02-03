@@ -587,7 +587,7 @@ void LoadingScene::postLoadingLogToServer(CCObject* p){
                                                    step.c_str(),
                                                    connection.c_str())->getCString();
 //    CCString *url = CCString::createWithFormat("http://10.1.5.196:9000/client/loading");
-    CCString *url = CCString::createWithFormat("http://public.cok.elexapp.com/client/loading");
+    CCString *url = CCString::createWithFormat(POST_EVENT_LOG_URL);
     CCLog("loadingLog:%s", url->getCString());
     request->setUrl(url->getCString());
     request->setRequestType(CCHttpRequest::Type::POST);
@@ -1038,15 +1038,16 @@ void LoadingScene::onLoginTimeout(float t)
     string _lang = LocalController::shared()->getLanguageFileName();
     string _serverId = CCUserDefault::sharedUserDefault()->getStringForKey(SERVER_ID, "");
     string _serverIp = CCUserDefault::sharedUserDefault()->getStringForKey(ACCOUNT_IP, "");
-#if COCOS2D_DEBUG == 1
-    url = CCString::createWithFormat("http://10.1.6.72:8081/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
-#else
-#if COCOS2D_DEBUG == 2
-    url = CCString::createWithFormat("http://p1.cok.elexapp.com/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
-#else
-    url = CCString::createWithFormat("http://p1.cok.elexapp.com/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
-#endif
-#endif
+//#if COCOS2D_DEBUG == 1
+//    url = CCString::createWithFormat("http://10.1.6.72:8081/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
+//#else
+//#if COCOS2D_DEBUG == 2
+//    url = CCString::createWithFormat("http://p1.cok.elexapp.com/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
+//#else
+//    url = CCString::createWithFormat("http://p1.cok.elexapp.com/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
+//#endif
+//#endif
+    url = CCString::createWithFormat("http://%s/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s", GET_SERVERLIST_IP, _uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
     
     CCLOG("get_server_status list URL: %s",url->getCString());
     
@@ -1217,9 +1218,9 @@ void LoadingScene::sendCmdGetServerList(CCObject* p){
         url = CCString::createWithFormat("http://%s:8081/phpserver/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
 #else
         if(isChinaPhone && m_getServerListRetryTime % 2 == 0){
-            url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s","p3cok.elexapp.com",param.c_str());
+            url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s",SERVERLIST_CHINA_IP1,param.c_str());
         }else{
-            url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s","p1cok.elexapp.com",param.c_str());
+            url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s",SERVERLIST_CHINA_IP2,param.c_str());
         }
 #endif
 #endif
@@ -1234,9 +1235,9 @@ void LoadingScene::sendCmdGetServerList(CCObject* p){
         url = CCString::createWithFormat("http://%s:8081/phpserver/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
 #else
         if(isChinaPhone && m_getServerListRetryTime % 2 == 0){
-            url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s","p3cok.elexapp.com",param.c_str());
+            url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s",SERVERLIST_CHINA_IP1,param.c_str());
         }else{
-            url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s","p1cok.elexapp.com",param.c_str());
+            url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s",SERVERLIST_CHINA_IP2,param.c_str());
         }
 #endif
 #endif
