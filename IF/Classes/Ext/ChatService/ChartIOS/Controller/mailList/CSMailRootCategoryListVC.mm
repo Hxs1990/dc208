@@ -332,7 +332,7 @@
     
     DVLog(@"在这里调用打开c++邮件创建的页面");
     CSMailWriteViewController *mailWriteVC =[[CSMailWriteViewController alloc]init];
-    [self.navigationController pushViewController:mailWriteVC animated:YES];
+    [self.navigationController pushViewController:mailWriteVC animated:NO];
 }
 
 #pragma mark -

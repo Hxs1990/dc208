@@ -88,7 +88,7 @@ bool AllianceWarResultView::init(){
             CCLoadSprite::doResourceByCommonIndex(206, false);
             CCLoadSprite::releaseDynamicResourceByType(CCLoadSpriteType_MONSTERLAYERLITTLE);
         });
-        auto tbg = CCLoadSprite::loadResource("technology_09.png");
+        /*auto tbg = CCLoadSprite::loadResource("technology_09.png");
         auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
         int maxHight = CCDirector::sharedDirector()->getWinSize().height;
         int curHight = -500;
@@ -102,7 +102,7 @@ bool AllianceWarResultView::init(){
         if (CCCommonUtils::isIosAndroidPad()) {
             tBatchNode->setScaleX(1536.0 / 640.0);
         }
-        this->addChild(tBatchNode,-10);
+        this->addChild(tBatchNode,-10);*/
         CCCommonUtils::onAddFire(m_fireNode1);
         CCCommonUtils::onAddFire(m_fireNode2);
         CCCommonUtils::setButtonTitle(m_btn, _lang("115845").c_str());
@@ -328,11 +328,11 @@ string str1 = "";
         if(m_info->getWin()==0){
             m_lostNode->setVisible(false);
             m_winNode->setVisible(true);
-            m_resultTxt1->setColor({0,171,220});
+            /*m_resultTxt1->setColor({0,171,220});
             m_resultTxt2->setColor({0,171,220});
             m_attTxt->setColor({101,153,178});
             m_defTxt->setColor({101,153,178});
-            m_timeTxt->setColor({101,153,178});
+            m_timeTxt->setColor({101,153,178});*/
             str1 = _lang("115236");
             str2 = _lang("115237");
             m_resultTxt1->setString(_lang("115236"));
@@ -340,11 +340,11 @@ string str1 = "";
         }else{
             m_lostNode->setVisible(true);
             m_winNode->setVisible(false);
-            m_resultTxt1->setColor({148,148,148});
+            /*m_resultTxt1->setColor({148,148,148});
             m_resultTxt2->setColor({148,148,148});
             m_attTxt->setColor({148,148,148});
             m_defTxt->setColor({148,148,148});
-            m_timeTxt->setColor({148,148,148});
+            m_timeTxt->setColor({148,148,148});*/
             str1 = _lang("115237");
             str2 = _lang("115236");
             m_resultTxt1->setString(_lang("115237"));
@@ -354,11 +354,11 @@ string str1 = "";
         if(m_info->getWin()==1){
             m_lostNode->setVisible(false);
             m_winNode->setVisible(true);
-            m_resultTxt1->setColor({0,171,220});
+            /*m_resultTxt1->setColor({0,171,220});
             m_resultTxt2->setColor({0,171,220});
             m_attTxt->setColor({101,153,178});
             m_defTxt->setColor({101,153,178});
-            m_timeTxt->setColor({101,153,178});
+            m_timeTxt->setColor({101,153,178});*/
             str1 = _lang("115237");
             str2 = _lang("115236");
             m_resultTxt1->setString(_lang("115237"));
@@ -366,11 +366,11 @@ string str1 = "";
         }else{
             m_lostNode->setVisible(true);
             m_winNode->setVisible(false);
-            m_resultTxt1->setColor({148,148,148});
+            /*m_resultTxt1->setColor({148,148,148});
             m_resultTxt2->setColor({148,148,148});
             m_attTxt->setColor({148,148,148});
             m_defTxt->setColor({148,148,148});
-            m_timeTxt->setColor({148,148,148});
+            m_timeTxt->setColor({148,148,148});*/
             str1 = _lang("115236");
             str2 = _lang("115237");
             m_resultTxt1->setString(_lang("115236"));

@@ -66,7 +66,7 @@ bool AllianceTerritoryView::init()
     m_infoList->setPositionY(m_infoList->getPositionY() - extH);
     m_infoList->setContentSize(CCSize(m_infoList->getContentSize().width, m_infoList->getContentSize().height + extH));
     m_bgNode->setPositionY(m_bgNode->getPositionY() - extH);
-    auto tbg = CCLoadSprite::loadResource("technology_09.png");
+    /*auto tbg = CCLoadSprite::loadResource("technology_09.png");
     auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
     auto picBg1 = CCLoadSprite::createSprite("technology_09.png");
     picBg1->setAnchorPoint(ccp(0, 0));
@@ -86,7 +86,7 @@ bool AllianceTerritoryView::init()
     {
         tBatchNode->setScaleX(1536.0 / 640.0);
     }
-    m_bgNode->addChild(tBatchNode);
+    m_bgNode->addChild(tBatchNode);*/
 //    auto tempSprite = CCLoadSprite::createScale9Sprite("btn_equip.png");
 //    m_bgNode->addChild(tempSprite);
     m_tabView = CCTableView::create(this, m_infoList->getContentSize());
@@ -147,7 +147,7 @@ void AllianceTerritoryView::updateInfo(CCObject* data)///////默认为显示哨�
                 else if (info->m_territoryType == tile_banner) {
                     m_bannerData->addObject(info);
                 }
-                info->release();
+                CC_SAFE_RELEASE(info);
             }
         }
     }
@@ -171,7 +171,7 @@ void AllianceTerritoryView::updateInfo(CCObject* data)///////默认为显示哨�
         info->m_territoryCount = i + m_territoryDataCount + 1;
         info->m_territoryName = _lang_1("115312", CC_ITOA(info->m_territoryCount));
         m_territoryData->addObject(info);
-        info->release();
+        CC_SAFE_RELEASE(info);
     }
     
     /////超级矿
@@ -220,7 +220,7 @@ void AllianceTerritoryView::updateInfo(CCObject* data)///////默认为显示哨�
                     break;
             }
             m_resourceData->addObject(info);
-            info->release();
+            CC_SAFE_RELEASE(info);
         }
     }
     else if (m_resourceData->count() == 1) {//超级矿已放置状态，返回已放置的超级矿数据，前台自行生成其他三个显示数据
@@ -287,10 +287,10 @@ void AllianceTerritoryView::updateInfo(CCObject* data)///////默认为显示哨�
             default:
                 break;
         }
-        info1->release();
-        info2->release();
-        info3->release();
-        info4->release();
+        CC_SAFE_RELEASE(info1);
+        CC_SAFE_RELEASE(info2);
+        CC_SAFE_RELEASE(info3);
+        CC_SAFE_RELEASE(info4);
     }
     
     /////箭塔
@@ -341,7 +341,7 @@ void AllianceTerritoryView::updateInfo(CCObject* data)///////默认为显示哨�
             info->m_territoryCount = i + m_towerDataCount + 1;
             info->m_territoryName = _lang_1("115406", CC_ITOA(info->m_territoryCount));
             m_towerData->addObject(info);
-            info->release();
+            CC_SAFE_RELEASE(info);
         }
     }
     
@@ -366,7 +366,7 @@ void AllianceTerritoryView::updateInfo(CCObject* data)///////默认为显示哨�
         }
         info->m_territoryName = _lang("115364");
         m_warehouseData->addObject(info);
-        info->release();
+        CC_SAFE_RELEASE(info);
     }
 
     if (GlobalData::shared()->alliance_territory_banner_switch == 1) {
@@ -394,7 +394,7 @@ void AllianceTerritoryView::updateInfo(CCObject* data)///////默认为显示哨�
             }
             info->m_territoryName = _lang("115534");
             m_bannerData->addObject(info);
-            info->release();
+            CC_SAFE_RELEASE(info);
         }
     }
     
@@ -999,7 +999,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
         else if (info1->m_territoryType == tile_banner) {
             m_lockTipLabel1->setString(_lang("115393"));
         }
-        m_lockTipLabel1->setColor({198,190,178});
+//        m_lockTipLabel1->setColor({198,190,178});
         m_infoBgPlace1->setPositionY(m_infoBgPlace1->getPositionY() + 24);
         m_lockTipLabel1->setPositionY(m_lockTipLabel1->getPositionY() + 24);
         int labelLen = m_lockTipLabel1->getContentSize().width * m_lockTipLabel1->getOriginScaleX();
@@ -1153,7 +1153,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
             else if (info1->m_territoryType == tile_banner) {
                 m_statUnplaceLabel1->setString(_lang("115535"));
             }
-            m_statUnplaceLabel1->setColor({198,190,178});
+//            m_statUnplaceLabel1->setColor({198,190,178});
             m_infoBgPlace1->setPositionY(m_infoBgPlace1->getPositionY() + 24);
             m_statUnplaceLabel1->setPositionY(m_statUnplaceLabel1->getPositionY() + 24);
             m_statBgPlace1->setVisible(false);
@@ -1162,10 +1162,10 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
             std::string tempName = "";
             tempName = info1->m_territoryName;
             m_nameLabel1->setString(tempName);
-            m_nameLabel1->setColor({198,190,178});;
+//            m_nameLabel1->setColor({198,190,178});;
             m_placeLabel1->setVisible(true);
             m_placeLabel1->setString(_lang("115302"));
-            m_placeLabel1->setColor({198,190,178});
+//            m_placeLabel1->setColor({198,190,178});
             m_statPlaceLabel1->setVisible(false);
             m_defLabel1->setVisible(false);
             m_coordLabel1->setVisible(false);
@@ -1180,7 +1180,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
             std::string tempName = "";
             tempName = info1->m_territoryName;
             m_nameLabel1->setString(tempName);
-            m_nameLabel1->setColor({198,190,178});
+//            m_nameLabel1->setColor({198,190,178});
             m_placeLabel1->setVisible(false);
             m_statPlaceLabel1->setVisible(true);
             m_defLabel1->setVisible(true);
@@ -1211,7 +1211,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
             else if (info1->m_territoryType == tile_banner) {
                 m_defLabel1->setString(_lang_1("115345", CC_CMDITOA(info1->m_territoryDef).c_str()));
             }
-            m_defLabel1->setColor({198,190,178});
+//            m_defLabel1->setColor({198,190,178});
             m_coordLabel1->setVisible(true);
             m_ptIndex1 = info1->m_territoryPtIndex;
             std::string coordStr = "X:";
@@ -1221,7 +1221,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
             coordStr.append("Y:");
             coordStr.append(CC_ITOA(tPoint.y));
             m_coordLabel1->setString(coordStr);
-            m_coordLabel1->setColor(ccWHITE);
+//            m_coordLabel1->setColor(ccWHITE);
             m_statUnplaceLabel1->setVisible(false);
             m_underlineSpr1->setVisible(true);
             
@@ -1337,7 +1337,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
             else if (info2->m_territoryType == tile_banner) {
                 m_lockTipLabel2->setString(_lang("115393"));
             }
-            m_lockTipLabel2->setColor({198,190,178});
+//            m_lockTipLabel2->setColor({198,190,178});
             m_infoBgPlace2->setPositionY(m_infoBgPlace2->getPositionY() + 24);
             m_lockTipLabel2->setPositionY(m_lockTipLabel2->getPositionY() + 24);
             int labelLen = m_lockTipLabel2->getContentSize().width * m_lockTipLabel2->getOriginScaleX();
@@ -1489,7 +1489,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
                 else if (info2->m_territoryType == tile_banner) {
                     m_statUnplaceLabel2->setString(_lang("115535"));
                 }
-                m_statUnplaceLabel2->setColor({198,190,178});
+//                m_statUnplaceLabel2->setColor({198,190,178});
                 m_infoBgPlace2->setPositionY(m_infoBgPlace2->getPositionY() + 24);
                 m_statUnplaceLabel2->setPositionY(m_statUnplaceLabel2->getPositionY() + 24);
                 m_statBgPlace2->setVisible(false);
@@ -1498,10 +1498,10 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
                 std::string tempName = "";
                 tempName = info2->m_territoryName;
                 m_nameLabel2->setString(tempName);
-                m_nameLabel2->setColor({198,190,178});
+//                m_nameLabel2->setColor({198,190,178});
                 m_placeLabel2->setVisible(true);
                 m_placeLabel2->setString(_lang("115302"));
-                m_placeLabel2->setColor({198,190,178});
+//                m_placeLabel2->setColor({198,190,178});
                 m_statPlaceLabel2->setVisible(false);
                 m_defLabel2->setVisible(false);
                 m_coordLabel2->setVisible(false);
@@ -1516,7 +1516,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
                 std::string tempName = "";
                 tempName = info2->m_territoryName;
                 m_nameLabel2->setString(tempName);
-                m_nameLabel2->setColor({198,190,178});
+//                m_nameLabel2->setColor({198,190,178});
                 m_placeLabel2->setVisible(false);
                 m_statPlaceLabel2->setVisible(true);
                 m_defLabel2->setVisible(true);
@@ -1548,7 +1548,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
                 else if (info2->m_territoryType == tile_banner) {
                     m_defLabel2->setString(_lang_1("115345", CC_CMDITOA(info2->m_territoryDef).c_str()));
                 }
-                m_defLabel2->setColor({198,190,178});
+//                m_defLabel2->setColor({198,190,178});
                 m_coordLabel2->setVisible(true);
                 m_ptIndex2 = info2->m_territoryPtIndex;
                 std::string coordStr = "X:";
@@ -1558,7 +1558,7 @@ void AllianceTerritoryCell::setData(int index,AllianceTerritoryInfo* info1, Alli
                 coordStr.append("Y:");
                 coordStr.append(CC_ITOA(tPoint.y));
                 m_coordLabel2->setString(coordStr);
-                m_coordLabel2->setColor(ccWHITE);
+//                m_coordLabel2->setColor(ccWHITE);
                 m_statUnplaceLabel2->setVisible(false);
                 m_underlineSpr2->setVisible(true);
                 

@@ -45,7 +45,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MailListCell" owner:nil options:nil] lastObject];
         cell.backgroundColor =[UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-        UIImageView *backImageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail_list_bg.png"]];
+        UIImageView *backImageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottom_bg.png"]];
         backImageView.frame = CGRectMake(0, 0, cell.width, cell.height);
         cell.selectedBackgroundView = backImageView;
         [cell initView];

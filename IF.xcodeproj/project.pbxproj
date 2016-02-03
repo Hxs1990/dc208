@@ -212,6 +212,9 @@
 		1DA643581A8354D3002E1482 /* SearchInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DA643561A8354D3002E1482 /* SearchInfo.cpp */; };
 		1DB41C7E1A82038F00CB7D23 /* Search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DB41C7C1A82038E00CB7D23 /* Search.cpp */; };
 		1DBBC0CE1A53A12900ECF5AC /* DailyRwdView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DBBC0CC1A53A12900ECF5AC /* DailyRwdView.cpp */; };
+		1DCB19131C61D885003DCDEE /* mail_btn_complete.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DCB19121C61D885003DCDEE /* mail_btn_complete.png */; };
+		1DCB19191C61D8C4003DCDEE /* Btn_Mail_Editor.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DCB19181C61D8C4003DCDEE /* Btn_Mail_Editor.png */; };
+		1DCB191B1C61DBCE003DCDEE /* ui_gray_biaotilan 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DCB191A1C61DBCE003DCDEE /* ui_gray_biaotilan 2.png */; };
 		1DEE97A91AA002AE006F5D71 /* GmController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DEE97A71AA002AE006F5D71 /* GmController.cpp */; };
 		1DF52F731AC107A0000D3080 /* TimeRwdShowView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DF52F711AC107A0000D3080 /* TimeRwdShowView.cpp */; };
 		1DF827331B946D3B0003EA1F /* NewTroopsView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DF827311B946D3B0003EA1F /* NewTroopsView.cpp */; };
@@ -1959,6 +1962,9 @@
 		1DB41C7D1A82038F00CB7D23 /* Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Search.h; sourceTree = "<group>"; };
 		1DBBC0CC1A53A12900ECF5AC /* DailyRwdView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DailyRwdView.cpp; sourceTree = "<group>"; };
 		1DBBC0CD1A53A12900ECF5AC /* DailyRwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyRwdView.h; sourceTree = "<group>"; };
+		1DCB19121C61D885003DCDEE /* mail_btn_complete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_btn_complete.png; sourceTree = "<group>"; };
+		1DCB19181C61D8C4003DCDEE /* Btn_Mail_Editor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Btn_Mail_Editor.png; sourceTree = "<group>"; };
+		1DCB191A1C61DBCE003DCDEE /* ui_gray_biaotilan 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui_gray_biaotilan 2.png"; sourceTree = "<group>"; };
 		1DEE97A71AA002AE006F5D71 /* GmController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GmController.cpp; sourceTree = "<group>"; };
 		1DEE97A81AA002AE006F5D71 /* GmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GmController.h; sourceTree = "<group>"; };
 		1DF52F711AC107A0000D3080 /* TimeRwdShowView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeRwdShowView.cpp; sourceTree = "<group>"; };
@@ -4955,6 +4961,9 @@
 		272AB5781B15C7BA0052E896 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1DCB191A1C61DBCE003DCDEE /* ui_gray_biaotilan 2.png */,
+				1DCB19181C61D8C4003DCDEE /* Btn_Mail_Editor.png */,
+				1DCB19121C61D885003DCDEE /* mail_btn_complete.png */,
 				1D1E45411C609C4500712A22 /* [battlereport].png */,
 				1D1E45421C609C4500712A22 /* [equip_share].png */,
 				1D1E45431C609C4500712A22 /* [sysChat].png */,
@@ -9190,6 +9199,7 @@
 				272AB62B1B15C7BC0052E896 /* btn_qieye_02.png in Resources */,
 				1D1E461D1C609C4500712A22 /* ui_iron.png in Resources */,
 				272AB6151B15C7BC0052E896 /* TipPopUpController.xib in Resources */,
+				1DCB191B1C61DBCE003DCDEE /* ui_gray_biaotilan 2.png in Resources */,
 				1D1E46081C609C4500712A22 /* mail_pic_flag_4.png in Resources */,
 				1D1E45D91C609C4500712A22 /* mail_list_edit_buttonbar_bg.9.png in Resources */,
 				1D1E46031C609C4500712A22 /* mail_list_main_icon_studio.png in Resources */,
@@ -9271,6 +9281,7 @@
 				272AB6471B15C7BC0052E896 /* g024.png in Resources */,
 				1D1E45CF1C609C4500712A22 /* mail_btn_write_mail.png in Resources */,
 				1D1E45F81C609C4500712A22 /* mail_list_icon_system_vip.png in Resources */,
+				1DCB19131C61D885003DCDEE /* mail_btn_complete.png in Resources */,
 				1D1E45F31C609C4500712A22 /* mail_list_icon_invite_rejected.png in Resources */,
 				1D1E45D01C609C4500712A22 /* mail_btn_write.png in Resources */,
 				272AB63F1B15C7BC0052E896 /* forum_back.png in Resources */,
@@ -9346,6 +9357,7 @@
 				1D1E45DE1C609C4500712A22 /* mail_list_edit_gift.png in Resources */,
 				6C31E5A61B4A507F00D9C04D /* SearchEditView.xib in Resources */,
 				1D1E46141C609C4500712A22 /* mute.png in Resources */,
+				1DCB19191C61D8C4003DCDEE /* Btn_Mail_Editor.png in Resources */,
 				1D1E45F21C609C4500712A22 /* mail_list_icon_invite_move.png in Resources */,
 				BAD17E571AA5BDB400163E67 /* TwitterKitResources.bundle in Resources */,
 				272AB6591B15C7BC0052E896 /* icon_chat_translate2.png in Resources */,
