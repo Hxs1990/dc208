@@ -101,7 +101,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     pDirector->setOpenGLView(glview);
     // set PVR enable
-    CCTexture2D::PVRImagesHavePremultipliedAlpha(true);
+    CCTexture2D::PVRImagesHavePremultipliedAlpha(false);
     // set resolution size (width free adjust , width fixed 768)
 //    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(640, 852, kResolutionFixedWidth);
     

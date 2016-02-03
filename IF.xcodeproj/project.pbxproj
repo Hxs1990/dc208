@@ -332,6 +332,12 @@
 		3642EC74184DBF8600D49597 /* FBUtilies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3642EC71184DBF8600D49597 /* FBUtilies.cpp */; };
 		3642EC75184DBF8600D49597 /* FBUtilies.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3642EC73184DBF8600D49597 /* FBUtilies.mm */; };
 		3642EC77184DBFBE00D49597 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3642EC76184DBFBE00D49597 /* MessageUI.framework */; };
+		365A70F21C61999900E7E509 /* CCGallery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A70F01C61999900E7E509 /* CCGallery.cpp */; };
+		365A71091C619BDB00E7E509 /* NBCommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A71071C619BDB00E7E509 /* NBCommonUtils.cpp */; };
+		365A720E1C61A3D500E7E509 /* 3d in Resources */ = {isa = PBXBuildFile; fileRef = 365A720D1C61A3D500E7E509 /* 3d */; };
+		365A72151C61C2A900E7E509 /* NBGRenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A720F1C61C2A900E7E509 /* NBGRenderTarget.cpp */; };
+		365A72161C61C2A900E7E509 /* NBProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A72111C61C2A900E7E509 /* NBProgressBar.cpp */; };
+		365A72171C61C2A900E7E509 /* NBSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A72131C61C2A900E7E509 /* NBSlider.cpp */; };
 		366A8461180BE37100790261 /* ClippingNodeExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 366A845F180BE37100790261 /* ClippingNodeExt.cpp */; };
 		366E1C6A17D04FA0006CCCBF /* SoundController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 366E1C6717D04FA0006CCCBF /* SoundController.cpp */; };
 		366E1C6D17D07261006CCCBF /* LocalController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 366E1C6B17D07261006CCCBF /* LocalController.cpp */; };
@@ -2119,6 +2125,17 @@
 		3642EC72184DBF8600D49597 /* FBUtilies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUtilies.h; sourceTree = "<group>"; };
 		3642EC73184DBF8600D49597 /* FBUtilies.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBUtilies.mm; sourceTree = "<group>"; };
 		3642EC76184DBFBE00D49597 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		365A70F01C61999900E7E509 /* CCGallery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCGallery.cpp; sourceTree = "<group>"; };
+		365A70F11C61999900E7E509 /* CCGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGallery.h; sourceTree = "<group>"; };
+		365A71071C619BDB00E7E509 /* NBCommonUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBCommonUtils.cpp; sourceTree = "<group>"; };
+		365A71081C619BDB00E7E509 /* NBCommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBCommonUtils.h; sourceTree = "<group>"; };
+		365A720D1C61A3D500E7E509 /* 3d */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 3d; path = Resources/3d; sourceTree = "<group>"; };
+		365A720F1C61C2A900E7E509 /* NBGRenderTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBGRenderTarget.cpp; sourceTree = "<group>"; };
+		365A72101C61C2A900E7E509 /* NBGRenderTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBGRenderTarget.h; sourceTree = "<group>"; };
+		365A72111C61C2A900E7E509 /* NBProgressBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBProgressBar.cpp; sourceTree = "<group>"; };
+		365A72121C61C2A900E7E509 /* NBProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProgressBar.h; sourceTree = "<group>"; };
+		365A72131C61C2A900E7E509 /* NBSlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBSlider.cpp; sourceTree = "<group>"; };
+		365A72141C61C2A900E7E509 /* NBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSlider.h; sourceTree = "<group>"; };
 		366A845F180BE37100790261 /* ClippingNodeExt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClippingNodeExt.cpp; sourceTree = "<group>"; };
 		366A8460180BE37100790261 /* ClippingNodeExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClippingNodeExt.h; sourceTree = "<group>"; };
 		366E1C6517D04F8E006CCCBF /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = Resources/sounds; sourceTree = "<group>"; };
@@ -7497,6 +7514,7 @@
 		DB9F590717CD9A520037F7E5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				365A720D1C61A3D500E7E509 /* 3d */,
 				DB784C96198F836100DB5CBB /* Arial_Bold_Border.fnt */,
 				DB784C97198F836100DB5CBB /* Arial_Bold_Border.png */,
 				DBEEF72D19764FA7009D9327 /* Arial_Bold_Regular.fnt */,
@@ -8094,6 +8112,10 @@
 		FD6F415817CDD218008FDB9C /* Ext */ = {
 			isa = PBXGroup;
 			children = (
+				365A71071C619BDB00E7E509 /* NBCommonUtils.cpp */,
+				365A71081C619BDB00E7E509 /* NBCommonUtils.h */,
+				365A70F01C61999900E7E509 /* CCGallery.cpp */,
+				365A70F11C61999900E7E509 /* CCGallery.h */,
 				2A2A31CA1C281778001B00A7 /* aes */,
 				5A71E3801BF45BB50060FF7D /* 3dtouch */,
 				2A2AFBA11BEC485A0020B643 /* utf8 */,
@@ -8172,6 +8194,12 @@
 		FD6F416017CDD218008FDB9C /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				365A720F1C61C2A900E7E509 /* NBGRenderTarget.cpp */,
+				365A72101C61C2A900E7E509 /* NBGRenderTarget.h */,
+				365A72111C61C2A900E7E509 /* NBProgressBar.cpp */,
+				365A72121C61C2A900E7E509 /* NBProgressBar.h */,
+				365A72131C61C2A900E7E509 /* NBSlider.cpp */,
+				365A72141C61C2A900E7E509 /* NBSlider.h */,
 				2AB5E04A1B687E42001E0A7E /* CCTableViewTouchIFCell.cpp */,
 				2AB5E04B1B687E42001E0A7E /* CCTableViewTouchIFCell.h */,
 				9688FAB11AADA0DF009AE069 /* CCRichLabel */,
@@ -8840,6 +8868,7 @@
 				597D8D221C23266D00B6DEA7 /* HelpshiftConfigDark.plist in Resources */,
 				272AB6371B15C7BC0052E896 /* chat_system_left_bg_normal.png in Resources */,
 				272AB6611B15C7BC0052E896 /* smod.png in Resources */,
+				365A720E1C61A3D500E7E509 /* 3d in Resources */,
 				6CD87C351BF9B21E004E371C /* MailWriteEditView.xib in Resources */,
 				DBB37B1717D7475500C7AB15 /* particle in Resources */,
 				272AB63C1B15C7BC0052E896 /* check_box.png in Resources */,
@@ -8929,6 +8958,7 @@
 				FD0E65301844860300101958 /* IAPHelper.mm in Sources */,
 				27AD60561B5D014A00B6AD40 /* MJRefreshNormalHeader.m in Sources */,
 				6C1F66761C18372400EE33E1 /* UIGestureRecognizer+YYAdd.m in Sources */,
+				365A70F21C61999900E7E509 /* CCGallery.cpp in Sources */,
 				94469F4B1C05A46400D9A4AC /* PrincessRewardCommand.cpp in Sources */,
 				FDD1FD5D182374C900AB2208 /* ScienceView.cpp in Sources */,
 				5736A1AB1822407D007C431C /* ImperialScene.cpp in Sources */,
@@ -9438,6 +9468,7 @@
 				272AB6701B15C7BC0052E896 /* LanguageKeys.mm in Sources */,
 				9487A9F91C213374002A4EE3 /* TransitionLayer.cpp in Sources */,
 				943208B11B84A7B600AB9658 /* TerritoryBannerTile.cpp in Sources */,
+				365A72171C61C2A900E7E509 /* NBSlider.cpp in Sources */,
 				57E414CF18BDF9C600B7286E /* MainCityView.cpp in Sources */,
 				6C1F66AF1C18372400EE33E1 /* YYWeakProxy.m in Sources */,
 				0C02A47E1ADFB4F5003C5112 /* UploadImageController.cpp in Sources */,
@@ -9656,6 +9687,7 @@
 				7C0DAF64196C06CC007BA056 /* MailCountObj.cpp in Sources */,
 				E667106C19B414C50087329B /* WorldRefresh.cpp in Sources */,
 				967124D31A593D9C003D30D4 /* MerchantePush.cpp in Sources */,
+				365A72161C61C2A900E7E509 /* NBProgressBar.cpp in Sources */,
 				60E6424D1AEF7D55001CA814 /* WorldBossRewardMailView.cpp in Sources */,
 				272AB6161B15C7BC0052E896 /* ServiceInterface.mm in Sources */,
 				069D5E781C45F7A400FF29F4 /* IFCommonUtils.cpp in Sources */,
@@ -9985,6 +10017,7 @@
 				57526E2A19AF2DE60022EB16 /* RechargeACTVCell.cpp in Sources */,
 				964D6B221A1C3FC200B0FB73 /* BaoZangRewardView.cpp in Sources */,
 				E6A6F62418DC0D73004EFFFA /* TavernCommand.cpp in Sources */,
+				365A71091C619BDB00E7E509 /* NBCommonUtils.cpp in Sources */,
 				FDC6495C18FBCE40003AAF7E /* MonsterDetailView.cpp in Sources */,
 				E6A6F62718DC0D7F004EFFFA /* TavernPush.cpp in Sources */,
 				275C1F811BA94F9400B46FE6 /* Content.m in Sources */,
@@ -10026,6 +10059,7 @@
 				5720024D1A84690F005865FA /* MoveBuildView.cpp in Sources */,
 				6C1F66781C18372400EE33E1 /* UIScreen+YYAdd.m in Sources */,
 				277231C91BC8F81F00137B69 /* AllianceInviteMailData.m in Sources */,
+				365A72151C61C2A900E7E509 /* NBGRenderTarget.cpp in Sources */,
 				96D17A5E18EBDADB00663FAC /* ApplyAllianceCommand.cpp in Sources */,
 				96D17A5F18EBDADB00663FAC /* GetAllianceListCommand.cpp in Sources */,
 				96D17A6018EBDADB00663FAC /* JoinAllianceCommand.cpp in Sources */,
