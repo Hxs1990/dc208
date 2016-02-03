@@ -49,7 +49,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"CSMailCategroyListTableCell" owner:nil options:nil] lastObject];
         cell.backgroundColor =[UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-        UIImageView *backImageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail_list_selected_bg"]];
+        UIImageView *backImageView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail_list_divider_title_bg.png"]];
         backImageView.frame = CGRectMake(0, 0, cell.width, cell.height);
         cell.selectedBackgroundView = backImageView;
         

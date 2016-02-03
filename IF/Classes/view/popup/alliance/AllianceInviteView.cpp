@@ -182,7 +182,7 @@ bool AllianceInviteView::init(){
             CCLoadSprite::doResourceByCommonIndex(307, false);
             CCLoadSprite::doResourceByCommonIndex(7, false);
         });
-        auto tbg = CCLoadSprite::loadResource("technology_09.png");
+        /*auto tbg = CCLoadSprite::loadResource("technology_09.png");
         auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
         int maxHight = CCDirector::sharedDirector()->getWinSize().height;
         int curHight = -500;
@@ -197,7 +197,7 @@ bool AllianceInviteView::init(){
         {
             tBatchNode->setScaleX(1536.0 / 640.0);
         }
-        this->addChild(tBatchNode);
+        this->addChild(tBatchNode);*/
         auto tmpCCB = CCBLoadFile("AllianceInviteView", this, this);
         this->setContentSize(tmpCCB->getContentSize());
         int prevH = m_viewBg->getContentSize().height;
@@ -209,7 +209,8 @@ bool AllianceInviteView::init(){
         }
         m_infoList->setContentSize(CCSize(m_infoList->getContentSize().width,m_infoList->getContentSize().height+add));
         m_infoList->setPositionY(m_infoList->getPositionY()-add);
-        m_moreTxt->setPositionY(m_moreTxt->getPositionY()-add);
+//        m_moreTxt->setPositionY(m_moreTxt->getPositionY()-add);
+        m_bottom_node->setPositionY(-add);
         m_viewBg->setVisible(false);
         
         m_data = CCArray::create();
@@ -221,7 +222,7 @@ bool AllianceInviteView::init(){
         m_tabView->setMultiColTableViewDelegate(this);
         m_infoList->addChild(m_tabView);
         
-        auto spriteText = CCLoadSprite::createScale9Sprite("world_title_3.png");
+        auto spriteText = CCLoadSprite::createScale9Sprite("nb_alliance_search_bg.png");
         if (!CCCommonUtils::isIosAndroidPad()) {
             m_inputName = CCEditBox::create(CCSizeMake(420,44),spriteText);
         } else {
@@ -234,7 +235,7 @@ bool AllianceInviteView::init(){
             m_inputName->setFontSize(52);
             m_inputName->setAnchorPoint(CCPointZero);
         }
-        m_inputName->setFontColor(ccBLACK);
+        m_inputName->setFontColor({196, 207, 255});
         m_inputName->setReturnType(kKeyboardReturnTypeDone);
         m_inputName->setInputFlag(kEditBoxInputFlagInitialCapsSentence);
         m_inputName->setText("");
@@ -383,6 +384,8 @@ void AllianceInviteView::getAllianceMemberData(CCObject* param){
             }else{
                 pic.append("_middle.png");
             }
+            int userLv = member->valueForKey("level")->intValue();
+            
             AllianceInfoMember* infoMember = new AllianceInfoMember();
             infoMember->setRank(rank);
             infoMember->setName(name);
@@ -400,8 +403,9 @@ void AllianceInviteView::getAllianceMemberData(CCObject* param){
             infoMember->setIsTitle(false);
             infoMember->setLang(lang);
             infoMember->setAbbr(abbr);
+            infoMember->setUserLevel(userLv);
             m_data->addObject(infoMember);
-            infoMember->release();
+            CC_SAFE_RELEASE(infoMember);
         }
     }
     refresh(NULL);
@@ -512,6 +516,7 @@ bool AllianceInviteView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, 
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_moreTxt", CCLabelIF*, this->m_moreTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_tipTxt", CCLabelIF*, this->m_tipTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_waitNode", CCNode*, this->m_waitNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bottom_node", CCNode*, this->m_bottom_node);
     return false;
 }
 
@@ -633,10 +638,10 @@ bool AllianceUserCell::init()
     bool ret = true;
     
     if (CCNode::init()) {
-        setCleanFunction([](){
-            CCLoadSprite::doResourceByCommonIndex(307, false);
-            CCLoadSprite::doResourceByCommonIndex(7, false);
-        });
+//        setCleanFunction([](){
+//            CCLoadSprite::doResourceByCommonIndex(307, false);
+//            CCLoadSprite::doResourceByCommonIndex(7, false);
+//        });
 
         m_ccbNode = CCBLoadFile("NewAllianceMemberCell", this, this);
         if (CCCommonUtils::isIosAndroidPad()) {
@@ -645,10 +650,16 @@ bool AllianceUserCell::init()
         CCSize size = m_ccbNode->getContentSize();
         setContentSize(size);
         std::string lang = cocos2d::extension::CCDevice::getLanguage();
-        if(lang=="en"){
-            m_powerTxt->setFntFile("pve_fnt_title.fnt");
-        }
+//        if (lang == "en" || lang == "en-US")
+//        {
+//            m_powerTxt->setFntFile("pve_fnt_title.fnt");
+//        }
         m_inviteId = "";
+        
+        // TODO
+//        m_powerTxt->setFntFile(getNBFont(NB_FONT_Bold_Border));
+//        m_powerValue->setFntFile(getNBFont(NB_FONT_Bold_Border));
+        
         return true;
     }
     
@@ -851,44 +862,48 @@ void AllianceUserCell::setData(AllianceInfoMember* member,CCNode* clickArea,int 
     m_panelType = panelType;
     m_giftId = giftId;
     if(m_info==NULL) return ;
-    CCLoadSprite::doResourceByCommonIndex(7, true);
-    CCLoadSprite::doResourceByCommonIndex(307, true);
+    // CCLoadSprite::doResourceByCommonIndex(7, true);
+    // CCLoadSprite::doResourceByCommonIndex(307, true);
 
     m_ccbNode->setScale(1.0);
     m_headIcon->removeAllChildrenWithCleanup(true);
-    CCSprite* spr = CCLoadSprite::createSprite(m_info->getPic().c_str(),true,CCLoadSpriteType_HEAD_ICON_MIDDLE);
-    spr->setScale(0.8);
-    if (CCCommonUtils::isIosAndroidPad()) {
-        spr->setScale(1);
-    }
+    CCSprite* spr = CCLoadSprite::createSprite(m_info->getPic().c_str());
+    spr->setAnchorPoint({0.5, 0});
+    spr->setScale(.4);
+//    spr->setScale(0.8);
+//    if (CCCommonUtils::isIosAndroidPad()) {
+//        spr->setScale(1);
+//    }
     m_headIcon->addChild(spr);
     m_nameTxt->setString(m_info->getName().c_str());
-    m_powerTxt->setString(_lang("102163").c_str());
+//    m_powerTxt->setString(_lang("102163").c_str());
+    string lv = "LV."; lv.append(CC_ITOA(m_info->getUserLevel()));
+    m_powerTxt->setString(lv);
     m_powerValue->setString(CC_CMDITOAL(m_info->getPower()));
-    if(m_info->getOnline()){
-        m_powerValue->setColor({255,235,191});
-        std::string lang = cocos2d::extension::CCDevice::getLanguage();
-        if (lang=="en") {
-            m_powerTxt->setColor({255,255,255});
-        }else{
-            m_powerTxt->setColor({239,211,0});
-        }
-    }else{
-        m_powerTxt->setColor({172,172,172});
-        m_powerValue->setColor({172,172,172});
-    }
+//    if(m_info->getOnline()){
+//        m_powerValue->setColor({255,235,191});
+//        std::string lang = cocos2d::extension::CCDevice::getLanguage();
+//        if (lang=="en") {
+//            m_powerTxt->setColor({255,255,255});
+//        }else{
+//            m_powerTxt->setColor({239,211,0});
+//        }
+//    }else{
+//        m_powerTxt->setColor({172,172,172});
+//        m_powerValue->setColor({172,172,172});
+//    }
     
     m_titleFlag->setVisible(false);
-    m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_01.png")->getCString()));
+//    m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_01.png")->getCString()));
     if(officeId!=0 || m_panelType == KINGSGIFT){
         m_offLineTime->setString(m_info->getAbbr());
     }else{
         m_offLineTime->setString(CCCommonUtils::getLanguageFNByLocalSN(m_info->getLang()).c_str());
     }
     
-    m_onLineBg->setVisible(false);
-    m_offLineTime->setColor({111,161,70});
-    m_offLineTime->setPositionY(-27);
+    //m_onLineBg->setVisible(false);
+    //m_offLineTime->setColor({111,161,70});
+    //m_offLineTime->setPositionY(-27);
     
     bool showShine = false;
     if(m_panelType==ITEM_DONATE){

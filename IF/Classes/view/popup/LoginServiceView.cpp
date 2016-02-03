@@ -59,7 +59,7 @@ bool LoginServiceView::init(){
 #if COCOS2D_DEBUG == 2
         url = CCString::createWithFormat("http://%s:8081/phpserver/gameservice/getserverlist.php?uuid=%s&loginFlag=%d&loginFlag=%d",SERVERLIST_IP,uuid.c_str(),GlobalData::shared()->playerInfo.gmFlag,0)->getCString();
 #else
-        url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?uuid=%s&loginFlag=%d&loginFlag=%d","p1.cok.elexapp.com",uuid.c_str(),GlobalData::shared()->playerInfo.gmFlag,0)->getCString();
+        url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?uuid=%s&loginFlag=%d&loginFlag=%d",GET_SERVERLIST_IP,uuid.c_str(),GlobalData::shared()->playerInfo.gmFlag,0)->getCString();
 #endif
 #endif
         CCLOG("change URL: %s",url.c_str());

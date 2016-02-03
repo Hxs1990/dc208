@@ -429,13 +429,13 @@ bool ImperialScene::init()
     m_mainPatPlayTime = 60+(tm.tv_usec / 1000)%60;
     //域名修复代码
     string s1IP = CCUserDefault::sharedUserDefault()->getStringForKey(ACCOUNT_IP, "");
-    if (s1IP != "" && s1IP == "184.173.110.102") {
-        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, "s1.cok.elexapp.com");
+    if (s1IP != "" && s1IP == getServerAccountIP(1)) {
+        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, getServer(1));
         CCUserDefault::sharedUserDefault()->flush();
     }
-    else if (s1IP != "" && s1IP == "184.173.110.99")
+    else if (s1IP != "" && s1IP == getServerAccountIP(2))
     {
-        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, "s2.cok.elexapp.com");
+        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, getServer(2));
         CCUserDefault::sharedUserDefault()->flush();
     }
     if (!GlobalData::shared()->isXMLInitFlag) {

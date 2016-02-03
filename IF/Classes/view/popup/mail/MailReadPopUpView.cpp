@@ -164,50 +164,52 @@ bool MailReadPopUpView::init(){
         this->m_contentContainer->setContentSize(CCSize(m_contentContainer->getContentSize().width, m_contentContainer->getContentSize().height + extH));
         m_downNode->setPositionY(m_downNode->getPositionY() - extH);
         m_bgNode->setPositionY(m_bgNode->getPositionY() - extH);
-        auto tbg = CCLoadSprite::loadResource("Mail_diban.png");
-        auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
-        auto picBg1 = CCLoadSprite::createSprite("Mail_diban.png");
-        picBg1->setAnchorPoint(ccp(0, 0));
-        picBg1->setPosition(ccp(0, 0));
-        picBg1->setScaleX(2.4);
-        tBatchNode->addChild(picBg1);
-        int maxHeight = CCDirector::sharedDirector()->getWinSize().height;
-        int curHeight = picBg1->getContentSize().height;
-        while(curHeight < maxHeight)
-        {
-            auto picBg2 = CCLoadSprite::createSprite("Mail_diban.png");
-            picBg2->setAnchorPoint(ccp(0, 0));
-            picBg2->setPosition(ccp(0, curHeight));
-            picBg2->setScaleX(2.4);
-            tBatchNode->addChild(picBg2);
-            curHeight += picBg2->getContentSize().height;
-        }
-        m_bgNode->addChild(tBatchNode);
+//        auto tbg = CCLoadSprite::loadResource("UI_paper_3.png");
+//        auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
+//        auto picBg1 = CCLoadSprite::createSprite("UI_paper_3.png");
+//        picBg1->setAnchorPoint(ccp(0, 0));
+//        picBg1->setPosition(ccp(0, 0));
+//        picBg1->setScaleX(2.4);
+//        tBatchNode->addChild(picBg1);
+//        int maxHeight = CCDirector::sharedDirector()->getWinSize().height;
+//        int curHeight = picBg1->getContentSize().height;
+////        while(curHeight < maxHeight)
+////        {
+////            auto picBg2 = CCLoadSprite::createSprite("UI_paper_3.png");
+////            picBg2->setAnchorPoint(ccp(0, 0));
+////            picBg2->setPosition(ccp(0, curHeight));
+////            picBg2->setScaleX(2.4);
+////            tBatchNode->addChild(picBg2);
+////            curHeight += picBg2->getContentSize().height;
+////        }
+//        m_bgNode->addChild(tBatchNode);
+       m_buildBG->setPositionY(m_buildBG->getPositionY() - extH);
     }
     else {
         int extH = getExtendHeight();
         this->m_contentContainer->setContentSize(CCSize(m_contentContainer->getContentSize().width, m_contentContainer->getContentSize().height + extH));
         m_downNode->setPositionY(m_downNode->getPositionY() - extH);
         m_bgNode->setPositionY(m_bgNode->getPositionY() - extH);
-        auto tbg = CCLoadSprite::loadResource("Mail_diban.png");
-        auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
-        auto picBg1 = CCLoadSprite::createSprite("Mail_diban.png");
-        picBg1->setAnchorPoint(ccp(0, 0));
-        picBg1->setPosition(ccp(0, 0));
-        tBatchNode->addChild(picBg1);
-        int maxHeight = CCDirector::sharedDirector()->getWinSize().height;
-        int curHeight = picBg1->getContentSize().height;
-        while(curHeight < maxHeight)
-        {
-            auto picBg2 = CCLoadSprite::createSprite("Mail_diban.png");
-            picBg2->setAnchorPoint(ccp(0, 0));
-            picBg2->setPosition(ccp(0, curHeight));
-            tBatchNode->addChild(picBg2);
-            curHeight += picBg2->getContentSize().height;
-        }
-        m_bgNode->addChild(tBatchNode);
+//        auto tbg = CCLoadSprite::loadResource("UI_paper_3.png");
+//        auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
+//        auto picBg1 = CCLoadSprite::createSprite("UI_paper_3.png");
+//        picBg1->setAnchorPoint(ccp(0, 0));
+//        picBg1->setPosition(ccp(0, 0));
+//        tBatchNode->addChild(picBg1);
+//        int maxHeight = CCDirector::sharedDirector()->getWinSize().height;
+//        int curHeight = picBg1->getContentSize().height;
+////        while(curHeight < maxHeight)
+////        {
+////            auto picBg2 = CCLoadSprite::createSprite("UI_paper_3.png");
+////            picBg2->setAnchorPoint(ccp(0, 0));
+////            picBg2->setPosition(ccp(0, curHeight));
+////            tBatchNode->addChild(picBg2);
+////            curHeight += picBg2->getContentSize().height;
+////        }
+//        m_bgNode->addChild(tBatchNode);
+        m_buildBG->setPositionY(m_buildBG->getPositionY() - extH);
     }
-    
+    changeBGHeight(m_buildBG);
 //    this->m_totalNode->removeChild(this->m_rewardNode);
     this->m_rewardNode->removeFromParent();
     this->m_nameText->setFntFile("Arial_Bold.fnt");
@@ -260,7 +262,7 @@ bool MailReadPopUpView::init(){
         }
         else
             pic = CCLoadSprite::createSprite("guidePlayerIcon.png");
-        pic->setScale(0.5);
+//        pic->setScale(0.5);
     } else if (m_info->type == MAIL_ALLIANCEAPPLY) {
         showCustomPic = true;
         picVer = m_info->picVer;
@@ -275,7 +277,7 @@ bool MailReadPopUpView::init(){
             pic = CCLoadSprite::createSprite(head.c_str());
         }
        
-        CCCommonUtils::setSpriteMaxSize(pic, 70);
+        CCCommonUtils::setSpriteMaxSize(pic, 100);
     }else{
         showCustomPic = true;
         if(m_info->pic=="0"||m_info->pic==""){
@@ -291,7 +293,7 @@ bool MailReadPopUpView::init(){
             picVer = m_info->picVer;
             uid = m_info->fromUid;
         }
-        CCCommonUtils::setSpriteMaxSize(pic, 70);
+        CCCommonUtils::setSpriteMaxSize(pic, 100);
     }
 //    m_userHeadContainer->addChild(pic);
 //    pic->setPositionY(pic->getPositionY() - 3);
@@ -344,7 +346,7 @@ void MailReadPopUpView::setAllBtnPosition(){
     CCCommonUtils::setButtonTitle(m_blockBtn, _lang("105312").c_str());
     m_blockBtn->setVisible(false);
     
-    auto btnPic1 = CCLoadSprite::createScale9Sprite("Mail_btn03.png");
+    auto btnPic1 = CCLoadSprite::createScale9Sprite("nb_tool_get_btn.png");
     m_rewardBtn =CCControlButton::create(btnPic1);
     m_rewardBtn->setEffectStr(Music_Sfx_UI_collect_item);
     m_rewardBtn->setPreferredSize(CCSizeMake(170, 64));
@@ -357,7 +359,7 @@ void MailReadPopUpView::setAllBtnPosition(){
     CCCommonUtils::setButtonTitle(m_rewardBtn, _lang("105572").c_str());
     m_rewardBtn->setVisible(false);
     
-    auto btnPic2 = CCLoadSprite::createScale9Sprite("Mail_btn05.png");
+    auto btnPic2 = CCLoadSprite::createScale9Sprite("nb_tool_use_btn.png");
     m_replyBtn =CCControlButton::create(btnPic2);
     m_replyBtn->setPreferredSize(CCSizeMake(170, 64));
     if (CCCommonUtils::isIosAndroidPad()) {
@@ -643,17 +645,19 @@ void MailReadPopUpView::refrehsReward(){
         CCArray *itemAndGeneralArr = CCArray::create();
         bool gray = (m_info->rewardStatus!=0);
         int count =vector.size();
-        int ceHG = 120;
+        int ceHG = 130;
         if (CCCommonUtils::isIosAndroidPad()) {
             ceHG = 288;
         }
-        
-        if(count>1){
+        CCLog("%d-----",count);
+        if(count>=1){
             if (CCCommonUtils::isIosAndroidPad()) {
-                m_listBG->setContentSize(CCSize(m_listBG->getContentSize().width, 288+(count-1)*ceHG));
+                m_listBG->setContentSize(CCSize(w-60, 338+(count-1)*ceHG));
+//                m_kuangBG->setContentSize(CCSize(m_kuangBG->getContentSize().width, 384+(count-1)*ceHG));
             }
             else {
-                m_listBG->setContentSize(CCSize(m_listBG->getContentSize().width, 120+(count-1)*ceHG));
+                m_listBG->setContentSize(CCSize(w-60, 170+(count-1)*ceHG));
+//                m_kuangBG->setContentSize(CCSize(m_kuangBG->getContentSize().width, 160+(count-1)*ceHG));
             }
         }
         m_totalH-=m_listBG->getContentSize().height;
@@ -661,6 +665,7 @@ void MailReadPopUpView::refrehsReward(){
         if (CCCommonUtils::isIosAndroidPad()) {
             startY = -288+m_rewardNode->getPositionY();
         }
+        startY -=25 ;
         bool flag = true;
         int j = 0;//i用来排位置 j用来排数据 礼包确认邮件倒序显示
         if (checkRewardBtnVisible()) {
@@ -704,9 +709,15 @@ void MailReadPopUpView::refrehsReward(){
             if (CCCommonUtils::isIosAndroidPad()) {
                 cellNode->setScale(2.4);
             }
+            
+            auto bgs9 = CCScale9Sprite::createWithSpriteFrameName("Mail_head_backCommon.png");
+            
+            cellNode->addChild(bgs9);
             m_ListNode->addChild(cellNode);
-            auto icon0  = CCLoadSprite::createSprite("icon_kuang.png");
-            icon0->setPositionX(10+57);
+            auto icon0  = CCLoadSprite::createSprite("tool_2.png");
+            icon0->setPositionX(45+57);
+            bgs9->setPosition(w/2-3, icon0->getContentSize().height /2);
+            bgs9->setContentSize(CCSize(m_listBG->getContentSize().width-30,icon0->getContentSize().height+10));
             icon0->setPositionY(57);
             cellNode->addChild(icon0);
             icon0->setScale(98/icon0->getContentSize().width);
@@ -718,7 +729,7 @@ void MailReadPopUpView::refrehsReward(){
 //                }else{
                     nameStr = CCCommonUtils::getNameById(CC_ITOA(value));
 //                }
-                CCCommonUtils::createGoodsIcon(value, icon0, CCSize(114, 114));
+                CCCommonUtils::createGoodsIcon(value, icon0, CCSize(icon0->getContentSize().width, icon0->getContentSize().height));
 //                if(CCCommonUtils::isIosAndroidPad())
 //                    cellNode->setPositionX(180);
 //                else
@@ -742,8 +753,8 @@ void MailReadPopUpView::refrehsReward(){
                 auto icon  = CCLoadSprite::createSprite(picStr.c_str());
                 sacle = 94/icon->getContentSize().width;
                 cellNode->addChild(icon,1);
-                icon->setScale(sacle);
-                icon->setPositionX(10+57);
+//                icon->setScale(sacle);
+                icon->setPositionX(45+57);
                 icon->setPositionY(57);
                 if(m_info->rewardStatus==1){
                     icon->setColor({90,85,81});
@@ -765,7 +776,7 @@ void MailReadPopUpView::refrehsReward(){
                 sacle = 94/icon->getContentSize().width;
                 cellNode->addChild(icon);
                 icon->setScale(sacle);
-                icon->setPositionX(10+57);
+                icon->setPositionX(45+57);
                 icon->setPositionY(57);
                 if(m_info->rewardStatus==1){
                     icon->setColor({90,85,81});
@@ -781,7 +792,7 @@ void MailReadPopUpView::refrehsReward(){
                     cellNode->addChild(iconBg);
                     picStr = CCCommonUtils::getIcon(CC_ITOA(value));
                     auto icon = CCLoadSprite::createSprite(picStr.c_str(),true,CCLoadSpriteType_EQUIP);
-                    icon->setPosition(ccp(10+57, 57));
+                    icon->setPosition(ccp(45+57, 57));
                     CCCommonUtils::setSpriteMaxSize(icon, 94, true);
                     cellNode->addChild(icon);
                     if(m_info->rewardStatus==1){
@@ -801,7 +812,7 @@ void MailReadPopUpView::refrehsReward(){
                 sacle = 94/icon->getContentSize().width;
                 cellNode->addChild(icon);
                 icon->setScale(sacle);
-                icon->setPositionX(10+57);
+                icon->setPositionX(45+57);
                 icon->setPositionY(57);
                 if(m_info->rewardStatus==1){
                     icon->setColor({90,85,81});
@@ -831,31 +842,31 @@ void MailReadPopUpView::refrehsReward(){
             cellNode->addChild(label1);
             
             
-            if(m_info->rewardStatus==1){
-                label->setColor({90,85,81});
-                label1->setColor({90,85,81});
+//            if(m_info->rewardStatus==1){
+                label->setColor({50,51,34});
+                label1->setColor({50,51,34});
                 
-            }
+//            }
             if (type == R_GOODS) {
                 if (CCCommonUtils::isIosAndroidPad()) {
-                    label->setPosition(120, 80);
-                    label1->setPosition(620, 20);
+                    label->setPosition(160, 60);
+                    label1->setPosition(580, 20);
                     cellNode->setPositionY(startY-i*ceHG);
                 }
                 else {
-                    label->setPosition(120, 80);
-                    label1->setPosition(620, 20);
+                    label->setPosition(160, 60);
+                    label1->setPosition(570, 20);
                     cellNode->setPositionY(startY-i*ceHG);
                 }
             }else{
                 if (CCCommonUtils::isIosAndroidPad()) {
-                    label->setPosition(120, 80);
-                    label1->setPosition(620, 20);
+                    label->setPosition(160, 60);
+                    label1->setPosition(570, 20);
                     cellNode->setPositionY(startY-i*ceHG);
                 }
                 else {
-                    label->setPosition(120, 80);
-                    label1->setPosition(620, 20);
+                    label->setPosition(160, 60);
+                    label1->setPosition(570, 20);
                     cellNode->setPositionY(startY-i*ceHG);
                 }
             }
@@ -1319,6 +1330,7 @@ void MailReadPopUpView::refreshContent(CCObject* p){
 //        node->setPositionY(node->getPositionY() + m_totalH);
 //    }
     //m_totalH += 30;
+    m_totalH-=20 ;
     this->m_ListNode->setPositionY(-m_totalH);
     m_scroll->setContentSize(CCSize(m_contentContainer->getContentSize().width, -m_totalH));
     m_scroll->setContentOffset(ccp(0, m_contentContainer->getContentSize().height - (-m_totalH)));
@@ -1510,7 +1522,7 @@ void MailReadPopUpView::onShareBtnClick(CCObject *pSender, CCControlEvent event)
     int rand = GlobalData::shared()->getRand(0,5);
     int randL = GlobalData::shared()->getRand(0,4);
     int randFeed = GlobalData::shared()->getRand(0,10000);
-    string fbIcon = CCString::createWithFormat("http://cok.eleximg.com/cok/img/%s","King_Feed_1.png")->getCString();
+    string fbIcon = CCString::createWithFormat("%s/cok/img/%s", getElexImgURL(), "King_Feed_1.png")->getCString();
     if(randFeed%2==0){
         string temp = _lang_2("110157", GlobalData::shared()->playerInfo.name.c_str(), CC_ITOA(GlobalData::shared()->playerInfo.selfServerId));
         FBUtilies::fbPublishFeedDialog("Clash Of Kings",_lang("110146"),temp,link,fbIcon,1);//shareLang[randL]

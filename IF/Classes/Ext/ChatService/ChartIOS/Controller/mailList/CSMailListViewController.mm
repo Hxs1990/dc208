@@ -128,7 +128,7 @@
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail_list_bg"]];
+        tableView.backgroundView =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail_list_bg.png"]];
          tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.separatorColor = [UIColor brownColor];
         _mailListTableView = tableView;

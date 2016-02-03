@@ -39,7 +39,7 @@ void FBUtilies::getFriendsData(){
     }
     char url[1024] = {0};
     //sprintf(url,"https://graph.facebook.com/me?access_token=%s&fields=id,name,email,permissions,friends.limit(500).fields(devices,name,picture,installed),picture.type(small)",access_token.c_str());
-    sprintf(url,"https://graph.facebook.com/445208542288191/picture?type=small");
+    sprintf(url, getFBPictureSmallURL());
     //第一步：初始化CURL，取得初始化成功后的CURL指针。
     CURL *curl = curl_easy_init();
     string strHtml;

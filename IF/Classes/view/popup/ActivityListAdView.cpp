@@ -58,6 +58,7 @@ bool ActivityListAdView::init()
 	{
         m_direction = 1;
         CCLoadSprite::doResourceByCommonIndex(506, true);
+		CCLoadSprite::doResourceByCommonIndex(500, true);
         ignoreAnchorPointForPosition(false);
         setAnchorPoint(Vec2(0,0));
         if (checkNeedLoadAd()) {
@@ -68,6 +69,7 @@ bool ActivityListAdView::init()
         }
         setCleanFunction([](){
             CCLoadSprite::doResourceByCommonIndex(506, false);
+			CCLoadSprite::doResourceByCommonIndex(500, false);
             if (ActivityController::getInstance()->checkHaveDragonActivity() || ActivityController::getInstance()->checkHaveActivityByType(10)) {
                 DynamicResourceController::getInstance()->loadNameTypeResource(DynamicResource_ACTIVITY_AD_TEXTURE,true);
             }
@@ -217,12 +219,12 @@ void ActivityListAdView::initPageNode(int offSetX)
     for (int i=0; i<count; i++) {
         auto spr = CCLoadSprite::createSprite("Recharge_fanye.png");
         m_pageNode->addChild(spr);
-        spr->setPositionX(m_startX+width*i);
+        spr->setPosition(m_startX+width*i, -15);
         if (dataIndex == i)
         {
             CCSprite* sp = CCLoadSprite::createSprite("Recharge_fanye2.png");
             m_pageNode->addChild(sp);
-            sp->setPositionX(m_startX+width*i);
+            sp->setPosition(m_startX+width*i, -15);
         }
     }
 }
@@ -459,7 +461,7 @@ bool ActivityAdLuaCell::init()
         auto nameTTF = CCLabelIF::create(m_obj->name.c_str());
         auto infoTTF = CCLabelIF::create(_lang(m_obj->desc_info).c_str());
         auto bgImg = CCLoadSprite::createSprite("activity_ad_beiyong.png");
-        nameTTF->setPosition(ccp(16,245));
+        /*nameTTF->setPosition(ccp(16,245));
         nameTTF->setAnchorPoint(ccp(0, 1));
         nameTTF->setFontSize(36);
         nameTTF->setColor({255,219,117});
@@ -472,7 +474,7 @@ bool ActivityAdLuaCell::init()
         infoTTF->setColor({0, 249, 0});
         infoTTF->setHorizontalAlignment(kCCTextAlignmentLeft);
         infoTTF->setVerticalAlignment(kCCVerticalTextAlignmentTop);
-        infoTTF->setDimensions(CCSize(300, 0));
+        infoTTF->setDimensions(CCSize(300, 0));*/
         
         
         bgImg->setAnchorPoint(ccp(0, 0));
@@ -587,6 +589,7 @@ void ActivityListAdCell::setData(ActivityEventObj *obj)
     string img = m_actObj->Advertise_pic + ".png";
     m_nameTTF->setString(m_actObj->name);
     m_infoTTF->setString(_lang(m_actObj->desc_info));
+/*
     m_nameTTF->setHorizontalAlignment(kCCTextAlignmentCenter);
     m_infoTTF->setHorizontalAlignment(kCCTextAlignmentCenter);
     m_nameTTF->setFontSize(36);
@@ -599,10 +602,10 @@ void ActivityListAdCell::setData(ActivityEventObj *obj)
         m_nameTTF->setFontSize(m_nameTTF->getFontSize() * hd_sc);
         m_timeLabel1->setScale(m_timeLabel1->getScale() / hd_sc);
         m_timeLabel1->setFontSize(m_timeLabel1->getFontSize() * hd_sc);
-    }
+    }*/
     auto bgImg = CCLoadSprite::createSprite(img.c_str());
     bgImg->setAnchorPoint(ccp(0, 0));
-    if(m_actObj->type==3 || m_actObj->type==4 || m_actObj->type==8|| m_actObj->type==9 || m_actObj->type==10 || m_actObj->type==12){
+    /*if(m_actObj->type==3 || m_actObj->type==4 || m_actObj->type==8|| m_actObj->type==9 || m_actObj->type==10 || m_actObj->type==12){
         int bgx = bgImg->getContentSize().width*0.1;
         int bgy = bgImg->getContentSize().height*0.1;
         bgImg->setPosition(ccp(-bgx, 0));
@@ -663,7 +666,7 @@ void ActivityListAdCell::setData(ActivityEventObj *obj)
         m_timeLabel1->setColor({0,249,0});
         m_nameTTF->setHorizontalAlignment(kCCTextAlignmentCenter);
         m_infoTTF->setHorizontalAlignment(kCCTextAlignmentCenter);
-    }
+    }*/
     m_clipNode->removeAllChildren();
     m_clipNode->addChild(bgImg);
 }
@@ -814,7 +817,11 @@ void ActivityListAdCell::onTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent
                     switch (atoi(m_actObj->id.c_str()))
                     {
                         case 57000:
-                            PopupViewController::getInstance()->addPopupView(ActivityBeginView::create());
+                        {
+                            auto popup = ActivityBeginView::create();
+                            PopupViewController::getInstance()->addPopupView(popup);
+                            popup->setPositionY(popup->getPositionY() + popup->height_offset / 2);
+                        }
                             break;
                             
                         default:

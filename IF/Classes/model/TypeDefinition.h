@@ -178,24 +178,51 @@
 #define MSG_CastleClickPriority "ISetting_CastleClickPriority"
 
 // Server连接信息
-#if COCOS2D_DEBUG == 1
-    // 本地服
-    #define SERVER_IP "10.1.6.72"
-    #define SERVER_PORT 80
-    #define SERVER_ZONE "COK1"
-#else
-    #if COCOS2D_DEBUG == 2
-        // 测试服
-        #define SERVER_IP "169.45.155.123"
-        #define SERVER_PORT 80
-        #define SERVER_ZONE "COK"
-    #else
-        // 正式服
-        #define SERVER_IP "s1.cok.elexapp.com"
-        #define SERVER_PORT 80
-        #define SERVER_ZONE "COK1"
-    #endif
+// ------------------------------------------------------------------------------------
+const char * getServerIP_TypeDefinition();
+int getServerPort_TypeDefinition();
+const char * getServerZone_TypeDefinition();
+const char * getServerListIP_TypeDefinition(int t);
+const char * get_getServerListIP_TypeDefinition();
+#define SERVER_IP      getServerIP_TypeDefinition()
+#define SERVER_PORT    getServerPort_TypeDefinition()
+#define SERVER_ZONE    getServerZone_TypeDefinition()
+#define SERVERLIST_IP        getServerListIP_TypeDefinition(0)
+#define SERVERLIST_CHINA_IP1 getServerListIP_TypeDefinition(1)
+#define SERVERLIST_CHINA_IP2 getServerListIP_TypeDefinition(2)
+#define GET_SERVERLIST_IP get_getServerListIP_TypeDefinition()
+
+const char * getServerP1IP();
+
+const char * getServerAccountIP(int i);
+const char * getServer(int i);
+
+const char * getIPByType(int i);
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+const char * getPaymentCallbackURL(bool isTest);
+const char * getPaymentRequestURL();
+const char * getAccountURL();
 #endif
+
+const char * getAnniversaryImageURL();
+#define ANNIVERSARY_IMAGE_URL getAnniversaryImageURL()
+
+const char * getPostEventLogURL();
+#define POST_EVENT_LOG_URL getPostEventLogURL()
+
+const char * getCustomPicURL();
+#define CUSTOM_PIC_URL getCustomPicURL()
+
+const char * getFBLink();
+#define FB_LINK getFBLink()
+const char * getFBPShareLink();
+const char * getFBIcon(int idx);
+const char * getFBPictureSmallURL();
+const char * getElexImgURL();
+const char * getCollecDataURL();
+
+// ------------------------------------------------------------------------------------
 
 //xcpayId首先写死1服，跳服(处理login的错误信息)时或者切服(获取服务器列表选取的时候)时更改payId
 #ifdef Channel_91
@@ -262,16 +289,6 @@
 #define YESNODLG_TAG 5001
 #define TEXT_FONT_SIZE 24
 #define TEXT_FONT_NAME "Helvetica"
-
-#if COCOS2D_DEBUG == 1
-    #define SERVERLIST_IP "10.1.6.72"
-#else
-    #if COCOS2D_DEBUG == 2
-        #define SERVERLIST_IP "169.45.155.123"
-    #else
-        #define SERVERLIST_IP "s1.cok.elexapp.com"
-    #endif
-#endif
 
 #define BG_MUSIC_ON "isBGMusicOn"
 #define EFFECT_MUSIC_ON "isEffectOn"

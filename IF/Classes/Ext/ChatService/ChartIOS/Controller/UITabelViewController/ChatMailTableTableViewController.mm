@@ -41,7 +41,7 @@ static NSString *const mailCell=@"mail";
     [self.tableView registerClass:[ChatCellIOS class] forCellReuseIdentifier:mailCell];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg_default.jpg"]];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bottom_bg.png"]];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.dataSourceArray = [NSMutableArray array];

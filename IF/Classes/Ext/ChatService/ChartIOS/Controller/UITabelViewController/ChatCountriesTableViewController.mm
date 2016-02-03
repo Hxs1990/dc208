@@ -46,7 +46,7 @@ static NSString *const countriesCell=@"countries";
     [self.tableView registerClass:[ChatCellIOS class] forCellReuseIdentifier:countriesCell];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.allowsSelection = NO;
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg_default.jpg"]];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bottom_bg.png"]];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.hidden = YES;

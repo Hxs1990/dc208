@@ -159,7 +159,7 @@
     [self.bodyView addSubview:self.topbackRegulaImageView];
     
     self.senderButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.senderButton setBackgroundImage:[UIImage imageNamed:@"btn_yellow"] forState:UIControlStateNormal];
+    [self.senderButton setBackgroundImage:[UIImage imageNamed:@"btn_yellow.png"] forState:UIControlStateNormal];
     NSString *buttonTitleStr=[NSString stringWithMultilingualWithKey:@"105302"];//105302=发送
     [self.senderButton setTitle:buttonTitleStr forState:UIControlStateNormal];
     self.senderButton.frame = CGRectMake(self.bodyView.width * 0.7, self.bodyView.height * 0.18, self.bodyView.width * 0.29, self.bodyView.height * 0.78);

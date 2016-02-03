@@ -4,14 +4,27 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>g015_bust.png</key>
+            <key>g008_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{494,379},{484,369}}</string>
+                <string>{{917,4},{484,369}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{484,369}}</string>
+                <key>sourceSize</key>
+                <string>{484,369}</string>
+            </dict>
+            <key>g015_bust.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{542,4},{484,369}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{484,369}}</string>
                 <key>sourceSize</key>
@@ -20,7 +33,7 @@
             <key>g024_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,379},{484,369}}</string>
+                <string>{{494,650},{484,369}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +46,7 @@
             <key>g026_bust.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{341,4},{484,369}}</string>
+                <string>{{4,650},{484,369}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,15 +59,28 @@
             <key>nb_flagBG1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,4},{304,331}}</string>
+                <string>{{984,494},{304,331}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{304,331}}</string>
+                <key>sourceSize</key>
+                <string>{304,331}</string>
+            </dict>
+            <key>nb_infoGlow.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{4,4},{640,532}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{304,331}}</string>
+                <string>{{0,0},{640,532}}</string>
                 <key>sourceSize</key>
-                <string>{304,331}</string>
+                <string>{640,532}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -64,9 +90,9 @@
             <key>realTextureFileName</key>
             <string>General_1.pvr.ccz</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{2048,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:359f78d1cde260c6e4a89790b38d69ad:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:d605ee54a8bf478aa4f57293a15e5b50:1/1$</string>
             <key>textureFileName</key>
             <string>General_1.pvr.ccz</string>
         </dict>
