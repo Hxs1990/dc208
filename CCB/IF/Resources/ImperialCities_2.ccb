@@ -2107,8 +2107,6 @@
 								<string>pic400000_2_1.ccb</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -2128,8 +2126,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>439.4530029296875</real>
-							<real>2164.127197265625</real>
+							<real>1242.085693359375</real>
+							<real>2149.79443359375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3672,8 +3670,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1432.4443359375</real>
-							<real>2128.254638671875</real>
+							<real>1328.5321044921875</real>
+							<real>1468.94921875</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8104,8 +8102,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>64.953559875488281</real>
-							<real>1445.81201171875</real>
+							<real>380.27352905273438</real>
+							<real>2108.70068359375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8142,6 +8140,8 @@
 						<false/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
