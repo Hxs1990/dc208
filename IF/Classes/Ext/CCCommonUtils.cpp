@@ -838,7 +838,7 @@ void CCCommonUtils::postEventLogToServer(const std::string& paramlog)
                                                    connection.c_str(),
                                                    networkStatus.c_str())->getCString();
     //    CCString *url = CCString::createWithFormat("http://10.1.5.196:9000/client/loading");
-    CCString *url = CCString::createWithFormat("http://public.cok.elexapp.com/client/loading");
+    CCString *url = CCString::createWithFormat(POST_EVENT_LOG_URL);
     CCLog("loadingLog:%s", url->getCString());
     request->setUrl(url->getCString());
     request->setRequestType(CCHttpRequest::Type::POST);
@@ -849,22 +849,6 @@ void CCCommonUtils::postEventLogToServer(const std::string& paramlog)
     request->release();
 }
 
-//void CCCommonUtils::recordStepByHttp(std::string index){
-//    string _uuid = CCUserDefault::sharedUserDefault()->getStringForKey(ACCOUNT_UUID,"");
-//    if(_uuid != ""){
-//        return;
-//    }
-//    CCHttpRequest* request = new CCHttpRequest();
-//    
-//    CCString* url;
-//    url = CCString::createWithFormat("http://%s:8080/gameservice/settutorialstep?id=%s",SERVERLIST_IP, index.c_str());
-//    
-//    request->setUrl(url->getCString());
-//    request->setRequestType(CCHttpRequest::Type::POST);
-//    CCHttpClient::getInstance()->setTimeoutForConnect(1);
-//    CCHttpClient::getInstance()->send(request);
-//    request->release();
-//}
 std::string CCCommonUtils::getBonusString(cocos2d::CCArray *rewards){
     std::string ret = "";
     CCObject* reward;
@@ -5798,23 +5782,23 @@ void CCCommonUtils::initImperialSceneTexture(CCDictionary *params, int index)
     if( index == InitImperialSceneBegin ) {
         CCLoadSprite::doResourceByImperialIndex(0, true);
     } else if ( index == InitImperialSceneBegin + 1 ) {
-        CCLoadSprite::doResourceByImperialIndex(21, true);
-    } else if ( index == InitImperialSceneBegin + 2 ) {
         CCLoadSprite::doResourceByImperialIndex(22, true);
-    } else if ( index == InitImperialSceneBegin + 3 ) {
-        CCLoadSprite::doResourceByImperialIndex(23, true);
-    } else if ( index == InitImperialSceneBegin + 4 ) {
-        CCLoadSprite::doResourceByImperialIndex(24, true);
-    } else if ( index == InitImperialSceneBegin + 5 ) {
-        CCLoadSprite::doResourceByImperialIndex(25, true);
-    } else if ( index == InitImperialSceneBegin + 6 ) {
-        CCLoadSprite::doResourceByImperialIndex(26, true);
-    } else if ( index == InitImperialSceneBegin + 7 ) {
-        CCLoadSprite::doResourceByImperialIndex(27, true);
-    } else if ( index == InitImperialSceneBegin + 8 ) {
+    } else if ( index == InitImperialSceneBegin + 2 ) {
         CCLoadSprite::doResourceByImperialIndex(28, true);
+    } else if ( index == InitImperialSceneBegin + 3 ) {
+        CCLoadSprite::doResourceByImperialIndex(101, true);
+    } else if ( index == InitImperialSceneBegin + 4 ) {
+        CCLoadSprite::doResourceByImperialIndex(102, true);
+    } else if ( index == InitImperialSceneBegin + 5 ) {
+        CCLoadSprite::doResourceByImperialIndex(103, true);
+    } else if ( index == InitImperialSceneBegin + 6 ) {
+        CCLoadSprite::doResourceByImperialIndex(104, true);
+    } else if ( index == InitImperialSceneBegin + 7 ) {
+        CCLoadSprite::doResourceByImperialIndex(105, true);
+    } else if ( index == InitImperialSceneBegin + 8 ) {
+        CCLoadSprite::doResourceByImperialIndex(106, true);
     } else if ( index == InitImperialSceneBegin + 9 ) {
-        CCLoadSprite::doResourceByImperialIndex(29, true);
+        CCLoadSprite::doResourceByImperialIndex(107, true);
     } else if ( index == InitImperialSceneBegin + 10 ) {
         CCLoadSprite::doResourceByImperialIndex(30, true);
     } else if ( index == InitImperialSceneBegin + 11 ) {
@@ -6587,7 +6571,7 @@ string CCCommonUtils::getCustomPicUrl(string uid, int picVer)
         return "";
     }
     //http://cok.eleximg.com/cok/img/710001/bd65ca6d7d40cf95a3fe6b7fbb5cef7c.jpg
-    string url = "http://cok.eleximg.com/cok/img/";
+    string url = CUSTOM_PIC_URL;
     
     string md5Str = uid + "_" + CC_ITOA(picVer);
     MD5 md5;
@@ -6608,7 +6592,7 @@ string CCCommonUtils::getCustomPicUrl1(const char * uid, int picVer)
     }
     
     //http://cok.eleximg.com/cok/img/710001/bd65ca6d7d40cf95a3fe6b7fbb5cef7c.jpg
-    string url = "http://cok.eleximg.com/cok/img/";
+    string url = CUSTOM_PIC_URL;
     string uidString = uid;
     if (uidString.length()==0){
         return "";
@@ -6627,7 +6611,7 @@ string CCCommonUtils::getCustomPicUrl1(const char * uid, int picVer)
 string CCCommonUtils::getShakePicUrl(string picName){
     string num = string("000") + picName.substr(4,3);
     
-    string url = "http://cok.eleximg.com/cok/img/";
+    string url = CUSTOM_PIC_URL;
     MD5 md5;
     md5.update(picName.c_str(), picName.length());
     

@@ -149,13 +149,21 @@ void CaptchaView::onRefreshClick(CCObject *pSender, CCControlEvent event) {
     
 //    std::string ip = "http://10.1.6.72:8081/vcode/";
 //#if COCOS2D_DEBUG == 2 || COCOS2D_DEBUG == 0
-    std::string ip = "http://p1cok.elexapp.com/vcode/index.php";
+    std::string ip("http://");
+    ip.append(SERVERLIST_CHINA_IP2);
+    ip.append("/vcode/index.php");
 //#endif
     if(CCCommonUtils::isChina()){
-        ip = "http://p3cok.elexapp.com/vcode/index.php";
+        ip = "";
+        ip.append("http://");
+        ip.append(SERVERLIST_CHINA_IP1);
+        ip.append("/vcode/index.php");
     }
 #if COCOS2D_DEBUG == 1
-    ip = "http://10.1.6.72:8081/vcode/";
+    ip = "";
+    ip.append("http://");
+    ip.append(GET_SERVERLIST_IP);
+    ip.append("/vcode/");
 #endif
     auto currentTime = time(NULL);
     std::string timeStr = CC_ITOA(double(currentTime));

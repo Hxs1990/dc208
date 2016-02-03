@@ -176,15 +176,10 @@ void DailyRwdView::getRequestFriends(CCObject *data){
         return ;
     }
     m_requestId.append("_feed");
-    string link = "";
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    link = "https://fb.me/827859737255348?feed_key=";
-#else
-    link = "https://fb.me/789290781112244?feed_key=";
-#endif
+    string link(FB_LINK);
     link.append(m_requestId);
     int index  = GlobalData::shared()->getRand(1,3);
-    string fbIcon = CCString::createWithFormat("http://cok.eleximg.com/cok/img/fb_feed_0%d.png",index)->getCString();
+    string fbIcon = getFBIcon(index);
     string caption = _lang("111076");
     if(caption==""){
         caption = _lang("107088");

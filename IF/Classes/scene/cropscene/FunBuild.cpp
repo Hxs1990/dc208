@@ -192,25 +192,25 @@ bool FunBuild::initFunBuild(int itemId, CCLabelBatchNode* nameLayer)
         m_mainNode = CCNode::create();
         this->addChild(m_mainNode);
         
+        
         int lv = 1;
-        for (int i=0; i<m_info->picVec.size(); i++) {
-            int blv = atoi(m_info->picVec[i].c_str());
-            if (m_info->level<=blv) {
-                lv = i+1;
-                break;
-            }
-            else {
-                if (i == m_info->picVec.size()-1) {
-                    lv = 5;
-                }
-            }
-        }
-        lv = lv>5?5:lv;
+        // tao.yu 目前只有1级
+//        for (int i=0; i<m_info->picVec.size(); i++) {
+//            int blv = atoi(m_info->picVec[i].c_str());
+//            if (m_info->level<=blv) {
+//                lv = i+1;
+//                break;
+//            }
+//            else {
+//                if (i == m_info->picVec.size()-1) {
+//                    lv = 5;
+//                }
+//            }
+//        }
+//        lv = lv>5?5:lv;
         
         string ccbName = m_info->pic + "_" + CC_ITOA(GlobalData::shared()->contryResType) + "_" + CC_ITOA(lv);
-//        if(m_info->pos == 3) {
-//            ccbName = m_info->pic + "_a" + CC_ITOA(GlobalData::shared()->contryResType) + "_" + CC_ITOA(lv);
-//        }
+        
         CCBLoadFile(ccbName.c_str(),m_mainNode,this);
         if(m_touchNode==NULL){
             return  false;

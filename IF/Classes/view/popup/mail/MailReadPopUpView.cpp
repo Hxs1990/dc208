@@ -1522,7 +1522,7 @@ void MailReadPopUpView::onShareBtnClick(CCObject *pSender, CCControlEvent event)
     int rand = GlobalData::shared()->getRand(0,5);
     int randL = GlobalData::shared()->getRand(0,4);
     int randFeed = GlobalData::shared()->getRand(0,10000);
-    string fbIcon = CCString::createWithFormat("http://cok.eleximg.com/cok/img/%s","King_Feed_1.png")->getCString();
+    string fbIcon = CCString::createWithFormat("%s/cok/img/%s", getElexImgURL(), "King_Feed_1.png")->getCString();
     if(randFeed%2==0){
         string temp = _lang_2("110157", GlobalData::shared()->playerInfo.name.c_str(), CC_ITOA(GlobalData::shared()->playerInfo.selfServerId));
         FBUtilies::fbPublishFeedDialog("Clash Of Kings",_lang("110146"),temp,link,fbIcon,1);//shareLang[randL]
