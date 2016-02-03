@@ -57,6 +57,126 @@ LoadingScene::~LoadingScene(){
 
 LoadingScene::LoadingScene(): m_steps(LOADING_STEP),m_platformLoginFlag(false){}
 
+#pragma mark * init functions
+
+void LoadingScene::addLoadingBG(Point& addPt)
+{
+    Size size = Director::getInstance()->getWinSize();
+    
+    if (SceneController::getInstance()->showBG)
+    {
+        SceneController::getInstance()->showBG->setPosition(ccp(size.width/2, size.height/2));
+        addChild(SceneController::getInstance()->showBG);
+        addPt = ccp(0, size.height / 2);
+        
+        auto colorLayer = CCLayerColor::create(ccc4(0, 0, 0, 100), size.width, size.height);
+        colorLayer->setAnchorPoint(ccp(0, 0));
+        addChild(colorLayer);
+    }
+    else
+    {
+        auto loadingBG = CCLoadSprite::createSprite("loading.png");
+        loadingBG->setAnchorPoint(ccp(0.5, 0.5));
+        loadingBG->setPositionX(size.width/2);
+        loadingBG->setPositionY(size.height/2);
+        float scale = max(size.width / loadingBG->getContentSize().width,size.height / loadingBG->getContentSize().height);
+        loadingBG->setScale(scale);
+        this->addChild(loadingBG);
+        
+        //        // tao.yu 进度条上的弓箭
+        Vec2 arrowPos = loadingBG->convertToWorldSpace(Vec2(470,190));
+        auto loadingArrow = CCLoadSprite::createSprite("loading_arrow.png");
+        loadingArrow->setAnchorPoint(ccp(0.5,0.5));
+        loadingArrow->setPosition(arrowPos);
+        this->addChild(loadingArrow,99999);
+        
+        // tao.yu 圣诞节礼物
+        //        Vec2 gift1Pos = loadingBG->convertToWorldSpace(Vec2(470,210));
+        //        auto gift1 = CCLoadSprite::createSprite("loading_gift1.png");
+        //        gift1->setAnchorPoint(ccp(0.5,0.5));
+        //        gift1->setPosition(gift1Pos);
+        //        gift1->setScale(0.9);
+        //        this->addChild(gift1,99999);
+        
+        //        Vec2 gift2Pos = loadingBG->convertToWorldSpace(Vec2(115,935));
+        //        auto gift2 = CCLoadSprite::createSprite("loading_gift2.png");
+        //        gift2->setAnchorPoint(ccp(0.5,0.5));
+        //        gift2->setPosition(gift2Pos);
+        //        this->addChild(gift2,99999);
+        
+        // tao.yu 动画效果
+        //        auto kingSpine = IFLoadingSceneArmyNode::create("Loading/Loading_3.atlas", "Spine/Loading/loading.json", "loop", 1);
+        //        this->addChild(kingSpine);
+        
+        
+    }
+}
+
+void LoadingScene::addVersionLabel()
+{
+    //    if (true) {
+    //        return;
+    //    }
+    string _uuid = cocos2d::extension::CCDevice::getDeviceUid();
+    GlobalData::shared()->version = cocos2d::extension::CCDevice::getVersionName();
+    
+    // tao.yu 版本号暂时不显示
+    string _version = GlobalData::shared()->version.c_str();
+    //        _version = _version.substr(0,_version.length()-3);
+#if COCOS2D_DEBUG > 0
+    CCLabelIF* label = CCLabelIF::create(CCString::createWithFormat("Inner-V: %s \n hudson Code: %s \n deviceID: %s",_version.c_str(),cocos2d::extension::CCDevice::getVersionCode().c_str(),_uuid.c_str())->getCString());
+#else
+    // tao.yu 正式服暂时不显示版本号
+    //    CCLabelIF* label = CCLabelIF::create(CCString::createWithFormat("V %s (%s)",_version.c_str(),cocos2d::extension::CCDevice::getVersionCode().c_str())->getCString());
+    CCLabelIF* label = CCLabelIF::create("");
+#endif
+    
+    label->setScale(0.5f);
+    if (CCCommonUtils::isIosAndroidPad())
+    {
+        label->setScale(0.8f);
+    }
+    label->setFontSize(40);
+    label->setColor({0,255,0});
+    label->setAnchorPoint(CCPoint(1,1));
+    label->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width-10,CCDirector::sharedDirector()->getWinSize().height));
+    
+    addChild(label);
+}
+
+void LoadingScene::addLoadingTips()
+{
+    Size size = Director::getInstance()->getWinSize();
+    
+    Size tipsSize = CCSizeMake(640, 90);
+    m_loadingTips = CCLabelIF::create("loading...");
+//    m_loadingTips->setFntFile(getNBFont(NB_FONT_Bold_Outline));
+    m_loadingTips->setColor({229,246,160});
+    m_loadingTips->enableStroke(ccBLACK, 1.0);
+    m_loadingTips->setFontSize(24);
+    m_loadingTips->setDimensions(CCSizeMake(tipsSize.width*0.85, tipsSize.height*1.8));
+    m_loadingTips->setHorizontalAlignment(kCCTextAlignmentCenter);
+    m_loadingTips->setVerticalAlignment(kCCVerticalTextAlignmentCenter);
+    m_loadingTips->setAnchorPoint(ccp(0.5, 0.5));
+    m_loadingTips->setPosition(ccp(size.width/2, m_barClipNode->getPositionY()));
+    addChild(m_loadingTips);
+}
+
+void LoadingScene::addPlatformLogo()
+{
+    if (CCFileUtils::sharedFileUtils()->isFileExist("platform_logo.png"))
+    {
+        // 渠道logo
+        m_platformLogo = CCSprite::create("platform_logo.png");
+        if (m_platformLogo)
+        {
+            CCSize size = CCDirector::sharedDirector()->getWinSize();
+            m_platformLogo->setPosition(ccp(size.width/2, size.height/2));
+            addChild(m_platformLogo);
+        }
+    }
+}
+
 bool LoadingScene::init()
 {
 //    this->setScale(2.0);
@@ -126,6 +246,10 @@ bool LoadingScene::init()
         };
 
         auto addPt = ccp(0, 0);
+        addLoadingBG(addPt);
+        addVersionLabel();;
+        
+/*
         if(SceneController::getInstance()->showBG){
             SceneController::getInstance()->showBG->setPosition(ccp(size.width/2, size.height/2));
             addChild(SceneController::getInstance()->showBG);
@@ -248,7 +372,7 @@ bool LoadingScene::init()
             }
         }
 		addChild(label);
-        
+        */
         m_loadPerLabel = CCLabelIF::create("0%");
         m_loadPerLabel->setFntFile("Arial_Bold_Border.fnt");
         m_loadPerLabel->setColor({255,255,255});
@@ -431,7 +555,7 @@ bool LoadingScene::init()
                 logFireNode2->setScale(2.4);
             }
         }
-//
+
         auto tipsBg = CCLoadSprite::createSprite("loading_tips_bg.png");
         tipsBg->setTag(LOADING_3);
         tipsBg->setAnchorPoint(ccp(0.5, 0.5));
@@ -442,16 +566,17 @@ bool LoadingScene::init()
 
         
         auto tipsSize = CCSizeMake(tipsBg->getContentSize().width, tipsBg->getContentSize().height);
-        
-        m_loadingTips = CCLabelIF::create("loading...");
-        m_loadingTips->setColor({152,137,103});
-        m_loadingTips->setFontSize(24);
-        m_loadingTips->setDimensions(CCSizeMake(tipsSize.width*0.85, tipsSize.height*1.8));
-        m_loadingTips->setHorizontalAlignment(kCCTextAlignmentCenter);
-        m_loadingTips->setVerticalAlignment(kCCVerticalTextAlignmentCenter);
-        m_loadingTips->setAnchorPoint(ccp(0.5, 0.5));
-        m_loadingTips->setPosition(ccp(tipsBg->getPosition().x, tipsBg->getPosition().y));
-        addChild(m_loadingTips);
+//        
+//        m_loadingTips = CCLabelIF::create("loading...");
+//        m_loadingTips->setColor({152,137,103});
+//        m_loadingTips->setFontSize(24);
+//        m_loadingTips->setDimensions(CCSizeMake(tipsSize.width*0.85, tipsSize.height*1.8));
+//        m_loadingTips->setHorizontalAlignment(kCCTextAlignmentCenter);
+//        m_loadingTips->setVerticalAlignment(kCCVerticalTextAlignmentCenter);
+//        m_loadingTips->setAnchorPoint(ccp(0.5, 0.5));
+//        m_loadingTips->setPosition(ccp(tipsBg->getPosition().x, tipsBg->getPosition().y));
+//        addChild(m_loadingTips);
+        addLoadingTips();
         
         if (CCCommonUtils::isIosAndroidPad())
         {
@@ -462,24 +587,26 @@ bool LoadingScene::init()
             m_loadingTips->setDimensions(CCSizeMake(tipsSize.width*0.85*2.f, tipsSize.height*1.8));
             m_loadingTips->setPosition(ccp(tipsBg->getPosition().x, tipsBg->getPosition().y*1.f));
         }
-        
-        if(CCFileUtils::sharedFileUtils()->isFileExist("platform_logo.png")) {
-            // 渠道logo
-            m_platformLogo = CCSprite::create("platform_logo.png");
-            if(m_platformLogo) {
-                CCSize size = CCDirector::sharedDirector()->getWinSize();
-                m_platformLogo->setPosition(ccp(size.width/2, size.height/2));
-//                m_platformLogo->setScaleX(size.width / 640);
-//                m_platformLogo->setScaleY(size.height / 852);
-                addChild(m_platformLogo);
-            }
-        }
+        addPlatformLogo();
+//        if(CCFileUtils::sharedFileUtils()->isFileExist("platform_logo.png")) {
+//            // 渠道logo
+//            m_platformLogo = CCSprite::create("platform_logo.png");
+//            if(m_platformLogo) {
+//                CCSize size = CCDirector::sharedDirector()->getWinSize();
+//                m_platformLogo->setPosition(ccp(size.width/2, size.height/2));
+////                m_platformLogo->setScaleX(size.width / 640);
+////                m_platformLogo->setScaleY(size.height / 852);
+//                addChild(m_platformLogo);
+//            }
+//        }
         setCleanFunction([](){
             CCLoadSprite::releaseResourceBySceneId(SCENE_ID_LOADING);
         });
 //        CCCommonUtils::recordStepByHttp("4");
         bRet = true;
     }
+    
+    
     this->scheduleOnce(schedule_selector(LoadingScene::show45SecondAlert), 180);
     CCLOG("test init end");
     return bRet;

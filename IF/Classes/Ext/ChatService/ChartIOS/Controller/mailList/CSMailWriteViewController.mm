@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIImageView *backimageView =[[UIImageView alloc]initWithFrame:self.view.frame];
-    backimageView.image =[UIImage resizedImage:@"cs_mail_write_backImage"];
+    backimageView.image =[UIImage resizedImage:@"CSMailWriteViewController"];
     backimageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     [backimageView addGestureRecognizer:tapGesturRecognizer];
@@ -100,12 +100,12 @@
 #pragma mark -
 #pragma mark UI set
 -(void)_initFootView{
-    UIImageView *backImageView =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.footView.width, self.footView.height)];
-    backImageView.image = [UIImage resizedImage:@"toolbar_bottom_bar"];
+    UIImageView *backImageView =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.footView.width, self.footView.height+2)];
+    backImageView.image = [UIImage resizedImage:@"ui_gray_biaotilan 2.png"];
     UIImageView *topLineImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.footView.width, self.footView.height * 0.1)];
     topLineImageView.image =[UIImage resizedImage:@"line_grey02"];
     [self.footView addSubview:backImageView];
-    [self.footView addSubview:topLineImageView];
+//    [self.footView addSubview:topLineImageView];
     UIButton *sendMailButton =[UIButton buttonWithType:UIButtonTypeCustom];
     sendMailButton.frame = CGRectMake((self.footView.width *0.5 -(self.footView.width* 0.25/2)), self.footView.height * 0.1, self.footView.width* 0.3, self.footView.height * 0.85);
     [sendMailButton setImage:[UIImage imageNamed:@"cs_mail_write_buttonImage"] forState:UIControlStateNormal];

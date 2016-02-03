@@ -240,10 +240,10 @@
  
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-            backImageView.image =[UIImage imageNamed:@"chat_bg_default.jpg"];
+            backImageView.image =[UIImage imageNamed:@"bottom_bg.png"];
             tableView.backgroundView =backImageView;
         }else{
-            backImageView.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"csChatTableBackImage1"]];//csChatTableBackImage1
+            backImageView.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"bottom_bg.png"]];//csChatTableBackImage1
             tableView.backgroundView =backImageView;
         }
         
