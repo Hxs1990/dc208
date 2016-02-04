@@ -37,7 +37,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCScale9Sprite</string>
+				<string>m_buildBG</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_buildBG</string>
 				<key>memberVarAssignmentType</key>
@@ -51,8 +51,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1.5055563449859619</real>
-							<real>83.033554077148438</real>
+							<real>0.0</real>
+							<real>77</real>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -107,7 +107,7 @@
 						<key>value</key>
 						<array>
 							<real>640</real>
-							<real>770</real>
+							<real>785</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -178,7 +178,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCScale9Sprite</string>
+						<string>m_svipBuildBG</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_svipBuildBG</string>
 						<key>memberVarAssignmentType</key>
@@ -314,90 +314,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCSprite</string>
-						<key>memberVarAssignmentName</key>
-						<string></string>
-						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>position</string>
-								<key>type</key>
-								<string>Position</string>
-								<key>value</key>
-								<array>
-									<real>320.00003051757812</real>
-									<real>718.360107421875</real>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>anchorPoint</string>
-								<key>type</key>
-								<string>Point</string>
-								<key>value</key>
-								<array>
-									<real>0.5</real>
-									<real>0.5</real>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ignoreAnchorPointForPosition</string>
-								<key>type</key>
-								<string>Check</string>
-								<key>value</key>
-								<false/>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>displayFrame</string>
-								<key>type</key>
-								<string>SpriteFrame</string>
-								<key>value</key>
-								<array>
-									<string>Common/Common_514.plist</string>
-									<string>svip_xiuxiuxiu.png</string>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>blendFunc</string>
-								<key>type</key>
-								<string>Blendmode</string>
-								<key>value</key>
-								<array>
-									<integer>770</integer>
-									<integer>771</integer>
-								</array>
-							</dict>
-						</array>
-					</dict>
-					<dict>
-						<key>baseClass</key>
-						<string>CCSprite</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>CCSprite</string>
+						<string>m_svipUpTextSpr</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_svipUpTextSpr</string>
 						<key>memberVarAssignmentType</key>
@@ -476,7 +393,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_BgNodeSVIP</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_BgNodeSVIP</string>
 				<key>memberVarAssignmentType</key>
@@ -540,7 +457,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite</string>
+										<string>m_sprBar1</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_sprBar1</string>
 										<key>memberVarAssignmentType</key>
@@ -623,7 +540,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite</string>
+										<string>m_sprBar2</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_sprBar2</string>
 										<key>memberVarAssignmentType</key>
@@ -708,6 +625,8 @@
 												</array>
 											</dict>
 										</array>
+										<key>selected</key>
+										<true/>
 									</dict>
 									<dict>
 										<key>baseClass</key>
@@ -717,7 +636,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite</string>
+										<string>m_sprVip</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_sprVip</string>
 										<key>memberVarAssignmentType</key>
@@ -811,7 +730,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCNode</string>
+										<string>m_progressBarNode</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_progressBarNode</string>
 										<key>memberVarAssignmentType</key>
@@ -872,7 +791,7 @@
 										<key>customClass</key>
 										<string>CCLabelIF</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_desText</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_desText</string>
 										<key>memberVarAssignmentType</key>
@@ -1000,7 +919,7 @@
 										<key>customClass</key>
 										<string>CCLabelIF</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_vipNextPointNumText</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_vipNextPointNumText</string>
 										<key>memberVarAssignmentType</key>
@@ -1128,7 +1047,7 @@
 										<key>customClass</key>
 										<string>CCLabelIF</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_vipLastPointNumText</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_vipLastPointNumText</string>
 										<key>memberVarAssignmentType</key>
@@ -1256,7 +1175,7 @@
 										<key>customClass</key>
 										<string>CCLabelIF</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_vipCurrentPointNumText</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_vipCurrentPointNumText</string>
 										<key>memberVarAssignmentType</key>
@@ -1384,7 +1303,7 @@
 										<key>customClass</key>
 										<string>CCLabelIFBMFont</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_lblVIP1</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_lblVIP1</string>
 										<key>memberVarAssignmentType</key>
@@ -1500,7 +1419,7 @@
 										<key>customClass</key>
 										<string>CCLabelIFBMFont</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_lblVIP2</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_lblVIP2</string>
 										<key>memberVarAssignmentType</key>
@@ -1616,7 +1535,7 @@
 										<key>customClass</key>
 										<string>CCLabelIFBMFont</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_lblVIP3</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_lblVIP3</string>
 										<key>memberVarAssignmentType</key>
@@ -1732,7 +1651,7 @@
 										<key>customClass</key>
 										<string>CCLabelIFBMFont</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_lblVIP4</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_lblVIP4</string>
 										<key>memberVarAssignmentType</key>
@@ -1848,7 +1767,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCNode</string>
+										<string>m_barTouchNode</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_barTouchNode</string>
 										<key>memberVarAssignmentType</key>
@@ -1983,7 +1902,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite</string>
+										<string>m_sprActive1</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_sprActive1</string>
 										<key>memberVarAssignmentType</key>
@@ -2066,7 +1985,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite</string>
+										<string>m_sprActive2</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_sprActive2</string>
 										<key>memberVarAssignmentType</key>
@@ -2157,7 +2076,7 @@
 										<key>customClass</key>
 										<string>CCLabelIF</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_vipLeftTimeText</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_vipLeftTimeText</string>
 										<key>memberVarAssignmentType</key>
@@ -2285,7 +2204,7 @@
 										<key>customClass</key>
 										<string>CCLabelIFBMFont</string>
 										<key>displayName</key>
-										<string>CCLabelTTF</string>
+										<string>m_vipLvText</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_vipLvText</string>
 										<key>memberVarAssignmentType</key>
@@ -2401,7 +2320,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCNode</string>
+										<string>m_vipAnimNode</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_vipAnimNode</string>
 										<key>memberVarAssignmentType</key>
@@ -2462,7 +2381,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite</string>
+										<string>m_headBgSvip</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_headBgSvip</string>
 										<key>memberVarAssignmentType</key>
@@ -2545,7 +2464,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCScale9Sprite-head</string>
+										<string>m_headBgVip</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_headBgVip</string>
 										<key>memberVarAssignmentType</key>
@@ -2681,7 +2600,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCNode</string>
+										<string>m_picHeadNode</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_picHeadNode</string>
 										<key>memberVarAssignmentType</key>
@@ -2742,7 +2661,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCNode</string>
+										<string>m_activeGuideNode</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_activeGuideNode</string>
 										<key>memberVarAssignmentType</key>
@@ -2860,7 +2779,7 @@
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>CCScale9Sprite</string>
+								<string>m_listBG</string>
 								<key>memberVarAssignmentName</key>
 								<string>m_listBG</string>
 								<key>memberVarAssignmentType</key>
@@ -3006,7 +2925,7 @@
 												<key>customClass</key>
 												<string></string>
 												<key>displayName</key>
-												<string>CCControlButton</string>
+												<string>m_showVIPBtn</string>
 												<key>memberVarAssignmentName</key>
 												<string>m_showVIPBtn</string>
 												<key>memberVarAssignmentType</key>
@@ -3214,7 +3133,7 @@
 												<key>customClass</key>
 												<string></string>
 												<key>displayName</key>
-												<string>CCControlButton</string>
+												<string>m_showSVIPBtn</string>
 												<key>memberVarAssignmentName</key>
 												<string>m_showSVIPBtn</string>
 												<key>memberVarAssignmentType</key>
@@ -3488,272 +3407,11 @@
 												<key>baseClass</key>
 												<string>CCNode</string>
 												<key>children</key>
-												<array>
-													<dict>
-														<key>baseClass</key>
-														<string>CCSprite</string>
-														<key>children</key>
-														<array/>
-														<key>customClass</key>
-														<string></string>
-														<key>displayName</key>
-														<string>CCSprite</string>
-														<key>memberVarAssignmentName</key>
-														<string></string>
-														<key>memberVarAssignmentType</key>
-														<integer>0</integer>
-														<key>properties</key>
-														<array>
-															<dict>
-																<key>name</key>
-																<string>position</string>
-																<key>type</key>
-																<string>Position</string>
-																<key>value</key>
-																<array>
-																	<real>-40</real>
-																	<real>0.0</real>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>anchorPoint</string>
-																<key>type</key>
-																<string>Point</string>
-																<key>value</key>
-																<array>
-																	<real>0.5</real>
-																	<real>0.5</real>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>scale</string>
-																<key>type</key>
-																<string>ScaleLock</string>
-																<key>value</key>
-																<array>
-																	<real>1</real>
-																	<real>1</real>
-																	<false/>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>ignoreAnchorPointForPosition</string>
-																<key>type</key>
-																<string>Check</string>
-																<key>value</key>
-																<false/>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>displayFrame</string>
-																<key>type</key>
-																<string>SpriteFrame</string>
-																<key>value</key>
-																<array>
-																	<string>Common/Common_6.plist</string>
-																	<string>VIP_lantiao.png</string>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>blendFunc</string>
-																<key>type</key>
-																<string>Blendmode</string>
-																<key>value</key>
-																<array>
-																	<integer>770</integer>
-																	<integer>771</integer>
-																</array>
-															</dict>
-														</array>
-													</dict>
-													<dict>
-														<key>baseClass</key>
-														<string>CCSprite</string>
-														<key>children</key>
-														<array/>
-														<key>customClass</key>
-														<string></string>
-														<key>displayName</key>
-														<string>CCSprite</string>
-														<key>memberVarAssignmentName</key>
-														<string></string>
-														<key>memberVarAssignmentType</key>
-														<integer>0</integer>
-														<key>properties</key>
-														<array>
-															<dict>
-																<key>name</key>
-																<string>position</string>
-																<key>type</key>
-																<string>Position</string>
-																<key>value</key>
-																<array>
-																	<real>39</real>
-																	<real>0.0</real>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>anchorPoint</string>
-																<key>type</key>
-																<string>Point</string>
-																<key>value</key>
-																<array>
-																	<real>0.5</real>
-																	<real>0.5</real>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>scale</string>
-																<key>type</key>
-																<string>ScaleLock</string>
-																<key>value</key>
-																<array>
-																	<real>1</real>
-																	<real>1</real>
-																	<false/>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>ignoreAnchorPointForPosition</string>
-																<key>type</key>
-																<string>Check</string>
-																<key>value</key>
-																<false/>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>displayFrame</string>
-																<key>type</key>
-																<string>SpriteFrame</string>
-																<key>value</key>
-																<array>
-																	<string>Common/Common_6.plist</string>
-																	<string>VIP_lantiao.png</string>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>flip</string>
-																<key>type</key>
-																<string>Flip</string>
-																<key>value</key>
-																<array>
-																	<true/>
-																	<false/>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>blendFunc</string>
-																<key>type</key>
-																<string>Blendmode</string>
-																<key>value</key>
-																<array>
-																	<integer>770</integer>
-																	<integer>771</integer>
-																</array>
-															</dict>
-														</array>
-													</dict>
-													<dict>
-														<key>baseClass</key>
-														<string>CCSprite</string>
-														<key>children</key>
-														<array/>
-														<key>customClass</key>
-														<string></string>
-														<key>displayName</key>
-														<string>CCSprite</string>
-														<key>memberVarAssignmentName</key>
-														<string></string>
-														<key>memberVarAssignmentType</key>
-														<integer>0</integer>
-														<key>properties</key>
-														<array>
-															<dict>
-																<key>name</key>
-																<string>position</string>
-																<key>type</key>
-																<string>Position</string>
-																<key>value</key>
-																<array>
-																	<real>-13</real>
-																	<real>8</real>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>anchorPoint</string>
-																<key>type</key>
-																<string>Point</string>
-																<key>value</key>
-																<array>
-																	<real>0.5</real>
-																	<real>0.5</real>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>scale</string>
-																<key>type</key>
-																<string>ScaleLock</string>
-																<key>value</key>
-																<array>
-																	<real>0.89999997615814209</real>
-																	<real>0.89999997615814209</real>
-																	<true/>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>ignoreAnchorPointForPosition</string>
-																<key>type</key>
-																<string>Check</string>
-																<key>value</key>
-																<false/>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>displayFrame</string>
-																<key>type</key>
-																<string>SpriteFrame</string>
-																<key>value</key>
-																<array>
-																	<string>Common/Common_6.plist</string>
-																	<string>VIP_zi.png</string>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>blendFunc</string>
-																<key>type</key>
-																<string>Blendmode</string>
-																<key>value</key>
-																<array>
-																	<integer>770</integer>
-																	<integer>771</integer>
-																</array>
-															</dict>
-														</array>
-													</dict>
-												</array>
+												<array/>
 												<key>customClass</key>
 												<string></string>
 												<key>displayName</key>
-												<string>CCNode</string>
+												<string>m_vipNodeLeft</string>
 												<key>memberVarAssignmentName</key>
 												<string>m_vipNodeLeft</string>
 												<key>memberVarAssignmentType</key>
@@ -3798,95 +3456,11 @@
 												<key>baseClass</key>
 												<string>CCNode</string>
 												<key>children</key>
-												<array>
-													<dict>
-														<key>baseClass</key>
-														<string>CCSprite</string>
-														<key>children</key>
-														<array/>
-														<key>customClass</key>
-														<string></string>
-														<key>displayName</key>
-														<string>CCSprite</string>
-														<key>memberVarAssignmentName</key>
-														<string></string>
-														<key>memberVarAssignmentType</key>
-														<integer>0</integer>
-														<key>properties</key>
-														<array>
-															<dict>
-																<key>name</key>
-																<string>position</string>
-																<key>type</key>
-																<string>Position</string>
-																<key>value</key>
-																<array>
-																	<real>-16</real>
-																	<real>6</real>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>anchorPoint</string>
-																<key>type</key>
-																<string>Point</string>
-																<key>value</key>
-																<array>
-																	<real>0.5</real>
-																	<real>0.5</real>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>scale</string>
-																<key>type</key>
-																<string>ScaleLock</string>
-																<key>value</key>
-																<array>
-																	<real>1</real>
-																	<real>1</real>
-																	<false/>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>ignoreAnchorPointForPosition</string>
-																<key>type</key>
-																<string>Check</string>
-																<key>value</key>
-																<false/>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>displayFrame</string>
-																<key>type</key>
-																<string>SpriteFrame</string>
-																<key>value</key>
-																<array>
-																	<string>Common/Common_514.plist</string>
-																	<string>SVIP_hongsedi.png</string>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>blendFunc</string>
-																<key>type</key>
-																<string>Blendmode</string>
-																<key>value</key>
-																<array>
-																	<integer>770</integer>
-																	<integer>771</integer>
-																</array>
-															</dict>
-														</array>
-													</dict>
-												</array>
+												<array/>
 												<key>customClass</key>
 												<string></string>
 												<key>displayName</key>
-												<string>CCNode</string>
+												<string>m_svipNodeLeft</string>
 												<key>memberVarAssignmentName</key>
 												<string>m_svipNodeLeft</string>
 												<key>memberVarAssignmentType</key>
@@ -3935,7 +3509,7 @@
 												<key>customClass</key>
 												<string>CCLabelIFBMFont</string>
 												<key>displayName</key>
-												<string>CCLabelTTF</string>
+												<string>m_currentVIPText</string>
 												<key>memberVarAssignmentName</key>
 												<string>m_currentVIPText</string>
 												<key>memberVarAssignmentType</key>
@@ -4114,89 +3688,6 @@
 									</dict>
 									<dict>
 										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>0.0</real>
-													<real>-333</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_jiantou.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
 										<string>CCNode</string>
 										<key>children</key>
 										<array>
@@ -4204,272 +3695,11 @@
 												<key>baseClass</key>
 												<string>CCNode</string>
 												<key>children</key>
-												<array>
-													<dict>
-														<key>baseClass</key>
-														<string>CCSprite</string>
-														<key>children</key>
-														<array/>
-														<key>customClass</key>
-														<string></string>
-														<key>displayName</key>
-														<string>CCSprite</string>
-														<key>memberVarAssignmentName</key>
-														<string></string>
-														<key>memberVarAssignmentType</key>
-														<integer>0</integer>
-														<key>properties</key>
-														<array>
-															<dict>
-																<key>name</key>
-																<string>position</string>
-																<key>type</key>
-																<string>Position</string>
-																<key>value</key>
-																<array>
-																	<real>-40</real>
-																	<real>0.0</real>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>anchorPoint</string>
-																<key>type</key>
-																<string>Point</string>
-																<key>value</key>
-																<array>
-																	<real>0.5</real>
-																	<real>0.5</real>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>scale</string>
-																<key>type</key>
-																<string>ScaleLock</string>
-																<key>value</key>
-																<array>
-																	<real>1</real>
-																	<real>1</real>
-																	<false/>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>ignoreAnchorPointForPosition</string>
-																<key>type</key>
-																<string>Check</string>
-																<key>value</key>
-																<false/>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>displayFrame</string>
-																<key>type</key>
-																<string>SpriteFrame</string>
-																<key>value</key>
-																<array>
-																	<string>Common/Common_6.plist</string>
-																	<string>VIP_lantiao.png</string>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>blendFunc</string>
-																<key>type</key>
-																<string>Blendmode</string>
-																<key>value</key>
-																<array>
-																	<integer>770</integer>
-																	<integer>771</integer>
-																</array>
-															</dict>
-														</array>
-													</dict>
-													<dict>
-														<key>baseClass</key>
-														<string>CCSprite</string>
-														<key>children</key>
-														<array/>
-														<key>customClass</key>
-														<string></string>
-														<key>displayName</key>
-														<string>CCSprite</string>
-														<key>memberVarAssignmentName</key>
-														<string></string>
-														<key>memberVarAssignmentType</key>
-														<integer>0</integer>
-														<key>properties</key>
-														<array>
-															<dict>
-																<key>name</key>
-																<string>position</string>
-																<key>type</key>
-																<string>Position</string>
-																<key>value</key>
-																<array>
-																	<real>40</real>
-																	<real>0.0</real>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>anchorPoint</string>
-																<key>type</key>
-																<string>Point</string>
-																<key>value</key>
-																<array>
-																	<real>0.5</real>
-																	<real>0.5</real>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>scale</string>
-																<key>type</key>
-																<string>ScaleLock</string>
-																<key>value</key>
-																<array>
-																	<real>1</real>
-																	<real>1</real>
-																	<false/>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>ignoreAnchorPointForPosition</string>
-																<key>type</key>
-																<string>Check</string>
-																<key>value</key>
-																<false/>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>displayFrame</string>
-																<key>type</key>
-																<string>SpriteFrame</string>
-																<key>value</key>
-																<array>
-																	<string>Common/Common_6.plist</string>
-																	<string>VIP_lantiao.png</string>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>flip</string>
-																<key>type</key>
-																<string>Flip</string>
-																<key>value</key>
-																<array>
-																	<true/>
-																	<false/>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>blendFunc</string>
-																<key>type</key>
-																<string>Blendmode</string>
-																<key>value</key>
-																<array>
-																	<integer>770</integer>
-																	<integer>771</integer>
-																</array>
-															</dict>
-														</array>
-													</dict>
-													<dict>
-														<key>baseClass</key>
-														<string>CCSprite</string>
-														<key>children</key>
-														<array/>
-														<key>customClass</key>
-														<string></string>
-														<key>displayName</key>
-														<string>CCSprite</string>
-														<key>memberVarAssignmentName</key>
-														<string></string>
-														<key>memberVarAssignmentType</key>
-														<integer>0</integer>
-														<key>properties</key>
-														<array>
-															<dict>
-																<key>name</key>
-																<string>position</string>
-																<key>type</key>
-																<string>Position</string>
-																<key>value</key>
-																<array>
-																	<real>-13</real>
-																	<real>8</real>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>anchorPoint</string>
-																<key>type</key>
-																<string>Point</string>
-																<key>value</key>
-																<array>
-																	<real>0.5</real>
-																	<real>0.5</real>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>scale</string>
-																<key>type</key>
-																<string>ScaleLock</string>
-																<key>value</key>
-																<array>
-																	<real>0.89999997615814209</real>
-																	<real>0.89999997615814209</real>
-																	<false/>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>ignoreAnchorPointForPosition</string>
-																<key>type</key>
-																<string>Check</string>
-																<key>value</key>
-																<false/>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>displayFrame</string>
-																<key>type</key>
-																<string>SpriteFrame</string>
-																<key>value</key>
-																<array>
-																	<string>Common/Common_6.plist</string>
-																	<string>VIP_zi.png</string>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>blendFunc</string>
-																<key>type</key>
-																<string>Blendmode</string>
-																<key>value</key>
-																<array>
-																	<integer>770</integer>
-																	<integer>771</integer>
-																</array>
-															</dict>
-														</array>
-													</dict>
-												</array>
+												<array/>
 												<key>customClass</key>
 												<string></string>
 												<key>displayName</key>
-												<string>CCNode</string>
+												<string>m_vipNodeRight</string>
 												<key>memberVarAssignmentName</key>
 												<string>m_vipNodeRight</string>
 												<key>memberVarAssignmentType</key>
@@ -4514,95 +3744,11 @@
 												<key>baseClass</key>
 												<string>CCNode</string>
 												<key>children</key>
-												<array>
-													<dict>
-														<key>baseClass</key>
-														<string>CCSprite</string>
-														<key>children</key>
-														<array/>
-														<key>customClass</key>
-														<string></string>
-														<key>displayName</key>
-														<string>CCSprite</string>
-														<key>memberVarAssignmentName</key>
-														<string></string>
-														<key>memberVarAssignmentType</key>
-														<integer>0</integer>
-														<key>properties</key>
-														<array>
-															<dict>
-																<key>name</key>
-																<string>position</string>
-																<key>type</key>
-																<string>Position</string>
-																<key>value</key>
-																<array>
-																	<real>-16</real>
-																	<real>6</real>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>anchorPoint</string>
-																<key>type</key>
-																<string>Point</string>
-																<key>value</key>
-																<array>
-																	<real>0.5</real>
-																	<real>0.5</real>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>scale</string>
-																<key>type</key>
-																<string>ScaleLock</string>
-																<key>value</key>
-																<array>
-																	<real>1</real>
-																	<real>1</real>
-																	<false/>
-																	<integer>0</integer>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>ignoreAnchorPointForPosition</string>
-																<key>type</key>
-																<string>Check</string>
-																<key>value</key>
-																<false/>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>displayFrame</string>
-																<key>type</key>
-																<string>SpriteFrame</string>
-																<key>value</key>
-																<array>
-																	<string>Common/Common_514.plist</string>
-																	<string>SVIP_hongsedi.png</string>
-																</array>
-															</dict>
-															<dict>
-																<key>name</key>
-																<string>blendFunc</string>
-																<key>type</key>
-																<string>Blendmode</string>
-																<key>value</key>
-																<array>
-																	<integer>770</integer>
-																	<integer>771</integer>
-																</array>
-															</dict>
-														</array>
-													</dict>
-												</array>
+												<array/>
 												<key>customClass</key>
 												<string></string>
 												<key>displayName</key>
-												<string>CCNode</string>
+												<string>m_svipNodeRight</string>
 												<key>memberVarAssignmentName</key>
 												<string>m_svipNodeRight</string>
 												<key>memberVarAssignmentType</key>
@@ -4651,7 +3797,7 @@
 												<key>customClass</key>
 												<string>CCLabelIFBMFont</string>
 												<key>displayName</key>
-												<string>CCLabelTTF</string>
+												<string>m_NextVIPText</string>
 												<key>memberVarAssignmentName</key>
 												<string>m_NextVIPText</string>
 												<key>memberVarAssignmentType</key>
@@ -4886,742 +4032,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>29</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-29</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>58</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-58</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-87</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>87</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>116</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-116</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
+										<string>m_sprLastPoint</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_sprLastPoint</string>
 										<key>memberVarAssignmentType</key>
@@ -5704,7 +4115,7 @@
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite_f</string>
+										<string>m_pageFlag</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_pageFlag</string>
 										<key>memberVarAssignmentType</key>
@@ -5783,7 +4194,7 @@
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>CCNode_vip</string>
+								<string>m_downNode</string>
 								<key>memberVarAssignmentName</key>
 								<string>m_downNode</string>
 								<key>memberVarAssignmentType</key>
@@ -5851,1288 +4262,13 @@
 								<array>
 									<dict>
 										<key>baseClass</key>
-										<string>CCScale9Sprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCScale9Sprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-333.5040283203125</real>
-													<real>-47.537601470947266</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>spriteFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_514.plist</string>
-													<string>SVIP_DITIAO.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>preferedSize</string>
-												<key>type</key>
-												<string>Size</string>
-												<key>value</key>
-												<array>
-													<real>640</real>
-													<real>66</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>opacity</string>
-												<key>type</key>
-												<string>Byte</string>
-												<key>value</key>
-												<integer>255</integer>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>color</string>
-												<key>type</key>
-												<string>Color3</string>
-												<key>value</key>
-												<array>
-													<integer>255</integer>
-													<integer>255</integer>
-													<integer>255</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>insetLeft</string>
-												<key>type</key>
-												<string>Float</string>
-												<key>value</key>
-												<real>0.0</real>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>insetTop</string>
-												<key>type</key>
-												<string>Float</string>
-												<key>value</key>
-												<real>0.0</real>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>insetRight</string>
-												<key>type</key>
-												<string>Float</string>
-												<key>value</key>
-												<real>0.0</real>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>insetBottom</string>
-												<key>type</key>
-												<string>Float</string>
-												<key>value</key>
-												<real>0.0</real>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
 										<string>CCSprite</string>
 										<key>children</key>
 										<array/>
 										<key>customClass</key>
 										<string></string>
 										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>29</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-29</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>58</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-58</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-87</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>87</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>116</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-116</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>145</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-145</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>174</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-174</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite</string>
-										<key>memberVarAssignmentName</key>
-										<string></string>
-										<key>memberVarAssignmentType</key>
-										<integer>0</integer>
-										<key>properties</key>
-										<array>
-											<dict>
-												<key>name</key>
-												<string>position</string>
-												<key>type</key>
-												<string>Position</string>
-												<key>value</key>
-												<array>
-													<real>-203</real>
-													<real>0.0</real>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>anchorPoint</string>
-												<key>type</key>
-												<string>Point</string>
-												<key>value</key>
-												<array>
-													<real>0.5</real>
-													<real>0.5</real>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>scale</string>
-												<key>type</key>
-												<string>ScaleLock</string>
-												<key>value</key>
-												<array>
-													<real>1</real>
-													<real>1</real>
-													<false/>
-													<integer>0</integer>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>ignoreAnchorPointForPosition</string>
-												<key>type</key>
-												<string>Check</string>
-												<key>value</key>
-												<false/>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>displayFrame</string>
-												<key>type</key>
-												<string>SpriteFrame</string>
-												<key>value</key>
-												<array>
-													<string>Common/Common_6.plist</string>
-													<string>VIP_fanye.png</string>
-												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>blendFunc</string>
-												<key>type</key>
-												<string>Blendmode</string>
-												<key>value</key>
-												<array>
-													<integer>770</integer>
-													<integer>771</integer>
-												</array>
-											</dict>
-										</array>
-									</dict>
-									<dict>
-										<key>baseClass</key>
-										<string>CCSprite</string>
-										<key>children</key>
-										<array/>
-										<key>customClass</key>
-										<string></string>
-										<key>displayName</key>
-										<string>CCSprite_f</string>
+										<string>m_pageFlagSVIP</string>
 										<key>memberVarAssignmentName</key>
 										<string>m_pageFlagSVIP</string>
 										<key>memberVarAssignmentType</key>
@@ -7223,7 +4359,7 @@
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>CCNode_svip</string>
+								<string>m_downNodeSVIP</string>
 								<key>memberVarAssignmentName</key>
 								<string>m_downNodeSVIP</string>
 								<key>memberVarAssignmentType</key>
@@ -7280,7 +4416,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_upNode</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_upNode</string>
 						<key>memberVarAssignmentType</key>
@@ -7341,7 +4477,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode_vip</string>
+						<string>m_listContainer</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_listContainer</string>
 						<key>memberVarAssignmentType</key>
@@ -7414,7 +4550,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode_svip</string>
+						<string>m_listContainerSVIP</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_listContainerSVIP</string>
 						<key>memberVarAssignmentType</key>
@@ -7537,89 +4673,6 @@
 				</array>
 			</dict>
 			<dict>
-				<key>baseClass</key>
-				<string>CCSprite</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>CCSprite</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>318.00009155273438</real>
-							<real>760.00018310546875</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>ignoreAnchorPointForPosition</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>displayFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string>Common/Common_1.plist</string>
-							<string>UI_huitiao.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>blendFunc</string>
-						<key>type</key>
-						<string>Blendmode</string>
-						<key>value</key>
-						<array>
-							<integer>770</integer>
-							<integer>771</integer>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
 				<key>animatedProperties</key>
 				<dict>
 					<key>0</key>
@@ -7632,7 +4685,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCControlButton</string>
+				<string>m_tipBtn</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_tipBtn</string>
 				<key>memberVarAssignmentType</key>
@@ -7850,7 +4903,7 @@
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>CCSprite</string>
+								<string>m_activeSpr</string>
 								<key>memberVarAssignmentName</key>
 								<string>m_activeSpr</string>
 								<key>memberVarAssignmentType</key>
@@ -7929,7 +4982,7 @@
 								<key>customClass</key>
 								<string>CCLabelIF</string>
 								<key>displayName</key>
-								<string>CCLabelTTF</string>
+								<string>m_activeTxt</string>
 								<key>memberVarAssignmentName</key>
 								<string>m_activeTxt</string>
 								<key>memberVarAssignmentType</key>
@@ -8048,14 +5101,12 @@
 										<string>Sample Text</string>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_activeNode</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_activeNode</string>
 						<key>memberVarAssignmentType</key>
@@ -8116,7 +5167,7 @@
 						<key>customClass</key>
 						<string>CCLabelIF</string>
 						<key>displayName</key>
-						<string>CCLabelTTF</string>
+						<string>m_loginDayText</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_loginDayText</string>
 						<key>memberVarAssignmentType</key>
@@ -8244,7 +5295,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCControlButton</string>
+						<string>addPointBtn</string>
 						<key>memberVarAssignmentName</key>
 						<string>addPointBtn</string>
 						<key>memberVarAssignmentType</key>
@@ -8452,7 +5503,7 @@
 						<key>customClass</key>
 						<string>CCLabelIF</string>
 						<key>displayName</key>
-						<string>CCLabelTTF</string>
+						<string>addPointBtnTxt</string>
 						<key>memberVarAssignmentName</key>
 						<string>addPointBtnTxt</string>
 						<key>memberVarAssignmentType</key>

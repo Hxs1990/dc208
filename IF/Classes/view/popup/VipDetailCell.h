@@ -23,16 +23,26 @@ public:
     static const float CELL_WIDTH;
     static const float CELL_HEIGHT;
     
-    static VipDetailCell* create(int index, int type = 0, int VIP_type = 1);
-    VipDetailCell(int index, int type, int VIP_type):m_index(index),m_type(type),m_VIPtype(VIP_type) {};
+    //static VipDetailCell* create(int index, int type = 0, int VIP_type = 1);
+    //VipDetailCell(int index, int type, int VIP_type):m_index(index),m_type(type),m_VIPtype(VIP_type) {};
+    
+    static VipDetailCell* create(int index, int type = 0, int VIP_type = 1, int curLevel = 1); //a by ljf
+    VipDetailCell(int index, int type, int VIP_type, int curLevel):m_index(index),m_type(type),m_VIPtype(VIP_type), mCurrentVipLevel(curLevel) {}; //a by ljf
+
+    
     
     ~VipDetailCell()
     {
         
     }
     
-    void setData(int index);
+    //void setData(int index);
+    void setData(int index, int curLevel);  //ljf
+
+    
     float getHG();
+    float getTopCellHeight();  //ljf
+
 private:
     bool init();
     virtual void onEnter();
@@ -55,6 +65,12 @@ private:
     int m_index;
     int m_type;
     int m_VIPtype;//1-vip,2-svip
+    
+    //b y ljf
+    float mTopCellHeight;
+    int mCurrentVipLevel;
+    //e y ljf
+
 };
 
 class VipEffectCell :public CCNode
@@ -64,15 +80,23 @@ class VipEffectCell :public CCNode
 {
 public:
 
-    static VipEffectCell* create(string type1,int value1,string type2,int value2,int guide = 0);
-    VipEffectCell(string type1,int value1,string type2,int value2,int guide):m_type1(type1),m_value1(value1),m_type2(type2),m_value2(value2),m_guide(guide){};
+    //static VipEffectCell* create(string type1,int value1,string type2,int value2,int guide = 0);
+    //VipEffectCell(string type1,int value1,string type2,int value2,int guide):m_type1(type1),m_value1(value1),m_type2(type2),m_value2(value2),m_guide(guide){};
+    
+    //b a ljf
+    static VipEffectCell* create(string type1,int value1,string type2,int value2, int guide,  string posType, int index, int curLevel);
+    VipEffectCell(string type1,int value1,string type2,int value2,  int guide, string posType, int index, int curLevel):m_type1(type1),m_value1(value1),m_type2(type2),m_value2(value2), m_guide(guide), mPositionType(posType), mIndex(index), mCurrentLevel(curLevel){};
+    //e a ljf
     
     ~VipEffectCell()
     {
         
     }
     
-    void setData(string type1,int value1,string type2,int value2);
+    //void setData(string type1,int value1,string type2,int value2);
+    
+    void setData(string type1,int value1,string type2,int value2, int index, int curLevel); //ljf
+
     float getHG();
     void setGuideAnim();
 private:
@@ -101,6 +125,18 @@ private:
     int m_value2;
     string m_type2;
     int m_guide;
+    
+    
+    
+    //begin a by ljf
+    string mPositionType;
+    int mIndex;
+    int mCurrentLevel;
+    CCSafeObject<CCLabelBMFont> m_curVIPLevel;
+    CCSafeObject<CCLabelBMFont> m_nextVIPLevel;
+    CCSafeObject<CCSprite> m_currentLVBg;
+    //end a by ljf
+
 };
 
 class VipEffectSVIPCell :public CCNode
