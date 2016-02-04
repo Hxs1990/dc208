@@ -6671,7 +6671,7 @@ void UIComponent::resetGoldActivityBox(CCObject* p){
     }else{
         this->m_rechargeNode->setVisible(true);
     }
-    auto mActivityBox = ActivityBox::create(goldExchangeType);
+    mActivityBox = ActivityBox::create(goldExchangeType);
     if(mActivityBox) {
         mActivityBox->setPosition(ccp(43, 43));
         this->m_rechargeNode->addChild(mActivityBox);
