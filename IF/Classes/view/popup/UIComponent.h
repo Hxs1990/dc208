@@ -19,6 +19,8 @@
 #include "HFHeadImgNode.h"
 #include "ChatInfo.h"
 
+#include "RechargeACTVCell.h" //ljf
+
 enum BtnIndex{
     BTN_GENERAL,
     BTN_UPDATE,
@@ -466,6 +468,7 @@ public:
     void showShakeGuideLayer(bool forceShake = false);
     CC_SYNTHESIZE(int, m_queueCount, queueCount);
     void removeShakeGuide();
+    
 public:
     void onPopupReturnClick(CCObject * pSender, CCControlEvent pCCControlEvent);
     void onCancelDelMailClick(CCObject * pSender, CCControlEvent pCCControlEvent);
@@ -478,6 +481,10 @@ public:
     void showAllianceChat();
     void showMailUI();
     
+    //begin a by ljf
+    void loadSpineActivityBox();
+    void unLoadSpineActivityBox();
+    //end a by ljf
 private:
     virtual void onEnter();
     virtual void onExit();
@@ -912,6 +919,10 @@ private:
     int prizePushCount;
     bool recommandRwdClick;//主UI点击推荐任务
     float vipflagPx;
+    
+    //begin a by ljf
+    ActivityBox * mActivityBox;
+    //end a by ljf
 };
 
 #endif /* defined(__IF__UIComponent__) */

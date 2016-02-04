@@ -221,7 +221,9 @@ bool RechargeACTVCell::initRechargeACTVCell()
                     GoldExchangeSaleView* cell =  GoldExchangeSaleView::create(dataItem, 1);
                     cell->ignoreAnchorPointForPosition(false);
                     cell->setAnchorPoint(ccp(0.5, 0.5));
-                    cell->setPosition(ccp(winSize.width/2, winSize.height/2));
+                    //cell->setPosition(ccp(winSize.width/2, winSize.height/2)); //d by ljf
+                    cell->setPosition(ccp(winSize.width/2, 852/2)); //a by ljf
+
                     this->addChild(cell);
                 }
             }
@@ -234,8 +236,10 @@ bool RechargeACTVCell::initRechargeACTVCell()
             LuaController::getInstance()->showExchangeSale(node,dataItemNormal);
         }else{
             GoldExchangeSaleView* cell =  GoldExchangeSaleView::create(dataItemNormal, 1);
+            cell->ignoreAnchorPointForPosition(false); //ljf
             cell->setAnchorPoint(ccp(0.5, 0.5));
-            cell->setPosition(ccp(winSize.width/2, winSize.height/2));
+            //cell->setPosition(ccp(winSize.width/2, winSize.height/2)); //d by ljf
+            cell->setPosition(ccp(winSize.width/2, 852/2)); //a by ljf
             this->addChild(cell);
         }
     }
@@ -309,6 +313,7 @@ bool ActivityBox::initActivityBox()
         LuaController::getInstance()->createExchangeIcon(a, info);
     }else{
     //    m_dataItem = GlobalData::shared()->goldExchangeList["9010"];
+        /* //b d by ljf, 目前没有这些资源
         if(popImg=="newyear"){
             CCBLoadFile("ActivitiesNewYear",this,this);
         }else if (popImg=="christmas"){
@@ -356,7 +361,9 @@ bool ActivityBox::initActivityBox()
         }else{
             CCBLoadFile("ActivityBox",this,this);
         }
-        
+        */ //e d by ljf
+        CCBLoadFile("ActivityBox",this,this); //a by ljf
+        loadSpine();//a by ljf
         if(popImg == "month"){
         }else{
             onEnterFrame(0);
@@ -431,6 +438,10 @@ bool ActivityBox::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const c
 {
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_timeLabel", CCLabelIF*, this->m_timeLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_contentNode", CCNode*, this->m_contentNode);
+    //begin a by ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_ani", CCNode*, this->m_ani);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_timeNode", CCNode*, this->m_timeNode);
+    //end a by ljf
     return false;
 }
 
@@ -540,4 +551,97 @@ void ActivityBox::initChunjieParticle(){
     auto particle16 = ParticleController::createParticle("Firecrackers_6");
     addChild(particle16);
     particle16->setPosition(ccp(-45,-18));
+}
+
+//begin a by ljf
+void ActivityBox::loadSpine()
+{
+    std::string id = m_dataItem->id;
+    std::string pop_image = m_dataItem->popup_image;
+    int pop = m_dataItem->popup;
+    Vec2 timePos(0, 0);
+    string spineJsonName = "Spine/Imperial/activitybox.json";
+    if(m_dataItem->popup_image == "Build" && CCFileUtils::sharedFileUtils()->isFileExist("Spine/Imperial/activitybox_chengjian.json"))
+    {
+        spineJsonName = "Spine/Imperial/activitybox_chengjian.json";
+        timePos.y = 10;
+    }
+    if(m_dataItem->popup_image == "Newbie_Hot" && CCFileUtils::sharedFileUtils()->isFileExist("Spine/Imperial/activitybox_cailiao.json"))
+    {
+        spineJsonName = "Spine/Imperial/activitybox_cailiao.json";
+        timePos.y = 10;
+    }
+    if(m_dataItem->popup_image == "War" && CCFileUtils::sharedFileUtils()->isFileExist("Spine/Imperial/zhanzhenglibao.json"))
+    {
+        spineJsonName = "Spine/Imperial/zhanzhenglibao.json";
+        timePos.y = 10;
+    }
+    if(m_dataItem->popup_image == "Alliance" && CCFileUtils::sharedFileUtils()->isFileExist("Spine/Imperial/lianmenglibao.json"))
+    {
+        spineJsonName = "Spine/Imperial/lianmenglibao.json";
+        timePos.y = 10;
+    }
+    if(m_dataItem->popup_image == "Train" && CCFileUtils::sharedFileUtils()->isFileExist("Spine/Imperial/zaobinglibao.json"))
+    {
+        spineJsonName = "Spine/Imperial/zaobinglibao.json";
+        timePos.y = 10;
+    }
+    if(m_dataItem->popup_image == "Holiday" && CCFileUtils::sharedFileUtils()->isFileExist("Spine/Imperial/jiarilibao.json"))
+    {
+        spineJsonName = "Spine/Imperial/jiarilibao.json";
+        timePos.y = 10;
+    }
+    if(m_dataItem->popup_image == "Level" && CCFileUtils::sharedFileUtils()->isFileExist("Spine/Imperial/dengjilibao.json"))
+    {
+        spineJsonName = "Spine/Imperial/dengjilibao.json";
+        timePos.y = 10;
+    }
+    //const string spineJsonName = "Spine/Imperial/activitybox_cailiao.json";
+    //const string spineJsonName = "Spine/Imperial/activitybox_chengjian.json";
+    const string spineAtlasName = "Imperial/Imperial_30.atlas";
+    
+    
+    if (CCFileUtils::sharedFileUtils()->isFileExist(spineJsonName) &&
+        CCFileUtils::sharedFileUtils()->isFileExist(spineAtlasName))
+    {
+        
+        IFSkeletonAnimation * m_spineAni = new IFSkeletonAnimation(spineJsonName.c_str(), spineAtlasName.c_str());
+        
+        if (m_spineAni && m_ani )
+        {
+            
+            //m_spineAni->setVisibleStop(true);
+            
+            m_ani->addChild(m_spineAni);
+            m_timeNode->setPosition(timePos);
+            spTrackEntry* entry = m_spineAni->setAnimation(0, "loop", true);
+            m_spineAni->setTimeScale(1);
+            m_spineAni->setTag(88022);
+            
+            m_spineAni->setScale(0.8);
+            
+            
+            //m_spineAni->retain();
+            
+            
+        }
+        
+        /*
+         auto kingSpine = IFLoadingSceneArmyNode::create(spineAtlasName.c_str(), spineJsonName.c_str(), "loop", 1);
+         if(kingSpine && m_ani)
+         {
+         m_ani->addChild(kingSpine);
+         }
+         */
+    }
+    
+    
+}
+
+void ActivityBox::unLoadSpine()
+{
+    if(m_ani && m_ani->getChildByTag(88022))
+    {
+        m_ani->getChildByTag(88022)->removeFromParent();
+    }
 }

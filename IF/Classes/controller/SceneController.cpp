@@ -132,6 +132,11 @@ void SceneController::doLastSceneClear(int nextSceneId) {
 //    }
     /* If need cache again, uncomment code above */
     
+    //begin a by ljf
+    //重新创建spine,因为上一帧的spine在onExit中被purge掉了
+    UIComponent::getInstance()->unLoadSpineActivityBox();
+    //end a by ljf
+    
     // release node
     levelNode->removeChild(oldLayer,shouldCleanUpSceneByTag(oldTag));
     
@@ -237,6 +242,10 @@ void SceneController::doSceneInit(int sceneId, bool shouldSave, bool shouldClean
         pSceneNode->addChild(layer);
     
     currentSceneId = sceneId;
+    //begin a by ljf
+    //重新创建spine,因为上一帧的spine在onExit中被purge掉了
+    UIComponent::getInstance()->loadSpineActivityBox();
+    //end a by ljf
     CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(MSG_SCENE_CHANGE_FINISH);
     CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(MSG_SCENE_CHANGED);
 }

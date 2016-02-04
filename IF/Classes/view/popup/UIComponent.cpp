@@ -550,6 +550,9 @@ UIComponent::UIComponent():m_bUIShowFlag(true),m_goldNum(NULL),hasEnter(false){
     m_recommandQuest = NULL;
     setTouchMode(Touch::DispatchMode::ONE_BY_ONE);
     m_titleOldTitle = NULL;
+    //begin a by ljf
+    mActivityBox = NULL;
+    //end by ljf
 }
 
 
@@ -6668,10 +6671,10 @@ void UIComponent::resetGoldActivityBox(CCObject* p){
     }else{
         this->m_rechargeNode->setVisible(true);
     }
-    auto activityBox = ActivityBox::create(goldExchangeType);
-    if(activityBox) {
-        activityBox->setPosition(ccp(43, 43));
-        this->m_rechargeNode->addChild(activityBox);
+    mActivityBox = ActivityBox::create(goldExchangeType);
+    if(mActivityBox) {
+        mActivityBox->setPosition(ccp(43, 43));
+        this->m_rechargeNode->addChild(mActivityBox);
     }
 //    if (CCCommonUtils::isIosAndroidPad()) {
 //        this->m_rechargeNode->setVisible(false);
@@ -7853,4 +7856,24 @@ void UIComponent::setQuestNodeVisible(CCObject* obj)
     else if (type == 1) {
         m_UIQuestNode->setVisible(true);
     }
+}
+
+void UIComponent::loadSpineActivityBox()
+{
+    
+    if(mActivityBox)
+    {
+        mActivityBox->loadSpine();
+    }
+    
+}
+
+void UIComponent::unLoadSpineActivityBox()
+{
+    
+    if(mActivityBox)
+    {
+        mActivityBox->unLoadSpine();
+    }
+    
 }
