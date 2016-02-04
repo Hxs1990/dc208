@@ -114,7 +114,7 @@ bool VipDetailView::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const 
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_progressFg", CCScale9Sprite*, this->m_progressFg);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_progressBg", CCScale9Sprite*, this->m_progressBg);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_avatarFrame", CCSprite*, this->m_avatarFrame);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "·", CCSprite*, this->m_avatarFlowerLeft);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_avatarFlowerLeft", CCSprite*, this->m_avatarFlowerLeft);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_avatarFlowerRight", CCSprite*, this->m_avatarFlowerRight);
     //end a by ljf
 

@@ -67,10 +67,18 @@ public:
 	void onTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
     void setData();
     
+    //begin a by ljf
+    void loadSpine();
+    void unLoadSpine();
+    //end a by ljf
 protected:
     void onEnterFrame(float dt);
     CCSafeObject<CCLabelIF> m_timeLabel;
     CCSafeObject<CCNode> m_contentNode;
+    //begin a by ljf
+    CCSafeObject<CCNode> m_ani;
+    CCSafeObject<CCNode> m_timeNode;
+    //end a by ljf
 private:
     GoldExchangeItem *m_dataItem;
     int m_type;
