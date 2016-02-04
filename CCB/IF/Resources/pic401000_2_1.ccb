@@ -29,6 +29,77 @@
 				<array>
 					<dict>
 						<key>baseClass</key>
+						<string>CCSprite</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>tile</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>anchorPoint</string>
+								<key>type</key>
+								<string>Point</string>
+								<key>value</key>
+								<array>
+									<real>0.0</real>
+									<real>0.0</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>ignoreAnchorPointForPosition</string>
+								<key>type</key>
+								<string>Check</string>
+								<key>value</key>
+								<false/>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>displayFrame</string>
+								<key>type</key>
+								<string>SpriteFrame</string>
+								<key>value</key>
+								<array>
+									<string>Imperial/Imperial_22.plist</string>
+									<string>build_tile.png</string>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>blendFunc</string>
+								<key>type</key>
+								<string>Blendmode</string>
+								<key>value</key>
+								<array>
+									<integer>770</integer>
+									<integer>771</integer>
+								</array>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>baseClass</key>
 						<string>CCNode</string>
 						<key>children</key>
 						<array/>
@@ -49,8 +120,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>27.483795166015625</real>
-									<real>27.320217132568359</real>
+									<real>31.483795166015625</real>
+									<real>24.320217132568359</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -124,8 +195,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-11</real>
-									<real>12</real>
+									<real>-7</real>
+									<real>9</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -184,6 +255,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -207,8 +280,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>213.12730407714844</real>
-									<real>63.873458862304688</real>
+									<real>217.12730407714844</real>
+									<real>60.873458862304688</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -267,6 +340,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -290,8 +365,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>243.63427734375</real>
-									<real>75.438270568847656</real>
+									<real>247.63427734375</real>
+									<real>72.438270568847656</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -350,6 +425,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -373,8 +450,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>243.60000610351562</real>
-									<real>75.400001525878906</real>
+									<real>247.60000610351562</real>
+									<real>72.400001525878906</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -411,6 +488,8 @@
 								<false/>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -434,8 +513,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>226.10000610351562</real>
-									<real>63.900001525878906</real>
+									<real>230.10000610351562</real>
+									<real>60.900001525878906</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -472,6 +551,8 @@
 								<false/>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -503,8 +584,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>205.1273193359375</real>
-									<real>53.873458862304688</real>
+									<real>209.1273193359375</real>
+									<real>50.873458862304688</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -563,6 +644,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>

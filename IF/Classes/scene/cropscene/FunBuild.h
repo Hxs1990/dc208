@@ -237,9 +237,7 @@ protected:
     void onCheckOutPut();
     void onResetDirc(float _time);
     void onPlayBall(float _time);
-    void setSoilderVisible(CCObject* obj);
-    void addSoilderVisibleParticle();
-    void removeSoldierParticle(float t);
+
 private:
     void showForgeFire(float dt);
     

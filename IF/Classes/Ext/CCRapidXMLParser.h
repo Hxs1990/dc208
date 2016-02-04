@@ -40,6 +40,11 @@ public:
     //  根据分组关键字获取分组数据字典
     CCDictionary * getGroupByKey(std::string key);
     
+    //  以id的值为key进行存储；
+    CCDictionary * getDictItem() { return m_pDictItem; }
+    //  分组存储，以Group id="Animal"中id值为key;
+    CCDictionary *  getDictGroup() { return m_pDictGroup; }
+    
 private:
     std::string m_startXMLElement;
     std::string m_endXMLElement;

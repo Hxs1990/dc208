@@ -631,7 +631,8 @@ void FunBuild::setNamePos(int x, int y, CCLayer* sginLayer, CCLayer* popLayer, C
         drowEffectSpr(zOrder, tmpOrd);
     }
 //    drowEffectSpr(zOrder, tmpOrd);
-    drowPersonSpr(zOrder, tmpOrd);
+    // tao.yu TODO 兵营的小兵
+//    drowPersonSpr(zOrder, tmpOrd);
     
     if (isCanRecState()) {
         addFunBuildState();
@@ -1316,7 +1317,6 @@ void FunBuild::onEnter() {
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(FunBuild::addWorkShopBuildState), "addFunBuildState", NULL);
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(FunBuild::addAllianceNode), "addAllianceMaxColor", NULL);
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(FunBuild::onGetMsgTmpSkinChange), MSG_TMP_SKIN_CHANGE, nullptr);
-    CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(FunBuild::setSoilderVisible), MSG_WALLSOILDER_VISIBLE, nullptr);
     if(m_info && m_info->type == FUN_BUILD_FORT)
     {
         this->scheduleOnce(schedule_selector(FunBuild::playFortSkillEffect), 0.45);
@@ -2521,11 +2521,6 @@ bool FunBuild::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_arrSpr", CCSprite*, this->m_arrSpr);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lvBG", CCSprite*, this->m_lvBG);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_arrStar", CCSprite*, this->m_arrStar);
-//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_starnum", CCSprite*, this->m_starnum);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_soider1", Sprite*, m_soider1);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_soider2", Sprite*, m_soider2);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_soider2Par", Node*, m_soider2Par);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_soider1Par", Node*, m_soider1Par);
     return false;
 }
 
@@ -3249,74 +3244,6 @@ void FunBuild::setStateBtnsVisible(bool visible)
         }
         else
             m_buildState->setVisible(false);
-    }
-}
-
-void FunBuild::setSoilderVisible(CCObject *obj)
-{
-    int type = -1;
-    if(obj==NULL || (dynamic_cast<CCInteger*>(obj)==NULL)){
-        type = -1;
-    }else {
-        CCInteger* intObj = dynamic_cast<CCInteger*>(obj);
-        type = intObj->getValue();
-    }
-
-    if (m_soider1 && m_soider2) {
-        if (type == 0) {
-            m_soider1->setVisible(false);
-            m_soider2->setVisible(false);
-        }
-        else if (type == 1) {
-            m_soider1->setOpacity(0);
-            m_soider1->setVisible(true);
-            m_soider2->setOpacity(0);
-            m_soider2->setVisible(true);
-            
-            CCActionInterval * fadeTo1 = CCFadeTo::create(1.0, 255);
-            CCFiniteTimeAction * spawn1 =CCSpawn::create(CCCallFunc::create(this, callfunc_selector(FunBuild::addSoilderVisibleParticle)),fadeTo1,NULL);
-            
-            CCSequence *sequene = CCSequence::create(CCDelayTime::create(5.0), spawn1, NULL);
-            CCSequence *sequene1 = CCSequence::create(CCDelayTime::create(5.0), CCFadeTo::create(1.0, 255), NULL);
-            m_soider1->runAction(sequene);
-            m_soider2->runAction(sequene1);
-        }
-    }
-}
-
-void FunBuild::addSoilderVisibleParticle()
-{
-    Node* parNode1 = Node::create();
-    Node* parNode2 = Node::create();
-    for (int i = 0 ; i < 7; i++) {
-        auto particle = ParticleController::createParticle(CCString::createWithFormat("newop_guard_%d",i)->getCString());
-        particle->setPosition(CCPointZero);
-        if (i == 0) {
-            particle->setPosition(ccp(0, 135));
-        }
-        parNode1->addChild(particle);
-    }
-    for (int i = 0 ; i < 7; i++) {
-        auto particle =  ParticleController::createParticle(CCString::createWithFormat("newop_guard_%d",i)->getCString());
-        particle->setPosition(CCPointZero);
-        if (i == 0) {
-            particle->setPosition(ccp(0, 135));
-        }
-        parNode2->addChild(particle);
-    }
-    
-    if (m_soider1Par && m_soider2Par) {
-        m_soider1Par->addChild(parNode1);
-        m_soider2Par->addChild(parNode2);
-    }
-    scheduleOnce(schedule_selector(FunBuild::removeSoldierParticle), 5.0);
-}
-
-void FunBuild::removeSoldierParticle(float t)
-{
-    if (m_soider2Par && m_soider1Par) {
-        m_soider1Par->removeAllChildren();
-        m_soider2Par->removeAllChildren();
     }
 }
 /////////////

@@ -20,7 +20,7 @@ USING_NS_CC_EXT;
 
 const std::string localPath = "local/";
 const std::string xmlFile = "database.local.xml";
-const std::string iniFile = "text_zh_CN.ini";
+const std::string iniFile = "text/text_zh_CN.ini";
 
 LocalController* LocalController::m_LocalController = NULL;
 
@@ -131,7 +131,7 @@ std::string LocalController::getLanguageFileName()
         fileName=preferredLanguage;
     }
 
-    bool fileExist = CCFileUtils::sharedFileUtils()->isFileExist("local/text_"+fileName+".ini");
+    bool fileExist = CCFileUtils::sharedFileUtils()->isFileExist("local/text/text_"+fileName+".ini");
     
     if (!fileExist)
     {
@@ -180,7 +180,7 @@ void LocalController::init() {
         }
     }
     
-    std::string update1 = updatePath + xmlFile;
+    /*std::string update1 = updatePath + xmlFile;
     std::string local1 = localPath + xmlFile;
     if (CCFileUtils::sharedFileUtils()->isFileExist(update1) && !useLocalXml) {
         try{
@@ -193,14 +193,115 @@ void LocalController::init() {
         }
     } else {
         m_objXMLParser = CCRapidXMLParser::parseWithFile(local1.c_str(),local1.c_str());
+    }*/
+    
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    std::vector<const char *> xmls = {
+        "local/xml/item_ab_ab.xml",
+        "local/xml/item_ability_ability.xml",
+        "local/xml/item_achievement_achievement.xml",
+        "local/xml/item_activity_panel_activity_panel.xml",
+        "local/xml/item_affairs_affairs.xml",
+        "local/xml/item_alliance_quest_alliance_quest.xml",
+        "local/xml/item_alliancescience_alliancescience.xml",
+        "local/xml/item_arena_arena.xml",
+        "local/xml/item_arms_arms.xml",
+        "local/xml/item_army_power.xml",
+        "local/xml/item_building_building.xml",
+        "local/xml/item_changeLanguage_changeLanguage.xml",
+        "local/xml/item_characters_characters.xml",
+        "local/xml/item_checkpoint_checkpoint.xml",
+        "local/xml/item_city_city.xml",
+        "local/xml/item_cn_npc.xml",
+        "local/xml/item_daily_quest_daily_quest.xml",
+        "local/xml/item_dg_refinement_dg_refinement.xml",
+        "local/xml/item_dragon_dragon.xml",
+        "local/xml/item_dragon_egg_dragon_egg.xml",
+        "local/xml/item_dragon_exp_dragon_exp.xml",
+        "local/xml/item_dragon_food_dragon_food.xml",
+        "local/xml/item_effect_effect.xml",
+        "local/xml/item_effect_format_effect_format.xml",
+        "local/xml/item_endowment_endowment.xml",
+        "local/xml/item_equipment_equipment.xml",
+        "local/xml/item_events_events.xml",
+        "local/xml/item_explore_explore.xml",
+        "local/xml/item_field_monster_field_monster.xml",
+        "local/xml/item_general_general.xml",
+        "local/xml/item_gift_gift.xml",
+        "local/xml/item_goods_goods.xml",
+        "local/xml/item_grade_grade.xml",
+        "local/xml/item_guide_guide.xml",
+        "local/xml/item_help_link_help_link.xml",
+        "local/xml/item_house_house.xml",
+        "local/xml/item_howtoPlay_howtoPlay.xml",
+        "local/xml/item_ios_pay_ios_pay.xml",
+        "local/xml/item_knight_title_knight_title.xml",
+        "local/xml/item_language_language.xml",
+        "local/xml/item_lordDetails_lordDetails.xml",
+        "local/xml/item_lueagearea_lueagearea.xml",
+        "local/xml/item_medal_medal.xml",
+        "local/xml/item_notice_Notice.xml",
+        "local/xml/item_npc_110000.xml",
+        "local/xml/item_office_office.xml",
+        "local/xml/item_onlineReward_onlineReward.xml",
+        "local/xml/item_plot_plot.xml",
+        "local/xml/item_position_position.xml",
+        "local/xml/item_position_unlock_position_unlock.xml",
+        "local/xml/item_power_power.xml",
+        "local/xml/item_princess_quest_princess_quest.xml",
+        "local/xml/item_quest_phase_quest_phase.xml",
+        "local/xml/item_quest_quest.xml",
+        "local/xml/item_rank_rank.xml",
+        "local/xml/item_recruit_recruit.xml",
+        "local/xml/item_resdential_resdential.xml",
+        "local/xml/item_resource2_resource2.xml",
+        "local/xml/item_reward_reward.xml",
+        "local/xml/item_road_road.xml",
+        "local/xml/item_role_role.xml",
+        "local/xml/item_science_equip_science_equip.xml",
+        "local/xml/item_science_science.xml",
+        "local/xml/item_scienceType_scienceType.xml",
+        "local/xml/item_score_score.xml",
+        "local/xml/item_serverpos_serverpos.xml",
+        "local/xml/item_sk_sk.xml",
+        "local/xml/item_skill_skill.xml",
+        "local/xml/item_skill2_skill2.xml",
+        "local/xml/item_status_status.xml",
+        "local/xml/item_svip_svip.xml",
+        "local/xml/item_talkTips_talkTips.xml",
+        "local/xml/item_territory_banner_territory_banner.xml",
+        "local/xml/item_territory_territory.xml",
+        "local/xml/item_time_gift_time_gift.xml",
+        "local/xml/item_tower_tower.xml",
+        "local/xml/item_train_train.xml",
+        "local/xml/item_trial_trial.xml",
+        "local/xml/item_upgradeNotice_upgradeNotice.xml",
+        "local/xml/item_vip_vip.xml",
+        "local/xml/item_wa_build_c_wa_build_c.xml",
+        "local/xml/item_wa_build_wa_build.xml",
+        "local/xml/item_wa_rank_wa_rank.xml",
+        "local/xml/item_wb_kill_wb_kill.xml",
+        "local/xml/item_wb_skill_wb_skill.xml",
+        "local/xml/item_wing_wing.xml",
+        "local/xml/item_wonder_wonder.xml",
+        "local/xml/item_worldcastle_worldcastle.xml",
+        "local/xml/loading_tips_loadingTips.xml",};
+    m_objXMLParser = new CCRapidXMLParser();
+    for (auto it = xmls.begin(); it != xmls.end(); ++it)
+    {
+        std::string filePath = FileUtils::getInstance()->fullPathForFilename(*it);
+        CCLOG("--- m_objXMLParser: %s", filePath.c_str());
+        m_objXMLParser->initWithFile(filePath.c_str());
     }
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    
     CCLOG("rapidxml load Time %lu", clock() - ulc);
     
     ulc = clock();
     std::string languageFileName = getLanguageFileName();
     
-    std::string update2 = updatePath + "text_" + languageFileName + ".ini";
-    std::string local2 = localPath + "text_" + languageFileName + ".ini";
+    std::string update2 = updatePath + "text/text_" + languageFileName + ".ini";
+    std::string local2 = localPath + "text/text_" + languageFileName + ".ini";
     if (CCFileUtils::sharedFileUtils()->isFileExist(update2) && !useLocalXml) {
         try{
             m_objINIFileParser = CCINIParser::parseWithFile(update2.c_str(),local2.c_str());
