@@ -4287,7 +4287,7 @@
 		DB9F592617CD9A520037F7E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ios/main.m; sourceTree = "<group>"; };
 		DB9F5C9617CD9A580037F7E5 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		DB9F5C9817CD9A580037F7E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
-		DB9F5C9917CD9A580037F7E5 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../AppDelegate.cpp; sourceTree = "<group>"; };
+		DB9F5C9917CD9A580037F7E5 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		DBA087DC17CDA95F001C68AD /* GlobalData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalData.cpp; sourceTree = "<group>"; };
 		DBA087DD17CDA95F001C68AD /* GlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalData.h; sourceTree = "<group>"; };
 		DBA0880317CE00B8001C68AD /* TypeDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefinition.h; sourceTree = "<group>"; };
@@ -5684,7 +5684,6 @@
 		2A99A2DA1BB6706F0053DD72 /* lua */ = {
 			isa = PBXGroup;
 			children = (
-				DB9F5C9917CD9A580037F7E5 /* AppDelegate.cpp */,
 				13A887771C1AC9840078F6C4 /* lua_cocos2dx_if_manual.cpp */,
 				13A887781C1AC9840078F6C4 /* lua_cocos2dx_if_manual.h */,
 				13E0A6C01C05C13000461E81 /* lua_cocos2dx_if_auto.cpp */,
@@ -7978,6 +7977,7 @@
 			children = (
 				2A99A2DA1BB6706F0053DD72 /* lua */,
 				DB9F5C9817CD9A580037F7E5 /* AppDelegate.h */,
+				DB9F5C9917CD9A580037F7E5 /* AppDelegate.cpp */,
 				BADF472B1A3AA9A5008E2414 /* AppLibHelper.cpp */,
 				BADF472C1A3AA9A5008E2414 /* AppLibHelper.h */,
 				BADF472D1A3AA9A5008E2414 /* AppLibHelper.mm */,
