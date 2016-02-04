@@ -455,6 +455,8 @@
 		365A72151C61C2A900E7E509 /* NBGRenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A720F1C61C2A900E7E509 /* NBGRenderTarget.cpp */; };
 		365A72161C61C2A900E7E509 /* NBProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A72111C61C2A900E7E509 /* NBProgressBar.cpp */; };
 		365A72171C61C2A900E7E509 /* NBSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A72131C61C2A900E7E509 /* NBSlider.cpp */; };
+		365A722C1C6351B800E7E509 /* NBSprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A72251C6351B800E7E509 /* NBSprite3D.cpp */; };
+		365A722D1C6351B800E7E509 /* Titan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365A72271C6351B800E7E509 /* Titan.cpp */; };
 		366A8461180BE37100790261 /* ClippingNodeExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 366A845F180BE37100790261 /* ClippingNodeExt.cpp */; };
 		366E1C6A17D04FA0006CCCBF /* SoundController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 366E1C6717D04FA0006CCCBF /* SoundController.cpp */; };
 		366E1C6D17D07261006CCCBF /* LocalController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 366E1C6B17D07261006CCCBF /* LocalController.cpp */; };
@@ -2373,6 +2375,10 @@
 		365A72121C61C2A900E7E509 /* NBProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBProgressBar.h; sourceTree = "<group>"; };
 		365A72131C61C2A900E7E509 /* NBSlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBSlider.cpp; sourceTree = "<group>"; };
 		365A72141C61C2A900E7E509 /* NBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBSlider.h; sourceTree = "<group>"; };
+		365A72251C6351B800E7E509 /* NBSprite3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NBSprite3D.cpp; path = titan/NBSprite3D.cpp; sourceTree = "<group>"; };
+		365A72261C6351B800E7E509 /* NBSprite3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBSprite3D.h; path = titan/NBSprite3D.h; sourceTree = "<group>"; };
+		365A72271C6351B800E7E509 /* Titan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Titan.cpp; path = titan/Titan.cpp; sourceTree = "<group>"; };
+		365A72281C6351B800E7E509 /* Titan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Titan.h; path = titan/Titan.h; sourceTree = "<group>"; };
 		366A845F180BE37100790261 /* ClippingNodeExt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClippingNodeExt.cpp; sourceTree = "<group>"; };
 		366A8460180BE37100790261 /* ClippingNodeExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClippingNodeExt.h; sourceTree = "<group>"; };
 		366E1C6517D04F8E006CCCBF /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = Resources/sounds; sourceTree = "<group>"; };
@@ -5723,6 +5729,17 @@
 			path = libs/rapidxml;
 			sourceTree = "<group>";
 		};
+		365A721E1C63519100E7E509 /* titan */ = {
+			isa = PBXGroup;
+			children = (
+				365A72251C6351B800E7E509 /* NBSprite3D.cpp */,
+				365A72261C6351B800E7E509 /* NBSprite3D.h */,
+				365A72271C6351B800E7E509 /* Titan.cpp */,
+				365A72281C6351B800E7E509 /* Titan.h */,
+			);
+			name = titan;
+			sourceTree = "<group>";
+		};
 		366E306417D58C3A006CCCBF /* Net */ = {
 			isa = PBXGroup;
 			children = (
@@ -8258,6 +8275,7 @@
 		DBA087DE17CDA95F001C68AD /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				365A721E1C63519100E7E509 /* titan */,
 				5724402E1B218344000DAF5F /* dragon */,
 				FD3E3809183B3F19005596BD /* world */,
 				96EFEB0017E70A19002B6244 /* battle */,
@@ -9714,6 +9732,7 @@
 				A8B7A6981B2997E000441850 /* GetChatRoomMemberCommand.cpp in Sources */,
 				275C1F8D1BA95BC900B46FE6 /* HelpReportParams.m in Sources */,
 				E5931BBF19A4D57200781137 /* ChatIsInAllanceCommand.cpp in Sources */,
+				365A722D1C6351B800E7E509 /* Titan.cpp in Sources */,
 				6CA8C9201B4573BE0061F829 /* AFURLRequestSerialization.m in Sources */,
 				57F2077C19826C2900BDE262 /* WallBuild.cpp in Sources */,
 				27AD604A1B5D014A00B6AD40 /* MJRefreshAutoFooter.m in Sources */,
@@ -9732,6 +9751,7 @@
 				6CF320521B57B2ED006912DB /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				1D5FA00A1B018D89004D2E51 /* LuaCommand.cpp in Sources */,
 				1D341ECA1BCBC38700A1B249 /* FriendsCommand.cpp in Sources */,
+				365A722C1C6351B800E7E509 /* NBSprite3D.cpp in Sources */,
 				57CF2BA41850791F001A8854 /* EnergyPush.cpp in Sources */,
 				27A1A4811BC8A6AE005120D4 /* BattleMailContents.m in Sources */,
 				57E0EDDF1925EEBD0098A898 /* BuildUpgradeView.cpp in Sources */,

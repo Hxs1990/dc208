@@ -384,11 +384,25 @@ void RenderTexture::visit(Renderer *renderer, const Mat4 &parentTransform, uint3
 {
     // override visit.
     // Don't call visit on its children
+    //begin d by ljf
+    /*
     if (!_visible || !isVisitableByVisitingCamera())
     {
         return;
     }
-    
+    */
+    //end d by ljf
+    //begin a by ljf
+    if(!_visible)
+    {
+        return;
+    }
+    if(!isVisitableByVisitingCamera())
+    {
+        processParentFlags(parentTransform, parentFlags);
+        return;
+    }
+    //end a by ljf
     uint32_t flags = processParentFlags(parentTransform, parentFlags);
 
     Director* director = Director::getInstance();
@@ -581,6 +595,11 @@ void RenderTexture::onBegin()
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &_oldFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, _FBO);
 
+    //begin a by ljf
+    glGetIntegerv(GL_DEPTH_WRITEMASK, &_oldDepthMask);
+    glDepthMask(true);
+    //end a by ljf
+    
     // TODO: move this to configration, so we don't check it every time
     /*  Certain Qualcomm Andreno gpu's will retain data in memory after a frame buffer switch which corrupts the render to the texture. The solution is to clear the frame buffer before rendering to the texture. However, calling glClear has the unintended result of clearing the current texture. Create a temporary texture to overcome this. At the end of RenderTexture::begin(), switch the attached texture to the second one, call glClear, and then switch back to the original texture. This solution is unnecessary for other devices as they don't have the same issue with switching frame buffers.
      */
@@ -598,6 +617,10 @@ void RenderTexture::onEnd()
 {
     Director *director = Director::getInstance();
 
+    //begin a by ljf
+    glDepthMask(_oldDepthMask);
+    //end a by ljf
+    
     glBindFramebuffer(GL_FRAMEBUFFER, _oldFBO);
 
     // restore viewport

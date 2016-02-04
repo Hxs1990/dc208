@@ -72,7 +72,7 @@
 			<key>orientation</key>
 			<integer>0</integer>
 			<key>position</key>
-			<real>1102</real>
+			<real>995</real>
 		</dict>
 		<dict>
 			<key>orientation</key>
@@ -2290,8 +2290,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1084.0999755859375</real>
-							<real>2525.10009765625</real>
+							<real>1021.394287109375</real>
+							<real>2701.273193359375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2328,6 +2328,8 @@
 						<false/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
