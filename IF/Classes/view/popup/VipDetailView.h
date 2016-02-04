@@ -13,6 +13,11 @@
 #include "PopupBaseView.h"
 #include "CCClipNode.h"
 
+//begin a by ljf
+//#include "NBProgressBar.h"
+//end a by ljf
+
+
 #define VIP_REFRESH "vip.refresh"
 
 class VipDetailView : public PopupBaseView
@@ -70,10 +75,16 @@ private:
     void onAddVipAnim();
     void setGuideAnim();
     
+    //begin a by ljf
+    void updateAvatarFrame(bool isActivated);
+    //end a by ljf
+
+    
     CCSafeObject<CCScrollView> m_scroll;
     
     CCSafeObject<CCControlButton> m_tipBtn;
-    CCSafeObject<CCLabelIFBMFont> m_vipLvText;
+    //CCSafeObject<CCLabelIFBMFont> m_vipLvText;
+    CCSafeObject<CCLabelBMFont> m_vipLvText; //ljf
     CCSafeObject<CCLabelIF> m_vipLeftTimeText;
     CCSafeObject<CCNode> m_vipAnimNode;
     CCSafeObject<Node> m_activeGuideNode;
@@ -81,14 +92,19 @@ private:
     CCSafeObject<CCScale9Sprite> m_listBG;
     CCSafeObject<CCSprite> m_pageFlag;
     
-    CCSafeObject<CCLabelIFBMFont> m_currentVIPText;
-    CCSafeObject<CCLabelIFBMFont> m_NextVIPText;
+    //CCSafeObject<CCLabelIFBMFont> m_currentVIPText;
+    //CCSafeObject<CCLabelIFBMFont> m_NextVIPText;
+    
+    CCSafeObject<CCLabelIF> m_currentVIPText; //ljf
+    CCSafeObject<CCLabelIF> m_NextVIPText; //ljf
+
     CCSafeObject<CCNode> m_downNode;
     CCSafeObject<CCNode> m_listContainer;
     CCSafeObject<CCScale9Sprite> m_buildBG;
     CCSafeObject<CCNode> m_progressBarNode;
     CCSafeObject<CCLabelIF> m_loginDayText;
-    CCSafeObject<CCLabelIFBMFont> m_lblVIP[4];
+    //CCSafeObject<CCLabelIFBMFont> m_lblVIP[4];
+    CCSafeObject<CCLabelIF> m_lblVIP[4]; //ljf
     CCSafeObject<CCLabelIF> m_vipNextPointNumText;
     CCSafeObject<CCLabelIF> m_vipLastPointNumText;
     CCSafeObject<CCLabelIF> m_vipCurrentPointNumText;
@@ -161,6 +177,19 @@ private:
     int vip10Left;
     int vip10Right;
     int curPoint;
+    
+    //begin a by ljf
+    CCSafeObject<CCLabelIF> m_vipSuperTitle;
+    CCSafeObject<CCLabelIF> m_leftBranch;
+    CCSafeObject<CCControlButton> m_activateBtn;
+    CCSafeObject<CCScale9Sprite> m_progressFg;
+    CCSafeObject<CCScale9Sprite> m_progressBg;
+    int m_currentVipLevel;
+    CCSafeObject<CCSprite> m_avatarFrame;
+    CCSafeObject<CCSprite> m_avatarFlowerLeft;
+    CCSafeObject<CCSprite> m_avatarFlowerRight;
+    //end a by ljf
+
 };
 
 #endif /* defined(__IF__VipDetailView__) */

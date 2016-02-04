@@ -44,6 +44,7 @@ TerritoryInfoDetailView *TerritoryInfoDetailView::create(WorldCityInfo& info){
 void TerritoryInfoDetailView::onEnter(){
     UIComponent::getInstance()->showPopupView(1);
     PopupBaseView::onEnter();
+
     m_tabView->reloadData();
     setTouchMode(Touch::DispatchMode::ONE_BY_ONE);
     setTouchEnabled(true);
@@ -84,17 +85,17 @@ void TerritoryInfoDetailView::onTouchEnded(CCTouch *pTouch, CCEvent *pEvent){
 
 bool TerritoryInfoDetailView::init(){
     if(PopupBaseView::init()){
+        CCLoadSprite::doResourceByCommonIndex(8, true);
         CCLoadSprite::doResourceByCommonIndex(7, true);
         CCLoadSprite::doResourceByCommonIndex(504, true);
         CCLoadSprite::doResourceByCommonIndex(500, true);
         CCLoadSprite::doResourceByCommonIndex(208, true);
-        CCLoadSprite::doResourceByCommonIndex(204, true);
         setCleanFunction([](){
+            CCLoadSprite::doResourceByCommonIndex(8, false);
             CCLoadSprite::doResourceByCommonIndex(7, false);
             CCLoadSprite::doResourceByCommonIndex(504, false);
             CCLoadSprite::doResourceByCommonIndex(500, false);
             CCLoadSprite::doResourceByCommonIndex(208, false);
-            CCLoadSprite::doResourceByCommonIndex(204, false);
         });
         setIsHDPanel(true);
         m_data = CCArray::create();
@@ -116,7 +117,7 @@ bool TerritoryInfoDetailView::init(){
         m_withdrawBtn->setVisible(true);
         m_withdrawBtn->setEnabled(false);
         
-        auto tbg = CCLoadSprite::loadResource("technology_09.png");
+        /*auto tbg = CCLoadSprite::loadResource("technology_09.png");
         auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
         auto picBg1 = CCLoadSprite::createSprite("technology_09.png");
         picBg1->setAnchorPoint(ccp(0, 0));
@@ -144,7 +145,7 @@ bool TerritoryInfoDetailView::init(){
         m_fireNode1->addChild(par);
         
         ParticleFireAni* par2 = ParticleFireAni::create();
-        m_fireNode2->addChild(par2);
+        m_fireNode2->addChild(par2);*/
         
         m_tabView = CCTableView::create(this, m_infoList->getContentSize());
         m_tabView->setDirection(kCCScrollViewDirectionVertical);
@@ -431,7 +432,7 @@ void TerritoryInfoDetailView::onDetailCallback(cocos2d::CCObject *obj) {
                         if (info->getUid()==GlobalData::shared()->playerInfo.uid) {
                             tempFlag = false;
                         }
-                        info->release();
+                        CC_SAFE_RELEASE(info);
                         if (m_cityInfo.cityType == Tile_allianceArea && m_cityInfo.m_allianceAreaInfo.state == 6) {
                             if (item != NULL && item->objectForKey("totalTroops")) {
                                 destroyingArmy += item->valueForKey("totalTroops")->intValue();
@@ -462,14 +463,14 @@ void TerritoryInfoDetailView::onDetailCallback(cocos2d::CCObject *obj) {
                     else
                         info->setIndex(2);
                     m_data->addObject(info);
-                    info->release();
+                    CC_SAFE_RELEASE(info);
                 }
                 info = new YuanJunInfo();
                 CCArray* array = CCArray::create();
                 info->setSoldiers(array);
                 info->setIndex(3);
                 m_data->addObject(info);
-                info->release();
+                CC_SAFE_RELEASE(info);
             }
         }
         else {
@@ -490,7 +491,7 @@ void TerritoryInfoDetailView::onDetailCallback(cocos2d::CCObject *obj) {
                                 YuanJunInfo* info = new YuanJunInfo();
                                 info->parseInfo(item);
                                 m_data->addObject(info);
-                                info->release();
+                                CC_SAFE_RELEASE(info);
                                 if (m_cityInfo.cityType == Tile_allianceArea && m_cityInfo.m_allianceAreaInfo.state == 6) {
                                     if (item != NULL && item->objectForKey("totalTroops")) {
                                         destroyingArmy += item->valueForKey("totalTroops")->intValue();
@@ -886,7 +887,7 @@ void TerritoryInfoDetailView::refreshOnce() {
     else if (m_cityInfo.cityType == tile_wareHouse) {
         m_territoryStat = m_cityInfo.m_warehouseInfo.state;
     }
-    m_statLabel->setColor({243,69,0});
+    m_statLabel->setColor({0xff, 0x54, 0x54});
     std::string strStat = "";//状态
     switch (m_territoryStat) {
         case 0: {
@@ -1427,12 +1428,12 @@ void TerritoryInfoDetailView::onCellClick(CCObject* data){
                 break;
             }
         }
-        CCPoint curr = m_tabView->getContentOffset();
+        /*CCPoint curr = m_tabView->getContentOffset();
         CCPoint max = m_tabView->maxContainerOffset();
-        CCPoint min = m_tabView->minContainerOffset();
+        CCPoint min = m_tabView->minContainerOffset();*/
         m_tabView->reloadData();
-        curr.y += m_tabView->minContainerOffset().y - min.y;
-        m_tabView->setContentOffset(curr);
+        /*curr.y += m_tabView->minContainerOffset().y - min.y;
+        m_tabView->setContentOffset(curr);*/
     }
 }
 
@@ -1473,7 +1474,7 @@ void TerritoryInfoDetailView::qianFanCallBack(CCObject *data)
         info->setIndex(2);
         m_data->insertObject(info, num-1);
         //        m_data->addObject(info);
-        info->release();
+        CC_SAFE_RELEASE(info);
         m_tabView->reloadData();
     }
 }
@@ -1530,13 +1531,13 @@ bool TerritoryInfoDetailView::onAssignCCBMemberVariable(cocos2d::CCObject * pTar
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_infoList", CCNode*, this->m_infoList);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_picNode", CCNode*, this->m_picNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bottomNode", CCNode*, this->m_bottomNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_fireNode1", CCNode*, this->m_fireNode1);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_fireNode2", CCNode*, this->m_fireNode2);
+    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_fireNode1", CCNode*, this->m_fireNode1);
+    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_fireNode2", CCNode*, this->m_fireNode2);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bgNode", CCNode*, this->m_bgNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bannerNode", CCNode*, this->m_bannerNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_withdrawBtn", CCControlButton*, this->m_withdrawBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_tipBtn", CCControlButton*, this->m_tipBtn);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_titleLabel", CCLabelIF*, this->m_titleLabel);
+    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_titleLabel", CCLabelIF*, this->m_titleLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_titleTxt", CCLabelIF*, this->m_titleTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_statLabel", CCLabelIF*, this->m_statLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_defLabel1", CCLabelIF*, this->m_defLabel1);
@@ -1555,6 +1556,9 @@ SEL_CCControlHandler TerritoryInfoDetailView::onResolveCCBCCControlSelector(coco
     return NULL;
 }
 
+const int CELL_W = 640;
+const int CELL_H = 104;
+
 CCSize TerritoryInfoDetailView::tableCellSizeForIndex(CCTableView *table, ssize_t idx)
 {
     if(idx >= m_data->count()){
@@ -1564,7 +1568,7 @@ CCSize TerritoryInfoDetailView::tableCellSizeForIndex(CCTableView *table, ssize_
     if (obj->getOpen()) {
         int num = obj->getSoldiers()->count();
         int row = num/2 + (num%2==0?0:1);
-        int addH = row*100;
+        int addH = row*100 + 20;
         if (CCCommonUtils::isIosAndroidPad()) {
             addH = row*200;
         }
@@ -1572,27 +1576,27 @@ CCSize TerritoryInfoDetailView::tableCellSizeForIndex(CCTableView *table, ssize_
             if (CCCommonUtils::isIosAndroidPad()) {
                 return CCSize(1470, 250+addH+120);
             }
-            return CCSize(620, 125+addH+60);
+            return CCSize(CELL_W, CELL_H+addH+50);
         }
         else {
             if (CCCommonUtils::isIosAndroidPad()) {
                 return CCSize(1470, 250+addH+40);
             }
-            return CCSize(620, 125+addH+20);
+            return CCSize(CELL_W, CELL_H+addH+50);
         }
     }
     if (CCCommonUtils::isIosAndroidPad()) {
         return CCSize(1470, 250);
     }
-    return CCSize(620, 125);
+    return CCSize(CELL_W, CELL_H);
 }
 
 CCSize TerritoryInfoDetailView::cellSizeForTable(CCTableView *table)
 {
-    if (CCCommonUtils::isIosAndroidPad()) {
-        return CCSize(1470, 250);
-    }
-    return CCSize(620, 125);
+//    if (CCCommonUtils::isIosAndroidPad()) {
+//        return CCSize(1470, 250);
+//    }
+    return CCSize(CELL_W, CELL_H);
 }
 
 CCTableViewCell* TerritoryInfoDetailView::tableCellAtIndex(CCTableView *table, ssize_t idx)
@@ -1643,6 +1647,16 @@ void TerritoryInfoDetailCell::onExit(){
 }
 
 bool TerritoryInfoDetailCell::init(){
+    CCLoadSprite::doResourceByCommonIndex(504, true);
+    CCLoadSprite::doResourceByCommonIndex(500, true);
+    CCLoadSprite::doResourceByCommonIndex(7, true);
+    CCLoadSprite::doResourceByCommonIndex(204, true);
+    setCleanFunction([](){
+        CCLoadSprite::doResourceByCommonIndex(504, false);
+        CCLoadSprite::doResourceByCommonIndex(500, false);
+        CCLoadSprite::doResourceByCommonIndex(7, false);
+        CCLoadSprite::doResourceByCommonIndex(204, false);
+    });
     auto node = CCBLoadFile("TerritoryInfoDetailCell", this, this);
     this->setContentSize(node->getContentSize());
     m_clickFlag = false;
@@ -1654,13 +1668,13 @@ bool TerritoryInfoDetailCell::init(){
 void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
     m_stat = stat;
     m_info = info;
-    
+
     m_nameTxt->setString(m_info->getName().c_str());
     std::string numStr = _lang("108557");
     numStr.append(":");
     numStr.append(CC_CMDITOA(m_info->getNum()));
     m_armyNum->setString(numStr);
-    m_bgNodee->setVisible(true);
+//    m_bgNodee->setVisible(true);
     m_unUseNode->setVisible(false);
     m_moveNode->setVisible(false);
     m_scienceNode->setVisible(false);
@@ -1710,7 +1724,7 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
         m_unUseNode->setVisible(true);
     }else if(m_info->getIndex()==3){
         m_scienceNode->setVisible(true);
-        m_bgNodee->setVisible(false);
+//        m_bgNodee->setVisible(false);
         m_scienceTxt->setString(_lang("115146"));
     }else if(m_info->getIndex()==4){
         m_tipTxt->setString(_lang("115403"));
@@ -1733,6 +1747,10 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
             useArmyId = armyId;
         }
     }
+    
+    const int OPEN_BG_TAG = 10010;
+    m_renderBg->getParent()->removeChildByTag(OPEN_BG_TAG);
+    
     double haveTime = (m_info->getArrivalTime() - GlobalData::shared()->getWorldTime());
     if(m_info->getOpen()){
         m_renderBg->setVisible(true);
@@ -1744,14 +1762,14 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
                 addH = row*200 + 120;
             }
             else
-                addH = row*100 + 60;
+                addH = row*100 + 70;
         }
         else {
             if (CCCommonUtils::isIosAndroidPad()) {
                 addH = row*200 + 40;
             }
             else
-                addH = row*100 + 20;
+                addH = row*100 + 70;
         }
         
         m_moveNode->setPosition(ccp(0, addH));
@@ -1762,8 +1780,14 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
             m_renderBg->setContentSize(CCSize(1470, addH));
         }
         else
-            m_renderBg->setContentSize(CCSize(620,addH));
+            m_renderBg->setContentSize(CCSize(CELL_W, addH));
         m_renderBg->removeAllChildrenWithCleanup(true);
+        Scale9Sprite* sp = CCLoadSprite::createScale9Sprite("nb_al_members_bg.png");
+        sp->setTag(OPEN_BG_TAG);
+        sp->setZOrder(-OPEN_BG_TAG);
+        sp->setContentSize({CELL_W - 30.0f, addH + 10.0f});
+        sp->setPosition({m_renderBg->getPositionX() + CELL_W / 2.0f, m_renderBg->getPositionY() - addH + addH / 2.0f + 15.f});
+        m_renderBg->getParent()->addChild(sp);
         for (int i=0; i<num; i++) {
             auto dic = _dict(m_info->getSoldiers()->objectAtIndex(i));
             YuanJunSoldierCell* cell = YuanJunSoldierCell::create(dic);
@@ -1773,7 +1797,13 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
                 cell->setPosition(ccp(col==0?40:680, m_renderBg->getContentSize().height-220-rowIndex*200));
             }
             else
-                cell->setPosition(ccp(col==0?20:340, m_renderBg->getContentSize().height-110-rowIndex*100));
+                cell->setPosition(ccp(col == 0 ? 33 : 327, m_renderBg->getContentSize().height - 122 - rowIndex * 128));
+            
+            if (rowIndex % 2 == 1)
+            {
+                cell->m_bg->setScaleY(-1);
+            }
+            
             m_renderBg->addChild(cell);
             count = dic->valueForKey("count")->intValue();
             std::string armyId = dic->valueForKey("armyId")->getCString();
@@ -1795,7 +1825,7 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
             }
             else {
                 button->setScale(0.6f);
-                button->setPosition(ccp(310, 30));
+                button->setPosition(ccp(CELL_W / 2, 30));
             }
             m_renderBg->addChild(button);
         }
@@ -1808,7 +1838,7 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
         //        }else{
         //            m_tipTxt->setColor({169,183,189});
         //        }
-        m_tipTxt->setColor({169,183,189});
+//        m_tipTxt->setColor({169,183,189});
         m_renderBg->setVisible(false);
     }
     if(m_info->getGenerals() && m_info->getGenerals()->count()>0){
@@ -1821,7 +1851,7 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
         int picVer = m_info->getpicVer();
         m_icon->removeAllChildrenWithCleanup(true);
         CCSprite* headSpr = CCLoadSprite::createSprite(head.c_str(),true,CCLoadSpriteType_HEAD_ICON);
-        CCCommonUtils::setSpriteMaxSize(headSpr, 78);
+        CCCommonUtils::setSpriteMaxSize(headSpr, 88);
         m_icon->addChild(headSpr);
         if (CCCommonUtils::isUseCustomPic(picVer))
         {
@@ -1831,7 +1861,7 @@ void TerritoryInfoDetailCell::setData(YuanJunInfo* info,int stat){
         m_icon->removeAllChildrenWithCleanup(true);
         std::string icon = "ico" + useArmyId+ "_small.png";
         CCSprite* headSpr = CCLoadSprite::createSprite(icon.c_str());
-        CCCommonUtils::setSpriteMaxSize(headSpr, 78);
+        CCCommonUtils::setSpriteMaxSize(headSpr, 88);
         m_icon->addChild(headSpr);
     }
     m_arrow->setRotation(m_info->getOpen()?270:180);
@@ -1941,7 +1971,7 @@ bool TerritoryInfoDetailCell::onAssignCCBMemberVariable(cocos2d::CCObject * pTar
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_clickArea", CCNode*, this->m_clickArea);
     //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_soldierNode", CCNode*, this->m_soldierNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_scienceNode", CCNode*, this->m_scienceNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bgNodee", CCNode*, this->m_bgNodee);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bgNodee", CCSprite*, this->m_bgNodee);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_scienceTxt", CCLabelIF*, this->m_scienceTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_joinNode", CCSprite*, this->m_joinNode);
     return false;

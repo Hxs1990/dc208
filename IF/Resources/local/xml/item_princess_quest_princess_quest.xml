@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tns:database xmlns:tns="http://www.iw.com/sns/platform/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Group id="princess_quest">
+        <ItemSpec id="2930001" name="2000118" target="2000119" sort="1" type2="-1" pos1="1" para1="400000" para2="4" Order="100010" icon1="quest_Castle_icon1" gotype="2" go="400000" subtask="2930002"/>
+        <ItemSpec id="2930002" name="2000118" target="2000119" sort="2" type2="0" pos1="1" para1="400000" para2="4" Order="100020" icon1="quest_Castle_icon1" gotype="2" go="400000" maintask="2930001"/>
+        <ItemSpec id="2930003" name="2000118" target="2000119" sort="1" type2="-1" pos1="1" para1="400000" para2="6" Order="100030" icon1="quest_Castle_icon1" gotype="2" go="400000" subtask="2930004"/>
+        <ItemSpec id="2930004" name="2000118" target="2000119" sort="2" type2="0" pos1="1" para1="400000" para2="6" Order="100040" icon1="quest_Castle_icon1" gotype="2" go="400000" maintask="2930003"/>
+        <ItemSpec id="2930005" name="2000118" target="2000119" sort="1" type2="-1" pos1="1" para1="400000" para2="8" Order="100050" icon1="quest_Castle_icon1" gotype="2" go="400000" subtask="2930006"/>
+        <ItemSpec id="2930006" name="2000118" target="2000119" sort="2" type2="0" pos1="1" para1="400000" para2="8" Order="100060" icon1="quest_Castle_icon1" gotype="2" go="400000" maintask="2930005"/>
+        <ItemSpec id="2930007" name="2000118" target="2000119" sort="1" type2="-1" pos1="1" para1="400000" para2="10" Order="100070" icon1="quest_Castle_icon1" gotype="2" go="400000" subtask="2930008"/>
+        <ItemSpec id="2930008" name="2000118" target="2000119" sort="2" type2="0" pos1="1" para1="400000" para2="10" Order="100080" icon1="quest_Castle_icon1" gotype="2" go="400000" maintask="2930007"/>
+        <ItemSpec id="2930009" name="2000299" target="2000300" sort="1" type2="-1" pos1="2" para2="1000" Order="100090" icon1="quest_Soldier_icon2" gotype="-1" subtask="2930010"/>
+        <ItemSpec id="2930010" name="2000299" target="2000300" sort="2" type2="12" pos1="2" para2="1000" Order="100100" icon1="quest_Soldier_icon2" gotype="-1" maintask="2930009"/>
+        <ItemSpec id="2930011" name="2000299" target="2000300" sort="1" type2="-1" pos1="2" para2="2000" Order="100110" icon1="quest_Soldier_icon2" gotype="-1" subtask="2930012"/>
+        <ItemSpec id="2930012" name="2000299" target="2000300" sort="2" type2="12" pos1="2" para2="2000" Order="100120" icon1="quest_Soldier_icon2" gotype="-1" maintask="2930011"/>
+        <ItemSpec id="2930013" name="2000299" target="2000300" sort="1" type2="-1" pos1="2" para2="5000" Order="100130" icon1="quest_Soldier_icon2" gotype="-1" subtask="2930014"/>
+        <ItemSpec id="2930014" name="2000299" target="2000300" sort="2" type2="12" pos1="2" para2="5000" Order="100140" icon1="quest_Soldier_icon2" gotype="-1" maintask="2930013"/>
+        <ItemSpec id="2930015" name="2000299" target="2000300" sort="1" type2="-1" pos1="2" para2="10000" Order="100150" icon1="quest_Soldier_icon2" gotype="-1" subtask="2930016"/>
+        <ItemSpec id="2930016" name="2000299" target="2000300" sort="2" type2="12" pos1="2" para2="10000" Order="100160" icon1="quest_Soldier_icon2" gotype="-1" maintask="2930015"/>
+        <ItemSpec id="2930017" name="2000299" target="2000300" sort="1" type2="-1" pos1="2" para2="20000" Order="100170" icon1="quest_Soldier_icon2" gotype="-1" subtask="2930018"/>
+        <ItemSpec id="2930018" name="2000299" target="2000300" sort="2" type2="12" pos1="2" para2="20000" Order="100180" icon1="quest_Soldier_icon2" gotype="-1" maintask="2930017"/>
+        <ItemSpec id="2930019" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="3" Order="100190" icon1="quest_College_icon1" gotype="-1" subtask="2930020;2930021;2930022"/>
+        <ItemSpec id="2930020" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="700100" para2="1" Order="100200" icon1="science_res_a_2" gotype="2" go="403000" maintask="2930019"/>
+        <ItemSpec id="2930021" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="700200" para2="1" Order="100210" icon1="science_res_a_3" gotype="2" go="403000" maintask="2930019"/>
+        <ItemSpec id="2930022" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730000" para2="1" Order="100220" icon1="science_mil_a_1" gotype="2" go="403000" maintask="2930019"/>
+        <ItemSpec id="2930023" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="3" Order="100230" icon1="quest_College_icon1" gotype="-1" subtask="2930024;2930025;2930026"/>
+        <ItemSpec id="2930024" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="710000" para2="1" Order="100240" icon1="science_dev_a_1" gotype="2" go="403000" maintask="2930023"/>
+        <ItemSpec id="2930025" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="711400" para2="1" Order="100250" icon1="science_dev_a_6" gotype="2" go="403000" maintask="2930023"/>
+        <ItemSpec id="2930026" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="711500" para2="1" Order="100260" icon1="science_dev_a_7" gotype="2" go="403000" maintask="2930023"/>
+        <ItemSpec id="2930027" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="4" Order="100270" icon1="quest_College_icon1" gotype="-1" subtask="2930028;2930029;2930030;2930031"/>
+        <ItemSpec id="2930028" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730100" para2="1" Order="100280" icon1="science_mil_a_2" gotype="2" go="403000" maintask="2930027"/>
+        <ItemSpec id="2930029" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730300" para2="1" Order="100290" icon1="science_mil_a_4" gotype="2" go="403000" maintask="2930027"/>
+        <ItemSpec id="2930030" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730200" para2="1" Order="100300" icon1="science_mil_a_3" gotype="2" go="403000" maintask="2930027"/>
+        <ItemSpec id="2930031" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730400" para2="1" Order="100310" icon1="science_mil_a_5" gotype="2" go="403000" maintask="2930027"/>
+        <ItemSpec id="2930032" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="3" Order="100320" icon1="quest_College_icon1" gotype="-1" subtask="2930033;2930034;2930035"/>
+        <ItemSpec id="2930033" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="720000" para2="1" Order="100330" icon1="science_def_a_1" gotype="2" go="403000" maintask="2930032"/>
+        <ItemSpec id="2930034" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="720100" para2="1" Order="100340" icon1="science_def_a_2" gotype="2" go="403000" maintask="2930032"/>
+        <ItemSpec id="2930035" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="720200" para2="1" Order="100350" icon1="science_def_a_3" gotype="2" go="403000" maintask="2930032"/>
+        <ItemSpec id="2930036" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="1" Order="100360" icon1="quest_College_icon1" gotype="-1" subtask="2930037"/>
+        <ItemSpec id="2930037" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730500" para2="1" Order="100370" icon1="science_mil_a_6" gotype="2" go="403000" maintask="2930036"/>
+        <ItemSpec id="2930038" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="4" Order="100380" icon1="quest_College_icon1" gotype="-1" subtask="2930039;2930040;2930041;2930042"/>
+        <ItemSpec id="2930039" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730600" para2="1" Order="100390" icon1="science_mil_a_7" gotype="2" go="403000" maintask="2930038"/>
+        <ItemSpec id="2930040" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730700" para2="1" Order="100400" icon1="science_mil_a_8" gotype="2" go="403000" maintask="2930038"/>
+        <ItemSpec id="2930041" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730900" para2="1" Order="100410" icon1="science_mil_a_10" gotype="2" go="403000" maintask="2930038"/>
+        <ItemSpec id="2930042" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="730800" para2="1" Order="100420" icon1="science_mil_a_9" gotype="2" go="403000" maintask="2930038"/>
+        <ItemSpec id="2930043" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="1" Order="100430" icon1="quest_College_icon1" gotype="-1" subtask="2930044"/>
+        <ItemSpec id="2930044" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="700300" para2="1" Order="100440" icon1="science_res_a_4" gotype="2" go="403000" maintask="2930043"/>
+        <ItemSpec id="2930045" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="1" Order="100450" icon1="quest_College_icon1" gotype="-1" subtask="2930046"/>
+        <ItemSpec id="2930046" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="731000" para2="1" Order="100460" icon1="science_mil_a_11" gotype="2" go="403000" maintask="2930045"/>
+        <ItemSpec id="2930047" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="2" Order="100470" icon1="quest_College_icon1" gotype="-1" subtask="2930048;2930049"/>
+        <ItemSpec id="2930048" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="720300" para2="1" Order="100480" icon1="science_def_a_4" gotype="2" go="403000" maintask="2930047"/>
+        <ItemSpec id="2930049" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="720400" para2="1" Order="100490" icon1="science_def_a_5" gotype="2" go="403000" maintask="2930047"/>
+        <ItemSpec id="2930050" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="2" Order="100500" icon1="quest_College_icon1" gotype="-1" subtask="2930051;2930052"/>
+        <ItemSpec id="2930051" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="700400" para2="1" Order="100510" icon1="science_res_a_5" gotype="2" go="403000" maintask="2930050"/>
+        <ItemSpec id="2930052" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="700500" para2="1" Order="100520" icon1="science_res_a_6" gotype="2" go="403000" maintask="2930050"/>
+        <ItemSpec id="2930053" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="1" Order="100530" icon1="quest_College_icon1" gotype="-1" subtask="2930054"/>
+        <ItemSpec id="2930054" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="710300" para2="1" Order="100540" icon1="science_dev_a_2" gotype="2" go="403000" maintask="2930053"/>
+        <ItemSpec id="2930055" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="4" Order="100550" icon1="quest_College_icon1" gotype="-1" subtask="2930056;2930057;2930058;2930059"/>
+        <ItemSpec id="2930056" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="731100" para2="1" Order="100560" icon1="science_mil_a_12" gotype="2" go="403000" maintask="2930055"/>
+        <ItemSpec id="2930057" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="731200" para2="1" Order="100570" icon1="science_mil_a_13" gotype="2" go="403000" maintask="2930055"/>
+        <ItemSpec id="2930058" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="731400" para2="1" Order="100580" icon1="science_mil_a_15" gotype="2" go="403000" maintask="2930055"/>
+        <ItemSpec id="2930059" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="731300" para2="1" Order="100590" icon1="science_mil_a_14" gotype="2" go="403000" maintask="2930055"/>
+        <ItemSpec id="2930060" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="1" Order="100600" icon1="quest_College_icon1" gotype="-1" subtask="2930061"/>
+        <ItemSpec id="2930061" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="731500" para2="1" Order="100610" icon1="science_mil_a_16" gotype="2" go="403000" maintask="2930060"/>
+        <ItemSpec id="2930062" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="1" Order="100620" icon1="quest_College_icon1" gotype="-1" subtask="2930063"/>
+        <ItemSpec id="2930063" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="710500" para2="1" Order="100630" icon1="science_dev_a_4" gotype="2" go="403000" maintask="2930062"/>
+        <ItemSpec id="2930064" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="3" Order="100640" icon1="quest_College_icon1" gotype="-1" subtask="2930065;2930066;2930067"/>
+        <ItemSpec id="2930065" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="720600" para2="1" Order="100650" icon1="science_def_a_7" gotype="2" go="403000" maintask="2930064"/>
+        <ItemSpec id="2930066" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="720500" para2="1" Order="100660" icon1="science_def_a_6" gotype="2" go="403000" maintask="2930064"/>
+        <ItemSpec id="2930067" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="720700" para2="1" Order="100670" icon1="science_def_a_8" gotype="2" go="403000" maintask="2930064"/>
+        <ItemSpec id="2930068" name="2000301" target="2000303" sort="1" type2="-1" pos1="3" para2="1" Order="100680" icon1="quest_College_icon1" gotype="-1" subtask="2930069"/>
+        <ItemSpec id="2930069" name="2000302" target="2000136" sort="2" type2="1" pos1="3" para1="700600" para2="1" Order="100690" icon1="science_res_a_7" gotype="2" go="403000" maintask="2930068"/>
+    </Group>
+</tns:database>

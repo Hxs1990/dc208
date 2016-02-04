@@ -991,8 +991,6 @@
 												<string>SVIP点可通过参加活动、活跃任务和购买获动、活跃任务和购买动、活跃任务和购买动、活跃任务和购买动、活跃任务和购买动、活跃任务和购买动、活跃任务和购买动、活跃任务和购买动、活跃任务和购买</string>
 											</dict>
 										</array>
-										<key>selected</key>
-										<true/>
 									</dict>
 									<dict>
 										<key>baseClass</key>
@@ -8050,6 +8048,8 @@
 										<string>Sample Text</string>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>

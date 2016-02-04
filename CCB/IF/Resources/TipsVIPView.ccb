@@ -35,7 +35,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCScale9Sprite</string>
+						<string>m_buildBG</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_buildBG</string>
 						<key>memberVarAssignmentType</key>
@@ -171,7 +171,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCControlButton</string>
+						<string>m_btnOk</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_btnOk</string>
 						<key>memberVarAssignmentType</key>
@@ -379,7 +379,7 @@
 						<key>customClass</key>
 						<string>CCLabelIF</string>
 						<key>displayName</key>
-						<string>CCLabelTTF</string>
+						<string>m_msgLabel</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_msgLabel</string>
 						<key>memberVarAssignmentType</key>
@@ -597,7 +597,7 @@
 								<key>customClass</key>
 								<string>CCLabelIF</string>
 								<key>displayName</key>
-								<string>CCLabelTTF</string>
+								<string>m_msgLabelTitle</string>
 								<key>memberVarAssignmentName</key>
 								<string>m_msgLabelTitle</string>
 								<key>memberVarAssignmentType</key>
@@ -721,7 +721,7 @@
 						<key>customClass</key>
 						<string></string>
 						<key>displayName</key>
-						<string>CCNode</string>
+						<string>m_upNode</string>
 						<key>memberVarAssignmentName</key>
 						<string>m_upNode</string>
 						<key>memberVarAssignmentType</key>
@@ -778,7 +778,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_subNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_subNode</string>
 				<key>memberVarAssignmentType</key>

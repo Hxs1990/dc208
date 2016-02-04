@@ -53,6 +53,14 @@ bool SetAccountView::init(){
     WARDID = "113904";
 #endif
     setIsHDPanel(true);
+    
+    CCLoadSprite::doResourceByCommonIndex(7, true);
+    
+    setCleanFunction([](){
+        CCLoadSprite::doResourceByCommonIndex(7, false);
+
+    });
+    
     auto bg = CCBLoadFile("SetAccount", this, this);
     auto size = CCDirector::sharedDirector()->getWinSize();
     CCCommonUtils::setButtonTitle(m_bindBtn, _lang("105258").c_str());
@@ -684,7 +692,7 @@ bool SetAccountNextView::init(int type){
         auto particle1 = ParticleController::createParticle(CCString::createWithFormat("UiFire_%d",i)->getCString());
         m_fireNode2->addChild(particle1);
     }
-    
+    changeBGMaxHeight(m_viewBg);
     return true;
 }
 

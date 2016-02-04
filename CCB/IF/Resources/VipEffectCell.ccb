@@ -1536,6 +1536,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -1590,7 +1592,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCNode</string>
+				<string>m_activeGuideNode</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_activeGuideNode</string>
 				<key>memberVarAssignmentType</key>
@@ -1642,8 +1644,6 @@
 						<false/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

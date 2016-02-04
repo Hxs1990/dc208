@@ -54,7 +54,8 @@ bool UseToolView::init(string type, CCDictionary* dict,string title)
     });
     m_type = type;
     m_dict = dict;
-    auto tmpCCB = CCBLoadFile("UseToolView",this,this);
+    //auto tmpCCB = CCBLoadFile("UseToolView",this,this);
+    auto tmpCCB = CCBLoadFile("UseToolViewNew",this,this); //ljf
     this->setContentSize(tmpCCB->getContentSize());
     
     int oldBgHeight = m_buildBG->getContentSize().height;
@@ -410,7 +411,8 @@ OneToolCell* OneToolCell::create(int itemId, string type, CCDictionary* dict, CC
 bool OneToolCell::init(int itemId, string type, CCDictionary* dict, CCNode* listNode)
 {
     bool ret = true;
-    CCBLoadFile("UseToolCell",this,this);
+    //CCBLoadFile("UseToolCell",this,this);
+    CCBLoadFile("UseToolCellNew",this,this); //ljf
     m_waitInterface = NULL;
     m_listNode = listNode;
     setData(itemId, type, dict);

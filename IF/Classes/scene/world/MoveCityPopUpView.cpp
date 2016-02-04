@@ -17,6 +17,7 @@
 #include "WinPointsUseCommand.h"
 #include "ShakeController.h"
 #include "ActivityController.h"
+#include "NBWorldMapMainCity.hpp"
 
 MoveCityPopUpView *MoveCityPopUpView::create(MoveCityType cttype,int itemid){
     MoveCityPopUpView *ret = new MoveCityPopUpView();
@@ -97,9 +98,14 @@ int MoveCityPopUpView::getTileCount(){
 }
 void MoveCityPopUpView::createCitySprite(){
     string picName = "";
+    
+     // TODO
+    float offset_x = 0;
+    float offset_y = 0;
+    
     switch (mCityType) {
         case MoveCity_Castle:{
-            int level = FunBuildController::getInstance()->getMainCityLv();
+            /*int level = FunBuildController::getInstance()->getMainCityLv();
             int mapIndex = 3;
             while (mapIndex >= 0) {
                 auto arr = WorldController::getInstance()->getCityPicArr(mapIndex, level, GlobalData::shared()->playerInfo.officer == KINGDOM_KING_ID);
@@ -141,7 +147,21 @@ void MoveCityPopUpView::createCitySprite(){
                 m_cityNode->setScale(WORLD_DEFAULT_HD_SCALE);
                 m_cityNode->setPosition(-_tile_width * (WORLD_DEFAULT_HD_SCALE - 1), -_tile_height * (WORLD_DEFAULT_HD_SCALE - 1));
             }
-            return;
+            return;*/
+			
+			picName = "lv1.png";
+            
+            int level = FunBuildController::getInstance()->getMainCityLv();
+            int id = NBWorldMapMainCity::getMainCityId(level, false, -1);
+            std::string image = CCCommonUtils::getPropById(CC_ITOA(id), "picStr");
+             // TODO
+            std::string x = CCCommonUtils::getPropById(CC_ITOA(id), "x");
+            std::string y = CCCommonUtils::getPropById(CC_ITOA(id), "y");
+            if (image.length() > 4) // .png
+                picName = image;
+            offset_x = atoi(x.c_str());
+            offset_y = atoi(y.c_str());
+            break;
         }
         case MoveCity_Food:{
             picName = "0020.png";
@@ -192,26 +212,34 @@ void MoveCityPopUpView::createCitySprite(){
         if (CCCommonUtils::isIosAndroidPad()) {
             sprSize = sprite->getContentSize() * sprite->getScale();
         }
-        if(sprSize.width < _tile_width && sprSize.height < _tile_height){
+        if (MoveCity_Castle == mCityType)
+        {
+            sprite->setPosition({_tile_width / 2, _tile_height / 2}); // TODO
+        }
+        else if (sprSize.width < _tile_width && sprSize.height < _tile_height)
+        {
             sprite->setPosition(CCPoint((_tile_width-sprSize.width)*0.5 ,(_tile_height-sprSize.height)*0.5));
-        }else{
+        }
+        else
+        {
+            
             sprite->setPosition(CCPointZero);
         }
     }
 }
 void MoveCityPopUpView::createButton(){
     if (CCCommonUtils::isIosAndroidPad()) {
-        m_cancelBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_yellow.png"));
+        m_cancelBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("but_blue.png"));
         m_btnLabel1 = CCLabelIF::create(_lang("115021").c_str());
         m_btnLabel1->setFontSize(32);
-        m_btnLabel1->setColor(ccc3(181, 162, 119));
+        m_btnLabel1->setColor(ccc3(255, 255, 255));
         m_cancelBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MoveCityPopUpView::onCancelClick), CCControlEventTouchUpInside);
         m_cancelBtn->setPreferredSize(CCSize(160, 70));
         m_cancelBtn->setScaleX(2.1);
         m_cancelBtn->setScaleY(1.7);
         
-        m_confirmBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_gold.png"));
-        m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("btn_gold.png"),CCControlStateHighlighted);
+        m_confirmBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_green3.png"));
+        m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("btn_green3.png"),CCControlStateHighlighted);
         m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("Btn_grey.png"),CCControlStateDisabled);
         m_confirmBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MoveCityPopUpView::onMoveCityClick), CCControlEventTouchUpInside);
         m_confirmBtn->setPreferredSize(CCSize(160, 70));
@@ -285,8 +313,8 @@ void MoveCityPopUpView::createButton(){
         this->addChild(m_picNode, 2);
     }
     else {
-        m_cancelBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_yellow.png"));
-        CCCommonUtils::setButtonTitleColor(m_cancelBtn, ccc3(181, 162, 119));
+        m_cancelBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("but_blue.png"));
+        CCCommonUtils::setButtonTitleColor(m_cancelBtn, ccc3(255, 255, 255));
         CCCommonUtils::setButtonTitle(m_cancelBtn, _lang("115021").c_str());
         m_cancelBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MoveCityPopUpView::onCancelClick), CCControlEventTouchUpInside);
         m_cancelBtn->setPreferredSize(CCSize(160, 70));
@@ -295,8 +323,8 @@ void MoveCityPopUpView::createButton(){
         m_cancelBtn->setTitleTTFSizeForState(22, CCControlStateHighlighted);
         m_cancelBtn->setTitleTTFSizeForState(22, CCControlStateDisabled);
         
-        m_confirmBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_gold.png"));
-        m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("btn_gold.png"),CCControlStateHighlighted);
+        m_confirmBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_green3.png"));
+        m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("btn_green3.png"),CCControlStateHighlighted);
         m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("Btn_grey.png"),CCControlStateDisabled);
         m_confirmBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MoveCityPopUpView::onMoveCityClick), CCControlEventTouchUpInside);
         m_confirmBtn->setPreferredSize(CCSize(160, 70));

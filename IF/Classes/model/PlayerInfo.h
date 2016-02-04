@@ -97,6 +97,10 @@ public:
     double addPower;
     double getTotalPower();
     string getPic();
+    //begin a by ljf
+    string getVipPic();
+    //end a by ljf
+
     string getBodyPic();
     bool isChatView;//是否进入聊天面板
     int selfServerId;

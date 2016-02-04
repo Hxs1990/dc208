@@ -1558,6 +1558,8 @@
 		E6FD35A81BBA964F004320C7 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FD35A71BBA964F004320C7 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E6FD35B21BBA9EB0004320C7 /* ReplayKitsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E6FD35B11BBA9EB0004320C7 /* ReplayKitsController.mm */; };
 		E6FE9EB7182738E3000020FA /* TipsView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6FE9EB5182738E3000020FA /* TipsView.cpp */; };
+		EDBDF2EB1C632CFF002A4C1A /* eeeq_0.png in Resources */ = {isa = PBXBuildFile; fileRef = EDBDF2E91C632CFF002A4C1A /* eeeq_0.png */; };
+		EDBDF2EC1C632CFF002A4C1A /* eeeq.fnt in Resources */ = {isa = PBXBuildFile; fileRef = EDBDF2EA1C632CFF002A4C1A /* eeeq.fnt */; };
 		F429408C1B67AE7000078155 /* ComposeView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F429408A1B67AE7000078155 /* ComposeView.cpp */; };
 		F45EFC621B6B63AA00B0C19F /* ComposeAni.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F45EFC601B6B63AA00B0C19F /* ComposeAni.cpp */; };
 		F45EFC651B6B820E00B0C19F /* MatetialAni.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F45EFC631B6B820E00B0C19F /* MatetialAni.cpp */; };
@@ -4285,7 +4287,7 @@
 		DB9F592617CD9A520037F7E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ios/main.m; sourceTree = "<group>"; };
 		DB9F5C9617CD9A580037F7E5 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		DB9F5C9817CD9A580037F7E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
-		DB9F5C9917CD9A580037F7E5 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../AppDelegate.cpp; sourceTree = "<group>"; };
+		DB9F5C9917CD9A580037F7E5 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		DBA087DC17CDA95F001C68AD /* GlobalData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlobalData.cpp; sourceTree = "<group>"; };
 		DBA087DD17CDA95F001C68AD /* GlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalData.h; sourceTree = "<group>"; };
 		DBA0880317CE00B8001C68AD /* TypeDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDefinition.h; sourceTree = "<group>"; };
@@ -4535,6 +4537,8 @@
 		E6FD35B11BBA9EB0004320C7 /* ReplayKitsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ReplayKitsController.mm; sourceTree = "<group>"; };
 		E6FE9EB5182738E3000020FA /* TipsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TipsView.cpp; sourceTree = "<group>"; };
 		E6FE9EB6182738E3000020FA /* TipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsView.h; sourceTree = "<group>"; };
+		EDBDF2E91C632CFF002A4C1A /* eeeq_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eeeq_0.png; path = Resources/eeeq_0.png; sourceTree = "<group>"; };
+		EDBDF2EA1C632CFF002A4C1A /* eeeq.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eeeq.fnt; path = Resources/eeeq.fnt; sourceTree = "<group>"; };
 		F429408A1B67AE7000078155 /* ComposeView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComposeView.cpp; sourceTree = "<group>"; };
 		F429408B1B67AE7000078155 /* ComposeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeView.h; sourceTree = "<group>"; };
 		F45EFC601B6B63AA00B0C19F /* ComposeAni.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComposeAni.cpp; sourceTree = "<group>"; };
@@ -5680,7 +5684,6 @@
 		2A99A2DA1BB6706F0053DD72 /* lua */ = {
 			isa = PBXGroup;
 			children = (
-				DB9F5C9917CD9A580037F7E5 /* AppDelegate.cpp */,
 				13A887771C1AC9840078F6C4 /* lua_cocos2dx_if_manual.cpp */,
 				13A887781C1AC9840078F6C4 /* lua_cocos2dx_if_manual.h */,
 				13E0A6C01C05C13000461E81 /* lua_cocos2dx_if_auto.cpp */,
@@ -7867,6 +7870,8 @@
 		DB9F590717CD9A520037F7E5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EDBDF2E91C632CFF002A4C1A /* eeeq_0.png */,
+				EDBDF2EA1C632CFF002A4C1A /* eeeq.fnt */,
 				365A720D1C61A3D500E7E509 /* 3d */,
 				DB784C96198F836100DB5CBB /* Arial_Bold_Border.fnt */,
 				DB784C97198F836100DB5CBB /* Arial_Bold_Border.png */,
@@ -7972,6 +7977,7 @@
 			children = (
 				2A99A2DA1BB6706F0053DD72 /* lua */,
 				DB9F5C9817CD9A580037F7E5 /* AppDelegate.h */,
+				DB9F5C9917CD9A580037F7E5 /* AppDelegate.cpp */,
 				BADF472B1A3AA9A5008E2414 /* AppLibHelper.cpp */,
 				BADF472C1A3AA9A5008E2414 /* AppLibHelper.h */,
 				BADF472D1A3AA9A5008E2414 /* AppLibHelper.mm */,
@@ -9239,6 +9245,7 @@
 				272AB6291B15C7BC0052E896 /* btn_green3.png in Resources */,
 				1D1E461A1C609C4500712A22 /* ui_food.png in Resources */,
 				272AB65D1B15C7BC0052E896 /* line_grey02.png in Resources */,
+				EDBDF2EC1C632CFF002A4C1A /* eeeq.fnt in Resources */,
 				1D1E46001C609C4500712A22 /* mail_list_main_icon_monster.png in Resources */,
 				1D1E46161C609C4500712A22 /* shareImg.png in Resources */,
 				1D1E45EF1C609C4500712A22 /* mail_list_icon_invite_join_alliance.png in Resources */,
@@ -9364,6 +9371,7 @@
 				272AB6671B15C7BC0052E896 /* ui_gold_coin.png in Resources */,
 				1D1E45BD1C609C4500712A22 /* chatroom_name_input.9.png in Resources */,
 				597D8D211C23266D00B6DEA7 /* HelpshiftConfig.plist in Resources */,
+				EDBDF2EB1C632CFF002A4C1A /* eeeq_0.png in Resources */,
 				E6402A1018AC5BEF00CCE64C /* cloud2.tmx in Resources */,
 				6CE089771BC7984A00FF965C /* CSMailCategroyListTableCell.xib in Resources */,
 				5A71E3931BF45BB50060FF7D /* RoleInfoItem.xib in Resources */,
