@@ -43,14 +43,7 @@ TerritoryResourceDetailView *TerritoryResourceDetailView::create(WorldCityInfo& 
 void TerritoryResourceDetailView::onEnter(){
     UIComponent::getInstance()->showPopupView(1);
     PopupBaseView::onEnter();
-    CCLoadSprite::doResourceByCommonIndex(504, true);
-    CCLoadSprite::doResourceByCommonIndex(500, true);
-    CCLoadSprite::doResourceByCommonIndex(7, true);
-    setCleanFunction([](){
-        CCLoadSprite::doResourceByCommonIndex(504, false);
-        CCLoadSprite::doResourceByCommonIndex(500, false);
-        CCLoadSprite::doResourceByCommonIndex(7, false);
-    });
+    
     m_tabView->reloadData();
     setTouchMode(Touch::DispatchMode::ONE_BY_ONE);
     setTouchEnabled(true);
@@ -110,7 +103,7 @@ bool TerritoryResourceDetailView::init(){
         m_withdrawBtn->setEnabled(false);
         addLoadingAni();
         
-        auto tbg = CCLoadSprite::loadResource("technology_09.png");
+        /*auto tbg = CCLoadSprite::loadResource("technology_09.png");
         auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
         auto picBg1 = CCLoadSprite::createSprite("technology_09.png");
         picBg1->setAnchorPoint(ccp(0, 0));
@@ -138,7 +131,7 @@ bool TerritoryResourceDetailView::init(){
         m_fireNode1->addChild(par);
         
         ParticleFireAni* par2 = ParticleFireAni::create();
-        m_fireNode2->addChild(par2);
+        m_fireNode2->addChild(par2);*/
         
         m_tabView = CCTableView::create(this, m_infoList->getContentSize());
         m_tabView->setDirection(kCCScrollViewDirectionVertical);
@@ -346,7 +339,7 @@ void TerritoryResourceDetailView::onDetailCallback(cocos2d::CCObject *obj) {
                         m_changeCollectSpdTime = marchInfo.changeCollectSpdTime / 1000;
                     }
                 }
-                info->release();
+                CC_SAFE_RELEASE(info);
             }
         }
     }
@@ -375,14 +368,14 @@ void TerritoryResourceDetailView::onDetailCallback(cocos2d::CCObject *obj) {
             else
                 info->setIndex(2);
             m_data->addObject(info);
-            info->release();
+            CC_SAFE_RELEASE(info);
         }
         info = new YuanJunInfo();
         CCArray* array = CCArray::create();
         info->setSoldiers(array);
         info->setIndex(3);
         m_data->addObject(info);
-        info->release();
+        CC_SAFE_RELEASE(info);
     }
     else if (m_cityInfo.m_superMineInfo.trstat == 3 || m_cityInfo.m_superMineInfo.trstat == 4) {
         if (m_data->count() == 0) {
@@ -392,7 +385,7 @@ void TerritoryResourceDetailView::onDetailCallback(cocos2d::CCObject *obj) {
             info->setCanUse(true);
             info->setIndex(2);
             m_data->addObject(info);
-            info->release();
+            CC_SAFE_RELEASE(info);
 
         }
     }
@@ -732,7 +725,7 @@ void TerritoryResourceDetailView::qianFanCallBack(CCObject *data)
         info->setIndex(2);
         m_data->insertObject(info, num-2);
         //        m_data->addObject(info);
-        info->release();
+        CC_SAFE_RELEASE(info);
         m_tabView->reloadData();
     }
 }
@@ -876,6 +869,10 @@ void TerritoryResourceDetailCell::onExit(){
 }
 
 bool TerritoryResourceDetailCell::init(){
+    CCLoadSprite::doResourceByCommonIndex(204, true);
+    setCleanFunction([](){
+        CCLoadSprite::doResourceByCommonIndex(204, false);
+    });
     auto node = CCBLoadFile("TerritoryInfoDetailCell", this, this);
     this->setContentSize(node->getContentSize());
     m_clickFlag = false;
@@ -888,16 +885,12 @@ void TerritoryResourceDetailCell::setData(YuanJunInfo* info,int stat){
     m_stat = stat;
     m_info = info;
     
-    CCLoadSprite::doResourceByCommonIndex(204, true);
-    setCleanFunction([](){
-        CCLoadSprite::doResourceByCommonIndex(204, false);
-    });
     m_nameTxt->setString(m_info->getName().c_str());
     std::string numStr = _lang("108557");
     numStr.append(":");
     numStr.append(CC_CMDITOA(m_info->getNum()));
     m_armyNum->setString(numStr);
-    m_bgNodee->setVisible(true);
+//    m_bgNodee->setVisible(true);
     m_unUseNode->setVisible(false);
     m_moveNode->setVisible(false);
     m_scienceNode->setVisible(false);
@@ -935,7 +928,7 @@ void TerritoryResourceDetailCell::setData(YuanJunInfo* info,int stat){
         m_unUseNode->setVisible(true);
     }else if(m_info->getIndex()==3){
         m_scienceNode->setVisible(true);
-        m_bgNodee->setVisible(false);
+//        m_bgNodee->setVisible(false);
         m_scienceTxt->setString(_lang("115146"));
     }else if(m_info->getIndex()==4){
         m_tipTxt->setString(_lang("115403"));
@@ -1161,7 +1154,7 @@ bool TerritoryResourceDetailCell::onAssignCCBMemberVariable(cocos2d::CCObject * 
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_clickArea", CCNode*, this->m_clickArea);
     //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_soldierNode", CCNode*, this->m_soldierNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_scienceNode", CCNode*, this->m_scienceNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bgNodee", CCNode*, this->m_bgNodee);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bgNodee", CCSprite*, this->m_bgNodee);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_scienceTxt", CCLabelIF*, this->m_scienceTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_joinNode", CCSprite*, this->m_joinNode);
     return false;
