@@ -3814,79 +3814,55 @@ void ImperialScene::initMc2()
         pArr->addControlPoint(ccp(1, 0));
         
         m_pt2Array = CCPointArray::create(20);
-        //pArray->addControlPoint(ccp(1.0, 0));
-        //pArray->addControlPoint(ccp(0, 1.0));
-        auto person = Person::create(m_crossNode->getPositionX() + 30,m_crossNode->getPositionY() -30 , m_resbatchNode, zOrder*1000, m_pt2Array, 12,1);
-        m_personArray->addObject(person);
-        person->onSetType(1);
+
+        // tao.yu TODO 不知道什么兵
+//        auto person = Person::create(m_crossNode->getPositionX() + 30,m_crossNode->getPositionY() -30 , m_resbatchNode, zOrder*1000, m_pt2Array, 12,1);
+//        m_personArray->addObject(person);
+//        person->onSetType(1);
     }
-    
-    if (1) {
-        int zOrder = m_mcNode2->getZOrder();
-        m_ptArray = CCPointArray::create(20);
-        m_ptArray->addControlPoint(ccp(400, -200));
-        m_ptArray->addControlPoint(ccp(-400, 200));
-        
-        for (int i=0; i<5; i++) {
-            auto person = Person::create(m_mcNode2->getPositionX()-45+i*20,m_mcNode2->getPositionY()-45+i*(-10), m_resbatchNode, zOrder*1000, m_ptArray, 15);
-            m_personArray->addObject(person);
-            if(i==0) {
-                person->onSetType(0);
-            }
-        }
-    }
-    
-    
-//    if(1) {
-//        int zOrder = m_mcNode3->getZOrder();
-//        m_pt1Array = CCPointArray::create(20);
-//        m_pt1Array->addControlPoint(ccp(400, 200));
-//        m_pt1Array->addControlPoint(ccp(-400, -200));
+    // tao.yu TODO 不知道什么兵 1->0
+//    if (1) {
+//        int zOrder = m_mcNode2->getZOrder();
+//        m_ptArray = CCPointArray::create(20);
+//        m_ptArray->addControlPoint(ccp(400, -200));
+//        m_ptArray->addControlPoint(ccp(-400, 200));
 //        
-//        for (int i=0; i<16; i++) {
-//            int col = i/8;
-//            int hol = i%8;
-//            auto person = Person::create(m_mcNode3->getPositionX()-5-hol*20+col*20,m_mcNode3->getPositionY()-65+hol*(-10)-col*10, m_resbatchNode, zOrder*1000, m_pt1Array, 15.0);
+//        for (int i=0; i<5; i++) {
+//            auto person = Person::create(m_mcNode2->getPositionX()-45+i*20,m_mcNode2->getPositionY()-45+i*(-10), m_resbatchNode, zOrder*1000, m_ptArray, 15);
 //            m_personArray->addObject(person);
-//            if(i==3) {
-//                person->onSetType(1);
+//            if(i==0) {
+//                person->onSetType(0);
 //            }
 //        }
 //    }
     
-    if (false) {
-        int zOrder = m_mcNode4->getZOrder();
-        auto effSpr0 = CCSprite::create();
-        CCCommonUtils::makeTwoAnimatSpr(effSpr0, "tanhua_%d.png", 7, 1, 0.2 );
-        effSpr0->setPosition(m_mcNode4->getPosition());
-        m_resbatchNode->addChild(effSpr0);
-        effSpr0->setZOrder(zOrder*1000);
-    }
+    // tao.yu TODO 注释时此处就是false
+//    if (false) {
+//        int zOrder = m_mcNode4->getZOrder();
+//        auto effSpr0 = CCSprite::create();
+//        CCCommonUtils::makeTwoAnimatSpr(effSpr0, "tanhua_%d.png", 7, 1, 0.2 );
+//        effSpr0->setPosition(m_mcNode4->getPosition());
+//        m_resbatchNode->addChild(effSpr0);
+//        effSpr0->setZOrder(zOrder*1000);
+//    }
     
-    if (1) {
-        int zOrder = m_mcNode5->getZOrder();
-        auto effSpr0 = CCSprite::create();
-        CCCommonUtils::makeTwoAnimatSpr(effSpr0, "tanhua_%d.png", 7, 1, 0.2 );
-        effSpr0->setPosition(m_mcNode5->getPosition());
-        m_resbatchNode->addChild(effSpr0);
-        effSpr0->setZOrder(zOrder*1000);
-        
-        
-    }
+    // tao.yu 关掉小人谈话
+//    if (1) {
+//        int zOrder = m_mcNode5->getZOrder();
+//        auto effSpr0 = CCSprite::create();
+//        CCCommonUtils::makeTwoAnimatSpr(effSpr0, "tanhua_%d.png", 7, 1, 0.2 );
+//        effSpr0->setPosition(m_mcNode5->getPosition());
+//        m_resbatchNode->addChild(effSpr0);
+//        effSpr0->setZOrder(zOrder*1000);
+//    }
 
     if (1) {
         int zOrder = m_desNode1->getZOrder();
         m_mailBuild = SpeBuild::create(SPE_BUILD_MAIL);
         m_desNode1->addChild(m_mailBuild);
-        m_mailBuild->setNamePos(m_desNode1->getPositionX()+7, m_desNode1->getPositionY()+75, m_signLayer, m_arrbatchNode, m_resbatchNode, zOrder);
+        m_mailBuild->setNamePos(m_desNode1->getPositionX(), m_desNode1->getPositionY(), m_signLayer, m_arrbatchNode, m_resbatchNode, zOrder);
         
         int m = 5;
-//        auto effSpr0 = CCLoadSprite::createSprite("how-play.png");
-//        effSpr0->setPosition(m_desNode1->getPosition());
-//        m_resbatchNode->addChild(effSpr0);
-//        effSpr0->setZOrder(zOrder*1000+m);
-        
-        
         m_HTPHead = CCLoadSprite::createSprite("feedback_head.png");
         CCSize size = m_HTPHead->getContentSize();
         std::string language = LocalController::shared()->getLanguageFileName();
@@ -3898,12 +3874,12 @@ void ImperialScene::initMc2()
             m_HTPHead->setScaleX(-0.8);
         }
         m_HTPHead->setScaleY(0.6);
-        m_HTPHead->setPosition(m_desNode1->getPosition()+ccp(-50+50, 90-10));
+        m_HTPHead->setPosition(m_desNode1->getPosition()+ccp(80, 40+120));
         m_resbatchNode->addChild(m_HTPHead);
         m_HTPHead->setZOrder(zOrder*1000+1+m);
         
         m_HTPHead1 = CCLoadSprite::createSprite("feedback_head1.png");
-        m_HTPHead1->setPosition(m_desNode1->getPosition()+ccp(-30+30, 51-11));
+        m_HTPHead1->setPosition(m_desNode1->getPosition()+ccp(80, 0+120));
         m_HTPHead1->setScaleX(-1);
         m_resbatchNode->addChild(m_HTPHead1);
         m_HTPHead1->setZOrder(zOrder*1000+2+m);

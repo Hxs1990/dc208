@@ -54,7 +54,7 @@
 			<key>orientation</key>
 			<integer>0</integer>
 			<key>position</key>
-			<real>1937</real>
+			<real>1940</real>
 		</dict>
 		<dict>
 			<key>orientation</key>
@@ -2168,8 +2168,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1750.5751953125</real>
-							<real>1986.9637451171875</real>
+							<real>1568.43017578125</real>
+							<real>1789.8887939453125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2333,46 +2333,7 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array>
-					<dict>
-						<key>baseClass</key>
-						<string>CCBFile</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>CCBFile</string>
-						<key>memberVarAssignmentName</key>
-						<string></string>
-						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ccbFile</string>
-								<key>type</key>
-								<string>CCBFile</string>
-								<key>value</key>
-								<string>pic400000_2_1.ccb</string>
-							</dict>
-						</array>
-					</dict>
-				</array>
+				<array/>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
@@ -2390,8 +2351,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1221.4468994140625</real>
-							<real>2142.914794921875</real>
+							<real>1135.21728515625</real>
+							<real>2081.124267578125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2940,8 +2901,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2302.564453125</real>
-							<real>2980.846923828125</real>
+							<real>2157.412353515625</real>
+							<real>2858.50439453125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2981,48 +2942,92 @@
 			</dict>
 			<dict>
 				<key>baseClass</key>
-				<string>CCNode</string>
+				<string>CCSprite</string>
 				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>temp_block</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
 				<array>
 					<dict>
-						<key>baseClass</key>
-						<string>CCBFile</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>CCBFile</string>
-						<key>memberVarAssignmentName</key>
-						<string></string>
-						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
-						<key>properties</key>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
 						<array>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ccbFile</string>
-								<key>type</key>
-								<string>CCBFile</string>
-								<key>value</key>
-								<string>pic403000_2_1.ccb</string>
-							</dict>
+							<real>1746.801025390625</real>
+							<real>2349.969970703125</real>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>0.80000001192092896</real>
+							<real>0.80000001192092896</real>
+							<true/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string>Imperial/Imperial_22.plist</string>
+							<string>build_hide.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>blendFunc</string>
+						<key>type</key>
+						<string>Blendmode</string>
+						<key>value</key>
+						<array>
+							<integer>770</integer>
+							<integer>771</integer>
 						</array>
 					</dict>
 				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCNode</string>
+				<key>children</key>
+				<array/>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
@@ -3040,8 +3045,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>845.279541015625</real>
-							<real>2139.20751953125</real>
+							<real>746.38372802734375</real>
+							<real>2023.1124267578125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3089,142 +3094,12 @@
 			</dict>
 			<dict>
 				<key>baseClass</key>
-				<string>CCSprite</string>
+				<string>CCNode</string>
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>m_tempBlock</string>
-				<key>memberVarAssignmentName</key>
-				<string>m_tempBlock</string>
-				<key>memberVarAssignmentType</key>
-				<integer>2</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>1045.699951171875</real>
-							<real>1593.4000244140625</real>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>tag</string>
-						<key>type</key>
-						<string>Integer</string>
-						<key>value</key>
-						<integer>1289757</integer>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>ignoreAnchorPointForPosition</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>displayFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string>Imperial/Imperial_22.plist</string>
-							<string>build_hide.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>blendFunc</string>
-						<key>type</key>
-						<string>Blendmode</string>
-						<key>value</key>
-						<array>
-							<integer>770</integer>
-							<integer>771</integer>
-						</array>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>baseClass</key>
-				<string>CCNode</string>
-				<key>children</key>
-				<array>
-					<dict>
-						<key>baseClass</key>
-						<string>CCBFile</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>CCBFile</string>
-						<key>memberVarAssignmentName</key>
-						<string></string>
-						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ccbFile</string>
-								<key>type</key>
-								<string>CCBFile</string>
-								<key>value</key>
-								<string>pic403000_2_1.ccb</string>
-							</dict>
-						</array>
-					</dict>
-				</array>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
 				<string>m_node7</string>
 				<key>memberVarAssignmentName</key>
 				<string>m_node7</string>
@@ -3239,8 +3114,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1411.5</real>
-							<real>1552.0999755859375</real>
+							<real>611.256103515625</real>
+							<real>1626.7496337890625</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3308,8 +3183,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1262.41552734375</real>
-							<real>1873.555419921875</real>
+							<real>1125.0601806640625</real>
+							<real>1789.9478759765625</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3377,8 +3252,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1694.938232421875</real>
-							<real>2367.990966796875</real>
+							<real>948.44207763671875</real>
+							<real>1499.0694580078125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3446,8 +3321,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1498.230712890625</real>
-							<real>2206.97412109375</real>
+							<real>1307.127685546875</real>
+							<real>1466.449951171875</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3515,8 +3390,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2207.79833984375</real>
-							<real>2368.64990234375</real>
+							<real>2055.51318359375</real>
+							<real>2282.056396484375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3584,8 +3459,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>3144.693603515625</real>
-							<real>3002.8935546875</real>
+							<real>2959.5625</real>
+							<real>2913.31396484375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3653,8 +3528,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1763.3076171875</real>
-							<real>1655.835693359375</real>
+							<real>1634.9102783203125</real>
+							<real>1563.2701416015625</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3722,8 +3597,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2472.69189453125</real>
-							<real>2121.802978515625</real>
+							<real>2380.12646484375</real>
+							<real>2029.2374267578125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3791,8 +3666,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2014.0107421875</real>
-							<real>2149.025390625</real>
+							<real>1900.5433349609375</real>
+							<real>2050.48779296875</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3860,8 +3735,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2330.85546875</real>
-							<real>1902.4241943359375</real>
+							<real>2226.345947265625</real>
+							<real>1821.8026123046875</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3929,8 +3804,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>3257.138671875</real>
-							<real>2293.669921875</real>
+							<real>3184.562744140625</real>
+							<real>2256.34521484375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3990,8 +3865,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2614.39013671875</real>
-							<real>2691.1884765625</real>
+							<real>2527.298828125</real>
+							<real>2519.07958984375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -5582,8 +5457,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3094.47216796875</real>
-									<real>1312.43017578125</real>
+									<real>2990.792236328125</real>
+									<real>1275.1053466796875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -5643,8 +5518,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3735.068603515625</real>
-									<real>1361.71240234375</real>
+									<real>3631.388671875</real>
+									<real>1324.3875732421875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -5704,8 +5579,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3467.46923828125</real>
-									<real>1316.015869140625</real>
+									<real>3363.789306640625</real>
+									<real>1278.6910400390625</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -5765,8 +5640,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3288.73876953125</real>
-									<real>1223.7467041015625</real>
+									<real>3185.058837890625</real>
+									<real>1186.421875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -5826,8 +5701,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3912.431396484375</real>
-									<real>1268.0006103515625</real>
+									<real>3808.75146484375</real>
+									<real>1230.67578125</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -5887,8 +5762,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3660.833984375</real>
-									<real>1221.396240234375</real>
+									<real>3557.154052734375</real>
+									<real>1184.0714111328125</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -5948,8 +5823,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3470.4384765625</real>
-									<real>1134.2645263671875</real>
+									<real>3366.758544921875</real>
+									<real>1096.939697265625</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6009,8 +5884,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>4104.76806640625</real>
-									<real>1184.7310791015625</real>
+									<real>4001.088134765625</real>
+									<real>1147.40625</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6070,8 +5945,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3826.185791015625</real>
-									<real>1133.9158935546875</real>
+									<real>3722.505859375</real>
+									<real>1096.591064453125</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6131,8 +6006,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3658.62158203125</real>
-									<real>1035.4583740234375</real>
+									<real>3554.941650390625</real>
+									<real>998.133544921875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6242,8 +6117,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2521.04541015625</real>
-									<real>1101.7874755859375</real>
+									<real>2469.205322265625</real>
+									<real>1000.1810302734375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6303,8 +6178,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2351.485107421875</real>
-									<real>1007.9505615234375</real>
+									<real>2299.64501953125</real>
+									<real>906.3441162109375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6364,8 +6239,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2165.739013671875</real>
-									<real>922.61700439453125</real>
+									<real>2113.89892578125</real>
+									<real>821.01055908203125</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6425,8 +6300,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2755.709716796875</real>
-									<real>1006.4061889648438</real>
+									<real>2703.86962890625</real>
+									<real>904.79974365234375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6486,8 +6361,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2575.529541015625</real>
-									<real>926.03289794921875</real>
+									<real>2523.689453125</real>
+									<real>824.42645263671875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6547,8 +6422,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2394.027587890625</real>
-									<real>839.5968017578125</real>
+									<real>2342.1875</real>
+									<real>737.9903564453125</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6608,8 +6483,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2214.302978515625</real>
-									<real>745.8958740234375</real>
+									<real>2162.462890625</real>
+									<real>644.2894287109375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6669,8 +6544,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2961.8701171875</real>
-									<real>944.677490234375</real>
+									<real>2910.030029296875</real>
+									<real>843.071044921875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6730,8 +6605,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2791.50537109375</real>
-									<real>853.90771484375</real>
+									<real>2739.665283203125</real>
+									<real>752.30126953125</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6791,8 +6666,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2614.656494140625</real>
-									<real>764.4915771484375</real>
+									<real>2562.81640625</real>
+									<real>662.8851318359375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6852,8 +6727,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2425.7080078125</real>
-									<real>675.35247802734375</real>
+									<real>2373.867919921875</real>
+									<real>573.74603271484375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6913,8 +6788,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2250.242431640625</real>
-									<real>580.29095458984375</real>
+									<real>2198.40234375</real>
+									<real>478.68453979492188</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -6974,8 +6849,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2066.738525390625</real>
-									<real>493.4962158203125</real>
+									<real>2014.8985595703125</real>
+									<real>391.88980102539062</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7035,8 +6910,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>1875.347900390625</real>
-									<real>401.95980834960938</real>
+									<real>1823.5079345703125</real>
+									<real>300.3533935546875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7096,8 +6971,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3157.3251953125</real>
-									<real>844.6336669921875</real>
+									<real>3105.485107421875</real>
+									<real>743.0272216796875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7157,8 +7032,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2969.55712890625</real>
-									<real>762.09765625</real>
+									<real>2917.717041015625</real>
+									<real>660.4912109375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7218,8 +7093,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2783.384033203125</real>
-									<real>674.39215087890625</real>
+									<real>2731.5439453125</real>
+									<real>572.78570556640625</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7279,8 +7154,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2606.12548828125</real>
-									<real>587.44573974609375</real>
+									<real>2554.285400390625</real>
+									<real>485.83932495117188</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7340,8 +7215,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2430.238037109375</real>
-									<real>495.82888793945312</real>
+									<real>2378.39794921875</real>
+									<real>394.22247314453125</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7401,8 +7276,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2241.55029296875</real>
-									<real>405.4078369140625</real>
+									<real>2189.710205078125</real>
+									<real>303.80142211914062</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7462,8 +7337,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3354.613037109375</real>
-									<real>757.38519287109375</real>
+									<real>3302.77294921875</real>
+									<real>655.77874755859375</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7523,8 +7398,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>3153.284912109375</real>
-									<real>663.1678466796875</real>
+									<real>3101.44482421875</real>
+									<real>561.5614013671875</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7584,8 +7459,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2961.388916015625</real>
-									<real>570.73919677734375</real>
+									<real>2909.548828125</real>
+									<real>469.13278198242188</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7645,8 +7520,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2783.614990234375</real>
-									<real>488.9825439453125</real>
+									<real>2731.77490234375</real>
+									<real>387.37612915039062</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7706,8 +7581,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>2599.581298828125</real>
-									<real>403.25054931640625</real>
+									<real>2547.7412109375</real>
+									<real>301.64413452148438</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -7873,8 +7748,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1273.575439453125</real>
-							<real>701.30267333984375</real>
+							<real>2403.687744140625</real>
+							<real>3216.580078125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8178,8 +8053,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1869.4532470703125</real>
-							<real>760.17547607421875</real>
+							<real>1968.986083984375</real>
+							<real>309.78945922851562</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8262,8 +8137,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2444.599609375</real>
-							<real>680.14093017578125</real>
+							<real>2466.994384765625</real>
+							<real>548.25994873046875</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8346,8 +8221,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>3484.794677734375</real>
-							<real>1163.42919921875</real>
+							<real>3405.16845703125</real>
+							<real>1041.50146484375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8419,8 +8294,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1946.1038818359375</real>
-							<real>456.77105712890625</real>
+							<real>3003.64013671875</real>
+							<real>596.11700439453125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8503,8 +8378,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2502.751953125</real>
-							<real>275.5841064453125</real>
+							<real>2559.9833984375</real>
+							<real>325.35052490234375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8543,14 +8418,6 @@
 							<false/>
 							<integer>0</integer>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>rotation</string>
-						<key>type</key>
-						<string>Degrees</string>
-						<key>value</key>
-						<real>-27</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -8638,48 +8505,7 @@
 				<key>baseClass</key>
 				<string>CCNode</string>
 				<key>children</key>
-				<array>
-					<dict>
-						<key>baseClass</key>
-						<string>CCBFile</string>
-						<key>children</key>
-						<array/>
-						<key>customClass</key>
-						<string></string>
-						<key>displayName</key>
-						<string>CCBFile</string>
-						<key>memberVarAssignmentName</key>
-						<string></string>
-						<key>memberVarAssignmentType</key>
-						<integer>0</integer>
-						<key>properties</key>
-						<array>
-							<dict>
-								<key>name</key>
-								<string>scale</string>
-								<key>type</key>
-								<string>ScaleLock</string>
-								<key>value</key>
-								<array>
-									<real>1</real>
-									<real>1</real>
-									<false/>
-									<integer>0</integer>
-								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>ccbFile</string>
-								<key>type</key>
-								<string>CCBFile</string>
-								<key>value</key>
-								<string>pichd_2.ccb</string>
-							</dict>
-						</array>
-						<key>selected</key>
-						<true/>
-					</dict>
-				</array>
+				<array/>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
@@ -9014,8 +8840,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>784.74713134765625</real>
-							<real>646.8197021484375</real>
+							<real>3095.8994140625</real>
+							<real>1058.8856201171875</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -9136,8 +8962,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1386.0548095703125</real>
-							<real>1126.824462890625</real>
+							<real>2007.1396484375</real>
+							<real>2557.111083984375</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -9258,8 +9084,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1379.1173095703125</real>
-							<real>699.6978759765625</real>
+							<real>617.69122314453125</real>
+							<real>804.20733642578125</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -13261,9 +13087,9 @@
 			<key>name</key>
 			<string>Default</string>
 			<key>offset</key>
-			<real>0.0</real>
+			<real>21.825002670288086</real>
 			<key>position</key>
-			<real>37.099998474121094</real>
+			<real>56.200000762939453</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

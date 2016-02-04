@@ -631,7 +631,8 @@ void FunBuild::setNamePos(int x, int y, CCLayer* sginLayer, CCLayer* popLayer, C
         drowEffectSpr(zOrder, tmpOrd);
     }
 //    drowEffectSpr(zOrder, tmpOrd);
-    drowPersonSpr(zOrder, tmpOrd);
+    // tao.yu TODO 兵营的小兵
+//    drowPersonSpr(zOrder, tmpOrd);
     
     if (isCanRecState()) {
         addFunBuildState();
