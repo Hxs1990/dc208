@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkg-6H-7Pt" userLabel="rootView">
@@ -21,18 +21,15 @@
                         <subviews>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LiB-pM-zeX" userLabel="cellBackImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                <animations/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_list_main_icon_chat" translatesAutoresizingMaskIntoConstraints="NO" id="vnt-0x-0WC" userLabel="headImageVIew">
                                 <rect key="frame" x="8" y="8" width="31" height="31"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="vnt-0x-0WC" secondAttribute="height" multiplier="1:1" id="onf-Fj-jl6"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leave a Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiC-Ve-li3" userLabel="nameLabel">
                                 <rect key="frame" x="55" y="13" width="104" height="21"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="jj3-Ov-P2T"/>
                                 </constraints>
@@ -42,27 +39,23 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m39-6p-wPI">
                                 <rect key="frame" x="278" y="16" width="9" height="16"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_list_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="60B-IE-6bm" userLabel="mail_list_arrowImageView">
                                 <rect key="frame" x="298" y="15" width="11" height="17"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="60B-IE-6bm" secondAttribute="height" multiplier="17:27" id="Zd3-aB-iIJ"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_list_divider" translatesAutoresizingMaskIntoConstraints="NO" id="dv5-JQ-mNd" userLabel="underLineImageView">
                                 <rect key="frame" x="46" y="42" width="274" height="1"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="yXl-LS-aaF"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <animations/>
                         <constraints>
                             <constraint firstItem="m39-6p-wPI" firstAttribute="centerY" secondItem="DiC-Ve-li3" secondAttribute="centerY" id="87N-MD-q4N"/>
                             <constraint firstAttribute="bottom" secondItem="vnt-0x-0WC" secondAttribute="bottom" constant="4" id="DMF-ph-IdS"/>
@@ -84,7 +77,6 @@
                         </constraints>
                     </view>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="xkg-6H-7Pt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0Md-IY-syg"/>
                     <constraint firstItem="xkg-6H-7Pt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="D9G-Wd-exf"/>
@@ -92,7 +84,6 @@
                     <constraint firstAttribute="trailing" secondItem="xkg-6H-7Pt" secondAttribute="trailing" id="pRq-Ya-0Ya"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="cellbackImageView" destination="LiB-pM-zeX" id="DaE-CT-rEh"/>
                 <outlet property="headImageView" destination="vnt-0x-0WC" id="BgL-1Z-0Cf"/>

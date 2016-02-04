@@ -1596,15 +1596,15 @@ bool LuaController::downloadFile(LuaDownLoadRef *downRef){
     if(downRef->getPackType() == LuaDownloadType_RESOURCE){
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         if(downRef->bPlatform==true){
-            m_packagePath = "http://cok.eleximg.com/cok/lua/lua_" + downRef->getPackName()+"_a_"+downRef->getCheckMD5() + ".zip";
+            m_packagePath = getElexImgURL + "/cok/lua/lua_" + downRef->getPackName()+"_a_"+downRef->getCheckMD5() + ".zip";
         }else{
-            m_packagePath = "http://cok.eleximg.com/cok/lua/lua_" + downRef->getPackName()+"_"+downRef->getCheckMD5() + ".zip";
+            m_packagePath = getElexImgURL + "/cok/lua/lua_" + downRef->getPackName()+"_"+downRef->getCheckMD5() + ".zip";
         }
 #else
-        m_packagePath = "http://cok.eleximg.com/cok/lua/lua_" + downRef->getPackName()+"_"+downRef->getCheckMD5() + ".zip";
+        m_packagePath = getElexImgURL + "/cok/lua/lua_" + downRef->getPackName()+"_"+downRef->getCheckMD5() + ".zip";
 #endif
     }else{
-        m_packagePath = "http://cok.eleximg.com/cok/lua/lua_" + downRef->getPackVersion() + ".zip";
+        m_packagePath = getElexImgURL + "/cok/lua/lua_" + downRef->getPackVersion() + ".zip";
     }
 #endif
     CCLOG("lua_package_url [%s]",m_packagePath.c_str());

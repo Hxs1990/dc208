@@ -1185,11 +1185,11 @@ void UIComponent::checkCityFire(float t){
 
 //播放上下动画三次
 void UIComponent::playQusetTiAnim(){
-    float x = -398.8;
+    float x = -544.8;
     float y = 75.4;
     if (CCCommonUtils::isIosAndroidPad())
     {
-        x = -772.8;
+        x = -872.8;
         y = 119.3;
     }
     CCEaseExponentialIn* easeInAction = CCEaseExponentialIn::create(dynamic_cast<CCActionInterval*>(CCMoveTo::create(0.2, ccp(x, y+10))));
@@ -1213,10 +1213,10 @@ void UIComponent::playQusetTiAnim(){
 
 }
 void UIComponent::playQusetTiAnimFinish(){
-    this->m_questTipNode->setPosition(-398.8, 75.4);
+    this->m_questTipNode->setPosition(-544.8, 75.4);
     if (CCCommonUtils::isIosAndroidPad())
     {
-        this->m_questTipNode->setPosition(-772.8, 119.3);
+        this->m_questTipNode->setPosition(-872.8, 119.3);
     }
     playQusetTiAnim();
 
@@ -6535,17 +6535,17 @@ void UIComponent::refreshVIPStatus(float t){
         m_sprVip->setVisible(true);
         float dx=0.2;
         float ox=vipflagPx;//m_sprVip->getPositionX();
-        m_sprVip->setScaleX(1+(dx*2));
-        m_sprVip->setPositionX(ox+(m_sprVip->getContentSize().width*dx));
-        m_vipText->setPositionX(m_sprVip->getPositionX()-(m_sprVip->getContentSize().width*dx));
+//        m_sprVip->setScaleX(1+(dx*2));
+//        m_sprVip->setPositionX(ox+(m_sprVip->getContentSize().width*dx));
+//        m_vipText->setPositionX(m_sprVip->getPositionX()-(m_sprVip->getContentSize().width*dx));
     }else{
         
         m_sprVipHui->setVisible(true);
         float dx=0.2;
         float ox=vipflagPx;//m_sprVipHui->getPositionX();
-        m_sprVipHui->setScaleX(1+(dx*2));
-        m_sprVipHui->setPositionX(ox+(m_sprVipHui->getContentSize().width*dx));
-        m_vipText->setPositionX(m_sprVipHui->getPositionX()-(m_sprVipHui->getContentSize().width*dx));
+//        m_sprVipHui->setScaleX(1+(dx*2));
+//        m_sprVipHui->setPositionX(ox+(m_sprVipHui->getContentSize().width*dx));
+//        m_vipText->setPositionX(m_sprVipHui->getPositionX()-(m_sprVipHui->getContentSize().width*dx));
         
         m_sprVip->setVisible(false);
         

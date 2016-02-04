@@ -711,16 +711,11 @@ void WorldBossRewardMailView::showShareBtn(){
 }
 void WorldBossRewardMailView::onShareBtnClick(CCObject *pSender, CCControlEvent event){
     GlobalData::shared()->isBind = true;
-    string link = "";
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    link = "https://fb.me/789279541113368?from_feed=android_king";
-#else
-    link = "https://fb.me/789290781112244?from_feed=ios_king";
-#endif
+    string link = getFBPShareLink();
     int rand = GlobalData::shared()->getRand(0,5);
     int randL = GlobalData::shared()->getRand(0,4);
     int randFeed = GlobalData::shared()->getRand(0,10000);
-    string fbIcon = CCString::createWithFormat("http://cok.eleximg.com/cok/img/%s","King_Feed_1.png")->getCString();
+    string fbIcon = getFBIcon(-1); // CCString::createWithFormat("http://cok.eleximg.com/cok/img/%s","King_Feed_1.png")->getCString();
     if(randFeed%2==0){
         string temp = _lang_2("110157", GlobalData::shared()->playerInfo.name.c_str(), CC_ITOA(GlobalData::shared()->playerInfo.selfServerId));
         FBUtilies::fbPublishFeedDialog("Clash Of Kings",_lang("110146"),temp,link,fbIcon,1);//shareLang[randL]

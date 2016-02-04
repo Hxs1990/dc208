@@ -85,7 +85,7 @@ void NetController::saveToCloud(std::string value, std::string uuid){
                                                    type.c_str(),
                                                    time.c_str(),
                                                    value.c_str())->getCString();
-    CCString *url = CCString::createWithFormat("http://public.cok.elexapp.com/client/collecData");
+    CCString *url = CCString::createWithFormat(getCollecDataURL());
     CCLog("saveToCloud request:%s", url->getCString());
     CCHttpRequest* request = new CCHttpRequest();
     request->setUrl(url->getCString());
@@ -114,7 +114,7 @@ void NetController::getFromCloud(std::string value, std::string uuid){
                                                    type.c_str(),
                                                    time.c_str(),
                                                    value.c_str())->getCString();
-    CCString *url = CCString::createWithFormat("http://public.cok.elexapp.com/client/collecData");
+    CCString *url = CCString::createWithFormat(getCollecDataURL());
     CCLog("getFromCloud request:%s", url->getCString());
     CCHttpRequest* request = new CCHttpRequest();
     request->setUrl(url->getCString());
@@ -177,8 +177,8 @@ std::string NetController::getIpByType(int type){//0 正常 1 备用
     std::string ip = CCUserDefault::sharedUserDefault()->getStringForKey(ACCOUNT_IP);
     std::string resultStr = ip;
     if(ip != "" && ip.find(".com") != -1){
-        std::string main = ".cok.elexapp.com";
-        std::string backup = ".cok.elexcok.com";
+        std::string main = getIPByType(0);
+        std::string backup = getIPByType(1);
         std::string ipstr = ip.substr(0, ip.find("."));
         if(type == 0){
             resultStr = ipstr + main;
@@ -200,7 +200,7 @@ void NetController::getServerStatus(){
     string _lang = LocalController::shared()->getLanguageFileName();
     string _serverId = CCUserDefault::sharedUserDefault()->getStringForKey(SERVER_ID, "");
     string _serverIp = CCUserDefault::sharedUserDefault()->getStringForKey(ACCOUNT_IP, "");
-    url = CCString::createWithFormat("http://p1.cok.elexapp.com/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
+    url = CCString::createWithFormat("http://%s/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s", getServerP1IP(), _uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
     
     CCLOG("server list URL: %s",url->getCString());
     
@@ -957,13 +957,13 @@ std::string NetController::getRealIp(){
         }
         if(isLXConnectionInUse){
             currentConnectionName = "lx";
-            return "lx.cok.elexapp.com";
+            return getIPByType(2);
         }else if(isTecentConnectionInUse){
             currentConnectionName = "tecent";
-            return "tenp1.cok.elex.com";
+            return getIPByType(3);
         }else if(isHKConnectionInUse){
             currentConnectionName = "hk";
-            return "hkp1.cok.elexapp.com";
+            return getIPByType(4);
         }else if(isUSConnectionInUse){
             return getIp();
         }
@@ -2418,22 +2418,22 @@ extern "C" {
     
     JNIEXPORT jstring JNICALL Java_org_cocos2dx_ext_Native_nativeGetPaymentCallbackUrl(JNIEnv* env, jobject thiz)
     {
-        return env->NewStringUTF("http://cnpay.cok.elexapp.com:8080/gameservice/paymentcallback");
+        return env->NewStringUTF(getPaymentCallbackURL(false));
     }
     
     JNIEXPORT jstring JNICALL Java_org_cocos2dx_ext_Native_nativeGetPaymentCallbackUrlTest(JNIEnv* env, jobject thiz)
     {
-        return env->NewStringUTF("http://169.45.155.123:8080/gameservice/paymentcallback");
+        return env->NewStringUTF(getPaymentCallbackURL(true));
     }
     
     JNIEXPORT jstring JNICALL Java_org_cocos2dx_ext_Native_nativeGetPaymentRequestUrl(JNIEnv* env, jobject thiz)
     {
-        return env->NewStringUTF("http://cnpay.cok.elexapp.com:8080/gameservice");
+        return env->NewStringUTF(getPaymentRequestURL());
     }
 
     JNIEXPORT jstring JNICALL Java_org_cocos2dx_ext_Native_nativeGetAccountUrl(JNIEnv* env, jobject thiz)
     {
-        return env->NewStringUTF("http://cnac.cok.elexapp.com/account");
+        return env->NewStringUTF(getAccountURL());
 //        return env->NewStringUTF("http://p1cok.elexapp.com/account");
     }
 

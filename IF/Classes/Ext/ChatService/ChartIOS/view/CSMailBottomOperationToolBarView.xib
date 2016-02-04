@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -18,11 +18,9 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3ch-A8-8tG" userLabel="backImage">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <animations/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVh-DY-lKR" userLabel="checkButton">
                             <rect key="frame" x="6" y="9" width="26" height="26"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="oVh-DY-lKR" secondAttribute="height" multiplier="1:1" id="QZL-nt-nwH"/>
                             </constraints>
@@ -34,14 +32,12 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0g-bl-z3J">
                             <rect key="frame" x="38" y="15" width="52" height="15"/>
-                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGa-oz-hnR" userLabel="giftButton">
                             <rect key="frame" x="176" y="5" width="35" height="35"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="fGa-oz-hnR" secondAttribute="height" multiplier="1:1" id="OgB-L4-Lg3"/>
                             </constraints>
@@ -52,7 +48,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZQ-BJ-3Bc" userLabel="delectedButton">
                             <rect key="frame" x="249" y="5" width="34" height="34"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="YZQ-BJ-3Bc" secondAttribute="height" multiplier="1:1" id="hd0-PE-PAd"/>
                             </constraints>
@@ -63,19 +58,15 @@
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujc-MN-Rym" userLabel="delectView">
                             <rect key="frame" x="283" y="0.0" width="37" height="44"/>
-                            <animations/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4w-zu-iHN" userLabel="jiaxinView">
                             <rect key="frame" x="211" y="0.0" width="36" height="44"/>
-                            <animations/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yhc-su-TR9" userLabel="giftView">
                             <rect key="frame" x="140" y="0.0" width="36" height="44"/>
-                            <animations/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2L-j7-53O" userLabel="starButton">
                             <rect key="frame" x="103" y="5" width="34" height="34"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="R2L-j7-53O" secondAttribute="height" multiplier="1:1" id="6Jx-WH-BUt"/>
                             </constraints>
@@ -85,7 +76,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <animations/>
                     <constraints>
                         <constraint firstItem="3ch-A8-8tG" firstAttribute="leading" secondItem="ILu-8e-yyJ" secondAttribute="leading" id="06h-lW-qCd"/>
                         <constraint firstItem="fGa-oz-hnR" firstAttribute="height" secondItem="ILu-8e-yyJ" secondAttribute="height" multiplier="0.795" id="2JS-aD-oIn"/>
@@ -130,7 +120,6 @@
                     </variation>
                 </view>
             </subviews>
-            <animations/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ILu-8e-yyJ" secondAttribute="bottom" id="CEI-x6-hSq"/>
                 <constraint firstItem="ILu-8e-yyJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Gwo-2b-DJa"/>

@@ -55,22 +55,22 @@ bool JoinAllianceView::init()
         CCLoadSprite::doResourceByCommonIndex(205, false);
         CCLoadSprite::doResourceByCommonIndex(307, false);
     });
-    auto tbg = CCLoadSprite::loadResource("technology_09.png");
-    auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
-    int maxHight = CCDirector::sharedDirector()->getWinSize().height;
-    int curHight = -500;
-    while (curHight<maxHight) {
-        auto bg = CCLoadSprite::createSprite("technology_09.png");
-        bg->setAnchorPoint(ccp(0, 1));
-        bg->setPosition(ccp(0, curHight));
-        curHight += bg->getContentSize().height;
-        tBatchNode->addChild(bg);
-    }
-    if (CCCommonUtils::isIosAndroidPad()) {
-        tBatchNode->setScaleX(2.4);
-        tBatchNode->setScaleY(2048.0 / 852.0);
-    }
-    this->addChild(tBatchNode);
+//    auto tbg = CCLoadSprite::loadResource("technology_09.png");
+//    auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
+//    int maxHight = CCDirector::sharedDirector()->getWinSize().height;
+//    int curHight = -500;
+//    while (curHight<maxHight) {
+//        auto bg = CCLoadSprite::createSprite("technology_09.png");
+//        bg->setAnchorPoint(ccp(0, 1));
+//        bg->setPosition(ccp(0, curHight));
+//        curHight += bg->getContentSize().height;
+//        tBatchNode->addChild(bg);
+//    }
+//    if (CCCommonUtils::isIosAndroidPad()) {
+//        tBatchNode->setScaleX(2.4);
+//        tBatchNode->setScaleY(2048.0 / 852.0);
+//    }
+//    this->addChild(tBatchNode);
     auto tmpCCB = CCBLoadFile("JoinAllianceCCB",this,this);
     addLoadingAni();
     this->setContentSize(tmpCCB->getContentSize());
@@ -94,16 +94,22 @@ bool JoinAllianceView::init()
     m_allianceList->setPositionY(m_allianceList->getPositionY()-addHeight);//
     m_allianceList->setContentSize(CCSizeMake(oldWidth, oldHeight+addHeight));
     
+    
+    
+    m_allianceListBG->setPositionY(m_allianceListBG->getPositionY()-addHeight);//
+    m_allianceListBG->setContentSize(CCSizeMake(m_allianceListBG->getContentSize().width, m_allianceListBG->getContentSize().height+addHeight));
+    
     allianceArray = CCArray::create();
     m_tabView = CCTableView::create(this, m_allianceList->getContentSize());
     m_tabView->setDirection(kCCScrollViewDirectionVertical);
     m_tabView->setVerticalFillOrder(kCCTableViewFillTopDown);
     m_tabView->setDelegate(this);
     m_tabView->setTouchPriority(-1);
+//    m_tabView->setBounceable(false);//fusheng 去掉弹性
     m_allianceList->addChild(m_tabView);
     
-    auto sprite9 = CCLoadSprite::createScale9Sprite("world_title_3.png");
-    CCSize s = CCSize(420, 45);
+    auto sprite9 = CCLoadSprite::createScale9Sprite("nb_alliance_search_bg.png");
+    CCSize s = CCSize(451, 52);
     if (CCCommonUtils::isIosAndroidPad()) {
         s = m_searchNode->getContentSize();
     }
@@ -222,7 +228,7 @@ void JoinAllianceView::updateAlliances(CCObject* data){
             CCLOG("OKKKK");
         }
         allianceArray->addObject(alliance);
-        alliance->release();
+        CC_SAFE_RELEASE(alliance);
     }
     //搜索无结果处理
     if(m_total_receive == 0){
@@ -506,6 +512,22 @@ void JoinAllianceView::getMoreInfo(CCObject* data){
 }
 
 void JoinAllianceView::scrollViewDidScroll(CCScrollView* view){
+ 
+    //fusheng add 保留滑动手感
+    auto layout = view -> getContainer();
+    
+    float currentY = layout -> getPositionY();
+   
+   
+//fusheng 需要上拉更新数据
+//    if (currentY > 0 && layout -> getContentSize().height - view -> getViewSize().height >= 0) {
+//        view -> setContentOffset(Vec2(0, 0));
+//    }
+    
+   
+    if (-currentY > layout -> getContentSize().height - view -> getViewSize().height)      {
+        view -> setContentOffset(Vec2(0, -layout -> getContentSize().height + view -> getViewSize().height));
+    }
 }
 void JoinAllianceView::getDataToServer(int page){
     std::string key  = m_editBox->getText();;
@@ -531,6 +553,11 @@ SEL_CCControlHandler JoinAllianceView::onResolveCCBCCControlSelector(cocos2d::CC
 
 bool JoinAllianceView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode)
 {
+
+    
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_allianceListBG", CCScale9Sprite*, this->m_allianceListBG);
+    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btnSearch", CCControlButton*, this->m_btnSearch);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btnAlliance", CCControlButton*, this->m_btnAlliance);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_allianceBtnTitle", CCLabelIF*, this->m_allianceBtnTitle);
@@ -584,8 +611,12 @@ CCTableViewCell* JoinAllianceView::tableCellAtIndex(  cocos2d::extension::TableV
     if(idx<allianceArray->count()){//
         if(cell){
             cell->updateAllianceInfo((AllianceInfo*)allianceArray->objectAtIndex(idx),m_type);
+            
+            cell->setIsFirst(idx == 0);
         }else{
             cell = JoinAlliaceCell::create((AllianceInfo*)allianceArray->objectAtIndex(idx),m_allianceList,m_type);
+            
+            cell->setIsFirst(idx == 0);
         }
         if( cell->getChildByTag(111) )
             cell->getChildByTag(111)->setVisible(true);//ccb
@@ -607,6 +638,8 @@ CCTableViewCell* JoinAllianceView::tableCellAtIndex(  cocos2d::extension::TableV
             if( cell->getChildByTag(222) )
                 cell->getChildByTag(222)->setVisible(false);
         }
+        
+        cell->setIsFirst(idx == 0);
     }
 
     return cell;
@@ -649,7 +682,7 @@ void JoinAllianceView::removeLoadingAni(){
     }
 }
 void JoinAllianceView::tableCellHighlight(  cocos2d::extension::TableView *table, CCTableViewCell* cell){
-    ((JoinAlliaceCell*)cell)->setHighlight();
+//    ((JoinAlliaceCell*)cell)->setHighlight();//fusheng 点击不变暗
     cellTouchIdx = cell->getIdx();
 }
 void JoinAllianceView::tableCellUnhighlight(  cocos2d::extension::TableView *table, CCTableViewCell* cell){
@@ -799,6 +832,7 @@ void JoinAlliaceCell::onTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *p
     
     if (m_touchNode && isTouchInside(m_touchNode,pTouch) && isTouchInside(m_clickNode, pTouch) && fabsf(end.y - m_touchPos.y)<30 && m_info!=NULL) {
         //PopupViewController::getInstance()->addPopupInView(AllianceInfoView::create(m_info));
+        this->unHighlight();//fusheng 取消按下状态
         SoundController::sharedSound()->playEffects(Music_Sfx_click_button);
         PopupViewController::getInstance()->addPopupInView(CheckAllianceInfoView::create(m_info));
         AllianceManager::getInstance()->setjoinType(3);
@@ -885,6 +919,9 @@ SEL_CCControlHandler JoinAlliaceCell::onResolveCCBCCControlSelector(cocos2d::CCO
 bool JoinAlliaceCell::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode)
 {
 
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_liantiao1", CCNode*, this->m_liantiao1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_liantiao2", CCNode*, this->m_liantiao2);
+    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameTxt", CCLabelIFTTF*, this->m_nameTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_leaderTxt", CCLabelIFTTF*, this->m_leaderTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_allianceNumTxt", CCLabelIFTTF*, this->m_allianceNumTxt);
@@ -915,4 +952,10 @@ void JoinAlliaceCell::unHighlight(){
 //    this->getChildByTag(111)->setScale(1.0);
     m_bg->setColor(ccc3(255,255,255));
     ((CCSprite*)m_allianceIcon->getChildByTag(444)->getChildByTag(444))->setColor(ccc3(255,255,255));
+}
+
+void JoinAlliaceCell::setIsFirst(bool isFirst)
+{
+    m_liantiao1->setVisible(isFirst);
+    m_liantiao2->setVisible(!isFirst);
 }

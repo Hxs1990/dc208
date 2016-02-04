@@ -34,6 +34,8 @@
 #include "MailController.h"
 #include "AllianceIntroTip.h"
 #include "ChatServiceCocos2dx.h"
+#include "AllianceInviteView.h"
+#include "AllianceInfoView.h"
 #include "IFCommonUtils.hpp"
 #define ALLIANCE_RANK_TITLE_CLICK "alliance_rank_title_click"
 
@@ -43,9 +45,14 @@ static const CCSize CELL_SIZE_WITHOUT_TITLE(640, 230);
 static const CCSize CELL_SIZE_WITH_TITLE_HD(1536, 170);
 static const CCSize CELL_SIZE_WITHOUT_TITLE_HD(1536, 400);
 
-static int status[6] = {1,1,1,1,1,1};
+static const int CELLS_CNT = 6;
+static const char* STATUS_DEFAULT = "0,1,0,0,0,0";
+static const char* STATUS_HAS_APPLICATIONS = "0,0,0,0,0,1";
+static int status[CELLS_CNT] = {1,1,1,1,1,1};
 static bool tipFlag = false;
 
+// 不显示盟主
+#define NO_ALLIANCE_LORD {if (rank == 5) continue;}
 
 void releaseMembers( InfoMembers& data )
 {
@@ -75,6 +82,18 @@ bool AllianceInfoMembersView::onAssignCCBMemberVariable(cocos2d::CCObject *pTarg
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btnJoin", CCControlButton*, this->m_btnJoin);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_introNode", CCNode*, this->m_introNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titleTxt", CCLabelIF*, this->m_titleTxt);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_postest", CCNode*, this->m_postest);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titleFlag", CCSprite*, this->m_titleFlag);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_powertxt", CCLabelIF*, this->m_powertxt);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lvtxt", CCLabelIF*, this->m_lvtxt);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nametxt", CCLabelIF*, this->m_nametxt);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_mailBtn", CCControlButton*, this->m_mailBtn);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_inviteBtn", CCControlButton*, this->m_inviteBtn);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_exitBtn", CCControlButton*, this->m_exitBtn);
+    
     return true;
 }
 
@@ -82,6 +101,12 @@ SEL_CCControlHandler AllianceInfoMembersView::onResolveCCBCCControlSelector(coco
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onHelpClick", AllianceInfoMembersView::onHelpClick);
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onApply", AllianceInfoMembersView::onApply);
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "openJoinAlliance", AllianceInfoMembersView::openJoinAlliance);
+    
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onClickMailBtn", AllianceInfoMembersView::onClickMailBtn);
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onClickInviteBtn", AllianceInfoMembersView::onClickInviteBtn);
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onClickExitBtn", AllianceInfoMembersView::onClickExitBtn);
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onClanHostTouched", AllianceInfoMembersView::onClanHostTouched);
+    
     return NULL;
 }
 
@@ -99,319 +124,99 @@ void AllianceInfoMembersView::onApply(CCObject *pSender, CCControlEvent event){
 void AllianceInfoMembersView::onHelpClick(CCObject *pSender, CCControlEvent event){
     CCLOG("onHelpClick");
     PopupViewController::getInstance()->addPopupInView(AllianceRankAttrView::create());
-    return ;
-    if(!tipFlag){
-        m_btnStatus = "";
-        for (int i=0; i<6; i++) {
-            m_btnStatus.append(CC_ITOA(status[i]));
-            if(i!=5){
-                m_btnStatus.append(",");
-            }
-        }
-        vector<std::string> bvector;
-        CCCommonUtils::splitString("1,0,0,0,0,0",",", bvector);
-        int num = bvector.size();
-        num = MIN(num,6);
-        for (int i=0; i<num; i++) {
-            status[i] = atoi(bvector[i].c_str());
-        }
-        m_first = true;
-        this->resetTitleStatus();
-        this->generalData();
-        this->resetPosition();
-        
-        m_parVec.clear();
-        m_introNode->removeFromParent();
-        m_introNode->removeAllChildrenWithCleanup(true);
-        m_tableView->getContainer()->addChild(m_introNode,100000);
-        
-        CCRenderTexture* layer = CCRenderTexture::create(640, 1500);
-        ccBlendFunc ccb1 = {GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA};
-        layer->getSprite()->setBlendFunc(ccb1);
-        layer->clear(0.0f, 0.0f, 0.0f, 0.7f);//0.0f, 0.0f, 0.0f, 0.7f
-        layer->setAnchorPoint(ccp(0.5, 0.5));
-        layer->setPosition(ccp(320, 750));
-        m_introNode->addChild(layer,-20);
-        layer->removeAllChildren();
-        layer->begin();
-        
-        CCPoint startPos = ccp(235, m_introNode->getContentSize().height+100);
-        if(GlobalData::shared()->playerInfo.allianceInfo.rank>=4){
-            startPos.y = startPos.y +80;
-        }
-        AllianceIntroTip* intro1 = AllianceIntroTip::create(true, ccp(321.0, 103.0),_lang("115245"));
-        intro1->setPosition(ccp(235, startPos.y));
-        m_introNode->addChild(intro1);
-        
-        string tmpStart = "ShowFire_";
-        string tmpStart1 = "ShowFireUp_";
-        CCPoint pos = ccp(560,startPos.y +110);
-        CCSize size = m_helpBtn->getContentSize();
-        CCNode* frieNode =  CCNode::create();
-        frieNode->setAnchorPoint(ccp(0.5, 0.5));
-        frieNode->setTag(999);
-        m_helpBtn->addChild(frieNode);
-        
-        for (int i=1; i<=5; i++) {
-            auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-            particle->setPosition(ccp(size.width/2, -3));
-            particle->setPosVar(ccp(size.width/2, 0));
-            frieNode->addChild(particle);
-            
-            auto particle1 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-            particle1->setPosition(ccp(size.width/2, size.height-3));
-            particle1->setPosVar(ccp(size.width/2, 0));
-            frieNode->addChild(particle1);
-            
-            auto particle2 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-            particle2->setPosition(ccp(0, size.height/2));
-            particle2->setPosVar(ccp(0, size.height/2));
-            frieNode->addChild(particle2);
-            
-            auto particle3 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-            particle3->setPosition(ccp(size.width, size.height/2));
-            particle3->setPosVar(ccp(0, size.height/2));
-            frieNode->addChild(particle3);
-        }
-        
-        pos = ccp(560,startPos.y +110);
-        size = CCSize(60,60);
-        CCLayerColor* intro1layer = CCLayerColor::create();
-        intro1layer->setOpacity(255);
-        intro1layer->setColor(ccc3(255, 255, 255));
-        intro1layer->setContentSize(size);
-        intro1layer->setPosition(pos);
-        ccBlendFunc cbf = {GL_ZERO,GL_ONE_MINUS_SRC_ALPHA};
-        intro1layer->setBlendFunc(cbf);
-        intro1layer->visit();
-        
-        for (int i=1; i<=5; i++) {
-            auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-            particle->setPosition(pos+ccp(size.width/2, -3));
-            particle->setPosVar(ccp(size.width/2, 0));
-            addParticleToBatch(particle);
-            
-            auto particle1 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-            particle1->setPosition(pos+ccp(size.width/2, size.height-3));
-            particle1->setPosVar(ccp(size.width/2, 0));
-            addParticleToBatch(particle1);
-            
-            auto particle2 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-            particle2->setPosition(pos+ccp(0, size.height/2));
-            particle2->setPosVar(ccp(0, size.height/2));
-            addParticleToBatch(particle2);
-            
-            auto particle3 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-            particle3->setPosition(pos+ccp(size.width, size.height/2));
-            particle3->setPosVar(ccp(0, size.height/2));
-            addParticleToBatch(particle3);
-        }
-        
-        AllianceIntroTip* intro2 = AllianceIntroTip::create(true, ccp(105.0, 103),_lang("115246"));
-        intro2->setPosition(ccp(90, startPos.y - 230));
-        m_introNode->addChild(intro2);
-        
-        pos = ccp(165, startPos.y - 120);
-        size = CCSize(150,220);
-        
-        for (int i=1; i<=5; i++) {
-            auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-            particle->setPosition(pos+ccp(size.width/2, -3));
-            particle->setPosVar(ccp(size.width/2, 0));
-            addParticleToBatch(particle);
-            
-            auto particle1 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-            particle1->setPosition(pos+ccp(size.width/2, size.height-3));
-            particle1->setPosVar(ccp(size.width/2, 0));
-            addParticleToBatch(particle1);
-            
-            auto particle2 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-            particle2->setPosition(pos+ccp(0, size.height/2));
-            particle2->setPosVar(ccp(0, size.height/2));
-            addParticleToBatch(particle2);
-            
-            auto particle3 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-            particle3->setPosition(pos+ccp(size.width, size.height/2));
-            particle3->setPosVar(ccp(0, size.height/2));
-            addParticleToBatch(particle3);
-        }
-        CCLayerColor* clayer = CCLayerColor::create();
-        clayer->setOpacity(255);
-        clayer->setColor(ccc3(255, 255, 255));
-        clayer->setContentSize(size);
-        clayer->setPosition(pos);
-        cbf = {GL_ZERO,GL_ONE_MINUS_SRC_ALPHA};
-        clayer->setBlendFunc(cbf);
-        clayer->visit();
+}
 
-        if(GlobalData::shared()->playerInfo.allianceInfo.rank>=4){
-            AllianceIntroTip* intro3 = AllianceIntroTip::create(false, ccp(267.0, -17.0),_lang("115247"));
-            intro3->setPosition(ccp(20, startPos.y - 580));
-            m_introNode->addChild(intro3);
-            
-            pos = ccp(175, startPos.y - 690);
-            size = CCSize(300,60);
-            CCLayerColor* intro3layer = CCLayerColor::create();
-            intro3layer->setOpacity(255);
-            intro3layer->setColor(ccc3(255, 255, 255));
-            intro3layer->setContentSize(size);
-            intro3layer->setPosition(pos);
-            cbf = {GL_ZERO,GL_ONE_MINUS_SRC_ALPHA};
-            intro3layer->setBlendFunc(cbf);
-            intro3layer->visit();
-            
-            for (int i=1; i<=5; i++) {
-                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-                particle->setPosition(pos+ccp(size.width/2, -3));
-                particle->setPosVar(ccp(size.width/2, 0));
-                addParticleToBatch(particle);
-                
-                auto particle1 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-                particle1->setPosition(pos+ccp(size.width/2, size.height-3));
-                particle1->setPosVar(ccp(size.width/2, 0));
-                addParticleToBatch(particle1);
-                
-                auto particle2 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-                particle2->setPosition(pos+ccp(0, size.height/2));
-                particle2->setPosVar(ccp(0, size.height/2));
-                addParticleToBatch(particle2);
-                
-                auto particle3 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-                particle3->setPosition(pos+ccp(size.width, size.height/2));
-                particle3->setPosVar(ccp(0, size.height/2));
-                addParticleToBatch(particle3);
-            }
-            
-            AllianceIntroTip* intro4 = AllianceIntroTip::create(true, ccp(105.0, 103),_lang("115248"));
-            intro4->setPosition(ccp(90, startPos.y - 940));
-            m_introNode->addChild(intro4);
-            
-            pos = ccp(175, startPos.y - 830);
-            size = CCSize(300,60);
-            
-            CCLayerColor* intro4layer = CCLayerColor::create();
-            intro4layer->setOpacity(255);
-            intro4layer->setColor(ccc3(255, 255, 255));
-            intro4layer->setContentSize(size);
-            intro4layer->setPosition(pos);
-            cbf = {GL_ZERO,GL_ONE_MINUS_SRC_ALPHA};
-            intro4layer->setBlendFunc(cbf);
-            intro4layer->visit();
-            
-            for (int i=1; i<=5; i++) {
-                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-                particle->setPosition(pos+ccp(size.width/2, -3));
-                particle->setPosVar(ccp(size.width/2, 0));
-                addParticleToBatch(particle);
-                
-                auto particle1 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-                particle1->setPosition(pos+ccp(size.width/2, size.height-3));
-                particle1->setPosVar(ccp(size.width/2, 0));
-                addParticleToBatch(particle1);
-                
-                auto particle2 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-                particle2->setPosition(pos+ccp(0, size.height/2));
-                particle2->setPosVar(ccp(0, size.height/2));
-                addParticleToBatch(particle2);
-                
-                auto particle3 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-                particle3->setPosition(pos+ccp(size.width, size.height/2));
-                particle3->setPosVar(ccp(0, size.height/2));
-                addParticleToBatch(particle3);
-            }
-        }else{
-            AllianceIntroTip* intro3 = AllianceIntroTip::create(false, ccp(267.0, -17.0),_lang("115247"));
-            intro3->setPosition(ccp(20, startPos.y - 500));
-            m_introNode->addChild(intro3);
-            
-            pos = ccp(175, startPos.y - 610);
-            size = CCSize(300,60);
-            CCLayerColor* intro3layer = CCLayerColor::create();
-            intro3layer->setOpacity(255);
-            intro3layer->setColor(ccc3(255, 255, 255));
-            intro3layer->setContentSize(size);
-            intro3layer->setPosition(pos);
-            cbf = {GL_ZERO,GL_ONE_MINUS_SRC_ALPHA};
-            intro3layer->setBlendFunc(cbf);
-            intro3layer->visit();
-            
-            for (int i=1; i<=5; i++) {
-                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-                particle->setPosition(pos+ccp(size.width/2, -3));
-                particle->setPosVar(ccp(size.width/2, 0));
-                addParticleToBatch(particle);
-                
-                auto particle1 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-                particle1->setPosition(pos+ccp(size.width/2, size.height-3));
-                particle1->setPosVar(ccp(size.width/2, 0));
-                addParticleToBatch(particle1);
-                
-                auto particle2 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-                particle2->setPosition(pos+ccp(0, size.height/2));
-                particle2->setPosVar(ccp(0, size.height/2));
-                addParticleToBatch(particle2);
-                
-                auto particle3 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-                particle3->setPosition(pos+ccp(size.width, size.height/2));
-                particle3->setPosVar(ccp(0, size.height/2));
-                addParticleToBatch(particle3);
-            }
-            
-            AllianceIntroTip* intro4 = AllianceIntroTip::create(true, ccp(105.0, 103),_lang("115248"));
-            intro4->setPosition(ccp(90, startPos.y - 860));
-            m_introNode->addChild(intro4);
-            pos = ccp(175, startPos.y - 750);
-            size = CCSize(300,60);
-            
-            CCLayerColor* intro4layer = CCLayerColor::create();
-            intro4layer->setOpacity(255);
-            intro4layer->setColor(ccc3(255, 255, 255));
-            intro4layer->setContentSize(size);
-            intro4layer->setPosition(pos);
-            cbf = {GL_ZERO,GL_ONE_MINUS_SRC_ALPHA};
-            intro4layer->setBlendFunc(cbf);
-            intro4layer->visit();
-            
-            for (int i=1; i<=5; i++) {
-                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-                particle->setPosition(pos+ccp(size.width/2, -3));
-                particle->setPosVar(ccp(size.width/2, 0));
-                addParticleToBatch(particle);
-                
-                auto particle1 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,size.width*0.3);
-                particle1->setPosition(pos+ccp(size.width/2, size.height-3));
-                particle1->setPosVar(ccp(size.width/2, 0));
-                addParticleToBatch(particle1);
-                
-                auto particle2 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-                particle2->setPosition(pos+ccp(0, size.height/2));
-                particle2->setPosVar(ccp(0, size.height/2));
-                addParticleToBatch(particle2);
-                
-                auto particle3 = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart1.c_str(),i)->getCString(), CCPointZero,size.height*0.3);
-                particle3->setPosition(pos+ccp(size.width, size.height/2));
-                particle3->setPosVar(ccp(0, size.height/2));
-                addParticleToBatch(particle3);
-            }
-        }
-        layer->end();
-        tipFlag = true;
-    }else{
-        tipFlag = false;
-        m_introNode->removeFromParent();
-        vector<std::string> bvector;
-        CCCommonUtils::splitString(m_btnStatus,",", bvector);
-        int num = bvector.size();
-        num = MIN(num,6);
-        for (int i=0; i<num; i++) {
-            status[i] = atoi(bvector[i].c_str());
-        }
-        this->resetTitleStatus();
-        this->generalData();
-        this->resetPosition();
-        m_helpBtn->removeChildByTag(999);
+void AllianceInfoMembersView::onClickMailBtn(CCObject *pSender, CCControlEvent event)
+{
+    SoundController::sharedSound()->playEffects(Music_Sfx_click_button);
+    MailController::getInstance()->openMailDialogViewFirst(_lang("105564"), GlobalData::shared()->playerInfo.uid);
+}
+
+void AllianceInfoMembersView::onClickInviteBtn(CCObject *pSender, CCControlEvent event)
+{
+    SoundController::sharedSound()->playEffects(Music_Sfx_click_button);
+    auto pop = AllianceInviteView::create();
+    PopupViewController::getInstance()->addPopupInView(pop);
+}
+
+void AllianceInfoMembersView::onClickExitBtn(CCObject *pSender, CCControlEvent event)
+{
+    if (GlobalData::shared()->isCrossService)
+    {
+        YesNoDialog::show(_lang("138064").c_str(), NULL);
+        return ;
+    }
+    if (GlobalData::shared()->playerInfo.allianceInfo.rank == 5 && GlobalData::shared()->playerInfo.allianceInfo.currentNum > 1)
+    {
+        CCCommonUtils::flyHint("", "", _lang("115249"));
+    }
+    else if (GlobalData::shared()->playerInfo.allianceInfo.currentNum <= 1 && GlobalData::shared()->playerInfo.allianceInfo.rank == 5)
+    {
+        YesNoDialog::showVariableTitle(_lang("115040").c_str(),CCCallFunc::create(this, callfunc_selector(AllianceInfoMembersView::dismissAlliance)),_lang("confirm").c_str());
+    }else {
+        YesNoDialog::showVariableTitle(_lang("115042").c_str(),CCCallFunc::create(this, callfunc_selector(AllianceInfoMembersView::secondConfirm)),_lang("confirm").c_str());
     }
 }
+
+void AllianceInfoMembersView::onClanHostTouched(CCObject *pSender, CCControlEvent event)
+{
+    for (int j = 0; j < m_datas.size(); j++)
+    {
+        auto infoMember = m_datas[j];
+        if (infoMember->getRank() == 5)
+        {
+            SoundController::sharedSound()->playEffects(Music_Sfx_click_button);
+
+            CCPoint pos = m_nametxt->getParent()->convertToWorldSpace(m_nametxt->getPosition());
+            PopupViewController::getInstance()->addPopupView(AllianceManagerFunView::create(infoMember, pos), false, false);
+            
+            break;
+        }
+    }
+}
+
+void AllianceInfoMembersView::dismissAlliance()
+{
+    DismissAllianceCommand * command = new DismissAllianceCommand();
+    command->setCallback(CCCallFuncO::create(this, callfuncO_selector(AllianceInfoMembersView::onDismissAlliance), NULL));
+    command->sendAndRelease();
+}
+
+void AllianceInfoMembersView::onDismissAlliance(CCObject* obj)
+{
+    UIComponent::getInstance()->changeChatChannel(CHAT_COUNTRY);
+    PopupViewController::getInstance()->removeAllPopupView();
+    ChatController::getInstance()->m_chatAlliancePool.clear();
+    ChatController::getInstance()->m_latestAllianceMsg.sequenceId=0;
+#if(CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    ChatServiceCocos2dx::resetPlayerIsInAlliance();
+#elif(CC_TARGET_PLATFORM==CC_PLATFORM_IOS)
+    ChatServiceCocos2dx::resetPlayerIsInAlliance();
+#endif
+    CCUserDefault::sharedUserDefault()->setStringForKey(ALLIANCE_MEMBER_BTN_STATUS, "");
+}
+
+void AllianceInfoMembersView::secondConfirm()
+{
+    GameController::getInstance()->showWaitInterface();
+    LeaveAllianceCommand * command = new LeaveAllianceCommand(_lang("115186").append("  (").append(_lang("115181")).append(")").c_str(),2);
+    command->setCallback(CCCallFuncO::create(this, callfuncO_selector(AllianceInfoMembersView::leavelSuccess), NULL));
+    command->sendAndRelease();
+}
+
+void AllianceInfoMembersView::leavelSuccess(CCObject* obj){
+    UIComponent::getInstance()->changeChatChannel(CHAT_COUNTRY);
+    PopupViewController::getInstance()->removeAllPopupView();
+    ChatController::getInstance()->m_chatAlliancePool.clear();
+    ChatController::getInstance()->m_latestAllianceMsg.sequenceId=0;
+#if(CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    ChatServiceCocos2dx::resetPlayerIsInAlliance();
+#elif(CC_TARGET_PLATFORM==CC_PLATFORM_IOS)
+    ChatServiceCocos2dx::resetPlayerIsInAlliance();
+#endif
+    CCUserDefault::sharedUserDefault()->setStringForKey(ALLIANCE_MEMBER_BTN_STATUS, "");
+}
+
 
 void AllianceInfoMembersView::addParticleToBatch(cocos2d::CCParticleSystemQuad *particle){
     auto batchCount = m_parVec.size();
@@ -481,13 +286,22 @@ bool AllianceInfoMembersView::init(){
     if(PopupBaseView::init())
     {
         setIsHDPanel(true);
+        
+        CCLoadSprite::doResourceByGeneralIndex(1, true);
+        CCLoadSprite::doResourceByGeneralIndex(2, true);
+        CCLoadSprite::doResourceByGeneralIndex(3, true);
+        
         CCLoadSprite::doResourceByCommonIndex(7, true);
         CCLoadSprite::doResourceByCommonIndex(307, true);
         setCleanFunction([](){
             CCLoadSprite::doResourceByCommonIndex(307, false);
             CCLoadSprite::doResourceByCommonIndex(7, false);
+            
+            CCLoadSprite::doResourceByGeneralIndex(1, false);
+            CCLoadSprite::doResourceByGeneralIndex(2, false);
+            CCLoadSprite::doResourceByGeneralIndex(3, false);
         });
-        auto tbg = CCLoadSprite::loadResource("technology_09.png");
+        /*auto tbg = CCLoadSprite::loadResource("technology_09.png");
         auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
         int maxHight = CCDirector::sharedDirector()->getWinSize().height;
         int curHight = -500;
@@ -502,7 +316,7 @@ bool AllianceInfoMembersView::init(){
         {
             tBatchNode->setScaleX(1536.0 / 640.0);
         }
-        this->addChild(tBatchNode);
+        this->addChild(tBatchNode);*/
         auto node = CCBLoadFile("AllianceInfoMembersView", this, this);
         setContentSize(node->getContentSize());
         m_loadingIcon = NULL;
@@ -512,8 +326,38 @@ bool AllianceInfoMembersView::init(){
         int dh = m_background->getContentSize().height - preHeight;
         m_background->setVisible(false);
 
+        m_lvtxt->setString("");
+        m_powertxt->setString("0");
+        m_nametxt->setString("");
+        m_postest->removeAllChildren();
+        
+//        m_lvtxt->setFntFile(getNBFont(NB_FONT_Bold_Border));
+//        m_powertxt->setFntFile(getNBFont(NB_FONT_Bold_Border));
+        
+        m_mailBtn->setTitleForState(_lang("115900"), cocos2d::extension::Control::State::NORMAL);
+        m_mailBtn->setTitleForState(_lang("115900"), cocos2d::extension::Control::State::DISABLED);
+        m_mailBtn->setTitleForState(_lang("115900"), cocos2d::extension::Control::State::HIGH_LIGHTED);
+        m_mailBtn->setTitleForState(_lang("115900"), cocos2d::extension::Control::State::SELECTED);
+        
+        m_inviteBtn->setTitleForState(_lang("115265"), cocos2d::extension::Control::State::NORMAL);
+        m_inviteBtn->setTitleForState(_lang("115265"), cocos2d::extension::Control::State::DISABLED);
+        m_inviteBtn->setTitleForState(_lang("115265"), cocos2d::extension::Control::State::HIGH_LIGHTED);
+        m_inviteBtn->setTitleForState(_lang("115265"), cocos2d::extension::Control::State::SELECTED);
+        
+        m_exitBtn->setTitleForState(_lang("115039"), cocos2d::extension::Control::State::NORMAL);
+        m_exitBtn->setTitleForState(_lang("115039"), cocos2d::extension::Control::State::DISABLED);
+        m_exitBtn->setTitleForState(_lang("115039"), cocos2d::extension::Control::State::HIGH_LIGHTED);
+        m_exitBtn->setTitleForState(_lang("115039"), cocos2d::extension::Control::State::SELECTED);
+        
         m_showData = CCArray::create();
-        dh += 90;
+        if (m_allianceId != GlobalData::shared()->playerInfo.allianceInfo.uid)
+        {
+            dh += 90;
+        }
+        else
+        {
+            dh += 90 - 140;
+        }
         if (CCCommonUtils::isIosAndroidPad()) {
             dh = CCDirector::sharedDirector()->getWinSize().height - 2048;
         }
@@ -529,18 +373,36 @@ bool AllianceInfoMembersView::init(){
         m_tableView->setTouchPriority(Touch_Popup);
         m_listContainer->addChild(m_tableView);
         
-        string statusBtn = CCUserDefault::sharedUserDefault()->getStringForKey(ALLIANCE_MEMBER_BTN_STATUS,"");
-        if(statusBtn==""){
-            statusBtn = "1,0,0,0,0,0";
+        if (m_allianceId != GlobalData::shared()->playerInfo.allianceInfo.uid)
+        {
+            m_mailBtn->setEnabled(false);
+            m_inviteBtn->setEnabled(false);
+            m_exitBtn->setEnabled(false);
         }
-        if(m_allianceId == GlobalData::shared()->playerInfo.allianceInfo.uid && GlobalData::shared()->playerInfo.allianceInfo.rank >= 4 && GlobalData::shared()->playerInfo.allianceInfo.applyNum > 0){
-            statusBtn = "0,0,0,0,0,1";
+        else
+        {
+            auto abn = AllianceBottomNode::create(&GlobalData::shared()->playerInfo.allianceInfo, AlliancePageTag::MEMBER_BTN);
+            abn->setPositionY(preHeight - m_background->getContentSize().height);
+            addChild(abn);
+        }
+        
+        string statusBtn = CCUserDefault::sharedUserDefault()->getStringForKey(ALLIANCE_MEMBER_BTN_STATUS, "");
+        if (statusBtn == "")
+        {
+            statusBtn = STATUS_DEFAULT;
+        }
+        if (m_allianceId == GlobalData::shared()->playerInfo.allianceInfo.uid
+            && GlobalData::shared()->playerInfo.allianceInfo.rank >= 4
+            && GlobalData::shared()->playerInfo.allianceInfo.applyNum > 0)
+        {
+            statusBtn = STATUS_HAS_APPLICATIONS;
         }
         vector<std::string> bvector;
-        CCCommonUtils::splitString(statusBtn,",", bvector);
+        CCCommonUtils::splitString(statusBtn, ",", bvector);
         int num = bvector.size();
-        num = MIN(num,6);
-        for (int i=0; i<num; i++) {
+        num = MIN(num, CELLS_CNT);
+        for (int i = 0; i < num; i++)
+        {
             status[i] = atoi(bvector[i].c_str());
         }
         AllianceInfoMember* member = new AllianceInfoMember;
@@ -718,6 +580,7 @@ void AllianceInfoMembersView::onGetAllianceMembers(CCObject* data)
             }else{
                 pic.append("_middle.png");
             }
+			int userLv = member->valueForKey("level")->intValue();
             AllianceInfoMember* infoMember = new AllianceInfoMember;
             infoMember->setRank(rank);
             infoMember->setName(name);
@@ -741,6 +604,30 @@ void AllianceInfoMembersView::onGetAllianceMembers(CCObject* data)
             if(uid==GlobalData::shared()->playerInfo.uid){
                 //selfInfo = infoMember;
             }
+			
+			infoMember->setUserLevel(userLv);
+            if (infoMember->getRank() == 5)
+            {
+                m_titleFlag->setVisible(infoMember->getRank()>1);
+                if (infoMember->getRank() > 1)
+                {
+                    m_titleFlag->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("icon_Alliance_0%d.png",infoMember->getRank())->getCString()));
+                }
+                
+                string lv = "LV."; lv.append(CC_ITOA(infoMember->getUserLevel()));
+                m_lvtxt->setString(lv);
+                m_powertxt->setString(CC_CMDITOAL(infoMember->getPower()));
+                
+                m_nametxt->setString(infoMember->getName());
+                
+                string t = infoMember->getHead() + "_bust.png";
+//                m_postest->initWithSpriteFrame(CCLoadSprite::loadResource(t.c_str()));
+                auto s = CCLoadSprite::createSprite(t.c_str());
+                s->setAnchorPoint({0.5, 1});
+                m_postest->removeAllChildren();
+                m_postest->addChild(s);
+            }
+			
             m_datas.push_back(infoMember);
             
             if(uid==GlobalData::shared()->playerInfo.uid && GlobalData::shared()->playerInfo.isInAlliance()){
@@ -802,6 +689,7 @@ void AllianceInfoMembersView::onGetAppAllianceMembers(CCObject* data){
                 pic.append("_middle.png");
             }
             int pointId = member->valueForKey("pointId")->intValue();
+			int userLv = member->valueForKey("level")->intValue();
             AllianceInfoMember* infoMember = new AllianceInfoMember;
             infoMember->setRank(0);
             infoMember->setName(name);
@@ -815,6 +703,7 @@ void AllianceInfoMembersView::onGetAppAllianceMembers(CCObject* data){
             infoMember->setApplyMessage(applyMessage);
             infoMember->setIsManager(true);
             infoMember->setIsTitle(false);
+			infoMember->setUserLevel(userLv);
             m_appDatas.push_back(infoMember);
         }
     }
@@ -835,7 +724,7 @@ void AllianceInfoMembersView::onEnter(){
     UIComponent::getInstance()->showPopupView(1);
     PopupBaseView::onEnter();
     this->setTitleName(_lang("115027"));
-    CCLoadSprite::doResourceByCommonIndex(7, true);
+    // CCLoadSprite::doResourceByCommonIndex(7, true);
     if((m_isApply || GlobalData::shared()->playerInfo.isInAlliance()) && m_datas.size()<=0){
         GetAllianceMembersCommand * command = new GetAllianceMembersCommand();
         command->putParam("allianceId", CCString::create(m_allianceId));
@@ -1011,6 +900,7 @@ void AllianceInfoMembersView::generalData(){
     for (int j=titleNum; j>0; j--) {
         CCArray* titleV = CCArray::create();
         int rank = m_titles[titleNum-j]->getRank();
+		NO_ALLIANCE_LORD
         string rankTitle = "";
 //        switch (rank) {
 //            case 1:
@@ -1280,6 +1170,7 @@ bool AllianceInfoMembersCell::init()
     
     if (CCTableViewCell::init()) {
         CCNode* node = CCBLoadFile("AllianceInfoMembersCell", this, this);
+        m_rankSpr->setVisible(false);
         CCSize size = node->getContentSize();
         setContentSize(size);
         CCCommonUtils::setButtonTitle(m_btn1, _lang("115031").c_str());
@@ -1414,6 +1305,7 @@ void AllianceInfoMembersCell::bind(AllianceInfoMember* oneInfo,AllianceInfoMembe
     m_rankNode->setVisible(false);
     m_infoNode->setVisible(false);
     m_btnNode->setVisible(false);
+    m_rankSpr->setVisible(false);
     if (m_oneInfo == NULL && m_twoInfo==NULL) {
         return ;
     }
@@ -1431,45 +1323,51 @@ void AllianceInfoMembersCell::bind(AllianceInfoMember* oneInfo,AllianceInfoMembe
         m_infoNode->setVisible(false);
         m_arrow->setRotation(m_oneInfo->getOpen()?90:0);
         m_titleTxt->setString(m_oneInfo->getAllianceTitle().c_str());
-        string numStr = string(CC_ITOA(m_oneInfo->getonLineNum())) + string("/") + string(CC_ITOA(m_oneInfo->getAppNum()));
-        m_numTxt->setString(numStr);
+        // string numStr = string(CC_ITOA(m_oneInfo->getonLineNum())) + string("/") + string(CC_ITOA(m_oneInfo->getAppNum()));
+        // m_numTxt->setString(numStr);
+		
+		// m_numTxt->setFntFile(getNBFont(NB_FONT_Bold_Border));
+        m_numTxt->setString(CC_ITOA(m_oneInfo->getAppNum()));
         m_rankIcon->removeAllChildrenWithCleanup(true);
         CCSprite* spr = NULL;
         if(m_oneInfo->getRank()==5){
            spr = CCLoadSprite::createSprite(CCString::createWithFormat("icon_Alliance_0%d.png",m_oneInfo->getRank())->getCString());
-           spr->setScale(0.5);
+//           spr->setScale(0.5);
         }else if(m_oneInfo->getRank()==0){
             std::string str = m_oneInfo->getAllianceTitle();
 //            str.append("(");
 //            str.append(CC_ITOA(m_oneInfo->getAppNum()));
 //            str.append(")");
             m_titleTxt->setString(str.c_str());
-            spr = CCLoadSprite::createSprite(CCString::createWithFormat("newAlliance_icon.png")->getCString());
-            spr->setScale(0.6);
-        }else{
-           spr = CCLoadSprite::createSprite(CCString::createWithFormat("Alliance_R%d.png",m_oneInfo->getRank())->getCString());
+            spr = CCLoadSprite::createSprite(CCString::createWithFormat("nb_0032.png")->getCString());
         }
-        m_rankIcon->addChild(spr);
+        else
+        {
+            m_rankSpr->setVisible(true);
+            spr = CCLoadSprite::createSprite(CCString::createWithFormat("nb_al_R_n%d.png",m_oneInfo->getRank())->getCString());
+            spr->setPositionX(6);
+        }
+        if (spr) m_rankIcon->addChild(spr);
     }else if(m_oneInfo->getRank()==5){
         m_rankNode->setVisible(false);
         m_infoNode->setVisible(true);
-        CCScale9Sprite* spr = CCLoadSprite::createScale9Sprite("Alliance_r5_frame.png");//
+        CCScale9Sprite* spr = CCLoadSprite::createScale9Sprite("nb_al_members_bg.png");//
         spr->setAnchorPoint(ccp(0, 0));
-        spr->setPosition(CCPoint(0,-12));
-        spr->setContentSize(CCSize(640,250));
+        spr->setPosition(CCPoint(0 + 10, -5));
+        spr->setContentSize(CCSize(640 - 20, 235));
         m_infoNode->addChild(spr);
         AllianceOneMembersCell* oneCell = AllianceOneMembersCell::create(m_clickType);
-        oneCell->setScale(1.15);
-        oneCell->setPosition(ccp(130,-5));
+//        oneCell->setScale(1.15);
+        oneCell->setPosition(ccp(130, 0));
         if (CCCommonUtils::isIosAndroidPad()) {
-            spr->setPreferredSize(CCSize(1536, 430));
-            spr->setPosition(0, -25);
-            oneCell->setScale(1.1);
+            spr->setPreferredSize(CCSize(1536 - 20, 430 - 10));
+            spr->setPosition(0 + 10, -25 + 5);
+//            oneCell->setScale(1.1);
             oneCell->setPosition(ccp(371, 0));
         }
         oneCell->setData(m_oneInfo);
         m_infoNode->addChild(oneCell);
-        CCParticleBatchNode *batch = ParticleController::createParticleBatch();
+        /* CCParticleBatchNode *batch = ParticleController::createParticleBatch();
         batch->setPosition(ccp(130+260,100));
         if (CCCommonUtils::isIosAndroidPad())
         {
@@ -1482,15 +1380,15 @@ void AllianceInfoMembersCell::bind(AllianceInfoMember* oneInfo,AllianceInfoMembe
         for (int i=2; i<count; i++) {
             auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString());
             batch->addChild(particle);
-        }
+        }*/
         
     }else{
         m_rankNode->setVisible(false);
         m_infoNode->setVisible(true);
-        CCScale9Sprite* spr = CCLoadSprite::createScale9Sprite("Alliance_r1234_frame.png");
+        CCScale9Sprite* spr = CCLoadSprite::createScale9Sprite("nb_al_members_bg.png");
         spr->setAnchorPoint(ccp(0, 0));
-        spr->setPosition(CCPoint(0,-10));
-        spr->setContentSize(CCSize(640,250));
+        spr->setPosition(CCPoint(0 + 10, -5));
+        spr->setContentSize(CCSize(640 - 20, 235));
         if (CCCommonUtils::isIosAndroidPad()) {
             spr->setPosition(CCPoint(0, -25));
             spr->setPreferredSize(CCSize(1536, 430));
@@ -1542,10 +1440,14 @@ bool AllianceOneMembersCell::init()
         CCNode* node = CCBLoadFile("NewAllianceMemberCell", this, this);
         CCSize size = node->getContentSize();
         setContentSize(size);
+        
+        m_nodeHide[0]->setVisible(false);
+        m_nodeHide[1]->setVisible(false);
+        
         std::string lang = cocos2d::extension::CCDevice::getLanguage();
-        if(lang=="en"){
+        /*if(lang=="en"){
             m_powerTxt->setFntFile("pve_fnt_title.fnt");
-        }
+        }*/
         return true;
     }
     
@@ -1610,13 +1512,20 @@ void AllianceOneMembersCell::setData(AllianceInfoMember* member)
     m_info = member;
     if(m_info==NULL) return ;
     m_headIcon->removeAllChildrenWithCleanup(true);
-    CCSprite* spr = CCLoadSprite::createSprite(m_info->getPic().c_str(),true,CCLoadSpriteType_HEAD_ICON_MIDDLE);
-    spr->setScale(0.8);
+    CCSprite* spr = CCLoadSprite::createSprite(m_info->getPic().c_str());
+    spr->setAnchorPoint({0.5, 0});
+    spr->setScale(.4);
     m_headIcon->addChild(spr);
     m_nameTxt->setString(m_info->getName().c_str());
-    m_powerTxt->setString(_lang("102163").c_str());
+//    m_powerTxt->setString(_lang("102163").c_str());
+    
+//    m_powerTxt->setFntFile(getNBFont(NB_FONT_Bold_Border));
+//    m_powerValue->setFntFile(getNBFont(NB_FONT_Bold_Border));
+    
+    string lv = "Lv."; lv.append(CC_ITOA(m_info->getUserLevel()));
+    m_powerTxt->setString(lv);
     m_powerValue->setString(CC_CMDITOAL(m_info->getPower()));
-    if(m_info->getOnline()){
+    /*if(m_info->getOnline()){
         m_powerValue->setColor({255,235,191});
         std::string lang = cocos2d::extension::CCDevice::getLanguage();
         if (lang=="en") {
@@ -1627,37 +1536,37 @@ void AllianceOneMembersCell::setData(AllianceInfoMember* member)
     }else{
         m_powerTxt->setColor({172,172,172});
         m_powerValue->setColor({172,172,172});
-    }
+    }*/
     
-    m_titleFlag->setVisible(m_info->getRank()>1);
-    if(m_info->getRank()>1){
-        m_titleFlag->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("icon_Alliance_0%d.png",m_info->getRank())->getCString()));
-    }
-    m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_0%d.png",m_info->getRank())->getCString()));
+    m_titleFlag->setVisible(false);//m_info->getRank()>1);
+//    if(m_info->getRank()>1){
+//        m_titleFlag->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("icon_Alliance_0%d.png",m_info->getRank())->getCString()));
+//    }
+//    m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_0%d.png",m_info->getRank())->getCString()));
     m_offLineTime->setString("");
-    m_onLineBg->setVisible(false);
+    // m_onLineBg->setVisible(false);
     if(m_info->getOnline()|| m_info->getRank()==0){
         int rank = m_info->getRank();
         rank = MAX(rank, 1);
-        m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_0%d.png",rank)->getCString()));
+        // m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_0%d.png",rank)->getCString()));
         int myRank = GlobalData::shared()->playerInfo.allianceInfo.rank;
         if(GlobalData::shared()->playerInfo.isInAlliance() && GlobalData::shared()->playerInfo.allianceInfo.uid == m_info->getAllianceId() && AllianceManager::getInstance()->checkRight(SEE_OTHER_ONLINE, myRank)){
-            m_onLineBg->setVisible(true);
+            // m_onLineBg->setVisible(true);
             m_offLineTime->setString(_lang("115242"));
-            m_offLineTime->setColor({110,222,0});
+            // m_offLineTime->setColor({110,222,0});
         }else{
-            m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_Gre.png")->getCString()));
-            m_onLineBg->setVisible(false);
+            // m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_Gre.png")->getCString()));
+            // m_onLineBg->setVisible(false);
             m_offLineTime->setString("");
-            m_powerTxt->setColor({172,172,172});
-            m_powerValue->setColor({172,172,172});
+            // m_powerTxt->setColor({172,172,172});
+            // m_powerValue->setColor({172,172,172});
         }
     }else{
-        if (m_info->getRank()==5) {
+        /*if (m_info->getRank()==5) {
             m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_Grey_05.png")->getCString()));
         }else{
             m_flagBg->initWithSpriteFrame(CCLoadSprite::loadResource(CCString::createWithFormat("Alliance_Flag_Gre.png")->getCString()));
-        }
+        }*/
         auto dt = GlobalData::shared()->getWorldTime()-GlobalData::shared()->changeTime(m_info->getOffLineTime()/1000);
         dt = dt;
         string timestr = "";
@@ -1680,11 +1589,11 @@ void AllianceOneMembersCell::setData(AllianceInfoMember* member)
         }
         timestr.append(" ");
         timestr.append(_lang("105593"));
-        if(!AllianceManager::getInstance()->checkRight(SEE_OTHER_ONLINE, GlobalData::shared()->playerInfo.allianceInfo.rank)){
+        /*if(!AllianceManager::getInstance()->checkRight(SEE_OTHER_ONLINE, GlobalData::shared()->playerInfo.allianceInfo.rank)){
             timestr = "";
-        }
+        }*/
         this->m_offLineTime->setString(timestr);
-        m_offLineTime->setColor({172,172,172});
+        // m_offLineTime->setColor({172,172,172});
     }
     
 }
@@ -1700,7 +1609,11 @@ bool AllianceOneMembersCell::onAssignCCBMemberVariable(cocos2d::CCObject *pTarge
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_flagBg", CCSprite*, this->m_flagBg);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_clickNode1", CCNode*, this->m_clickNode1);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_clickNode2", CCNode*, this->m_clickNode2);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_onLineBg", CCNode*, this->m_onLineBg);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_onLineBg", CCNode*, this->m_onLineBg);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nodeHide1", CCNode*, this->m_nodeHide[0]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nodeHide2", CCNode*, this->m_nodeHide[1]);
+    
     return false;
 }
 

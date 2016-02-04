@@ -82,6 +82,7 @@ private:
     CCSafeObject<CCLabelIF> m_moreTxt;
     CCSafeObject<CCLabelIF> m_tipTxt;
     CCSafeObject<CCNode> m_waitNode;
+    CCSafeObject<CCNode> m_bottom_node;
     
     WaitInterface* m_waitInterface;
     CCSafeObject<CCMultiColTableView> m_tabView;

@@ -331,11 +331,13 @@ ssize_t ChangeServeView::numberOfCellsInTableView(  cocos2d::extension::TableVie
 void ChangeServeView::setData(){
     CCHttpRequest* request = new CCHttpRequest();
     string url;
-#if COCOS2D_DEBUG == 1
-        url = CCString::createWithFormat("http://10.1.6.72:8081/gameservice/getserverlist.php?gmFlag=%d", GlobalData::shared()->playerInfo.gmFlag)->getCString();
-#else
-        url = CCString::createWithFormat("http://p1.cok.elexapp.com/gameservice/getserverlist.php?gmFlag=%d", GlobalData::shared()->playerInfo.gmFlag)->getCString();
-#endif
+//#if COCOS2D_DEBUG == 1
+//        url = CCString::createWithFormat("http://10.1.6.72:8081/gameservice/getserverlist.php?gmFlag=%d", GlobalData::shared()->playerInfo.gmFlag)->getCString();
+//#else
+//        url = CCString::createWithFormat("http://p1.cok.elexapp.com/gameservice/getserverlist.php?gmFlag=%d", GlobalData::shared()->playerInfo.gmFlag)->getCString();
+//#endif
+    url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?gmFlag=%d", GET_SERVERLIST_IP, GlobalData::shared()->playerInfo.gmFlag)->getCString();
+    
     CCLOG("change URL: %s",url.c_str());
     request->setUrl(url.c_str());
     request->setRequestType(CCHttpRequest::Type::POST);

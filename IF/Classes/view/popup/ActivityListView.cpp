@@ -66,14 +66,14 @@ bool ActivityListView::init()
         CCLoadSprite::doResourceByCommonIndex(500, true,true);
         CCLoadSprite::doResourceByCommonIndex(502, true,true);
         CCLoadSprite::doResourceByCommonIndex(506, true,true);
-        //CCLoadSprite::doResourceByCommonIndex(7, true);
-        //CCLoadSprite::doResourceByCommonIndex(8, true);
+        CCLoadSprite::doResourceByCommonIndex(7, true);
+        CCLoadSprite::doResourceByCommonIndex(8, true);
         setCleanFunction([](){
             CCLoadSprite::doResourceByCommonIndex(500, false,true);
             CCLoadSprite::doResourceByCommonIndex(502, false,true);
             CCLoadSprite::doResourceByCommonIndex(506, false,true);
-            //CCLoadSprite::doResourceByCommonIndex(7, false);
-            //CCLoadSprite::doResourceByCommonIndex(8, false);
+            CCLoadSprite::doResourceByCommonIndex(7, false);
+            CCLoadSprite::doResourceByCommonIndex(8, false);
         });
         
         auto tmpCCB = CCBLoadFile("ActivityListView", this, this);
@@ -87,7 +87,7 @@ bool ActivityListView::init()
         }
         m_infoList->setContentSize(CCSize(m_infoList->getContentSize().width,m_infoList->getContentSize().height + add));
         m_infoList->setPositionY(m_infoList->getPositionY() - add);
-        
+        /*
         if (CCCommonUtils::isIosAndroidPad()) {
             float cury =  -1024 - add / 2.0;
             auto tbg = CCLoadSprite::loadResource("technology_09.png");
@@ -110,7 +110,7 @@ bool ActivityListView::init()
                 m_bgNode->addChild(pic);
             }
         }
-        
+        */
         ActivityController::getInstance()->sortActivityArr();
         m_data = CCArray::create();
         
@@ -344,9 +344,9 @@ bool ActivityListLuaCell::init()
     m_cellNode->setVisible(true);
     m_nameLabel->setString(m_obj->name.c_str());
     m_infoTTF->setString(_lang(m_obj->desc_info).c_str());
-    m_nameLabel->setColor({255,220,166});
-    m_infoTTF->setColor({255,232,205});
-    m_timeLabel1->setColor({255,232,205});
+    //m_nameLabel->setColor({255,220,166});
+    //m_infoTTF->setColor({255,232,205});
+    //m_timeLabel1->setColor({255,232,205});
     if (m_obj->type == 6)
     {
         m_timeLabel1->setString(_lang("150192"));
@@ -487,10 +487,10 @@ bool ActivityListCell::init(ActivityEventObj* actObj,CCNode* clickArea)
     }
     CCLoadSprite::doResourceByCommonIndex(500, true);
     CCLoadSprite::doResourceByCommonIndex(502, true);
-//    setCleanFunction([](){
-//        CCLoadSprite::doResourceByCommonIndex(500, false);
-//        CCLoadSprite::doResourceByCommonIndex(502, false);
-//    });
+    setCleanFunction([](){
+        CCLoadSprite::doResourceByCommonIndex(500, false);
+        CCLoadSprite::doResourceByCommonIndex(502, false);
+    });
     auto ccb = CCBLoadFile("ActivityListCell",this,this);
     setContentSize(ccb->getContentSize());
 
@@ -518,16 +518,16 @@ bool ActivityListCell::init(ActivityEventObj* actObj,CCNode* clickArea)
     if (CCLabelIF::canBeSupportedWithBmpFont(language)) {
         CCLabelIF::enableBmFont(false);
     }
-    m_desText1->setColor({0,234,255});
-    m_rewardName->setColor({0,234,255});
-    m_nameLabel->setColor({255,220,166});
+    //m_desText1->setColor({0,234,255});
+    //m_rewardName->setColor({0,234,255});
+    //m_nameLabel->setColor({255,220,166});
     
-    m_infoTTF->setColor({255,232,205});
-    m_timeLabel1->setColor({255,232,205});
-    m_lblItem1->setColor({255,232,205});
-    m_lblItem2->setColor({255,232,205});
-    m_moreLabel->setColor({255,232,205});
-    m_timeLabel2->setColor({255,232,205});
+    //m_infoTTF->setColor({255,232,205});
+    //m_timeLabel1->setColor({255,232,205});
+    //m_lblItem1->setColor({255,232,205});
+    //m_lblItem2->setColor({255,232,205});
+    //m_moreLabel->setColor({255,232,205});
+    //m_timeLabel2->setColor({255,232,205});
     
     m_clickArea = clickArea;
     setData(actObj);
@@ -547,6 +547,7 @@ void ActivityListCell::setData(ActivityEventObj* actObj)
     m_aIcon->removeAllChildrenWithCleanup(true);
     string logoStr = CCString::createWithFormat("Ativity_iconLogo_%d.png",m_actObj->type)->getCString();
     CCSprite* logo = logo = CCLoadSprite::createSprite(logoStr.c_str());
+    logo->setAnchorPoint({0.5, 0.0});
     m_aIcon->addChild(logo);
     m_cardNode->setVisible(false);
     m_cellNode->setVisible(false);
@@ -856,7 +857,11 @@ void ActivityListCell::onGeneralClick()
             switch (atoi(m_actObj->id.c_str()))
             {
                 case 57000:
-                    PopupViewController::getInstance()->addPopupView(ActivityBeginView::create());
+                {
+                    auto popup = ActivityBeginView::create();
+                    PopupViewController::getInstance()->addPopupView(popup);
+                    popup->setPositionY(popup->getPositionY() + popup->height_offset / 2);
+                }
                     break;
                     
                 default:

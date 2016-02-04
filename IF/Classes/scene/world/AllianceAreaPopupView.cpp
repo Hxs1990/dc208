@@ -45,7 +45,7 @@ bool AllianceAreaPopupView::init(){
     m_cityNode = CCNode::create();
     
  
-    int mapIndex = 3;
+    /*int mapIndex = 3;
     while (mapIndex >= 0) {
         auto arr = WorldController::getInstance()->getCityPicArr(mapIndex, 0, false ,44996);
         int posX = _tile_width / 2;
@@ -81,7 +81,10 @@ bool AllianceAreaPopupView::init(){
             ++itMap;
         }
         mapIndex--;
-    }
+    }*/
+    auto tower = CCLoadSprite::createSprite("territory_fort.png");
+    tower->setPosition(ccp(_tile_width -25, _tile_height + 62));
+    m_picNode->addChild(tower);
     
     if (CCCommonUtils::isIosAndroidPad()) {
         m_picNode->addChild(m_cityNode);
@@ -107,14 +110,14 @@ bool AllianceAreaPopupView::init(){
     CCLoadSprite::doResourceByCommonIndex(507, false);
     
     if (CCCommonUtils::isIosAndroidPad()) {
-        m_cancelBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_yellow.png"));
+        m_cancelBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("but_blue.png"));
         m_cancelBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(AllianceAreaPopupView::onCancelBtnClick), CCControlEventTouchUpInside);
         m_cancelBtn->setPreferredSize(CCSize(160, 70));
         m_cancelBtn->setScaleX(2.1);
         m_cancelBtn->setScaleY(1.7);
         
-        m_confirmBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_gold.png"));
-        m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("btn_gold.png"),CCControlStateHighlighted);
+        m_confirmBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_green3.png"));
+        m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("btn_green3.png"),CCControlStateHighlighted);
         m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("Btn_grey.png"),CCControlStateDisabled);
         m_confirmBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(AllianceAreaPopupView::onConfirmBtnClick), CCControlEventTouchUpInside);
         m_confirmBtn->setPreferredSize(CCSize(160, 70));
@@ -126,10 +129,10 @@ bool AllianceAreaPopupView::init(){
 
         m_btnLabel = CCLabelIF::create(_lang("115302").c_str());
         m_btnLabel->setFontSize(32);
-        m_btnLabel->setColor(ccc3(181, 162, 119));
+        m_btnLabel->setColor(ccc3(255, 255, 255));
         m_btnLabel1 = CCLabelIF::create(_lang("115021").c_str());
         m_btnLabel1->setFontSize(32);
-        m_btnLabel1->setColor(ccc3(181, 162, 119));
+        m_btnLabel1->setColor(ccc3(255, 255, 255));
         m_picNode->addChild(m_cancelBtn);
         m_cancelBtn->setPosition(_tile_width - m_cancelBtn->getContentSize().width * m_cancelBtn->getScaleX() / 2 - 15, 0);
         m_picNode->addChild(m_confirmBtn);
@@ -144,18 +147,18 @@ bool AllianceAreaPopupView::init(){
         bg->setScaleX(5);
     }
     else {
-        m_cancelBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_yellow.png"));
-        CCCommonUtils::setButtonTitleColor(m_cancelBtn, ccc3(181, 162, 119));
+        m_cancelBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("but_blue.png"));
+        CCCommonUtils::setButtonTitleColor(m_cancelBtn, ccc3(255, 255, 255));
         CCCommonUtils::setButtonTitle(m_cancelBtn, _lang("115021").c_str());
         m_cancelBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(AllianceAreaPopupView::onCancelBtnClick), CCControlEventTouchUpInside);
         m_cancelBtn->setPreferredSize(CCSize(160, 70));
         
-        m_confirmBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_gold.png"));
-        m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("btn_gold.png"),CCControlStateHighlighted);
+        m_confirmBtn = CCControlButton::create(CCLoadSprite::createScale9Sprite("btn_green3.png"));
+        m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("btn_green3.png"),CCControlStateHighlighted);
         m_confirmBtn->setBackgroundSpriteForState(CCLoadSprite::createScale9Sprite("Btn_grey.png"),CCControlStateDisabled);
         m_confirmBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(AllianceAreaPopupView::onConfirmBtnClick), CCControlEventTouchUpInside);
         m_confirmBtn->setPreferredSize(CCSize(160, 70));
-        CCCommonUtils::setButtonTitleColor(m_confirmBtn, ccc3(181, 162, 119));
+        CCCommonUtils::setButtonTitleColor(m_confirmBtn, ccc3(255, 255, 255));
         CCCommonUtils::setButtonTitle(m_confirmBtn, _lang("115302").c_str());
         
         auto bg = CCLoadSprite::createSprite("technology_11.png");

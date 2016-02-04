@@ -299,7 +299,7 @@
         }
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.headView.bottom+h, kMainScreenWidth, kMainScreenHeight - self.headView.height) style:UITableViewStylePlain];
         
-        tableView.backgroundView =[[UIImageView alloc]initWithImage:[UIImage resizableImage:@"mail_list_bg"]];
+        tableView.backgroundView =[[UIImageView alloc]initWithImage:[UIImage resizableImage:@"bottom_bg.png"]];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
 //        tableView.separatorColor = [UIColor brownColor];
@@ -332,7 +332,7 @@
     
     DVLog(@"在这里调用打开c++邮件创建的页面");
     CSMailWriteViewController *mailWriteVC =[[CSMailWriteViewController alloc]init];
-    [self.navigationController pushViewController:mailWriteVC animated:YES];
+    [self.navigationController pushViewController:mailWriteVC animated:NO];
 }
 
 #pragma mark -

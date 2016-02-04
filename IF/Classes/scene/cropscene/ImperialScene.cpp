@@ -151,9 +151,9 @@ bool ImperialScene::init()
 
     auto winSize = CCDirector::sharedDirector()->getWinSize();
     
-    int sumWidth = 1020+1020+1020+505;
-    int extH = 150;
-    int sumHight = 1020+1020+extH;
+    int sumWidth = (1020+1020+1020)*1.5;
+    int extH = 0;
+    int sumHight = (1020+1020+300)*1.5+extH;
 //    auto waterSpr = CCLoadSprite::createScale9Sprite("water.png");
 //    waterSpr->setAnchorPoint(ccp(0, 0));
 //    waterSpr->setPosition(ccp(0,0));
@@ -429,13 +429,13 @@ bool ImperialScene::init()
     m_mainPatPlayTime = 60+(tm.tv_usec / 1000)%60;
     //域名修复代码
     string s1IP = CCUserDefault::sharedUserDefault()->getStringForKey(ACCOUNT_IP, "");
-    if (s1IP != "" && s1IP == "184.173.110.102") {
-        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, "s1.cok.elexapp.com");
+    if (s1IP != "" && s1IP == getServerAccountIP(1)) {
+        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, getServer(1));
         CCUserDefault::sharedUserDefault()->flush();
     }
-    else if (s1IP != "" && s1IP == "184.173.110.99")
+    else if (s1IP != "" && s1IP == getServerAccountIP(2))
     {
-        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, "s2.cok.elexapp.com");
+        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, getServer(2));
         CCUserDefault::sharedUserDefault()->flush();
     }
     if (!GlobalData::shared()->isXMLInitFlag) {
@@ -606,8 +606,8 @@ void ImperialScene::buildingCallBack(CCObject* params)
     //发生 22资源释放不掉的 区域 end end end end end end
     
 //    initAnimals();
-    
-    initBgTree();
+    // tao.yu 不加载树
+//    initBgTree();
     UIComponent::getInstance()->updateBuildState(true);
     
     bool canMoveToRequest = true;

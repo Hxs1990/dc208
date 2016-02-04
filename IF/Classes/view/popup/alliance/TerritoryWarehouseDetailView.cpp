@@ -73,12 +73,10 @@ bool TerritoryWarehouseDetailView::init(){
         CCLoadSprite::doResourceByCommonIndex(7, true);
         CCLoadSprite::doResourceByCommonIndex(504, true);
         CCLoadSprite::doResourceByCommonIndex(500, true);
-        CCLoadSprite::doResourceByCommonIndex(204, true);
         setCleanFunction([](){
             CCLoadSprite::doResourceByCommonIndex(7, false);
             CCLoadSprite::doResourceByCommonIndex(504, false);
             CCLoadSprite::doResourceByCommonIndex(500, false);
-            CCLoadSprite::doResourceByCommonIndex(204, false);
         });
         setIsHDPanel(true);
         m_data = CCArray::create();
@@ -101,7 +99,7 @@ bool TerritoryWarehouseDetailView::init(){
         m_withdrawBtn->setVisible(true);
         m_withdrawBtn->setEnabled(false);
         addLoadingAni();
-        auto tbg = CCLoadSprite::loadResource("technology_09.png");
+        /*auto tbg = CCLoadSprite::loadResource("technology_09.png");
         auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
         auto picBg1 = CCLoadSprite::createSprite("technology_09.png");
         picBg1->setAnchorPoint(ccp(0, 0));
@@ -129,7 +127,7 @@ bool TerritoryWarehouseDetailView::init(){
         m_fireNode1->addChild(par);
         
         ParticleFireAni* par2 = ParticleFireAni::create();
-        m_fireNode2->addChild(par2);
+        m_fireNode2->addChild(par2);*/
         
         m_tabView = CCTableView::create(this, m_infoList->getContentSize());
         m_tabView->setDirection(kCCScrollViewDirectionVertical);
@@ -316,7 +314,7 @@ void TerritoryWarehouseDetailView::onDetailCallback(cocos2d::CCObject *obj) {
                     else
                         m_data->addObject(resInfo);
                     
-                    resInfo->release();
+                    CC_SAFE_RELEASE(resInfo);
                 }
             }
             m_totalNum = m_data->count();
@@ -325,7 +323,7 @@ void TerritoryWarehouseDetailView::onDetailCallback(cocos2d::CCObject *obj) {
                 resInfo->index = 2;
                 resInfo->open = false;
                 m_data->addObject(resInfo);
-                resInfo->release();
+                CC_SAFE_RELEASE(resInfo);
             }
         }
     }
@@ -678,7 +676,7 @@ bool TerritoryWarehouseDetailCell::onAssignCCBMemberVariable(cocos2d::CCObject *
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_unUseNode", CCNode*, this->m_unUseNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_tipTxt", CCLabelIF*, this->m_tipTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_moveNode", CCNode*, this->m_moveNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bgNodee", CCNode*, this->m_bgNodee);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_bgNodee", CCSprite*, this->m_bgNodee);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_arrow", CCNode*, this->m_arrow);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_clickArea", CCNode*, this->m_clickArea);
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this,"m_soldierNode", CCNode*, this->m_soldierNode);

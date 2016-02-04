@@ -45,9 +45,11 @@ bool IFAllianceHelpReportLayer::init( ){
     }
     CCLoadSprite::doResourceByCommonIndex(7, true);
     CCLoadSprite::doResourceByCommonIndex(200, true);
+    CCLoadSprite::doResourceByCommonIndex(204, true);
     setCleanFunction([](){
         CCLoadSprite::doResourceByCommonIndex(7, false);
         CCLoadSprite::doResourceByCommonIndex(200, false);
+        CCLoadSprite::doResourceByCommonIndex(204, false);
     });
     setIsHDPanel(true);
     auto ccbNode = CCBLoadFile("HelpReportLayer",this ,this);
@@ -63,7 +65,7 @@ bool IFAllianceHelpReportLayer::init( ){
     m_totalNode->setPositionY(m_totalNode->getPositionY() - extendHeight);
     m_data = CCArray::create();
     getRankData();
-    auto bgSp = CCLoadSprite::createSprite("technology_09.png");
+    /*auto bgSp = CCLoadSprite::createSprite("technology_09.png");
     int modelHeight = bgSp->getContentSize().height;
     
     int count = 0;
@@ -73,7 +75,7 @@ bool IFAllianceHelpReportLayer::init( ){
         childSp->setPositionY(modelHeight * count);
         m_totalNode->addChild(childSp);
         count++;
-    }
+    }*/
     
     m_tabView = CCTableView::create(this, m_infoList->getContentSize());
     m_tabView->setDirection(kCCScrollViewDirectionVertical);

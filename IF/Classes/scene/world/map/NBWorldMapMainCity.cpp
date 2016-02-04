@@ -9,7 +9,7 @@
 #include "NBWorldMapMainCity.hpp"
 #include "WorldController.h"
 
-static const char* ISLANDS_0[] = {"island_001.png", "island_002.png", "island_003.png", "island_004.png",};
+//static const char* ISLANDS_0[] = {"island_001.png", "island_002.png", "island_003.png", "island_004.png",};
 
 int NBWorldMapMainCity::getMainCityIslandImageIndex(const WorldCityInfo* info, int level, int nSpecialId)
 {

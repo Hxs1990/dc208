@@ -27,6 +27,11 @@ public:
 
 protected:
 	LoadingScene(void);
+    // init ----
+    void addLoadingBG(Point& addPt);
+    void addVersionLabel();
+    void addLoadingTips();
+    void addPlatformLogo();
     bool init();
     
     void doResourceUpdate(CCObject* p);

@@ -334,10 +334,10 @@ static NSString *countryIdentify = @"countryIdentify";
         ChatTableView *tableView =[[ChatTableView alloc]initWithFrame:CGRectMake(0, 0, kMainScreenWidth, self.chatScrollView.height) style:UITableViewStylePlain];
         UIImageView *backImageView =[[UIImageView alloc]init];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-            backImageView.image =[UIImage imageNamed:@"chat_bg_default.jpg"];
+            backImageView.image =[UIImage imageNamed:@"bottom_bg.png"];
              tableView.backgroundView =backImageView;
         }else{
-            backImageView.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"csChatTableBackImage1"]];//csChatTableBackImage1
+            backImageView.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"bottom_bg.png"]];//csChatTableBackImage1
              tableView.backgroundView =backImageView;
         }
         
@@ -368,10 +368,10 @@ static NSString *countryIdentify = @"countryIdentify";
         ChatTableView *tableView =[[ChatTableView alloc]initWithFrame:CGRectMake(self.chatScrollView.width, 0, self.chatScrollView.width, self.chatScrollView.height) style:UITableViewStylePlain];
         UIImageView *backImageView =[[UIImageView alloc]init];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-            backImageView.image =[UIImage imageNamed:@"chat_bg_default.jpg"];
+            backImageView.image =[UIImage imageNamed:@"bottom_bg.png"];
             tableView.backgroundView =backImageView;
         }else{
-            backImageView.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"csChatTableBackImage1"]];//csChatTableBackImage1
+            backImageView.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"bottom_bg.png"]];//csChatTableBackImage1
             tableView.backgroundView =backImageView;
         }
         tableView.backgroundView =backImageView;
