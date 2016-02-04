@@ -55,11 +55,9 @@ bool ChatView::init(int _type,string allianceId,int countryType)
     }
     setIsHDPanel(true);
     if(_type==CHAT_COMMENT){
-        int index = CCLoadSprite::doResourceByCommonIndex(205, true);
-        setCleanFunction([index](){
-            if (index!=0) {
-                CCLoadSprite::doResourceByCommonIndex(index, false);
-            }
+        CCLoadSprite::doResourceByCommonIndex(205, true);
+        setCleanFunction([](){
+            CCLoadSprite::doResourceByCommonIndex(205, false);
         });
     }
     m_countryChatType = (CountryChatType)countryType;
@@ -561,7 +559,7 @@ void ChatView::switchState(bool bInit){
         }
         case C_COUNTRY_MSG:{
             setButtonSprite(m_btnState,"chat_country_btn1.png");
-            setButtonSprite(m_sendBtn, "btn_yellow.png");
+            setButtonSprite(m_sendBtn, "btn_xiao_hong.png");
             m_editBox->setMaxChars(500);
             m_editBox->changeBG("UI_Alliance_TextBox.png");
             if(bInit){
@@ -606,6 +604,10 @@ void ChatView::onPostBtnClick(cocos2d::CCObject *pSender, Control::EventType pCC
     delayTime=0;
     if(type==CHAT_COMMENT){
         m_sendMsg = m_editBox->getText();
+        if(m_sendMsg == "")
+        {
+            return ;//不处理空
+        }
         string lang = LocalController::shared()->getLanguageFileName();
         AllianceSendCommentCommand* cmd = new AllianceSendCommentCommand(m_allianceId,m_sendMsg,lang);
         cmd->setSuccessCallback(CCCallFuncO::create(this, callfuncO_selector(ChatView::callBackSuccess), NULL));
@@ -621,7 +623,7 @@ void ChatView::onPostBtnClick(cocos2d::CCObject *pSender, Control::EventType pCC
     }
     m_editBox->setText("");
     m_editBox->closeIME();
-    m_editBox->openIME();
+//    m_editBox->openIME();//fusheng 不新打开输入法          
     m_tabView->setPositionY(m_oldTablePosY);
     m_tabView->setViewSize(m_oldTableViewSize);
     m_editBGNode->setPositionY(m_oldEditPositionY);

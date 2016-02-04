@@ -100,7 +100,7 @@ void ChatCell::setData(int type, int idx,string allianceId)
     m_noticeBG->setVisible(false);
     m_noticeright->setVisible(false);
     m_noticeleft->setVisible(false);
-    CCCommonUtils::setButtonSprite(m_joinBtn, "Mail_btn03.png");
+    // CCCommonUtils::setButtonSprite(m_joinBtn, "Mail_btn03.png");
     CCCommonUtils::setButtonTitle(m_joinBtn, _lang("115262").c_str());
 //    int line = 0;
     float height = 0;
