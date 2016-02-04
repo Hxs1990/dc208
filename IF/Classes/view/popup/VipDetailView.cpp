@@ -22,6 +22,11 @@
 #include "YesNoDialog.h"
 #include "VipActiveView.h"
 
+//begin a by ljf
+//#include "NBCommonUtils.h"
+//end a by ljf
+
+
 #define VIP_PROGRESS_BAR_WIDTH 540
 
 const float VipDetailView::CELL_MARGIN = 20;
@@ -34,11 +39,17 @@ VipDetailView::VipDetailView(int type):m_type(type),m_touchState(0)
 bool VipDetailView::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const char *pMemberVariableName, cocos2d::CCNode *pNode){
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_tipBtn", CCControlButton*, this->m_tipBtn);
     
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vipLvText", CCLabelIFBMFont*, this->m_vipLvText);
+    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vipLvText", CCLabelIFBMFont*, this->m_vipLvText);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vipLvText", CCLabelBMFont*, this->m_vipLvText); //ljf, 头像边的当前VIP等级
+
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vipLeftTimeText", CCLabelIF*, this->m_vipLeftTimeText);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_loginDayText", CCLabelIF*, this->m_loginDayText);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_currentVIPText", CCLabelIFBMFont*, this->m_currentVIPText);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_NextVIPText", CCLabelIFBMFont*, this->m_NextVIPText);
+    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_currentVIPText", CCLabelIFBMFont*, this->m_currentVIPText);
+    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_NextVIPText", CCLabelIFBMFont*, this->m_NextVIPText);
+    //begin ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_currentVIPText", CCLabelIF*, this->m_currentVIPText);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_NextVIPText", CCLabelIF*, this->m_NextVIPText);
+    //end ljf
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_progressBarNode", CCNode*, this->m_progressBarNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vipAnimNode", CCNode*, this->m_vipAnimNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_downNode", CCNode*, this->m_downNode);
@@ -51,16 +62,26 @@ bool VipDetailView::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const 
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vipNextPointNumText", CCLabelIF*, this->m_vipNextPointNumText);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vipCurrentPointNumText", CCLabelIF*, this->m_vipCurrentPointNumText);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_desText", CCLabelIF*, this->m_desText);
+    /*
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lblVIP1", CCLabelIFBMFont*, this->m_lblVIP[0]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lblVIP2", CCLabelIFBMFont*, this->m_lblVIP[1]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lblVIP3", CCLabelIFBMFont*, this->m_lblVIP[2]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lblVIP4", CCLabelIFBMFont*, this->m_lblVIP[3]);
+    */
+    //begin ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lblVIP1", CCLabelIF*, this->m_lblVIP[0]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lblVIP2", CCLabelIF*, this->m_lblVIP[1]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lblVIP3", CCLabelIF*, this->m_lblVIP[2]);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lblVIP4", CCLabelIF*, this->m_lblVIP[3]);
+    //end ljf
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_sprVip", CCSprite*, this->m_sprVip);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_sprActive1", CCSprite*, this->m_sprActive[0]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_sprActive2", CCSprite*, this->m_sprActive[1]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_barTouchNode", CCNode*, this->m_barTouchNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_sprBar1", CCSprite*, this->m_sprBar[0]);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_sprBar2", CCSprite*, this->m_sprBar[1]);
+    
+    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_activeGuideNode", Node*, m_activeGuideNode);
     //addNode
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "addPointBtn", CCControlButton*, addPointBtn);
@@ -86,6 +107,18 @@ bool VipDetailView::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const 
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_svipNodeRight", CCNode*, m_svipNodeRight);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_svipBuildBG", CCScale9Sprite*, this->m_svipBuildBG);
     
+    //begin a by ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vipSuperTitle", CCLabelIF*, this->m_vipSuperTitle);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_leftBranch", CCLabelIF*, this->m_leftBranch);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_activateBtn", CCControlButton*, this->m_activateBtn);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_progressFg", CCScale9Sprite*, this->m_progressFg);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_progressBg", CCScale9Sprite*, this->m_progressBg);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_avatarFrame", CCSprite*, this->m_avatarFrame);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "·", CCSprite*, this->m_avatarFlowerLeft);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_avatarFlowerRight", CCSprite*, this->m_avatarFlowerRight);
+    //end a by ljf
+
+    
     return true;
 }
 
@@ -94,6 +127,11 @@ SEL_CCControlHandler VipDetailView::onResolveCCBCCControlSelector(cocos2d::CCObj
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onShowSVIPBtnClick", VipDetailView::onShowSVIPBtnClick);
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onTipBtnClick", VipDetailView::onTipBtnClick);
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onAddPointBtnClick", VipDetailView::onAddPointBtnClick);
+    
+    //begin a by ljf
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onActivityPointBtnClick", VipDetailView::onActivityPointBtnClick);
+    //end a by ljf
+
     
     return NULL;
 }
@@ -161,6 +199,28 @@ void VipDetailView::onEnter(){
 
     this->schedule(schedule_selector(VipDetailView::onTimer),1.0);
     setVipProgress(NULL);
+    
+    //begin a by ljf
+    
+    if(m_vipSuperTitle)
+    {
+        m_vipSuperTitle->setString(_lang("101367"));
+    }
+    if(m_leftBranch)
+    {
+        m_leftBranch->setString("(");
+    }
+    if(m_activateBtn)
+    {
+        m_activateBtn->setTitleForState(_lang("103003"), Control::State::NORMAL);
+        m_activateBtn->setTitleForState(_lang("103003"), Control::State::HIGH_LIGHTED);
+        m_activateBtn->setTitleForState(_lang("103003"), Control::State::DISABLED);
+        m_activateBtn->setTitleForState(_lang("103003"), Control::State::SELECTED);
+    }
+    
+    //end a by ljf
+
+
     if (m_firstIn) {
         m_firstIn = false;
         if (m_type == 1) {
@@ -203,6 +263,12 @@ bool VipDetailView::init(){
         CCLoadSprite::doResourceByCommonIndex(514, false);
     });
 
+    //begin test by ljf
+    //setVipType(2);
+    //auto &playerInfo1 = GlobalData::shared()->playerInfo;
+    //playerInfo1.SVIPLevel = 3;
+    //end test by ljf
+
     m_SVIPShowLevel = VipUtil::getSvipShowLevel();
     m_firstIn = true;
     m_ismoving = false;
@@ -210,18 +276,20 @@ bool VipDetailView::init(){
     m_movedhSVIP = 0;
     m_data = CCArray::create();
     m_listNode = CCNode::create();
-    auto bg = CCBLoadFile("VipMain", this, this);
+    //auto bg = CCBLoadFile("VipMain", this, this);
+    auto bg = CCBLoadFile("VipMainNew_NB", this, this);
+    //auto bg = CCBLoadFile("VipMainNew", this, this); //ljf
     this->setContentSize(bg->getContentSize());
     setTitleName(_lang("103018"));
     int preHeight = this->m_buildBG->getContentSize().height;
     
     m_NextVIPText->setFntFile("pve_fnt_title.fnt");
-    m_vipLvText->setFntFile("pve_fnt_title.fnt");
+    //m_vipLvText->setFntFile("pve_fnt_title.fnt"); //d by ljf
 //    m_vipLeftTimeText->setFntFile("pve_fnt_title.fnt");
     m_currentVIPText->setFntFile("pve_fnt_title.fnt");
     int index = 0;
     while (index<4) {
-        m_lblVIP[index]->setFntFile("pve_fnt_title.fnt");
+        //m_lblVIP[index]->setFntFile("pve_fnt_title.fnt"); //d by ljf
         ++index;
     }
     auto &playerInfo = GlobalData::shared()->playerInfo;
@@ -247,6 +315,8 @@ bool VipDetailView::init(){
     
     
     listContentSize =m_listContainer->getContentSize();
+    //begin d by ljf
+    /*
     m_nodeprogressBar = CCClipNode::create(CCSize(VIP_PROGRESS_BAR_WIDTH,116));
 //    if (CCCommonUtils::isIosAndroidPad())
 //    {
@@ -281,6 +351,8 @@ bool VipDetailView::init(){
 //    }
     m_sprBar[3]->setPositionY(29);
     m_nodeprogressBar->addChild(m_sprBar[3]);
+    */
+    //end d by ljf
     
     int w = m_listContainer->getContentSize().width;
     int h = m_listContainer->getContentSize().height;
@@ -303,6 +375,7 @@ bool VipDetailView::init(){
     refresh();
     addPointBtnTxt->setString(_lang("138054"));//138054=获得积分
     
+    
     setVipType(1);
     setSvipView();
     return ret;
@@ -310,11 +383,14 @@ bool VipDetailView::init(){
 
 void VipDetailView::refresh(){
     m_picHeadNode->removeAllChildren();
-    if (GlobalData::shared()->playerInfo.isUseCustomPic()){
+    //if (GlobalData::shared()->playerInfo.isUseCustomPic()){ //d by ljf, 需要六边形的图片，
+    if(false){//a by ljf
         auto headImgNode = HFHeadImgNode::create();
         headImgNode->initHeadImgUrl2(m_picHeadNode, GlobalData::shared()->playerInfo.getCustomPicUrl(), 1.0f, 130, true);
     }else{
-        CCSprite* head = CCLoadSprite::createSprite(GlobalData::shared()->playerInfo.getPic().c_str());
+        //CCSprite* head = CCLoadSprite::createSprite(GlobalData::shared()->playerInfo.getPic().c_str()); //d by ljf
+        CCSprite* head = CCLoadSprite::createSprite(GlobalData::shared()->playerInfo.getVipPic().c_str()); //a by ljf
+
         m_picHeadNode->addChild(head);
         CCCommonUtils::setSpriteMaxSize(head, 130,true);
     }
@@ -327,6 +403,10 @@ void VipDetailView::refresh(){
         m_activeNode->setVisible(false);
     }else{
 //        m_vipLeftTimeText->setString(_lang("103011").c_str());//103011=（未激活）
+        //begin a by ljf
+        updateAvatarFrame(false);
+        //end a by ljf
+
         m_vipLeftTimeText->setString("");
         m_activeNode->setVisible(true);
         m_activeTxt->setString(_lang("101097"));//101097		点击激活
@@ -366,6 +446,9 @@ void VipDetailView::setVipProgress(CCObject* obj){
     }
 //    else{
 //    }
+    //begin a by ljf
+    m_currentVipLevel = vipLv;
+    //end a by ljf
     
     if(playerInfo.SVIPLevel>m_SVIPShowLevel){
         m_vipLevelSVIP = m_SVIPShowLevel;
@@ -407,21 +490,34 @@ void VipDetailView::setVipProgress(CCObject* obj){
         this->m_lblVIP[3]->setString(CC_ITOA(m_vipLevel+1));
     }
 
-    m_vipLastPointNumText->setString("("+CC_CMDITOA(currLvPoint)+")");
-    m_vipNextPointNumText->setString("("+CC_CMDITOA(nextLvPoint)+")");
+    //m_vipLastPointNumText->setString("("+CC_CMDITOA(currLvPoint)+")");  //d by ljf
+    //m_vipNextPointNumText->setString("("+CC_CMDITOA(nextLvPoint)+")"); //d by ljf
+    m_vipNextPointNumText->setString("/" + CC_CMDITOA(nextLvPoint) + ")");
+
+    //begin a by ljf
+    //m_vipCurrentPointNumText->setString(CC_CMDITOA(playerInfo.vipPoints));
+    m_vipCurrentPointNumText->setPositionX(m_leftBranch->getPositionX() + 10);
+    m_vipNextPointNumText->setPositionX(m_vipCurrentPointNumText->getPositionX() + m_vipCurrentPointNumText->getContentSize().width * m_vipCurrentPointNumText->getOriginScaleY());
+    //end a by ljf
     
-    m_lblVIP[2]->setPositionX(m_lblVIP[3]->getPositionX() - m_lblVIP[3]->getContentSize().width * m_lblVIP[3]->getOriginScaleY());
+    //m_lblVIP[2]->setPositionX(m_lblVIP[3]->getPositionX() - m_lblVIP[3]->getContentSize().width * m_lblVIP[3]->getOriginScaleY()); //d by ljf
+    m_lblVIP[3]->setPositionX(m_lblVIP[2]->getPositionX() + m_lblVIP[2]->getContentSize().width * m_lblVIP[2]->getOriginScaleY()); //a by ljf
+
     refreshPageFlag();
     
     m_listNode->removeChildByTag(1000);
     if (m_type == 1 && m_vipLevel < 8 && m_firstIn) {
-        VipDetailCell* cell = VipDetailCell::create(7, m_type);//通过出征部队上限警告面板进入且VIP等级小于8下方跳转至VIP8的介绍
+        VipDetailCell* cell = VipDetailCell::create(7, m_type, 1, m_currentVipLevel);//通过出征部队上限警告面板进入且VIP等级小于8下方跳转至VIP8的介绍
         m_listNode->addChild(cell, 0, 1000);
+        //begin a by ljf
+        /*
         this->m_listNode->setPositionY(-135);
         if (CCCommonUtils::isIosAndroidPad())
         {
             this->m_listNode->setPositionY(-270);
         }
+        */
+        //end a by ljf
         m_scroll->setContentSize(CCSize(m_listContainer->getContentSize().width, cell->getHG()));
         m_scroll->setContentOffset(ccp(0, m_listContainer->getContentSize().height - (cell->getHG())));
         this->m_currentVIPText->setString(CC_ITOA(8));
@@ -431,23 +527,34 @@ void VipDetailView::setVipProgress(CCObject* obj){
     else {
         VipDetailCell* cell = nullptr;
         if(VipUtil::isSVIP() && curPoint>=vip10Left && playerInfo.SVIPLevel>=0){
-            cell = VipDetailCell::create(-1,0,2);
+            cell = VipDetailCell::create(-1,0,2); //svip
+            //begin a by ljf
+            this->m_listNode->setPositionY(-135);
+            if (CCCommonUtils::isIosAndroidPad())
+            {
+                this->m_listNode->setPositionY(-270);
+            }
+            //end a by ljf
         }else{
-            cell = VipDetailCell::create(m_vipLevel-1, m_type);
+            cell = VipDetailCell::create(m_vipLevel-1, m_type, 1, m_currentVipLevel);
         }
         m_listNode->addChild(cell, 0, 1000);
+        //begin d by ljf
+        /*
         this->m_listNode->setPositionY(-135);
         if (CCCommonUtils::isIosAndroidPad())
         {
             this->m_listNode->setPositionY(-270);
         }
+        */
+        //end d by ljf
         m_scroll->setContentSize(CCSize(m_listContainer->getContentSize().width, cell->getHG()));
         m_scroll->setContentOffset(ccp(0, m_listContainer->getContentSize().height - (cell->getHG())));
     }
     //SVIP cell********************************************************************************************
     
     m_listNodeSVIP->removeChildByTag(1000);
-    VipDetailCell* cellSVIP = VipDetailCell::create(m_vipLevelSVIP-1, 0, 2);//m_type
+    VipDetailCell* cellSVIP = VipDetailCell::create(m_vipLevelSVIP-1, 0, 2);//m_type, svip
     m_listNodeSVIP->addChild(cellSVIP, 0, 1000);
     this->m_listNodeSVIP->setPositionY(-135);
     if (CCCommonUtils::isIosAndroidPad())
@@ -468,13 +575,31 @@ void VipDetailView::setVipProgress(CCObject* obj){
 //    if (CCCommonUtils::isIosAndroidPad()) {
 //        total = 1113 * sacle;
 //    }
-    m_nodeprogressBar->setContentSize(CCSize(total, 58));
+    //m_nodeprogressBar->setContentSize(CCSize(total, 58)); //d by ljf
 //    if(playerInfo.vipPoints < nextLvPoint  && playerInfo.vipPoints > currLvPoint){
 //        m_sprVip->setVisible(true);
 //        m_vipCurrentPointNumText->setVisible(true);
         m_sprVip->setPositionX(m_progressBarNode->getPositionX() + total);
-        m_vipCurrentPointNumText->setPositionX(m_sprVip->getPositionX());
+        //m_vipCurrentPointNumText->setPositionX(m_sprVip->getPositionX()); //d by ljf
 //    }
+    
+    //begin a by ljf
+    CCSize bgSize  = m_progressBg->getContentSize();
+    CCSize fgSize = m_progressFg->getContentSize();
+    if(sacle < 0.05)
+    {
+        m_progressFg->setVisible(false);
+    }
+    else
+    {
+        
+        m_progressFg->setVisible(true);
+        float per = sacle;
+        float realWidth = per * bgSize.width;
+        m_progressFg->setContentSize(CCSize(realWidth, fgSize.height));
+    }
+    //end a by ljf
+
     
     setBtnState();
 }
@@ -491,6 +616,7 @@ void VipDetailView::onAddVipAnim(){
     }
 }
 void VipDetailView::setBtnState(){
+    /*  //d by ljf
     m_sprActive[1]->stopAllActions();
     int dtime = GlobalData::shared()->playerInfo.vipEndTime - GlobalData::shared()->getWorldTime();
     if(dtime>0){
@@ -513,8 +639,10 @@ void VipDetailView::setBtnState(){
         m_vipAnimNode->removeAllChildren();
         m_sprActive[1]->setRotation(30);
     }
+    */
 }
 void VipDetailView::setGuideAnim(){
+    //return; //ljf, 不需要
     auto sprite = CCLoadSprite::createScale9Sprite("rect.png");
     m_activeGuideNode->addChild(sprite);
     sprite->setScale(this->m_activeGuideNode->getContentSize().width / sprite->getContentSize().width);
@@ -523,6 +651,7 @@ void VipDetailView::setGuideAnim(){
     CCSequence *seque = CCSequence::create(CCFadeIn::create(0.3), CCFadeOut::create(0.3) ,NULL);
     CCSequence *seque1 = CCSequence::create(CCRepeat::create(seque, 5), CCRemoveSelf::create(), NULL);
     sprite->runAction(seque1);
+    
 }
 void VipDetailView::onTimer(float dt){
 
@@ -539,11 +668,19 @@ void VipDetailView::onTimer(float dt){
         CCActionInterval * repeat = CCRepeatForever::create( CCSequence::create(moveBy1, moveBy1->reverse(), delay, NULL) );
         m_activeSpr->runAction(repeat);
         
+        //begin a by ljf
+        updateAvatarFrame(false);
+        //end a by ljf
+        
         setBtnState();
     }else{
         m_activeNode->setVisible(false);
         string timestr = getTimeStr(dtime);
         m_vipLeftTimeText->setString(timestr.c_str());
+        
+        //begin a by ljf
+        updateAvatarFrame(true);
+        //end a by ljf
     }
 }
 string VipDetailView::getTimeStr(int secs){
@@ -588,7 +725,8 @@ string VipDetailView::getTimeStr(int secs){
 bool VipDetailView::onTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
     if (!m_ismoving) {
-        if(isTouchInside(m_sprActive[0], pTouch)){
+        //if(isTouchInside(m_sprActive[0], pTouch)){ //d by ljf
+        if(false){ //a by ljf
             int index = 0;
             while (index<2) {
                 m_sprActive[index]->setColor(ccGRAY);
@@ -599,7 +737,7 @@ bool VipDetailView::onTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEv
         }else if(isTouchInside(m_barTouchNode, pTouch)){
             int index = 0;
             while (index<4) {
-                m_sprBar[index]->setColor(ccGRAY);
+                //m_sprBar[index]->setColor(ccGRAY); //d by ljf
                 ++index;
             }
             m_touchState = 2;
@@ -616,15 +754,19 @@ bool VipDetailView::onTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEv
 void VipDetailView::onTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
     if(m_touchState == 1){
         int index = 0;
+        //begin d by ljf
+        /*
         while (index<2) {
             m_sprActive[index]->setColor(ccWHITE);
             ++index;
         }
         onActivityPointBtnClick(NULL, Control::EventType::TOUCH_DOWN);
+        */
+        //end d by ljf
     }else if(m_touchState==2){
         int index = 0;
         while (index<4) {
-            m_sprBar[index]->setColor(ccWHITE);
+            //m_sprBar[index]->setColor(ccWHITE);  //d by ljf
             ++index;
         }
         onAddPointBtnClick(NULL, Control::EventType::TOUCH_DOWN);
@@ -718,7 +860,7 @@ void VipDetailView::PlayComeInFromRightAnim(){
         if(m_vipLevel==10){
             cell = VipDetailCell::create(-1,0,2);
         }else{
-            cell = VipDetailCell::create(m_vipLevel-1);
+            cell = VipDetailCell::create(m_vipLevel-1, 0, 1, m_currentVipLevel);
         }
         m_listNode->addChild(cell, 100, 1001);
     }else if(m_vipType==2){
@@ -802,7 +944,7 @@ void VipDetailView::PlayComeInFromLeftAnim(){
         if(level==10){
             cell = VipDetailCell::create(-1,0,2);
         }else{
-            cell = VipDetailCell::create(level-1);
+            cell = VipDetailCell::create(level-1, 0, 1, m_currentVipLevel);
         }
     }else if(m_vipType==2){
         listNode = m_listNodeSVIP;
@@ -959,8 +1101,8 @@ void VipDetailView::setSvipView(){
         m_BgNodeSVIP->setVisible(true);
         m_svipUpTextSpr->setVisible(true);
         m_vipLvText->setString(CC_ITOA(playerInfo.SVIPLevel));//
-        m_vipLvText->setPositionX(-45);
-        m_sprActive[0]->setDisplayFrame(CCLoadSprite::loadResource("SVIP_huangsequanquan.png"));
+        //m_vipLvText->setPositionX(-45); //d by ljf
+        //m_sprActive[0]->setDisplayFrame(CCLoadSprite::loadResource("SVIP_huangsequanquan.png")); //d by ljf
         m_headBgVip->setVisible(false);
         m_headBgSvip->setVisible(true);
         setVipType(2);
@@ -972,3 +1114,45 @@ void VipDetailView::setSvipView(){
         m_headBgSvip->setVisible(false);
     }
 }
+
+//begin a by ljf
+void VipDetailView::updateAvatarFrame(bool isActivated)
+{
+    if(isActivated)
+    {
+        if(m_avatarFrame)
+        {
+            CCSpriteFrame* newSp = CCLoadSprite::getSF("nb_vip_detail_avator_frame_1.png");
+            m_avatarFrame->setDisplayFrame(newSp);
+        }
+        if(m_avatarFlowerLeft)
+        {
+            CCSpriteFrame* newSp = CCLoadSprite::getSF("nb_vip_detail_avatar_flower_1.png");
+            m_avatarFlowerLeft->setDisplayFrame(newSp);
+        }
+        if(m_avatarFlowerRight)
+        {
+            CCSpriteFrame* newSp = CCLoadSprite::getSF("nb_vip_detail_avatar_flower_1.png");
+            m_avatarFlowerRight->setDisplayFrame(newSp);
+        }
+    }
+    else
+    {
+        if(m_avatarFrame)
+        {
+            CCSpriteFrame* newSp = CCLoadSprite::getSF("nb_vip_detail_avator_frame_2.png");
+            m_avatarFrame->setDisplayFrame(newSp);
+        }
+        if(m_avatarFlowerLeft)
+        {
+            CCSpriteFrame* newSp = CCLoadSprite::getSF("nb_vip_detail_avatar_flower_2.png");
+            m_avatarFlowerLeft->setDisplayFrame(newSp);
+        }
+        if(m_avatarFlowerRight)
+        {
+            CCSpriteFrame* newSp = CCLoadSprite::getSF("nb_vip_detail_avatar_flower_2.png");
+            m_avatarFlowerRight->setDisplayFrame(newSp);
+        }
+    }
+}
+//end a by ljf

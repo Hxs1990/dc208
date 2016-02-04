@@ -23,7 +23,8 @@ static const int ATTRIBUTE_COUNT = 14;
 
 static const int CONTAINER_TAG = 999;
 
-VipDetailCell* VipDetailCell::create(int index, int type/* = 0*/, int VIP_type/* = 1*/)
+/*
+VipDetailCell* VipDetailCell::create(int index, int type, int VIP_type)
 {
     auto ret = new VipDetailCell(index, type, VIP_type);
     if (ret && ret->init()) {
@@ -33,6 +34,8 @@ VipDetailCell* VipDetailCell::create(int index, int type/* = 0*/, int VIP_type/*
     }
     return ret;
 }
+
+
 
 bool VipDetailCell::init()
 {
@@ -53,6 +56,30 @@ bool VipDetailCell::init()
     setData(m_index);
     return ret;
 }
+*/
+//begin a by ljf
+
+VipDetailCell* VipDetailCell::create(int index, int type, int VIP_type, int curLevel)
+{
+    auto ret = new VipDetailCell(index, type, VIP_type, curLevel);
+    if (ret && ret->init()) {
+        ret->autorelease();
+    } else {
+        CC_SAFE_DELETE(ret);
+    }
+    return ret;
+}
+
+bool VipDetailCell::init()
+{
+    bool ret = true;
+    m_listNode = CCNode::create();
+    this->addChild(m_listNode);
+    setData(m_index, mCurrentVipLevel);
+    return ret;
+}
+
+//end a by ljf
 
 void VipDetailCell::onEnter() {
     CCNode::onEnter();
@@ -71,11 +98,12 @@ float VipDetailCell::getHG(){
 
     return this->getContentSize().height;
 }
-
+/*
 void VipDetailCell::setData(int index)
 {
     int j = 0;
-    if(m_VIPtype==1){//vip
+    if(m_VIPtype==1)
+    {//vip
         int itemID = 7000+index;
         int nextItemID = 7000+index+1;
         string a[10]={"hurt","attack","defense","health","troop","march","monster","body","speedup","wood"};
@@ -96,7 +124,9 @@ void VipDetailCell::setData(int index)
                 j++;
             }
         }
-    }else if (m_VIPtype==2){//svip
+        
+    }
+    else if (m_VIPtype==2){//svip
         int itemID = 7010+index;
         int nextItemID = 7010+index+1;
 //        int length = 20;
@@ -115,8 +145,10 @@ void VipDetailCell::setData(int index)
             cell->setPositionY(-height*j);
             j++;
         }
+        
+        
+
     }
-    
     
     m_listNode->setPositionY(135*j);
     if (CCCommonUtils::isIosAndroidPad())
@@ -127,10 +159,141 @@ void VipDetailCell::setData(int index)
     if (CCCommonUtils::isIosAndroidPad()) {
         this->setContentSize(CCSize(1470, 276 * j));
     }
-
+    
 
 }
+*/
 
+void VipDetailCell::setData(int index, int curLevel)
+{
+    int j = 0;
+    if(m_VIPtype==1)
+    {//vip
+        mCurrentVipLevel = curLevel;
+        m_index = index;
+        
+        int itemID = 7000+index;
+        int nextItemID = 7000+index+1;
+        string a[10]={"hurt","attack","defense","health","troop","march","monster","body","speedup","wood"};
+        int length = 10;
+        
+        int topCellI = -1;
+        int bottomCellI = -1;
+        int topCellHeight = 0;
+        int middleCellHeight = 0;
+        int bottomCellHeight = 0;
+        int cellWidth = 0;
+        j = 0;
+        for (int i =0; i<length; i++) {
+            string key = a[i];
+            bool isCreateCell = true;
+            int value = VipUtil::getVipItemValueByKey(CC_ITOA(itemID), key);
+            int nextvalue = VipUtil::getVipItemValueByKey(CC_ITOA(nextItemID), key);
+            if(nextvalue<=0){
+                isCreateCell = false;
+            }
+            if(isCreateCell){
+                if(topCellI == -1)
+                {
+                    topCellI = i;
+                }
+                bottomCellI = i;
+ 
+            }
+        }
+        
+        
+        for (int i =0; i<length; i++) {
+            string key = a[i];
+            bool isCreateCell = true;
+            int value = VipUtil::getVipItemValueByKey(CC_ITOA(itemID), key);
+            int nextvalue = VipUtil::getVipItemValueByKey(CC_ITOA(nextItemID), key);
+            if(nextvalue<=0){
+                isCreateCell = false;
+            }
+            
+            if(isCreateCell)
+            {
+                string posType = "middle";
+                VipEffectCell* cell = nullptr;
+                if(i == topCellI)
+                {
+                    posType = "top";
+                }
+                else if(i == bottomCellI)
+                {
+                    posType = "bottom";
+                }
+                cell = VipEffectCell::create(key,value,key,nextvalue, m_type, posType, index, mCurrentVipLevel);
+                m_listNode->addChild(cell);
+                float height = cell->getHG() ;
+                cellWidth = cell->getContentSize().width;
+                if(i == topCellI)
+                {
+                    topCellHeight = height;
+                    mTopCellHeight = height;
+                    cell->setPositionY(0 - topCellHeight * 1);
+                }
+                else
+                {
+                    if(i != bottomCellI)
+                    {
+                        middleCellHeight = height;
+                        cell->setPositionY(0 - topCellHeight * 1 - (j - 0) * middleCellHeight);
+                    }
+                    else if(i == bottomCellI)
+                    {
+                        bottomCellHeight = height;
+                        cell->setPositionY(0 - topCellHeight * 1 - (j - 1) * middleCellHeight - bottomCellHeight);
+                    }
+                    
+                }
+                
+                j++;
+            }
+        }
+        
+        m_listNode->setPositionY(topCellHeight + (j - 2) * middleCellHeight + bottomCellHeight  );
+       
+        this->setContentSize(CCSize(cellWidth,  topCellHeight + (j - 2) * middleCellHeight + bottomCellHeight ));
+        
+    }
+    else if (m_VIPtype==2){//svip
+        int itemID = 7010+index;
+        int nextItemID = 7010+index+1;
+        //        int length = 20;
+        //        string a[20]={"equip","mass","health","rob","infantry","bow","cart","cavalry","fight","production","superpower","battle","autorepair","autogain","autoarmy","doubleskill","svipmall","svipemotion","sviptalk","svipshow"};
+        
+        
+        string XMLDisplay = CCCommonUtils::getPropById("7099", "display");
+        vector<string> vec;
+        CCCommonUtils::splitString(XMLDisplay, "|", vec);
+        
+        for (int i =0; i<vec.size(); i++) {
+            string key = vec[i];
+            VipEffectSVIPCell* cell = VipEffectSVIPCell::create(key,itemID,nextItemID);
+            m_listNode->addChild(cell);
+            float height = cell->getHG();
+            cell->setPositionY(-height*j);
+            j++;
+        }
+        
+        
+        m_listNode->setPositionY(135*j);
+        if (CCCommonUtils::isIosAndroidPad())
+        {
+            m_listNode->setPositionY(276 * j);
+        }
+        this->setContentSize(CCSize(614, 135*j));
+        if (CCCommonUtils::isIosAndroidPad()) {
+            this->setContentSize(CCSize(1470, 276 * j));
+        }
+    }
+    
+    
+    
+    
+}
 
 bool VipDetailCell::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const char *pMemberVariableName, cocos2d::CCNode *pNode)
 {
@@ -146,8 +309,13 @@ bool VipDetailCell::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const 
     
     return false;
 }
-
-
+//begin a by ljf
+float VipDetailCell::getTopCellHeight()
+{
+    return mTopCellHeight;
+}
+//end a by ljf
+/*
 VipEffectCell* VipEffectCell::create(string type1,int value1,string type2,int value2,int guide)
 {
     auto ret = new VipEffectCell(type1,value1,type2,value2,guide);
@@ -162,9 +330,47 @@ VipEffectCell* VipEffectCell::create(string type1,int value1,string type2,int va
 bool VipEffectCell::init()
 {
     bool ret = true;
-    auto bg = CCBLoadFile("VipEffectCell",this,this);
+    //auto bg = CCBLoadFile("VipEffectCell",this,this);
+    auto bg = CCBLoadFile("VipEffectCellMiddle",this,this); //ljf
     this->setContentSize(bg->getContentSize());
     setData(m_type1,m_value1,m_type2,m_value2);
+    return ret;
+}
+*/
+
+VipEffectCell* VipEffectCell::create(string type1,int value1,string type2,int value2,  int guide, string posType, int index, int curLevel)
+{
+    auto ret = new VipEffectCell(type1,value1,type2,value2,guide, posType, index, curLevel);
+    if (ret && ret->init()) {
+        ret->autorelease();
+    } else {
+        CC_SAFE_DELETE(ret);
+    }
+    return ret;
+}
+
+bool VipEffectCell::init()
+{
+    bool ret = true;
+    
+    //auto bg = CCBLoadFile("VipEffectCell",this,this);
+    //this->setContentSize(bg->getContentSize());
+    
+    //string ccbFileName = "VipEffectCell";
+    
+    string ccbFileName = "VipEffectCellMiddle";
+    
+    if(mPositionType == "top")
+        ccbFileName = "VipEffectCellTop";
+    if(mPositionType == "bottom")
+        ccbFileName = "VipEffectCellBottom";
+    
+    auto bg = CCBLoadFile(ccbFileName.c_str(),this,this);
+    this->setContentSize(bg->getContentSize());
+    //int h = bg->getContentSize().height;
+    //int w = bg->getContentSize().width;
+    setData(m_type1,m_value1,m_type2,m_value2, mIndex, mCurrentLevel);
+    //setLevel(mCurLevel);
     return ret;
 }
 
@@ -185,7 +391,7 @@ float VipEffectCell::getHG(){
     
     return this->getContentSize().height;
 }
-
+/*
 void VipEffectCell::setData(string type1,int value1,string type2,int value2)
 {
     string pic = "";
@@ -193,55 +399,55 @@ void VipEffectCell::setData(string type1,int value1,string type2,int value2)
 //        this->m_showNode->setVisible(true);
 //        this->m_hideNode->setVisible(false);
         m_leftText->setString(_lang_1("103034",""));
-        m_rightText->setString(_lang_1("103034",""));
+        //m_rightText->setString(_lang_1("103034",""));
         pic = "skill2_650403.png";
     }else if (type1=="wood") {
         m_leftText->setString(_lang_1("103035",""));
-        m_rightText->setString(_lang_1("103035",""));
+        //m_rightText->setString(_lang_1("103035",""));
         pic = "item603.png";
     }else if (type1=="food") {
         m_leftText->setString(_lang_1("103035",""));
-        m_rightText->setString(_lang_1("103035",""));
+        //m_rightText->setString(_lang_1("103035",""));
         pic = "item603.png";
     }else if (type1=="iron") {
         m_leftText->setString(_lang_1("103035",""));
-        m_rightText->setString(_lang_1("103035",""));
+        //m_rightText->setString(_lang_1("103035",""));
         pic = "item603.png";
     }else if (type1=="silver") {
         m_leftText->setString(_lang_1("103035",""));
-        m_rightText->setString(_lang_1("103035",""));
+        //m_rightText->setString(_lang_1("103035",""));
         pic = "item603.png";
     }else if (type1=="attack") {
         m_leftText->setString(_lang_1("103037",""));
-        m_rightText->setString(_lang_1("103037",""));
+        //m_rightText->setString(_lang_1("103037",""));
         pic = "skill2_606201.png";
     }else if (type1=="defense") {
         m_leftText->setString(_lang_1("103038",""));
-        m_rightText->setString(_lang_1("103038",""));
+        //m_rightText->setString(_lang_1("103038",""));
         pic = "skill2_606202.png";
     }else if (type1=="march") {
         m_leftText->setString(_lang_1("103036",""));
-        m_rightText->setString(_lang_1("103036",""));
+        //m_rightText->setString(_lang_1("103036",""));
         pic = "skill2_650000.png";
     }else if (type1=="health") {
         m_leftText->setString(_lang_1("103039",""));
-        m_rightText->setString(_lang_1("103039",""));
+        //m_rightText->setString(_lang_1("103039",""));
         pic = "skill2_652205.png";
     }else if (type1=="hurt") {
         m_leftText->setString(_lang_1("103040",""));
-        m_rightText->setString(_lang_1("103040",""));
+        //m_rightText->setString(_lang_1("103040",""));
         pic = "skill2_650205.png";
     }else if (type1=="troop") {
         m_leftText->setString(_lang_1("103041",""));
-        m_rightText->setString(_lang_1("103041",""));
+        //m_rightText->setString(_lang_1("103041",""));
         pic = "skill2_603103.png";
     }else if (type1=="monster") {
         m_leftText->setString(_lang_1("103042",""));
-        m_rightText->setString(_lang_1("103042",""));
+        //m_rightText->setString(_lang_1("103042",""));
         pic = "skill2_650400.png";
     }else if (type1=="body") {
         m_leftText->setString(_lang_1("103043",""));
-        m_rightText->setString(_lang_1("103043",""));
+        //m_rightText->setString(_lang_1("103043",""));
         pic = "skill2_650405.png";
     }
     if (value1 == value2)
@@ -251,7 +457,7 @@ void VipEffectCell::setData(string type1,int value1,string type2,int value2)
     CCSprite* head = CCLoadSprite::createSprite(pic.c_str());
     CCSprite* head1 = CCLoadSprite::createSprite(pic.c_str());
     m_leftPicNode->addChild(head);
-    m_rightPicNode->addChild(head1);
+    //m_rightPicNode->addChild(head1);
     float scale = 94/head->getContentSize().width;
     scale = scale>1.0?1.0:scale;
     head->setScale(scale);
@@ -297,6 +503,149 @@ void VipEffectCell::setData(string type1,int value1,string type2,int value2)
         setGuideAnim();
     }
 }
+*/
+
+void VipEffectCell::setData(string type1,int value1,string type2,int value2, int index, int curLevel)
+{
+    string pic = "";
+    if (type1=="speedup") {
+        //        this->m_showNode->setVisible(true);
+        //        this->m_hideNode->setVisible(false);
+        m_leftText->setString(_lang_1("103034",""));
+        //m_rightText->setString(_lang_1("103034",""));
+        pic = "skill2_650403.png";
+    }else if (type1=="wood") {
+        m_leftText->setString(_lang_1("103035",""));
+        //m_rightText->setString(_lang_1("103035",""));
+        pic = "skill2_680000.png";
+    }else if (type1=="food") {
+        m_leftText->setString(_lang_1("103035",""));
+        //m_rightText->setString(_lang_1("103035",""));
+        pic = "skill2_680000.png";
+    }else if (type1=="iron") {
+        m_leftText->setString(_lang_1("103035",""));
+        //m_rightText->setString(_lang_1("103035",""));
+        pic = "skill2_680000.png";
+    }else if (type1=="silver") {
+        m_leftText->setString(_lang_1("103035",""));
+        //m_rightText->setString(_lang_1("103035",""));
+        pic = "skill2_680000.png";
+    }else if (type1=="attack") {
+        m_leftText->setString(_lang_1("103037",""));
+        //m_rightText->setString(_lang_1("103037",""));
+        pic = "skill2_606201.png";
+    }else if (type1=="defense") {
+        m_leftText->setString(_lang_1("103038",""));
+        //m_rightText->setString(_lang_1("103038",""));
+        pic = "skill2_606202.png";
+    }else if (type1=="march") {
+        m_leftText->setString(_lang_1("103036",""));
+        //m_rightText->setString(_lang_1("103036",""));
+        pic = "skill2_650000.png";
+    }else if (type1=="health") {
+        m_leftText->setString(_lang_1("103039",""));
+        //m_rightText->setString(_lang_1("103039",""));
+        pic = "skill2_652205.png";
+    }else if (type1=="hurt") {
+        m_leftText->setString(_lang_1("103040",""));
+        //m_rightText->setString(_lang_1("103040",""));
+        pic = "skill2_650205.png";
+    }else if (type1=="troop") {
+        m_leftText->setString(_lang_1("103041",""));
+        //m_rightText->setString(_lang_1("103041",""));
+        pic = "skill2_603103.png";
+    }else if (type1=="monster") {
+        m_leftText->setString(_lang_1("103042",""));
+        //m_rightText->setString(_lang_1("103042",""));
+        pic = "skill2_650400.png";
+    }else if (type1=="body") {
+        m_leftText->setString(_lang_1("103043",""));
+        //m_rightText->setString(_lang_1("103043",""));
+        pic = "skill2_650405.png";
+    }
+    if (value1 == value2)
+    {
+        m_rightAddFlag->setVisible(false);
+    }
+    CCSprite* head = CCLoadSprite::createSprite(pic.c_str());
+    CCSprite* head1 = CCLoadSprite::createSprite(pic.c_str());
+    m_leftPicNode->addChild(head);
+    //m_rightPicNode->addChild(head1);
+    float scale = 94/head->getContentSize().width;
+    scale = scale>1.0?1.0:scale;
+    head->setScale(scale);
+    head1->setScale(scale);
+    if(value1==0){
+        head->setColor({100,100,100});
+        m_leftText->setColor({200,200,200});
+        m_leftValueText->setColor({255,20,20});
+    }
+    string value1str = "";
+    
+    string value2str = "";
+    if (type1=="troop") {
+        value1str.append("+");
+        value1str.append(CC_ITOA(value1));
+        value2str.append("+");
+        value2str.append(CC_ITOA(value2));
+        m_leftValueText->setString(value1str);
+        m_rightValueText->setString(value2str);
+        
+    }else if (type1=="speedup") {
+        
+        value1str.append(CC_ITOA(value1));
+        value1str.append(_lang("103033"));
+        value2str.append(CC_ITOA(value2));
+        value2str.append(_lang("103033"));
+        m_leftValueText->setString(value1str);
+        m_rightValueText->setString(value2str);
+        
+    }else{
+        value1str.append("+");
+        value1str.append(CC_ITOA(value1));
+        value1str.append("%");
+        
+        value2str.append("+");
+        value2str.append(CC_ITOA(value2));
+        value2str.append("%");
+        
+        m_leftValueText->setString(value1str);
+        m_rightValueText->setString(value2str);
+    }
+    
+    //begin a by ljf
+    mIndex = index;
+    mCurrentLevel = curLevel;
+    string vip = (_lang("103000").c_str());
+    string curLevels = CC_ITOA(index + 1);
+    string nextLevels = CC_ITOA(index + 2);
+    //this->m_lblVIP[1]->setString(CC_ITOA(m_vipLevel));
+    if(m_curVIPLevel)
+    {
+        m_curVIPLevel->setString(vip + curLevels);
+    }
+    if(m_nextVIPLevel)
+    {
+        m_nextVIPLevel->setString(vip + nextLevels);
+    }
+    if(m_currentLVBg)
+    {
+        if((index + 1) == curLevel)
+        {
+            m_currentLVBg->setVisible(false);
+        }
+        else
+        {
+            m_currentLVBg->setVisible(true);
+        }
+    }
+    //end a by ljf
+    
+    if (m_guide == 1 && type1=="troop") {
+        setGuideAnim();
+    }
+}
+
 void VipEffectCell::setGuideAnim(){
     auto sprite = CCLoadSprite::createScale9Sprite("rect.png");
     m_activeGuideNode->addChild(sprite);
@@ -322,6 +671,13 @@ bool VipEffectCell::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const 
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg", CCScale9Sprite*, m_bg);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_rightAddFlag", CCSprite*, m_rightAddFlag);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_activeGuideNode", Node*, m_activeGuideNode);
+    
+    //begin a by ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_curVIPLevel", CCLabelBMFont*, m_curVIPLevel);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nextVIPLevel", CCLabelBMFont*, m_nextVIPLevel);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_currentLVBg", CCSprite*, m_currentLVBg);
+    //end a by ljf
+
     return false;
 }
 

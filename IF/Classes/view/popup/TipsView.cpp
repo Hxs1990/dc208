@@ -92,7 +92,8 @@ bool TipsVipView::init(string title,string msg) {
     bool ret = false;
     if (PopupBaseView::init()) {
         setIsHDPanel(true);
-        CCBLoadFile("TipsVIPView",this,this);
+        //CCBLoadFile("TipsVIPView",this,this); //d by ljf
+        CCBLoadFile("TipsVIPViewNB",this,this); //a by ljf
         CCSize size=CCDirector::sharedDirector()->getWinSize();
         setContentSize(size);
         
