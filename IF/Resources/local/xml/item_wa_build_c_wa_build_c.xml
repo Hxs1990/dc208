@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tns:database xmlns:tns="http://www.iw.com/sns/platform/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Group id="wa_build_c">
+        <ItemSpec id="7000001" type="24" location="75;75" item_id="7900001"/>
+        <ItemSpec id="7000002" type="28" location="45;105" item_id="7900002"/>
+        <ItemSpec id="7000003" type="26" location="105;45" item_id="7900003"/>
+        <ItemSpec id="7000004" type="34" location="60;60" item_id="7900008"/>
+        <ItemSpec id="7000005" type="33" location="77;64" item_id="7900007"/>
+        <ItemSpec id="7000006" type="33" location="73;86" item_id="7900007"/>
+        <ItemSpec id="7000007" type="33" location="47;115" item_id="7900007"/>
+        <ItemSpec id="7000008" type="33" location="43;95" item_id="7900007"/>
+        <ItemSpec id="7000009" type="33" location="110;36" item_id="7900007"/>
+        <ItemSpec id="7000010" type="33" location="99;53" item_id="7900007"/>
+        <ItemSpec id="7000011" type="36" location="30;120" item_id="7900009"/>
+        <ItemSpec id="7000012" type="36" location="120;30" item_id="7900009"/>
+        <ItemSpec id="7000013" type="36" location="30;45" item_id="7900009"/>
+        <ItemSpec id="7000014" type="36" location="120;105" item_id="7900009"/>
+        <ItemSpec id="7000015" type="36" location="67;30" item_id="7900009"/>
+        <ItemSpec id="7000016" type="36" location="82;120" item_id="7900009"/>
+        <ItemSpec id="7000017" type="30" location="22;97" item_id="7900004"/>
+        <ItemSpec id="7000018" type="30" location="127;52" item_id="7900004"/>
+        <ItemSpec id="7000019" type="30" location="37;22" item_id="7900004"/>
+        <ItemSpec id="7000020" type="30" location="112;127" item_id="7900004"/>
+        <ItemSpec id="7000021" type="30" location="90;90" item_id="7900004"/>
+        <ItemSpec id="7000022" type="31" location="37;37" item_id="7900005"/>
+        <ItemSpec id="7000023" type="31" location="112;112" item_id="7900005"/>
+        <ItemSpec id="7000024" type="32" location="97;97" item_id="7900006"/>
+    </Group>
+</tns:database>

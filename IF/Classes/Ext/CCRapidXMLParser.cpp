@@ -100,12 +100,15 @@ void CCRapidXMLParser::startElement(xml_node<>* dictNode)
             
             //  按照id建立索引表
             CCString* pID = (CCString*)pDictTmp->objectForKey("id");
-            if( pID )
+            if (!pID)
             {
-                m_pDictItem->setObject(pDictTmp , pID->getCString());
-                //  按照组id建立索引表
-                pDictGroupItem->setObject(pDictTmp , pID->getCString());
+                node = node->next_sibling();
+                continue;
             }
+            m_pDictItem->setObject(pDictTmp , pID->getCString());
+            //  按照组id建立索引表
+            pDictGroupItem->setObject(pDictTmp , pID->getCString());
+            
             node = node->next_sibling();
             
         }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tns:database xmlns:tns="http://www.iw.com/sns/platform/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Group id="wa_rank">
+        <ItemSpec id="7200001" min_A="1" max_A="100" rank="1" level="0" icon="rank_1"/>
+        <ItemSpec id="7200002" min_A="101" max_A="150" rank="2" level="1" icon="rank_2"/>
+        <ItemSpec id="7200003" min_A="151" max_A="200" rank="2" level="2" icon="rank_2"/>
+        <ItemSpec id="7200004" min_A="201" max_A="250" rank="2" level="3" icon="rank_2"/>
+        <ItemSpec id="7200005" min_A="251" max_A="300" rank="2" level="4" icon="rank_2"/>
+        <ItemSpec id="7200006" min_A="301" max_A="350" rank="2" level="5" icon="rank_2"/>
+        <ItemSpec id="7200007" min_A="351" max_A="400" rank="3" level="1" icon="rank_3"/>
+        <ItemSpec id="7200008" min_A="401" max_A="450" rank="3" level="2" icon="rank_3"/>
+        <ItemSpec id="7200009" min_A="451" max_A="500" rank="3" level="3" icon="rank_3"/>
+        <ItemSpec id="7200010" min_A="501" max_A="550" rank="3" level="4" icon="rank_3"/>
+        <ItemSpec id="7200011" min_A="551" max_A="600" rank="3" level="5" icon="rank_3"/>
+        <ItemSpec id="7200012" min_A="601" max_A="650" rank="4" level="1" icon="rank_4"/>
+        <ItemSpec id="7200013" min_A="651" max_A="700" rank="4" level="2" icon="rank_4"/>
+        <ItemSpec id="7200014" min_A="701" max_A="750" rank="4" level="3" icon="rank_4"/>
+        <ItemSpec id="7200015" min_A="751" max_A="800" rank="4" level="4" icon="rank_4"/>
+        <ItemSpec id="7200016" min_A="801" max_A="850" rank="4" level="5" icon="rank_4"/>
+        <ItemSpec id="7200017" min_A="851" max_A="900" rank="5" level="1" icon="rank_5"/>
+        <ItemSpec id="7200018" min_A="901" max_A="950" rank="5" level="2" icon="rank_5"/>
+        <ItemSpec id="7200019" min_A="951" max_A="1000" rank="5" level="3" icon="rank_5"/>
+        <ItemSpec id="7200020" min_A="1001" max_A="1050" rank="5" level="4" icon="rank_5"/>
+        <ItemSpec id="7200021" min_A="1051" max_A="1100" rank="5" level="5" icon="rank_5"/>
+        <ItemSpec id="7200022" min_A="1101" max_A="1150" rank="6" level="1" icon="rank_6"/>
+        <ItemSpec id="7200023" min_A="1151" max_A="1200" rank="6" level="2" icon="rank_6"/>
+        <ItemSpec id="7200024" min_A="1201" max_A="1250" rank="6" level="3" icon="rank_6"/>
+        <ItemSpec id="7200025" min_A="1251" max_A="1300" rank="6" level="4" icon="rank_6"/>
+        <ItemSpec id="7200026" min_A="1301" max_A="99999" rank="6" level="5" icon="rank_6"/>
+    </Group>
+</tns:database>
