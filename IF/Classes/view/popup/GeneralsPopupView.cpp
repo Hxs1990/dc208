@@ -45,8 +45,12 @@
 #include "FriendsController.h"
 #include "IFGoogleTip.h"
 #include "DynamicResourceController.h"
-//const int cellW = 640;
-static int cellW = 520;
+
+#include "NBCommonUtils.h"
+using namespace NBCommonUtils;
+
+static int cellW = 640;
+//static int cellW = 520;
 static string GuideKey = "";
 
 GeneralsPopupView* GeneralsPopupView::create(){
@@ -129,7 +133,7 @@ void GeneralsPopupView::onGetPlayerInfoCallback(cocos2d::CCObject *obj) {
     PopupViewController::getInstance()->addPopupInView(this);
     
     this->release();
-    playerInfo->release();
+    CC_SAFE_RELEASE(playerInfo);
 }
 
 
@@ -142,6 +146,17 @@ bool GeneralsPopupView::init()
         return false;
     }
     setIsHDPanel(true);
+    
+    //fusheng begin 添加图片
+    CCLoadSprite::doResourceByGeneralIndex(1, true);//亮光放在这里
+    CCLoadSprite::doResourceByGeneralIndex(2, true);
+    CCLoadSprite::doResourceByGeneralIndex(3, true);
+    CCLoadSprite::doResourceByGeneralIndex(4, true);//fusheng 粒子特效
+    
+    
+    //fusheng end
+    
+    
     CCLog("CCLoadSprite::doResourceByCommonIndex(503, true)");
     loadResource();
     
@@ -151,9 +166,9 @@ bool GeneralsPopupView::init()
     m_addPopup = false;
     initAniFinish = false;
     CCSize size = CCDirector::sharedDirector()->getWinSize();
-//    if (!CCCommonUtils::isIosAndroidPad()) {
+    if (!CCCommonUtils::isIosAndroidPad()) {
         changeBGHeight(m_buildBG);
-//    }
+    }
     float extH = getExtendHeight();
     float add =  size.height - 852;
     if (CCCommonUtils::isIosAndroidPad())
@@ -178,7 +193,7 @@ bool GeneralsPopupView::init()
     }
     m_lockL->setVisible(!isOpenLongJing);
     
-    auto tbg = CCLoadSprite::loadResource("Bottom frame04.png");
+    /*auto tbg = CCLoadSprite::loadResource("Bottom frame04.png");
     auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
     int maxHight = ceil(size.height*1.0/90);
     for (int j = 0; j<maxHight; j++)
@@ -197,10 +212,15 @@ bool GeneralsPopupView::init()
         tBatchNode->setScaleX(scale);
     }
     
-    m_bgNode->addChild(tBatchNode);
+    m_bgNode->addChild(tBatchNode);*/
     
     CCCommonUtils::setButtonTitle(m_btnAlliance, _lang("102161").c_str());
     CCCommonUtils::setButtonTitle(m_msgBtn, _lang("105308").c_str());
+    
+    //fusheng begin 存储进度条最大值
+    m_ExtMaxWidth = m_expBar->getContentSize().width;
+    m_APMaxWidth = m_staminePro->getContentSize().width;
+    //fusheng end
     
     if (m_playerUid=="" || m_playerUid==GlobalData::shared()->playerInfo.uid)
     {
@@ -211,7 +231,7 @@ bool GeneralsPopupView::init()
             m_scrollView->setDirection(kCCScrollViewDirectionVertical);
             m_infoNode->addChild(m_scrollView);
             m_mainNode->removeFromParent();
-            m_mainNode->setPosition(ccp(320, 550));
+            m_mainNode->setPosition(ccp(320, 510));
             m_scrollView->addChild(m_mainNode);
             m_scrollView->setContentSize(CCSize(m_infoNode->getContentSize().width,880));
             m_scrollView->setContentOffset(ccp(0, m_infoNode->getContentSize().height - 880));
@@ -232,11 +252,37 @@ bool GeneralsPopupView::init()
             float len = info.currExp*1.0/info.maxExp;
             len = MAX(len,0);
             len = MIN(len,1);
-            m_expBar->setScaleX(len);
-            std::string expStr = CC_ITOA(info.currExp);
+            // m_expBar->setScaleX(len);
+            auto size = m_expBar->getContentSize();
+            size.width = m_ExtMaxWidth * len;
+            m_expBar->setVisible(len != 0);
+            auto oriSize = m_expBar->getOriginalSize();
+            if (size.width < oriSize.width)
+            {
+                this->m_expBar->setContentSize(oriSize);
+            }
+            else
+            {
+                this->m_expBar->setContentSize(size);
+            }
+            
+            /*std::string expStr = CC_ITOA(info.currExp);
             expStr.append("/");
             expStr.append(CC_ITOA(info.maxExp));
-            m_expTxt->setString(expStr);
+            m_expTxt->setString(expStr);*/
+            
+            this->m_stamineTextPre->setString("AP");//fusheng 需要文本
+            this->m_expTxtPre->setString("Exp");//fusheng 需要文本
+            m_expTxt0->setString("(");
+            m_expTxt1->setString(std::string("") + CC_CMDITOAL(info.currExp));
+            m_expTxt2->setString(std::string("")  + "/" + CC_CMDITOAL(info.maxExp)+ ")" );
+            vector<CCLabelIF*> vec ;
+            vec.push_back(m_expTxtPre);
+            vec.push_back(m_expTxt0);
+            vec.push_back(m_expTxt1);
+            vec.push_back(m_expTxt2);
+            arrangeLabel(vec);
+            m_ChangeAvatarNode->setVisible(true);
         }
     }
     else
@@ -249,7 +295,7 @@ bool GeneralsPopupView::init()
             m_scrollView->setDirection(kCCScrollViewDirectionVertical);
             m_infoNode->addChild(m_scrollView);
             m_mainNode->removeFromParent();
-            m_mainNode->setPosition(ccp(320, 550));
+            m_mainNode->setPosition(ccp(320, 510));
             m_scrollView->addChild(m_mainNode);
             m_scrollView->setContentSize(CCSize(m_infoNode->getContentSize().width,880+90));
             m_scrollView->setContentOffset(ccp(0, m_infoNode->getContentSize().height - 880-90));
@@ -264,7 +310,7 @@ bool GeneralsPopupView::init()
         m_noMedalLable->setString(_lang("113987"));
         m_bottomNode->setVisible(false);
         m_selfInfoNode->setVisible(false);
-        m_otherNode->setVisible(true);
+//        m_otherNode->setVisible(true);//fusheng 美术没做
         m_medalLable->setString(_lang(""));
         string lvmsg = "Lv.";
         lvmsg += CC_ITOA(m_info->level);
@@ -344,6 +390,8 @@ bool GeneralsPopupView::init()
         if(!m_info->isInAlliance()) {
             m_btnAlliance->setEnabled(false);
         }
+        
+        m_ChangeAvatarNode->setVisible(false);
     }
     
     m_particleNode = CCNode::create();
@@ -432,6 +480,30 @@ bool GeneralsPopupView::init()
     else{
         m_googlePlayNode->setVisible(false);//todowdz
     }
+    
+    
+    // ---------------------------------------------------------------------------------------------------
+    
+    auto oldH = m_buildBG->getContentSize().height;
+    
+    changeBGMaxHeight(m_buildBG);
+    
+    m_buildBG->setPositionY(m_buildBG->getPositionY()+m_buildBG->getContentSize().height-oldH);
+    
+    
+    int tmp = 200;
+    m_bustPic->setScale(1.4);
+    if (CCDirector::getInstance()->getWinSize().height/CCDirector::getInstance()->getWinSize().width<1.6) {
+        m_nameNode->setPositionY(m_nameNode->getPositionY()+tmp);
+        m_selfInfoNode->setPositionY(m_selfInfoNode->getPositionY()+tmp);
+        
+        m_bustPic->setScale(1);
+        
+        m_bustPic->setPositionY(m_bustPic->getPositionY()+tmp);
+        
+        ForCCBAnimation->setScaleY(0.65);
+    }
+    
     return true;
 }
 
@@ -456,10 +528,28 @@ void GeneralsPopupView::refreshView(){
         pBust = m_info->pic;
     }
     auto sprite = CCLoadSprite::createSprite((pBust + "_bust.png").c_str(),true,CCLoadSpriteType_HEAD_ICON_BUST);
+	sprite->setAnchorPoint(Vec2(0.5,0));
     sprite->setTag(0);
     sprite->setOpacity(0);
+	sprite->setPositionX(-7);
     m_bustPic->addChild(sprite);
     sprite->runAction(CCFadeIn::create(0.5));
+    
+    
+    this->runAction(Sequence::createWithTwoActions(DelayTime::create(0.5), CallFunc::create([this]
+                                                                                          {
+                                                                                              m_particleNodeNB->removeAllChildren();
+                                                                                              
+                                                                                              auto particle = ParticleController::createParticle("HeroBg");
+                                                                                              
+                                                                                              m_particleNodeNB->addChild(particle);
+                                                                                              
+                                                                                          })));
+    
+    
+
+
+
     
     onRefreshEquip();
 }
@@ -533,7 +623,10 @@ void GeneralsPopupView::onEnter(){
         }
     }
     if( this->getAnimationManager() )
+	{
         this->getAnimationManager()->runAnimationsForSequenceNamed("FadeIn");
+		this->getAnimationManager()->setAnimationCompletedCallback(this, callfunc_selector(GeneralsPopupView::animationFuncForFadeIn));
+	}
     setTouchMode(Touch::DispatchMode::ONE_BY_ONE);
     setTouchEnabled(true);
     //CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, Touch_Default, false);
@@ -740,7 +833,19 @@ void GeneralsPopupView::onSkillBtnClick(CCObject * pSender, Control::EventType p
 
 bool GeneralsPopupView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode)
 {
+
+	CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_particleNodeNB", CCNode*, this->m_particleNodeNB);
     
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nbTouchNodeForChangeAvatar", CCNode*, this->m_nbTouchNodeForChangeAvatar);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_ChangeAvatarNode", CCNode*, this->m_ChangeAvatarNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameNode", CCNode*, this->m_nameNode);
+
+     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "ForCCBAnimation", CCNode*, this->ForCCBAnimation);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_expTxtPre", CCLabelIF*, this->m_expTxtPre);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineTextPre", CCLabelIF*, this->m_stamineTextPre);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_ChangeAvatar", CCSprite*, this->m_ChangeAvatar);
+	    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_googlePlayNode", CCNode*, this->m_googlePlayNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bustPic", CCNode*, this->m_bustPic);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_icon", CCNode*, this->m_icon);
@@ -750,10 +855,13 @@ bool GeneralsPopupView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, c
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameTxt", Label*, this->m_nameTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameSpr", CCSprite*, this->m_nameSpr);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_pointText", CCLabelIF*, this->m_pointText);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_expTxt", CCLabelIF*, this->m_expTxt);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_expTxt", CCLabelIF*, this->m_expTxt);//fusheng d
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_expTxt0", CCLabelIF*, this->m_expTxt0);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_expTxt1", CCLabelIF*, this->m_expTxt1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_expTxt2", CCLabelIF*, this->m_expTxt2);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_expBar", CCScale9Sprite*, this->m_expBar);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_leftBg", CCSprite*, this->m_leftBg);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_rightBg", CCSprite*, this->m_rightBg);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_leftBg", CCSprite*, this->m_leftBg);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_rightBg", CCSprite*, this->m_rightBg);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_renameBtn", CCControlButton*, this->m_renameBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bTxt3", CCLabelIF*, this->m_bTxt3);
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bTxt4", CCLabelIF*, this->m_bTxt4);
@@ -777,7 +885,11 @@ bool GeneralsPopupView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, c
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picCover", CCScale9Sprite*, this->m_picCover);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_staminePro", CCScale9Sprite*, this->m_staminePro);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineBG", CCScale9Sprite*, this->m_stamineBG);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineText", CCLabelIF*, this->m_stamineText);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineText", CCLabelIF*, this->m_stamineText); //fusheng d
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineText0", CCLabelIF*, this->m_stamineText0);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineText1", CCLabelIF*, this->m_stamineText1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineText2", CCLabelIF*, this->m_stamineText2);
+    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineIcon", CCSprite*, this->m_stamineIcon);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_touchNode", CCNode*, this->m_touchNode);
     
@@ -902,11 +1014,54 @@ CCNode* GeneralsPopupView::getGuideNode(string _key)
 void GeneralsPopupView::update(float time){
     int currt = WorldController::getInstance()->currentStamine;
     int total = GlobalData::shared()->worldConfig.stamineMax;
-    m_stamineText->setString(std::string("") + CC_ITOA(currt) + "/" + CC_ITOA(total));
+    
+  //fusheng begin
+    m_stamineText0->setString("(");
+    
+    m_stamineText1->setString(std::string("") + CC_ITOA(currt));
+    
+    m_stamineText2->setString(std::string("")  + "/" + CC_ITOA(total)+")");
+    
+    
+    vector<CCLabelIF*> vec ;
+    
+    vec.push_back(m_stamineTextPre);
+    
+    vec.push_back(m_stamineText0);
+    
+    vec.push_back(m_stamineText1);
+    vec.push_back(m_stamineText2);
+    
+    arrangeLabel(vec);
+    
+    
+    
     currt = MIN(currt, total);
     float s = 1.0 * currt / total;
-    m_staminePro->setScaleX(s);
+//    m_staminePro->setScaleX(s);
+    
+    auto size = m_staminePro->getContentSize();
+    
+    size.width = m_APMaxWidth * s;
+    
+    
+    m_staminePro->setVisible(s != 0);
+    
+    auto oriSize = m_staminePro->getOriginalSize();
+    
+    if (size.width<oriSize.width) {
+        
+        this->m_staminePro->setContentSize(oriSize);
+        
+    }
+    else
+    {
+        this->m_staminePro->setContentSize(size);
+        
+    }
+    //fusheng end
     m_tip->update(time);
+
 }
 
 void GeneralsPopupView::onSkillClick(CCObject * pSender, Control::EventType pCCControlEvent){
@@ -961,6 +1116,10 @@ void GeneralsPopupView::animationFunc(){
 void GeneralsPopupView::animationFunc1(){
     this->getAnimationManager()->setAnimationCompletedCallback(this, NULL);
     PopupViewController::getInstance()->goBackPopupView();
+}
+void GeneralsPopupView::animationFuncForFadeIn(){
+    this->getAnimationManager()->setAnimationCompletedCallback(this, NULL);
+    this->getAnimationManager()->runAnimationsForSequenceNamed("Loop");
 }
 
 bool GeneralsPopupView::onTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
@@ -1082,6 +1241,12 @@ void GeneralsPopupView::onTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         }else if(isTouchInside(m_clickNode4, pTouch)){
                 SoundController::sharedSound()->playEffects(Music_Sfx_click_button);
                 PopupViewController::getInstance()->addPopupInView(RoleInfoView::create(&(GlobalData::shared()->playerInfo)));
+            }
+            else if(isTouchInside(m_nbTouchNodeForChangeAvatar, pTouch) && m_ChangeAvatarNode->isVisible()){
+                
+                
+                PopupViewController::getInstance()->addPopupView(ChangePicPopupView::create());
+                
             }
         }else if(isTouchInside(m_clickNode2, pTouch)){
             PopupViewController::getInstance()->addPopupView(ChangePicView::create());

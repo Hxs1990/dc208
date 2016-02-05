@@ -70,6 +70,7 @@ private:
 
     void animationFunc();
     void animationFunc1();
+    void animationFuncForFadeIn();
     void onChangePic(CCObject* p);
     void updatePlayerName(CCObject* p);
     void refreshView();
@@ -99,6 +100,10 @@ private:
     CCSafeObject<CCNode> m_infoNode;
     CCSafeObject<CCNode> m_bgNode;
     CCSafeObject<CCScale9Sprite> m_buildBG;
+	CCSafeObject<CCNode> m_particleNode;
+    
+    float m_ExtMaxWidth;//fusheng 存储一下
+    float m_APMaxWidth;
 //    CCSafeObject<CCControlButton> m_skillBtn;
     
     CCSafeObject<Node> m_guide1Node;
@@ -157,8 +162,13 @@ private:
     CCSafeObject<CCScale9Sprite> m_stamineBG;
     CCSafeObject<Label> m_nameTxt;
     CCSafeObject<CCSprite> m_nameSpr;
-    CCSafeObject<CCLabelIF> m_expTxt;
+//    CCSafeObject<CCLabelIF> m_expTxt;
+    CCSafeObject<CCLabelIF> m_expTxt0;
+    CCSafeObject<CCLabelIF> m_expTxt1;
+    CCSafeObject<CCLabelIF> m_expTxt2;
     CCSafeObject<CCLabelIF> m_pointText;
+    CCSafeObject<CCLabelIF> m_expTxtPre;
+    CCSafeObject<CCLabelIF> m_stamineTextPre;
     CCSafeObject<CCScale9Sprite> m_expBar;
     CCSafeObject<CCNode> m_bustPic;
     CCSafeObject<CCSprite> m_pic;
@@ -166,9 +176,12 @@ private:
     CCSafeObject<CCNode> m_touchLayer;
     CCSafeObject<CCNode> m_bNode;
     CCSafeObject<CCNode> m_bottomNode;
-    CCSafeObject<CCNode> m_particleNode;
-    CCSafeObject<CCSprite> m_leftBg;
-    CCSafeObject<CCSprite> m_rightBg;
+    //CCSafeObject<CCNode> m_particleNode;
+	CCSafeObject<CCNode> m_particleNodeNB;
+
+    CCSafeObject<CCSprite> m_ChangeAvatar;
+//    CCSafeObject<CCSprite> m_leftBg;
+//    CCSafeObject<CCSprite> m_rightBg;
     CCSafeObject<CCControlButton> m_renameBtn;
     CCSafeObject<CCControlButton> m_picBtn;
 //    CCSafeObject<CCNode> m_buttonNode;
@@ -191,6 +204,11 @@ private:
     CCSafeObject<CCNode> m_headIcon;
     CCSafeObject<CCNode> m_scrollContainer;
     
+    CCSafeObject<CCNode> m_nameNode;
+    CCSafeObject<CCNode> ForCCBAnimation;
+    CCSafeObject<CCNode> m_ChangeAvatarNode;
+    CCSafeObject<CCNode> m_nbTouchNodeForChangeAvatar;
+    
 //    CCSafeObject<CCTableView> m_tabView;
     CCSafeObject<CCArray> m_data;
     CCSafeObject<CCNode> m_resetNode;
@@ -199,7 +217,11 @@ private:
     CCSafeObject<CCLabelIF> m_goldNum;
     CCSafeObject<CCSprite> m_goldIcon;
     
-    CCSafeObject<CCLabelIF> m_stamineText;
+//    CCSafeObject<CCLabelIF> m_stamineText;
+    CCSafeObject<CCLabelIF> m_stamineText0;
+    CCSafeObject<CCLabelIF> m_stamineText1;
+    CCSafeObject<CCLabelIF> m_stamineText2;
+    
 //    CCSafeObject<CCLabelIF> m_timeText;
     CCSafeObject<ClickTipView> m_tip;
     CCSafeObject<CCScale9Sprite> m_staminePro;
