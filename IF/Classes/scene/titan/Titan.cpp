@@ -9,7 +9,6 @@
 #include "Titan.h"
 #include "Particle3D/CCParticleSystem3D.h"
 #include "Particle3D/PU/CCPUParticleSystem3D.h"
-#include "DrawNode3D.h"
 #include "CCCommonUtils.h"
 
 //const float sfChangeActionTime = 3.f;

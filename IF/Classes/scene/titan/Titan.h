@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include "NBSprite3D.h"
-#include "DrawNode3D.h"
 USING_NS_CC;
 
 class sAnimationInfo : public Ref
