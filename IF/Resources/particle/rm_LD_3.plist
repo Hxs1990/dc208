@@ -9,23 +9,23 @@
 	<key>angleVariance</key>
 	<real>0.0</real>
 	<key>blendFuncDestination</key>
-	<integer>771</integer>
+	<integer>1</integer>
 	<key>blendFuncSource</key>
 	<integer>1</integer>
 	<key>configName</key>
-	<string>rm_LD_3</string>
+	<string>Centaur_LD_3</string>
 	<key>duration</key>
 	<real>0.050000000000000003</real>
 	<key>emitterType</key>
 	<integer>0</integer>
 	<key>finishColorAlpha</key>
-	<real>1</real>
+	<real>0.0</real>
 	<key>finishColorBlue</key>
 	<real>0.0</real>
 	<key>finishColorGreen</key>
-	<real>0.088167987763881683</real>
+	<real>0.013354077935218811</real>
 	<key>finishColorRed</key>
-	<real>0.66471201181411743</real>
+	<real>0.25911423563957214</real>
 	<key>finishColorVarianceAlpha</key>
 	<real>0.0</real>
 	<key>finishColorVarianceBlue</key>
@@ -35,7 +35,7 @@
 	<key>finishColorVarianceRed</key>
 	<real>0.0</real>
 	<key>finishParticleSize</key>
-	<real>180</real>
+	<real>300</real>
 	<key>finishParticleSizeVariance</key>
 	<real>0.0</real>
 	<key>gravityx</key>
@@ -67,11 +67,11 @@
 	<key>rotatePerSecondVariance</key>
 	<real>0.0</real>
 	<key>rotationEnd</key>
-	<real>0.0</real>
+	<real>240</real>
 	<key>rotationEndVariance</key>
 	<real>0.0</real>
 	<key>rotationStart</key>
-	<real>160</real>
+	<real>250</real>
 	<key>rotationStartVariance</key>
 	<real>0.0</real>
 	<key>sourcePositionVariancex</key>
@@ -87,9 +87,9 @@
 	<key>startColorBlue</key>
 	<real>0.0</real>
 	<key>startColorGreen</key>
-	<real>0.060424551367759705</real>
+	<real>0.4791216254234314</real>
 	<key>startColorRed</key>
-	<real>0.54777270555496216</real>
+	<real>1</real>
 	<key>startColorVarianceAlpha</key>
 	<real>0.0</real>
 	<key>startColorVarianceBlue</key>
@@ -99,7 +99,7 @@
 	<key>startColorVarianceRed</key>
 	<real>0.0</real>
 	<key>startParticleSize</key>
-	<real>75</real>
+	<real>100</real>
 	<key>startParticleSizeVariance</key>
 	<real>0.0</real>
 	<key>tangentialAccelVariance</key>
@@ -107,7 +107,7 @@
 	<key>tangentialAcceleration</key>
 	<real>0.0</real>
 	<key>textureFileName</key>
-	<string>Effect_0111.png</string>
+	<string>Effect_0164.png</string>
 	<key>textureImageData</key>
 	<string></string>
 	<key>yCoordFlipped</key>

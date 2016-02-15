@@ -1562,6 +1562,7 @@
 		E6FD35A81BBA964F004320C7 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FD35A71BBA964F004320C7 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E6FD35B21BBA9EB0004320C7 /* ReplayKitsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E6FD35B11BBA9EB0004320C7 /* ReplayKitsController.mm */; };
 		E6FE9EB7182738E3000020FA /* TipsView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6FE9EB5182738E3000020FA /* TipsView.cpp */; };
+		ED7E77FD1C71E4F2004D5E2F /* VikingShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7E77FB1C71E4F2004D5E2F /* VikingShip.cpp */; };
 		EDBDF2EB1C632CFF002A4C1A /* eeeq_0.png in Resources */ = {isa = PBXBuildFile; fileRef = EDBDF2E91C632CFF002A4C1A /* eeeq_0.png */; };
 		EDBDF2EC1C632CFF002A4C1A /* eeeq.fnt in Resources */ = {isa = PBXBuildFile; fileRef = EDBDF2EA1C632CFF002A4C1A /* eeeq.fnt */; };
 		F429408C1B67AE7000078155 /* ComposeView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F429408A1B67AE7000078155 /* ComposeView.cpp */; };
@@ -4549,6 +4550,8 @@
 		E6FD35B11BBA9EB0004320C7 /* ReplayKitsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ReplayKitsController.mm; sourceTree = "<group>"; };
 		E6FE9EB5182738E3000020FA /* TipsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TipsView.cpp; sourceTree = "<group>"; };
 		E6FE9EB6182738E3000020FA /* TipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsView.h; sourceTree = "<group>"; };
+		ED7E77FB1C71E4F2004D5E2F /* VikingShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VikingShip.cpp; path = vikingship/VikingShip.cpp; sourceTree = "<group>"; };
+		ED7E77FC1C71E4F2004D5E2F /* VikingShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VikingShip.h; path = vikingship/VikingShip.h; sourceTree = "<group>"; };
 		EDBDF2E91C632CFF002A4C1A /* eeeq_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eeeq_0.png; path = Resources/eeeq_0.png; sourceTree = "<group>"; };
 		EDBDF2EA1C632CFF002A4C1A /* eeeq.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eeeq.fnt; path = Resources/eeeq.fnt; sourceTree = "<group>"; };
 		F429408A1B67AE7000078155 /* ComposeView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComposeView.cpp; sourceTree = "<group>"; };
@@ -8283,6 +8286,7 @@
 		DBA087DE17CDA95F001C68AD /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				ED7E77F61C71E4C4004D5E2F /* VikingShip */,
 				365A721E1C63519100E7E509 /* titan */,
 				5724402E1B218344000DAF5F /* dragon */,
 				FD3E3809183B3F19005596BD /* world */,
@@ -8384,6 +8388,15 @@
 				943188421BE0B2B000BA3E4B /* MailHeiqishiListView.hpp */,
 			);
 			name = mail;
+			sourceTree = "<group>";
+		};
+		ED7E77F61C71E4C4004D5E2F /* VikingShip */ = {
+			isa = PBXGroup;
+			children = (
+				ED7E77FB1C71E4F2004D5E2F /* VikingShip.cpp */,
+				ED7E77FC1C71E4F2004D5E2F /* VikingShip.h */,
+			);
+			name = VikingShip;
 			sourceTree = "<group>";
 		};
 		FD0E65291844860300101958 /* gtmbase64 */ = {
@@ -9652,6 +9665,7 @@
 				6C1F66A01C18372400EE33E1 /* YYTextRunDelegate.m in Sources */,
 				0CD306B31A7FABA500C1DB80 /* LotteryActView.cpp in Sources */,
 				6C1F66821C18372400EE33E1 /* CALayer+YYWebImage.m in Sources */,
+				ED7E77FD1C71E4F2004D5E2F /* VikingShip.cpp in Sources */,
 				BAC6921B1A2DB7DC0014C752 /* ShopIAPHelper.mm in Sources */,
 				597D8D241C23266D00B6DEA7 /* HelpshiftCocos2dx.cpp in Sources */,
 				94913B6C1B257DB9000DB0B7 /* TerritoryTowerPush.cpp in Sources */,

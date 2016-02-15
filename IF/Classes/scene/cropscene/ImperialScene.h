@@ -25,6 +25,8 @@
 #include "IFSkeletonBatchLayer.h"
 #include "CCAniNode.h"
 
+
+
 // tao.yu
 #include "Titan.h"
 
@@ -40,7 +42,16 @@
 
 #define JUST3D_NODE_TAG 89757
 
+//begin a by ljf
 #define IMPERIAL_SCENE_TOUCH_LAYER_TAG 89217
+#include "VikingShip.h"
+#include "Enemy.h"
+//end a by ljf
+
+// traps max number
+#define TRAP_MAX_NUMBER 36
+#define TRAP_EVERY_TYPE_NUMBER 12
+
 class ImperialScene:public CCLayer,public ITouchDelegate,public CCBMemberVariableAssigner
 {
 public:
@@ -54,11 +65,64 @@ public:
     //CC_SYNTHESIZE_SAFEOBJECT(CCLayer , buildingLayer, BuildingLayer);
     //CC_SYNTHESIZE_SAFEOBJECT(CCLayer , fixLayer, FixLayer);
     //CC_SYNTHESIZE_SAFEOBJECT(CCSpriteBatchNode , mbatchNode, BatchNode);
+    //begin ljf
+    void setEnemyNum(int enemyNum) {m_enemyNum = enemyNum;}
+    int getEnemyNum() {return m_enemyNum; }
+    //end ljf
     
     virtual void onEnter();
     virtual void onExit();
+    
+    void update(float dt); // tao.yu 每帧调用
     // tao.yu titan
     void onCreateTitan();
+    // tao.yu vikings
+    void onCreateVikingsShip(int level);
+    //begin a by ljf
+    int getVikingsShipModelLevel(int level);
+    void onUpgradeVikingsShip(int level);
+    void shipActionAfterMove(CCNode* pNode, void *pObj);
+    void createOneVikingsShip(int seq,   int level);
+    void destroyOneVikingsShip(int seq);
+    void updateVikingsShipNum();
+    int mShipLevel;
+    void onVikingsShipMove(VikingShip * pShipInfo);
+    
+    bool onVikingsShipTouched(CCTouch* pTouch);
+    bool onVikingsShipLockTouched(CCTouch* pTouch);
+    
+    void createWalker(float t);
+    void createEnemy(float t);
+    void checkPopRecommendAlliance(float t);
+    void shootArrow(float t);
+    void openBridge(float t);
+    void closeBridge(float t);
+    void updateVikingsShipLock(int seq, bool isShow);
+    CCNode * getVikingsShipCCBPosNodeBySeq(int seq);
+    CCNode * getVikingsShipCCBTouchNodeBySeq(int seq);
+    
+
+    
+    void requestRecommendAlliance();
+   
+
+    void pauseEnemy(bool inGuide = false);
+    void resumeEnemy(bool inGuide = false);
+
+    //end a by ljf
+    
+    
+    void createDockShip();//fusheng 码头的船
+    
+    void onCreateBridge();
+    bool onBridgeTouched(CCTouch* pTouch);
+    void onBridgeOpen();
+    void onBridgeClose();
+    void changeBridgeState(CCNode* p);
+    
+    int getTrapsPicNumber(int num);
+    void onRefreshOutsideTraps(CCObject* obj);
+    
     void onUpdateInfo();
     void onCreateBuild(int itemId);
     void onOpenBuild(int itemId);
@@ -411,6 +475,12 @@ private:
     CCSafeObject<SpriteBatchNode> m_resTmpCustomBatchNode;
     CCSafeObject<CCSpriteBatchNode> m_resBlentBatchNode;
     CCSafeObject<CCSpriteBatchNode> m_soldierBatchNode;
+    //begin a by ljf
+    CCSafeObject<CCSpriteBatchNode> m_walkerBatchNode;
+    CCSafeObject<CCSpriteBatchNode> m_jianBatchNode;
+    CCSafeObject<CCLayer> m_walkerLayer;
+    
+    //end a by ljf
     CCSafeObject<CCSpriteBatchNode> m_chrTreeBatchNode;
     CCSafeObject<CCSpriteBatchNode> m_chrTreeBlentBatchNode;
     CCSafeObject<CCSpriteBatchNode> m_cludeBatchNode;
@@ -426,6 +496,11 @@ private:
     CCSafeObject<CCPointArray> m_ptArrowClick;
     CCSafeObject<CCPointArray> m_pt2Array;
     CCSafeObject<CCArray> m_soldierArray;
+    //begin a by ljf
+    //CCSafeObject<CCArray> m_walkerArray;
+    //CCSafeObject<CCArray> m_enemyArray;
+    Vector<OutsideEnemy * > m_enemyArray;
+    //end a by ljf
     
     vector<CCParticleBatchNode*> m_parVec;
     vector<CCParticleBatchNode*> m_cloudVec;
@@ -472,9 +547,67 @@ private:
 	    CCSafeObject<CCNode> m_particalNode;
     // tao.yu titan node
     CCSafeObject<CCNode> m_titanNode;
+    // tao.yu 维京船
+    CCSafeObject<CCNode> m_vikingNode;
+    bool m_isVikingShipMove;
+    //begin a by ljf
+    CCSafeObject<CCNode> m_Node0;
+    CCSafeObject<CCNode> m_vikingPath1;
+    CCSafeObject<CCNode> m_vikingPath2;
+    CCSafeObject<CCNode> m_vikingPath3;
+    CCSafeObject<CCNode> m_vikingPath4;
+    CCSafeObject<CCNode> m_vikingPath5;
+    //CCSafeObject<NBSprite3D> m_vikings3D;
+    //CCSafeObject<NBSprite3D> m_vikings3D2;
+    //CCSafeObject<NBSprite3D> m_vikings3D3;
+    //CCSafeObject<NBSprite3D> m_vikings3D4;
+    //CCSafeObject<NBSprite3D> m_vikings3D5;
+    CCSafeObject<CCNode> m_vikingTouchNode;
+    //CCSafeObject<CCNode> m_vikingsParticleNode;
+    CCSafeObject<CCNode> m_vikingNode2;
+    CCSafeObject<CCNode> m_vikingTouchNode2;
+    CCSafeObject<CCNode> m_vikingNode3;
+    CCSafeObject<CCNode> m_vikingTouchNode3;
+    CCSafeObject<CCNode> m_vikingNode4;
+    CCSafeObject<CCNode> m_vikingTouchNode4;
+    CCSafeObject<CCNode> m_vikingNode5;
+    CCSafeObject<CCNode> m_vikingTouchNode5;
+    CCSafeObject<CCDictionary> mVikingShipDict;
+    CCSafeObject<CCNode> m_waterNode;
+    CCSafeObject<CCNode> m_vikingParentNode;
+    
+    bool m_isPauseEnemy;
+    int m_enemyNum;
+    //end a by ljf
+    // tao.yu titan move path
+    CCSafeObject<CCNode> m_tpath_1;
+    CCSafeObject<CCNode> m_tpath_2;
+    CCSafeObject<CCNode> m_tpath_3;
+    CCSafeObject<CCNode> m_tpath_4;
+    
+   
+    CCSafeObject<CCNode> m_wallZOrder_0;
+    CCSafeObject<CCNode> m_wallZOrder_1;
+    CCSafeObject<CCNode> m_wallZOrder_2;
+    CCSafeObject<CCNode> m_wallZOrder_3;
+    CCSafeObject<CCNode> m_wallZOrder_4;
     
     // tao.yu
     CCSafeObject<CCNode> m_cityBgNode;
+    // tao.yu bridge
+    CCSafeObject<NBSprite3D> m_bridge3D_Up;
+    CCSafeObject<NBSprite3D> m_bridge3D_Down;
+    CCSafeObject<CCNode> m_bridgeNode;
+    CCSafeObject<CCNode> m_bridgeTouchNode;
+    CCSafeObject<CCNode> m_waterNode_L;
+    CCSafeObject<CCNode> m_waterNode_R;
+    // tao.yu traps outside wall
+    CCSafeObject<Node> m_trapsRootNode;
+    CCSafeObject<Node> m_nodeTraps[TRAP_MAX_NUMBER];
+    
+    bool m_bridgeOpened;
+    bool m_isBridgeCanClick;
+    
     CCSafeObject<CCNode> m_princessNode;
     CCSafeObject<Node> m_princessRootNode;
     std::map<int, CCSpriteBatchNode*> m_wallBatchs;
@@ -494,6 +627,9 @@ private:
     CCSafeObject<Array> m_sSqerTouchArr;
     CCSafeObject<Node> m_sSqerTouchNode;
     CCSafeObject<Node> m_mainCityBtnAni;
+    
+    
+    
     int m_count;
     bool m_singleTouchState;
     bool m_buildingInitState;
