@@ -147,7 +147,7 @@ void CaptchaView::onRefreshClick(CCObject *pSender, CCControlEvent event) {
     isGetPic = true;
     CCHttpRequest* request = new CCHttpRequest();
     
-//    std::string ip = "http://10.1.6.72:8081/vcode/";
+//    std::string ip = "http://10.1.4.107:9933/vcode/";
 //#if COCOS2D_DEBUG == 2 || COCOS2D_DEBUG == 0
     std::string ip("http://");
     ip.append(SERVERLIST_CHINA_IP2);
