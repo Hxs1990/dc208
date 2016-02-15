@@ -1,12 +1,12 @@
 package com.clash.of.kings;
 
 
-import org.hcg.IF.UtilApplication;
+import org.nbg.IF.UtilApplication;
 
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
-public class EmpireApplication extends MultiDexApplication {
+public class NBGApplication extends MultiDexApplication {
 	
 	@Override
 	public void onCreate() {

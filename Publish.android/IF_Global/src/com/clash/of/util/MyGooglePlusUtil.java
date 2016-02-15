@@ -1,7 +1,7 @@
 package com.clash.of.util;
 
-import org.hcg.IF.IF;
-import org.hcg.util.GameContext;
+import org.nbg.IF.IF;
+import org.nbg.util.GameContext;
 
 import android.app.Activity;
 import android.content.Intent;

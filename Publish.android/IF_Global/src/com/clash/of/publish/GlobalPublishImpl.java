@@ -2,10 +2,10 @@ package com.clash.of.publish;
 
 import it.partytrack.sdk.Track;
 
-import org.hcg.IF.IF;
-import org.hcg.stac.empire.publish.AbstractPublishImpl;
-import org.hcg.util.Constants;
-import org.hcg.util.GameContext;
+import org.nbg.IF.IF;
+import org.nbg.stac.empire.publish.AbstractPublishImpl;
+import org.nbg.util.Constants;
+import org.nbg.util.GameContext;
 
 import android.util.Log;
 
