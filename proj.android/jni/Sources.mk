@@ -22,6 +22,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/controller/GmController.cpp \
 ../../IF/Classes/controller/GuideController.cpp \
 ../../IF/Classes/controller/HFViewport.cpp \
+../../IF/Classes/controller/KnightTitleController.cpp \
 ../../IF/Classes/controller/LocalController.cpp \
 ../../IF/Classes/controller/LotteryController.cpp \
 ../../IF/Classes/controller/LuaController.cpp \
@@ -32,6 +33,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/controller/ParticleController.cpp \
 ../../IF/Classes/controller/PayController.cpp \
 ../../IF/Classes/controller/PopupViewController.cpp \
+../../IF/Classes/controller/PrincessQuestController.cpp \
 ../../IF/Classes/controller/QuestController.cpp \
 ../../IF/Classes/controller/QueueController.cpp \
 ../../IF/Classes/controller/RewardController.cpp \
@@ -54,6 +56,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Ext/CCCommonUtils.cpp \
 ../../IF/Classes/Ext/CCDevice.cpp \
 ../../IF/Classes/Ext/CCEditText.cpp \
+../../IF/Classes/Ext/CCGallery.cpp \
 ../../IF/Classes/Ext/CCGraySprite.cpp \
 ../../IF/Classes/Ext/CCINIParser.cpp \
 ../../IF/Classes/Ext/CCLoadSprite.cpp \
@@ -101,6 +104,9 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Ext/GUI/ClippingNodeExt.cpp \
 ../../IF/Classes/Ext/GUI/FilterSprite.cpp \
 ../../IF/Classes/Ext/GUI/InputFieldMultiLine.cpp \
+../../IF/Classes/Ext/GUI/NBGRenderTarget.cpp \
+../../IF/Classes/Ext/GUI/NBProgressBar.cpp \
+../../IF/Classes/Ext/GUI/NBSlider.cpp \
 ../../IF/Classes/Ext/GUI/SaoGuangEffectSprite.cpp \
 ../../IF/Classes/Ext/GUI/ScrollTableView.cpp \
 ../../IF/Classes/Ext/GUI/WebView/CCWebView.cpp \
@@ -109,6 +115,8 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Ext/HFHeadImgNode.cpp \
 ../../IF/Classes/Ext/HFHttpClient.cpp \
 ../../IF/Classes/Ext/HFHttpResponse.cpp \
+../../IF/Classes/Ext/IFCommonUtils.cpp \
+../../IF/Classes/Ext/NBCommonUtils.cpp \
 ../../IF/Classes/Ext/ShareSDKUtil.cpp \
 ../../IF/Classes/Ext/SNSUtil.cpp \
 ../../IF/Classes/Ext/SpriteBlur.cpp \
@@ -149,6 +157,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/model/GlobalData.cpp \
 ../../IF/Classes/model/GoldExchangeItem.cpp \
 ../../IF/Classes/model/IFAllianceHelpReportInfo.cpp \
+../../IF/Classes/model/KnightTitleInfo.cpp \
 ../../IF/Classes/model/LordInfo.cpp \
 ../../IF/Classes/model/MailConfig.cpp \
 ../../IF/Classes/model/MailCountObj.cpp \
@@ -166,6 +175,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/model/OfficeInfo.cpp \
 ../../IF/Classes/model/PlayerInfo.cpp \
 ../../IF/Classes/model/PlayerRankInfo.cpp \
+../../IF/Classes/model/PrincessLimitedQuestInfo.cpp \
 ../../IF/Classes/model/PushSettingInfo.cpp \
 ../../IF/Classes/model/QuestInfo.cpp \
 ../../IF/Classes/model/QueueInfo.cpp \
@@ -180,6 +190,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/model/TileInfo.cpp \
 ../../IF/Classes/model/ToolInfo.cpp \
 ../../IF/Classes/model/TreatInfo.cpp \
+../../IF/Classes/model/TypeDefinition.cpp \
 ../../IF/Classes/model/UserLvAboutInfo.cpp \
 ../../IF/Classes/model/UserPlatformInfo.cpp \
 ../../IF/Classes/model/YuanJunInfo.cpp \
@@ -233,11 +244,13 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Net/command/alliance/GetAllianceRankCommand.cpp \
 ../../IF/Classes/Net/command/alliance/GetAllianceWarListCommand.cpp \
 ../../IF/Classes/Net/command/alliance/GetUserRankInfoCommand.cpp \
+../../IF/Classes/Net/command/alliance/IFAllianceRankCmd.cpp \
 ../../IF/Classes/Net/command/alliance/InvitesAllianceCommand.cpp \
 ../../IF/Classes/Net/command/alliance/JoinAllianceCommand.cpp \
 ../../IF/Classes/Net/command/alliance/JoinAllianceTeamCommand.cpp \
 ../../IF/Classes/Net/command/alliance/LeaveAllianceCommand.cpp \
 ../../IF/Classes/Net/command/alliance/MemberInfo.cpp \
+../../IF/Classes/Net/command/alliance/RecScienceAllianceCommand.cpp \
 ../../IF/Classes/Net/command/alliance/RefuseAllianceApplyCommand.cpp \
 ../../IF/Classes/Net/command/alliance/RefuseInviteCommand.cpp \
 ../../IF/Classes/Net/command/alliance/SearchUserAllianceCommand.cpp \
@@ -348,6 +361,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Net/command/KingdomKingChooseCommand.cpp \
 ../../IF/Classes/Net/command/KingdomOfficersCommand.cpp \
 ../../IF/Classes/Net/command/KingsGiftCommand.cpp \
+../../IF/Classes/Net/command/KnightTitleCommand.cpp \
 ../../IF/Classes/Net/command/LoginCommand.cpp \
 ../../IF/Classes/Net/command/LogoutCommand.cpp \
 ../../IF/Classes/Net/command/LotteryActCommand.cpp \
@@ -371,6 +385,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Net/command/PhoneDeviceCommand.cpp \
 ../../IF/Classes/Net/command/PortActCommand.cpp \
 ../../IF/Classes/Net/command/PrincessRewardCommand.cpp \
+../../IF/Classes/Net/command/PrincessTaskRewardCommand.cpp \
 ../../IF/Classes/Net/command/PromotionCommand.cpp \
 ../../IF/Classes/Net/command/PushRecordCommand.cpp \
 ../../IF/Classes/Net/command/PushSettingCommand.cpp \
@@ -388,6 +403,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Net/command/ScienceCommand.cpp \
 ../../IF/Classes/Net/command/SearchCommand.cpp \
 ../../IF/Classes/Net/command/SendChatRoomMsgCommand.cpp \
+../../IF/Classes/Net/command/SendHeartCommand.cpp \
 ../../IF/Classes/Net/command/SettingXmlCommand.cpp \
 ../../IF/Classes/Net/command/ShowStatusItemCommand.cpp \
 ../../IF/Classes/Net/command/SqerSoldierRewardCommand.cpp \
@@ -461,6 +477,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Net/push/MonsterAttackPush.cpp \
 ../../IF/Classes/Net/push/PayPush.cpp \
 ../../IF/Classes/Net/push/PlayerInfoPush.cpp \
+../../IF/Classes/Net/push/PrincessTaskPush.cpp \
 ../../IF/Classes/Net/push/PushAllianceActivityMsg.cpp \
 ../../IF/Classes/Net/push/PushAllianceFightBulletin.cpp \
 ../../IF/Classes/Net/push/PushAllianceLeaderTrans.cpp \
@@ -487,6 +504,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Net/push/QuestDataPush.cpp \
 ../../IF/Classes/Net/push/ResourceSpeedPush.cpp \
 ../../IF/Classes/Net/push/ResourcesPush.cpp \
+../../IF/Classes/Net/push/SendHeartPush.cpp \
 ../../IF/Classes/Net/push/StaminaRollbackPush.cpp \
 ../../IF/Classes/Net/push/SystemUpdatePush.cpp \
 ../../IF/Classes/Net/push/TavernPush.cpp \
@@ -511,6 +529,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/scene/cropscene/BuildCCB.cpp \
 ../../IF/Classes/scene/cropscene/DragonFly.cpp \
 ../../IF/Classes/scene/cropscene/EagleCCB.cpp \
+../../IF/Classes/scene/cropscene/Enemy.cpp \
 ../../IF/Classes/scene/cropscene/FlyCell.cpp \
 ../../IF/Classes/scene/cropscene/FunBuild.cpp \
 ../../IF/Classes/scene/cropscene/FunBuildBtnsView.cpp \
@@ -519,9 +538,15 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/scene/cropscene/SpeBuild.cpp \
 ../../IF/Classes/scene/cropscene/SpeBuildBtnsView.cpp \
 ../../IF/Classes/scene/cropscene/TalkNoticeCell.cpp \
+../../IF/Classes/scene/cropscene/Walker.cpp \
 ../../IF/Classes/scene/cropscene/WallBuild.cpp \
 ../../IF/Classes/scene/loading/LoadingScene.cpp \
 ../../IF/Classes/scene/SceneContainer.cpp \
+../../IF/Classes/scene/titan/NBGPostEffectLayer.cpp \
+../../IF/Classes/scene/titan/NBSprite3D.cpp \
+../../IF/Classes/scene/titan/Titan.cpp \
+../../IF/Classes/scene/titan/TitanInView.cpp \
+../../IF/Classes/scene/vikingship/VikingShip.cpp \
 ../../IF/Classes/scene/world/AAreaBuildCCB.cpp \
 ../../IF/Classes/scene/world/ActBossPopUp.cpp \
 ../../IF/Classes/scene/world/AddFavorite.cpp \
@@ -539,6 +564,13 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/scene/world/IFShakeLayer.cpp \
 ../../IF/Classes/scene/world/KingBattleRankView.cpp \
 ../../IF/Classes/scene/world/KingBattleRewardView.cpp \
+../../IF/Classes/scene/world/map/NBWaterMap.cpp \
+../../IF/Classes/scene/world/map/NBWaterSprite.cpp \
+../../IF/Classes/scene/world/map/NBWorldMapDecoration.cpp \
+../../IF/Classes/scene/world/map/NBWorldMapMainCity.cpp \
+../../IF/Classes/scene/world/map/NBWorldMonster.cpp \
+../../IF/Classes/scene/world/map/NBWorldNPC.cpp \
+../../IF/Classes/scene/world/map/NBWorldUtils.cpp \
 ../../IF/Classes/scene/world/MarchDetailView.cpp \
 ../../IF/Classes/scene/world/MinimapView.cpp \
 ../../IF/Classes/scene/world/MonsterDetailView.cpp \
@@ -626,9 +658,11 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceRankAttrView.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceRankView.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceResourceTradeView.cpp \
+../../IF/Classes/view/popup/alliance/AllianceScienceClassView.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceScienceDonateView.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceScienceHistoryView.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceScienceListView.cpp \
+../../IF/Classes/view/popup/alliance/AllianceScienceTreeView.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceScienceView.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceShopView.cpp \
 ../../IF/Classes/view/popup/alliance/AllianceTerritoryView.cpp \
@@ -643,6 +677,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/popup/alliance/CreateAllianceView.cpp \
 ../../IF/Classes/view/popup/alliance/IFAllianceHelpReportLayer.cpp \
 ../../IF/Classes/view/popup/alliance/IFAllianceShakeLayer.cpp \
+../../IF/Classes/view/popup/alliance/IFPanelLayer.cpp \
 ../../IF/Classes/view/popup/alliance/IFResourceLayer.cpp \
 ../../IF/Classes/view/popup/alliance/JoinAllianceView.cpp \
 ../../IF/Classes/view/popup/alliance/JoinRecAllianceTipView.cpp \
@@ -704,6 +739,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/popup/DailyActive/DailyActiveBoxInfoView.cpp \
 ../../IF/Classes/view/popup/DailyActive/DailyActiveView.cpp \
 ../../IF/Classes/view/popup/DailyActive/NewPlayerQianDaoView.cpp \
+../../IF/Classes/view/popup/DailyActive/ScoreTableView.cpp \
 ../../IF/Classes/view/popup/DailyActive/SingleScoreActiveView.cpp \
 ../../IF/Classes/view/popup/DailyActive/SingleScoreHistoryRankView.cpp \
 ../../IF/Classes/view/popup/DailyActive/SingleScoreRankView.cpp \
@@ -725,6 +761,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/popup/EnemyInfoMoreView.cpp \
 ../../IF/Classes/view/popup/EquipComposeView.cpp \
 ../../IF/Classes/view/popup/EquipFinishView.cpp \
+../../IF/Classes/view/popup/EquipInfoView.cpp \
 ../../IF/Classes/view/popup/EquipLongjingView.cpp \
 ../../IF/Classes/view/popup/EquipMeltView.cpp \
 ../../IF/Classes/view/popup/EquipmentBagView.cpp \
@@ -784,6 +821,9 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/popup/kingdom/KingdomThroneActivityView.cpp \
 ../../IF/Classes/view/popup/kingdom/KingsGiftView.cpp \
 ../../IF/Classes/view/popup/kingdom/ManagerKingdomView.cpp \
+../../IF/Classes/view/popup/knight/BedgeComposeView.cpp \
+../../IF/Classes/view/popup/knight/KnightListView.cpp \
+../../IF/Classes/view/popup/knight/KnightTitileView.cpp \
 ../../IF/Classes/view/popup/KoreaPermitPopUPView.cpp \
 ../../IF/Classes/view/popup/LanguageSettingUtil.cpp \
 ../../IF/Classes/view/popup/LanguageSettingView.cpp \
@@ -813,6 +853,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/popup/MainCityView.cpp \
 ../../IF/Classes/view/popup/MakingSoldierView.cpp \
 ../../IF/Classes/view/popup/MarchFormationView.cpp \
+../../IF/Classes/view/popup/MateCreateView.cpp \
 ../../IF/Classes/view/popup/MatetialAni.cpp \
 ../../IF/Classes/view/popup/MerchantView.cpp \
 ../../IF/Classes/view/popup/MiraOpenView.cpp \
@@ -829,6 +870,8 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/popup/PlayerInfoBtnPopUpView.cpp \
 ../../IF/Classes/view/popup/PopupBaseView.cpp \
 ../../IF/Classes/view/popup/PortActView.cpp \
+../../IF/Classes/view/popup/PrincessQuestDetailView.cpp \
+../../IF/Classes/view/popup/PrincessQuestView.cpp \
 ../../IF/Classes/view/popup/ProductionSoldiersView.cpp \
 ../../IF/Classes/view/popup/PropSpeedupView.cpp \
 ../../IF/Classes/view/popup/PushSettingView.cpp \

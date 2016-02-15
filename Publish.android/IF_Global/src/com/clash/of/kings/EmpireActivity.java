@@ -6,9 +6,9 @@ import it.partytrack.sdk.Track;
 import java.util.Locale;
 
 import org.cocos2dx.ext.Native;
-import org.hcg.notifies.LocalNotificationManager;
-import org.hcg.stac.empire.common.activity.CommonActivity;
-import org.hcg.stac.empire.publish.IPublishChannel;
+import org.nbg.notifies.LocalNotificationManager;
+import org.nbg.stac.empire.common.activity.CommonActivity;
+import org.nbg.stac.empire.publish.IPublishChannel;
 
 import android.content.SharedPreferences.Editor;
 import android.content.Context;
@@ -27,8 +27,8 @@ import com.clash.of.util.IabBroadcastReceiver;
 import com.clash.of.util.IabBroadcastReceiver.IabBroadcastListener;
 import com.crashlytics.android.Crashlytics;
 
-import org.hcg.IF.IF;
-import org.hcg.IF.Jni;
+import org.nbg.IF.IF;
+import org.nbg.IF.Jni;
 import org.json.JSONException;
 import org.json.JSONObject;
 

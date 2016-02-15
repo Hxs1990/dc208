@@ -169,7 +169,10 @@ $(LOCAL_PATH)/../../IF/Classes/scene/battle \
 $(LOCAL_PATH)/../../IF/Classes/scene/cropscene \
 $(LOCAL_PATH)/../../IF/Classes/scene/dragon \
 $(LOCAL_PATH)/../../IF/Classes/scene/loading \
+$(LOCAL_PATH)/../../IF/Classes/scene/titan \
+$(LOCAL_PATH)/../../IF/Classes/scene/vikingship \
 $(LOCAL_PATH)/../../IF/Classes/scene/world \
+$(LOCAL_PATH)/../../IF/Classes/scene/world/map \
 $(LOCAL_PATH)/../../IF/Classes/view \
 $(LOCAL_PATH)/../../IF/Classes/view/dragonView \
 $(LOCAL_PATH)/../../IF/Classes/view/fogView \
@@ -185,6 +188,7 @@ $(LOCAL_PATH)/../../IF/Classes/view/popup/dragonBattle \
 $(LOCAL_PATH)/../../IF/Classes/view/popup/facebook \
 $(LOCAL_PATH)/../../IF/Classes/view/popup/general \
 $(LOCAL_PATH)/../../IF/Classes/view/popup/kingdom \
+$(LOCAL_PATH)/../../IF/Classes/view/popup/knight \
 $(LOCAL_PATH)/../../IF/Classes/view/popup/Lottery \
 $(LOCAL_PATH)/../../IF/Classes/view/popup/mail \
 $(LOCAL_PATH)/../../IF/Classes/view/popup/TestFeedBack \
@@ -193,6 +197,7 @@ $(LOCAL_PATH)/../../IF/Classes/view/transition \
 $(LOCAL_PATH)/../../IF/Classes/view/Widget \
 $(LOCAL_PATH)/../../IF/libs/rapidxml \
 $(LOCAL_PATH)/../../IF/libs/extensions \
+$(LOCAL_PATH)/../../IF/libs/extensions/AdbertSDK \
 $(LOCAL_PATH)/../../IF/libs/extensions/Adjust \
 $(LOCAL_PATH)/../../IF/libs/extensions/Adjust/ADJAdditions \
 $(LOCAL_PATH)/../../IF/libs/extensions/Adjust/AIAdditions \

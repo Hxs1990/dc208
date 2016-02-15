@@ -198,7 +198,7 @@ static ShareSDKIOS *_sharedSDKUtile;
 //                      break;
                   case SSDKPlatformTypeFacebook:
                       //设置Facebook应用信息，其中authType设置为只用SSO形式授权
-                      [appInfo SSDKSetupFacebookByAppKey:@"713457855362204"
+                      [appInfo SSDKSetupFacebookByAppKey:@"1670702669839400"
                                                appSecret:@"a0be14df733b0579f5a2ecf6fb522723"
                                                 authType:SSDKAuthTypeBoth];
                       break;

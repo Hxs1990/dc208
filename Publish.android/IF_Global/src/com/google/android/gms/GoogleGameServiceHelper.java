@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 import org.cocos2dx.ext.Native;
 
-import org.hcg.IF.R;
+import org.nbg.IF.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
@@ -16,8 +16,8 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.games.Player;
 import com.google.example.games.basegameutils.GameHelper;
 import com.google.example.games.basegameutils.GameHelper.GameHelperListener;
-import org.hcg.IF.IF;
-import org.hcg.util.CommonUtil;
+import org.nbg.IF.IF;
+import org.nbg.util.CommonUtil;
 
 public class GoogleGameServiceHelper extends GameHelper implements
 		GameHelperListener {

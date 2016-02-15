@@ -332,7 +332,7 @@ void ChangeServeView::setData(){
     CCHttpRequest* request = new CCHttpRequest();
     string url;
 //#if COCOS2D_DEBUG == 1
-//        url = CCString::createWithFormat("http://10.1.6.72:8081/gameservice/getserverlist.php?gmFlag=%d", GlobalData::shared()->playerInfo.gmFlag)->getCString();
+//        url = CCString::createWithFormat("http://10.1.4.107:9933/gameservice/getserverlist.php?gmFlag=%d", GlobalData::shared()->playerInfo.gmFlag)->getCString();
 //#else
 //        url = CCString::createWithFormat("http://p1.cok.elexapp.com/gameservice/getserverlist.php?gmFlag=%d", GlobalData::shared()->playerInfo.gmFlag)->getCString();
 //#endif
