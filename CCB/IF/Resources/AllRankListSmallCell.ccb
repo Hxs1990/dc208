@@ -72,7 +72,7 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
+									<real>0.97469627857208252</real>
 									<real>1</real>
 									<false/>
 									<integer>0</integer>
@@ -180,6 +180,14 @@
 						<array>
 							<dict>
 								<key>name</key>
+								<string>visible</string>
+								<key>type</key>
+								<string>Check</string>
+								<key>value</key>
+								<false/>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>position</string>
 								<key>type</key>
 								<string>Position</string>
@@ -208,8 +216,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>0.98831671476364136</real>
+									<real>1.02678382396698</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -520,6 +528,8 @@
 								<string>ggggg</string>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>

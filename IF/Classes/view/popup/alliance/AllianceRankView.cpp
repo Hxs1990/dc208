@@ -55,7 +55,7 @@ bool AllianceRankView::init()
     m_data = CCArray::create();
     m_isgetAllCommand = false;
     int oldBgHeight = m_buildBG->getContentSize().height;
-    changeBGHeight(m_buildBG);
+    changeBGMaxHeight(m_buildBG);
     int newBgHeight = m_buildBG->getContentSize().height;
     int addHeight = newBgHeight - oldBgHeight;
     if (CCCommonUtils::isIosAndroidPad()) {
@@ -70,9 +70,9 @@ bool AllianceRankView::init()
     
     int BGcount = (newBgHeight-80)/100+1-1;
     for (int i=0; i<BGcount; i++) {
-        auto pic = CCLoadSprite::createSprite("technology_09.png");
-        m_totalNode->addChild(pic);
-        pic->setPositionY(219-(i+1)*100);
+//        auto pic = CCLoadSprite::createSprite("technology_09.png");
+//        m_totalNode->addChild(pic);
+//        pic->setPositionY(219-(i+1)*100);
     }
     
     m_textTitle1->setString(_lang("115825"));
@@ -84,7 +84,7 @@ bool AllianceRankView::init()
     m_tabView->setVerticalFillOrder(kCCTableViewFillTopDown);
     m_tabView->setTouchPriority(Touch_Default);
     m_infoList->addChild(m_tabView);
-
+    m_infoList->setVisible(false);
     getRankData();
 
     return true;
@@ -274,13 +274,13 @@ void AllianceRankListCell::setData(AllianceRankInfo* info,int index,int type)
     m_numspr2->setVisible(false);
     m_numspr3->setVisible(false);
     if(m_index==0){
-        m_sprBG1->setVisible(true);
+        m_sprBG1->setVisible(false);
         m_numspr1->setVisible(true);
     }else if(m_index==1){
-        m_sprBG2->setVisible(true);
+        m_sprBG2->setVisible(false);
         m_numspr2->setVisible(true);
     }else if(m_index==2){
-        m_sprBG3->setVisible(true);
+        m_sprBG3->setVisible(false);
         m_numspr3->setVisible(true);
     }else{
         m_numText->setVisible(true);
@@ -290,10 +290,11 @@ void AllianceRankListCell::setData(AllianceRankInfo* info,int index,int type)
     if(m_info->uid==GlobalData::shared()->playerInfo.allianceInfo.uid){
 //        m_selfheadSpr->setVisible(true);
 //        m_otherheadSpr->setVisible(false);
-        m_sprBG4->setVisible(true);
+//        m_sprBG4->setVisible(true);
         m_sprBG1->setVisible(false);
         m_sprBG2->setVisible(false);
         m_sprBG3->setVisible(false);
+        m_sprBG4->setVisible(false);
 //        m_text1->setColor({250,224,143});
 //        m_text2->setColor({250,224,143});
 //        m_text3->setColor({250,224,143});
@@ -301,6 +302,9 @@ void AllianceRankListCell::setData(AllianceRankInfo* info,int index,int type)
 //        m_selfheadSpr->setVisible(false);
 //        m_otherheadSpr->setVisible(true);
         m_sprBG4->setVisible(false);
+        m_sprBG1->setVisible(false);
+        m_sprBG2->setVisible(false);
+        m_sprBG3->setVisible(false);
 //        m_text1->setColor({201,188,149});
 //        m_text2->setColor({201,188,149});
 //        m_text3->setColor({201,188,149});
