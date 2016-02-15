@@ -285,7 +285,7 @@ THE SOFTWARE.
 /** Support JPEG or not. If your application don't use jpeg format picture, you can undefine this macro to save package size.
  */
 #ifndef CC_USE_JPEG
-#define CC_USE_JPEG  0//lixu 20151224 no usage for jpg
+#define CC_USE_JPEG  1//lixu 20151224 no usage for jpg // tao.yu dc need jpg
 #endif // CC_USE_JPEG
 
 /** Support TIFF or not. If your application don't use TIFF format picture, you can undefine this macro to save package size.

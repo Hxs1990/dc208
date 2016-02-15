@@ -25,6 +25,7 @@
 #include "TileOpenView.h"
 #include "CityDefenseView.h"
 
+#define WALL_BATCH_COUNT 5
 using namespace cocos2d;
 
 WallBuild* WallBuild::create()
@@ -43,8 +44,15 @@ WallBuild* WallBuild::create()
 
 bool WallBuild::initWallBuild()
 {
-    m_backWalls = CCArray::create();
-    m_frontWalls = CCArray::create();
+//    m_walls_0 = CCArray::create();
+//    m_walls_1 = CCArray::create();
+//    m_walls_2 = CCArray::create();
+//    m_walls_3 = CCArray::create();
+//    m_walls_4 = CCArray::create();
+    for (int i = 0; i < WALL_BATCH_COUNT; ++i)
+    {
+        m_arrWalls[i] = CCArray::create();
+    }
     m_touchNodes = CCArray::create();
     
     if(true)
@@ -68,7 +76,10 @@ bool WallBuild::initWallBuild()
             }
         }
         
-        ccbName = ccbName+"_"+CC_ITOA(lv);
+        // tao.yu TODO 目前墙只有1级
+        lv = 1;
+        
+        ccbName = ccbName + "_" + CC_ITOA(lv);
         CCBLoadFile(ccbName.c_str(),m_mainNode,this);
         
         m_effectSpr = CCSprite::create();
@@ -81,34 +92,32 @@ bool WallBuild::initWallBuild()
     return true;
 }
 
-void WallBuild::setNamePos(int x, int y, CCLayer* sginLayer, CCSpriteBatchNode* backBatchNode, CCSpriteBatchNode* frontBatchNode, int zOrder)
+void WallBuild::setNamePos(int x, int y, CCLayer* sginLayer, std::map<int, CCSpriteBatchNode*> *batches, int zOrder)
 {
     parentX = x;
     parentY = y;
     
     m_signLayer = sginLayer;
-    m_backBatchNode = backBatchNode;
-    m_frontBatchNode = frontBatchNode;
+    
+    std::map<int, CCSpriteBatchNode*>::iterator it = batches->begin();
+    for (int i = 0;it != batches->end(); ++it, ++i)
+    {
+        m_arrBatchNodes[i] = it->second;
+    }
     
     m_signNode->setPosition(ccp(x,y));
     m_upEffectNode->setPosition(ccp(x,y));
     sginLayer->addChild(m_signNode);
     sginLayer->addChild(m_upEffectNode);
     
-    for (int i=0; i<m_backWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_backWalls->objectAtIndex(i));
-        spr->removeFromParent();
-        spr->getTexture()->setAntiAliasTexParameters();
-        spr->setPosition(ccp(spr->getPositionX()+parentX, spr->getPositionY()+parentY));
-        m_backBatchNode->addChild(spr);
-    }
-    
-    for (int i=0; i<m_frontWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_frontWalls->objectAtIndex(i));
-        spr->removeFromParent();
-        spr->getTexture()->setAntiAliasTexParameters();
-        spr->setPosition(ccp(spr->getPositionX()+parentX, spr->getPositionY()+parentY));
-        m_frontBatchNode->addChild(spr);
+    for (int i = 0; i < WALL_BATCH_COUNT; ++i) {
+        for (int j = 0; j < m_arrWalls[i]->count(); ++j) {
+            CCSprite* spr = dynamic_cast<CCSprite*>(m_arrWalls[i]->objectAtIndex(j));
+            spr->removeFromParent();
+            spr->getTexture()->setAntiAliasTexParameters();
+            spr->setPosition(ccp(spr->getPositionX()+parentX, spr->getPositionY()+parentY));
+            m_arrBatchNodes[i]->addChild(spr);
+        }
     }
     
     drowEffectSpr(zOrder, 0);
@@ -128,17 +137,12 @@ void WallBuild::onBuildDelete()
         m_parVec.clear();
     }
     
-    for (int i=0; i<m_backWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_backWalls->objectAtIndex(i));
-        m_backBatchNode->removeChild(spr, true);
+    for (int i = 0; i < WALL_BATCH_COUNT; ++i) {
+        for (int j = 0; j < m_arrWalls[i]->count(); ++j) {
+            CCSprite* spr = dynamic_cast<CCSprite*>(m_arrWalls[i]->objectAtIndex(j));
+            m_arrBatchNodes[i]->removeChild(spr, true);
+        }
     }
-    m_backWalls->removeAllObjects();
-    
-    for (int i=0; i<m_frontWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_frontWalls->objectAtIndex(i));
-        m_frontBatchNode->removeChild(spr, true);
-    }
-    m_frontWalls->removeAllObjects();
 }
 
 void WallBuild::onEnter() {
@@ -178,76 +182,52 @@ bool WallBuild::onTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 
 void WallBuild::setGary(CCObject* obj)
 {
-    for (int i=0; i<m_backWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_backWalls->objectAtIndex(i));
-        if (spr) {
-            spr->setColor(ccGRAY);
-        }
-    }
-    
-    for (int i=0; i<m_frontWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_frontWalls->objectAtIndex(i));
-        if (spr) {
-            spr->setColor(ccGRAY);
+    for (int i = 0; i < WALL_BATCH_COUNT; ++i) {
+        for (int j = 0; j < m_arrWalls[i]->count(); ++j) {
+            CCSprite* spr = dynamic_cast<CCSprite*>(m_arrWalls[i]->objectAtIndex(j));
+            if (spr) {
+                spr->setColor(ccGRAY);
+            }
         }
     }
 }
 
 void WallBuild::setWhite(CCObject* obj)
 {
-    for (int i=0; i<m_backWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_backWalls->objectAtIndex(i));
-        if (spr) {
-            spr->setColor(ccWHITE);
-        }
-    }
-    
-    for (int i=0; i<m_frontWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_frontWalls->objectAtIndex(i));
-        if (spr) {
-            spr->setColor(ccWHITE);
+    for (int i = 0; i < WALL_BATCH_COUNT; ++i) {
+        for (int j = 0; j < m_arrWalls[i]->count(); ++j) {
+            CCSprite* spr = dynamic_cast<CCSprite*>(m_arrWalls[i]->objectAtIndex(j));
+            if (spr) {
+                spr->setColor(ccWHITE);
+            }
         }
     }
 }
 
 void WallBuild::playShadow(CCObject* obj)
 {
-    for (int i=0; i<m_backWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_backWalls->objectAtIndex(i));
-        if (spr && spr->isVisible()) {
-            CCTintTo* tinto1 = CCTintTo::create(0.5, 166, 166, 166);
-            CCTintTo* tinto2 = CCTintTo::create(0.5, 255, 255, 255);
-            CCSequence* seq = CCSequence::create(tinto1,tinto2,NULL);
-            spr->runAction( CCRepeatForever::create(seq) );
-        }
-    }
-    
-    for (int i=0; i<m_frontWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_frontWalls->objectAtIndex(i));
-        if (spr && spr->isVisible()) {
-            CCTintTo* tinto1 = CCTintTo::create(0.5, 166, 166, 166);
-            CCTintTo* tinto2 = CCTintTo::create(0.5, 255, 255, 255);
-            CCSequence* seq = CCSequence::create(tinto1,tinto2,NULL);
-            spr->runAction( CCRepeatForever::create(seq) );
+    for (int i = 0; i < WALL_BATCH_COUNT; ++i) {
+        for (int j = 0; j < m_arrWalls[i]->count(); ++j) {
+            CCSprite* spr = dynamic_cast<CCSprite*>(m_arrWalls[i]->objectAtIndex(j));
+            if (spr && spr->isVisible()) {
+                CCTintTo* tinto1 = CCTintTo::create(0.5, 166, 166, 166);
+                CCTintTo* tinto2 = CCTintTo::create(0.5, 255, 255, 255);
+                CCSequence* seq = CCSequence::create(tinto1,tinto2,NULL);
+                spr->runAction( CCRepeatForever::create(seq) );
+            }
         }
     }
 }
 
 void WallBuild::stopShadow(CCObject* obj)
 {
-    for (int i=0; i<m_backWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_backWalls->objectAtIndex(i));
-        if (spr) {
-            spr->stopAllActions();
-            spr->setColor(ccWHITE);
-        }
-    }
-    
-    for (int i=0; i<m_frontWalls->count(); i++) {
-        CCSprite* spr = dynamic_cast<CCSprite*>(m_frontWalls->objectAtIndex(i));
-        if (spr) {
-            spr->stopAllActions();
-            spr->setColor(ccWHITE);
+    for (int i = 0; i < WALL_BATCH_COUNT; ++i) {
+        for (int j = 0; j < m_arrWalls[i]->count(); ++j) {
+            CCSprite* spr = dynamic_cast<CCSprite*>(m_arrWalls[i]->objectAtIndex(j));
+            if (spr) {
+                spr->stopAllActions();
+                spr->setColor(ccWHITE);
+            }
         }
     }
 }
@@ -300,12 +280,24 @@ SEL_CCControlHandler WallBuild::onResolveCCBCCControlSelector(cocos2d::CCObject 
 
 bool WallBuild::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode)
 {
-    if (pTarget == this && strncmp(pMemberVariableName, "m_backWall",10) == 0) {
-        m_backWalls->addObject(pNode);
+    if (pTarget == this && strncmp(pMemberVariableName, "m_wall_0",8) == 0) {
+        m_arrWalls[0]->addObject(pNode);
         return true;
     }
-    else if (pTarget == this && strncmp(pMemberVariableName, "m_frontWall",11) == 0) {
-        m_frontWalls->addObject(pNode);
+    else if (pTarget == this && strncmp(pMemberVariableName, "m_wall_1",8) == 0) {
+        m_arrWalls[1]->addObject(pNode);
+        return true;
+    }
+    else if (pTarget == this && strncmp(pMemberVariableName, "m_wall_2",8) == 0) {
+        m_arrWalls[2]->addObject(pNode);
+        return true;
+    }
+    else if (pTarget == this && strncmp(pMemberVariableName, "m_wall_3",8) == 0) {
+        m_arrWalls[3]->addObject(pNode);
+        return true;
+    }
+    else if (pTarget == this && strncmp(pMemberVariableName, "m_wall_4",8) == 0) {
+        m_arrWalls[4]->addObject(pNode);
         return true;
     }
     else if (pTarget == this && strncmp(pMemberVariableName, "m_touchNode",11) == 0) {

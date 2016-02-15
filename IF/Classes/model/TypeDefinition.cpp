@@ -12,6 +12,7 @@
 
 #define CHANGE_SERVER COCOS2D_DEBUG
 //测试使用 不要提交
+//#define CHANGE_SERVER 0
 //#define CHANGE_SERVER 1
 //#define CHANGE_SERVER 2
 
@@ -183,7 +184,7 @@ const char * getFBPictureSmallURL()
     return "https://graph.facebook.com/445208542288191/picture?type=small";
 }
 
-const char * getElexImgURL()
+const char* getElexImgURL()
 {
     return "http://cok.eleximg.com";
 }

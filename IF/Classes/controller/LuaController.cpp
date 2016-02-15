@@ -1580,31 +1580,36 @@ bool LuaController::downloadFile(LuaDownLoadRef *downRef){
         hostIP = SERVER_IP;
     }
     if(downRef->getPackType() == LuaDownloadType_RESOURCE){
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-        if(downRef->bPlatform==true){
-            m_packagePath = "http://"+hostIP+":8080/gameservice/getfile?luaVersion=" + downRef->getPackName() + "_a";
-        }else{
+    #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            if(downRef->bPlatform==true){
+                m_packagePath = "http://"+hostIP+":8080/gameservice/getfile?luaVersion=" + downRef->getPackName() + "_a";
+            }else{
+                m_packagePath = "http://"+hostIP+":8080/gameservice/getfile?luaVersion=" + downRef->getPackName();
+            }
+    #else
             m_packagePath = "http://"+hostIP+":8080/gameservice/getfile?luaVersion=" + downRef->getPackName();
-        }
-#else
-        m_packagePath = "http://"+hostIP+":8080/gameservice/getfile?luaVersion=" + downRef->getPackName();
-#endif
+    #endif
     }else{
         m_packagePath = "http://"+hostIP+":8080/gameservice/getfile?luaVersion=" + downRef->getPackVersion();
     }
 #else
     if(downRef->getPackType() == LuaDownloadType_RESOURCE){
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-        if(downRef->bPlatform==true){
-            m_packagePath = getElexImgURL + "/cok/lua/lua_" + downRef->getPackName()+"_a_"+downRef->getCheckMD5() + ".zip";
-        }else{
-            m_packagePath = getElexImgURL + "/cok/lua/lua_" + downRef->getPackName()+"_"+downRef->getCheckMD5() + ".zip";
-        }
-#else
-        m_packagePath = getElexImgURL + "/cok/lua/lua_" + downRef->getPackName()+"_"+downRef->getCheckMD5() + ".zip";
-#endif
+    #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+            if(downRef->bPlatform==true){
+                m_packagePath = CCString::createWithFormat(getElexImgURL(), "/cok/lua/lua_", downRef->getPackName().c_str(), "_a_", downRef->getCheckMD5().c_str(), ".zip")->getCString();
+//                m_packagePath = getElexImgURL() + "/cok/lua/lua_" + downRef->getPackName()+"_a_"+downRef->getCheckMD5() + ".zip";
+            }else{
+                m_packagePath = CCString::createWithFormat(getElexImgURL(), "/cok/lua/lua_", downRef->getPackName().c_str(), "_", downRef->getCheckMD5().c_str(), ".zip")->getCString();
+//                m_packagePath = getElexImgURL() + "/cok/lua/lua_" + downRef->getPackName()+"_"+downRef->getCheckMD5() + ".zip";
+            }
+    #else
+        m_packagePath = CCString::createWithFormat(getElexImgURL(), "/cok/lua/lua_", downRef->getPackName().c_str(), "_", downRef->getCheckMD5().c_str(), ".zip")->getCString();
+//            m_packagePath = getElexImgURL() + "/cok/lua/lua_" + downRef->getPackName()+"_"+downRef->getCheckMD5() + ".zip";
+        
+    #endif
     }else{
-        m_packagePath = getElexImgURL + "/cok/lua/lua_" + downRef->getPackVersion() + ".zip";
+        m_packagePath = CCString::createWithFormat(getElexImgURL(), "/cok/lua/lua_", downRef->getPackName().c_str(), ".zip")->getCString();
+//        m_packagePath = getElexImgURL() + "/cok/lua/lua_" + downRef->getPackVersion() + ".zip";
     }
 #endif
     CCLOG("lua_package_url [%s]",m_packagePath.c_str());

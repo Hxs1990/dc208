@@ -285,7 +285,8 @@ void LocalController::init() {
         "local/xml/item_wing_wing.xml",
         "local/xml/item_wonder_wonder.xml",
         "local/xml/item_worldcastle_worldcastle.xml",
-        "local/xml/loading_tips_loadingTips.xml",};
+        "local/xml/loading_tips_loadingTips.xml",
+        "local/xml/item_titan.xml",};
     m_objXMLParser = new CCRapidXMLParser();
     for (auto it = xmls.begin(); it != xmls.end(); ++it)
     {

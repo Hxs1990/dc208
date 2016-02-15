@@ -25,6 +25,9 @@
 #include "IFSkeletonBatchLayer.h"
 #include "CCAniNode.h"
 
+// tao.yu
+#include "Titan.h"
+
 #define BINDING_TIME "bindingTime"
 #define ANNOUCE_TIME "Time"
 #define FIRST_OPEN_AFTER_UPDATE "firstOpenAfterUpdate1"
@@ -35,7 +38,9 @@
 #define MSG_SHOW_POWER_PARTICLE "msg.show.power.particle"
 #define ACTIVITY_BOTTLE_TAG 1000
 
+#define JUST3D_NODE_TAG 89757
 
+#define IMPERIAL_SCENE_TOUCH_LAYER_TAG 89217
 class ImperialScene:public CCLayer,public ITouchDelegate,public CCBMemberVariableAssigner
 {
 public:
@@ -52,6 +57,8 @@ public:
     
     virtual void onEnter();
     virtual void onExit();
+    // tao.yu titan
+    void onCreateTitan();
     void onUpdateInfo();
     void onCreateBuild(int itemId);
     void onOpenBuild(int itemId);
@@ -299,7 +306,7 @@ private:
     void addEnergyEff(CCObject* obj);
     void initPrincessTask();
     CCSafeObject<CCNode> m_nodeBuildings[BUILD_COUNT];
-    
+    CCSafeObject<CCNode> titanRootNode;
     CCSafeObject<CCNode> m_flagNode;
     CCSafeObject<SpeBuild> m_flagBuild;
     CCSafeObject<CCNode> m_hdNode;
@@ -460,10 +467,17 @@ private:
     CCSafeObject<CCNode> m_icon_op_mail;
     CCSafeObject<CCArray> m_torchPar;
     CCSafeObject<CCNode> m_nightLights;
-    CCSafeObject<CCNode> m_particalNode;
+    CCSafeObject<Titan> m_Titan;
+    CCSafeObject<CCNode> m_node3d;
+	    CCSafeObject<CCNode> m_particalNode;
+    // tao.yu titan node
+    CCSafeObject<CCNode> m_titanNode;
     
+    // tao.yu
+    CCSafeObject<CCNode> m_cityBgNode;
     CCSafeObject<CCNode> m_princessNode;
     CCSafeObject<Node> m_princessRootNode;
+    std::map<int, CCSpriteBatchNode*> m_wallBatchs;
     void addGuideParticleToBatch(cocos2d::CCParticleSystemQuad *particle);
     CCSafeObject<CCNode> m_guideParticleNode;
     vector<CCSafeObject<CCParticleBatchNode>> m_guideParticleVec;

@@ -23,7 +23,7 @@ class WallBuild: public CCAniNode
 ,public CCBSelectorResolver
 {
 public:
-    WallBuild():m_key(0),mainWidth(0),mainHeight(0),m_isOpen(false),parentX(0),parentY(0),isCanClick(true),m_signLayer(NULL),m_popLayer(NULL),m_backBatchNode(NULL),m_frontBatchNode(NULL),m_st(0){};
+    WallBuild():m_key(0),mainWidth(0),mainHeight(0),m_isOpen(false),parentX(0),parentY(0),isCanClick(true),m_signLayer(NULL),m_popLayer(NULL),m_st(0){};
     ~WallBuild(){};
     bool initWallBuild();
     static WallBuild* create();
@@ -49,7 +49,7 @@ public:
     void onPlayUnlock();
     
     void canShowState();
-    void setNamePos(int x, int y, CCLayer* sginLayer, CCSpriteBatchNode* popBatchNode, CCSpriteBatchNode* batchNode, int zOrder);
+    void setNamePos(int x, int y, CCLayer* sginLayer, std::map<int, CCSpriteBatchNode*> *batches, int zOrder);
     int m_key;
     int mainWidth;
     int mainHeight;
@@ -62,9 +62,9 @@ protected:
     
     CCSafeObject<CCLayer> m_signLayer;
     CCSafeObject<CCLayer> m_popLayer;
-    CCSafeObject<CCSpriteBatchNode> m_backBatchNode;
-    CCSafeObject<CCSpriteBatchNode> m_frontBatchNode;
-    
+//    CCSpriteBatchNode* m_backBatchNode;
+//    CCSpriteBatchNode* m_frontBatchNode;
+    std::map<int,CCSpriteBatchNode*> m_arrBatchNodes;
     CCSafeObject<CCNode> m_mainNode;
     
     CCSafeObject<CCNode> m_signNode;
@@ -75,8 +75,12 @@ protected:
     CCSafeObject<CCSprite> m_effectSpr;
     CCSafeObject<CCPointArray> m_ptArray;
     
-    CCSafeObject<CCArray> m_backWalls;
-    CCSafeObject<CCArray> m_frontWalls;
+//    CCSafeObject<CCArray> m_walls_0;
+//    CCSafeObject<CCArray> m_walls_1;
+//    CCSafeObject<CCArray> m_walls_2;
+//    CCSafeObject<CCArray> m_walls_3;
+//    CCSafeObject<CCArray> m_walls_4;
+    std::map<int, CCSafeObject<CCArray>> m_arrWalls;
     CCSafeObject<CCArray> m_touchNodes;
     
     void drowEffectSpr(int zOrder, int tmpOrd);

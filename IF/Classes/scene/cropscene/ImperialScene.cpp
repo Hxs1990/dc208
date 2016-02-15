@@ -203,6 +203,7 @@ bool ImperialScene::init()
     m_funLayer->setContentSize(CCSize(sumWidth, sumHight));
     m_spineLayer->setContentSize(CCSize(sumWidth, sumHight));
     this->addChild(m_touchLayer);
+    m_touchLayer->setTag(IMPERIAL_SCENE_TOUCH_LAYER_TAG); //a by ljf
     
     m_sunNode = CCNode::create();//太阳光节点
     m_sunNode->setName("m_sunNode");
@@ -348,9 +349,14 @@ bool ImperialScene::init()
     
     m_touchLayer->setScale(FunBuildController::getInstance()->oldScale);
     
-    float maxZoomScale = 1.5*1.3;
-    float minZoomScale = m_viewPort->getMinZoom();
-    float curZoomScale = 0.82;
+    m_node3d = CCNode::create();
+    m_touchLayer->addChild(m_node3d);
+    m_node3d->setTag(JUST3D_NODE_TAG);
+    
+    float maxZoomScale = 1.5;
+//    float minZoomScale = m_viewPort->getMinZoom() * 1.4;
+    float minZoomScale = 0.55;
+    float curZoomScale = 0.7;
     TargetPlatform target = CCApplication::sharedApplication()->getTargetPlatform();
     if(target == kTargetIpad || CCCommonUtils::isAdriodPad()){
         maxZoomScale = 1.5;
@@ -396,7 +402,19 @@ bool ImperialScene::init()
             m_viewPort->updatePosition(ccp(FunBuildController::getInstance()->oldx, FunBuildController::getInstance()->oldy));
         }
     }
-    
+
+// 设置背景图抗锯齿
+    for (auto child : m_cityBgNode->getChildren()) {
+        if (child) {
+            auto tex = ((Sprite*)child)->getTexture();
+            if (tex) tex->setAliasTexParameters();
+        }
+    }
+	
+
+
+
+	    
     //喷泉和龙穴呼吸光
     InitDragonCaveGlow();
     if (m_penquanRainbow) {
@@ -559,26 +577,37 @@ void ImperialScene::buildingCallBack(CCObject* params)
     }
     
     if (1) {//两个箭塔 和 一个城门 放在一个 batch里，zorder高于最外面的城墙
-        auto bdBatch = CCSpriteBatchNode::createWithTexture(resSp->getTexture());
-        m_buildBatchMap[1] = bdBatch;
-        m_buildBatchMap[2] = bdBatch;
-        m_buildBatchMap[3] = bdBatch;
-        m_touchLayer->addChild(bdBatch,1999);
+        auto doorBatch = CCSpriteBatchNode::createWithTexture(resSp->getTexture());
+        m_buildBatchMap[1] = doorBatch;
+        m_touchLayer->addChild(doorBatch,1900);
+        auto towerLeftBatch = CCSpriteBatchNode::createWithTexture(resSp->getTexture());
+        m_buildBatchMap[2] = towerLeftBatch;
+        m_touchLayer->addChild(towerLeftBatch,2000);
+        auto towerRightBatch = CCSpriteBatchNode::createWithTexture(resSp->getTexture());
+        m_buildBatchMap[3] = towerRightBatch;
+        m_touchLayer->addChild(towerRightBatch,1800);
         
-        auto innerWall = CCLoadSprite::createSprite("wall_inner.png");
-        innerWall->setPosition(ccp(554, 856));
-        m_touchLayer->addChild(innerWall,2000);
+//        auto bdBatch = CCSpriteBatchNode::createWithTexture(resSp->getTexture());       
+//        m_buildBatchMap[1] = bdBatch;
+//        m_buildBatchMap[2] = bdBatch;
+//        m_buildBatchMap[3] = bdBatch;
+//        m_touchLayer->addChild(bdBatch,1999);
+        
+		// tao.yu 一个奇怪的箭塔 用来做层级用的
+//        auto innerWall = CCLoadSprite::createSprite("wall_inner.png");
+//        innerWall->setPosition(ccp(554, 856));
+//        m_touchLayer->addChild(innerWall,2000);
         
         auto chrTree = CCLoadSprite::loadResource("pichuochuan_01.png");
         chrTree->getTexture()->setAntiAliasTexParameters();
         m_chrTreeBatchNode = CCSpriteBatchNode::createWithTexture(chrTree->getTexture());
         m_touchLayer->addChild(m_chrTreeBatchNode,250);
-        
-        auto chrBlentTree = CCLoadSprite::loadResource("pichuochuanGlow.png");
-        chrBlentTree->getTexture()->setAntiAliasTexParameters();
-        m_chrTreeBlentBatchNode = CCSpriteBatchNode::createWithTexture(chrBlentTree->getTexture());
-        m_chrTreeBlentBatchNode->setBlendFunc(kCCBlendFuncTree);
-        m_touchLayer->addChild(m_chrTreeBlentBatchNode,1997);
+//        // tao.yu 船的光
+//        auto chrBlentTree = CCLoadSprite::loadResource("pichuochuanGlow.png");
+//        chrBlentTree->getTexture()->setAntiAliasTexParameters();
+//        m_chrTreeBlentBatchNode = CCSpriteBatchNode::createWithTexture(chrBlentTree->getTexture());
+//        m_chrTreeBlentBatchNode->setBlendFunc(kCCBlendFuncTree);
+//        m_touchLayer->addChild(m_chrTreeBlentBatchNode,1997);
     }
     
     auto eagle = EagleCCB::create();
@@ -591,6 +620,7 @@ void ImperialScene::buildingCallBack(CCObject* params)
     
     initMc2();
     m_buildingInitState = true;
+    onCreateTitan();
     onEnterFrame(0);
     initBigTile();
     onOpenNewBuild(NULL);
@@ -780,18 +810,37 @@ void ImperialScene::wallCallBack(CCObject* params)
         WorldController::getInstance()->getServerList();
     }
     
-    auto frame = CCLoadSprite::loadResource("pic_ziyuan_men.png");
-    frame->getTexture()->setAntiAliasTexParameters();
-    m_wallTextureBatchNode = SpriteBatchNode::createWithTexture(frame->getTexture());
-    m_touchLayer->addChild(m_wallTextureBatchNode, 2015);
+	m_wallBatchs[0] = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_1.png")->getTexture());
+    m_touchLayer->addChild(m_wallBatchs[0], m_buildBatchMap[3]->getZOrder()-1);
+
+    m_wallBatchs[1] = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_1.png")->getTexture());
+    m_touchLayer->addChild(m_wallBatchs[1], m_buildBatchMap[3]->getZOrder()+1);
     
-    m_wallBackbatchNode = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_13.png")->getTexture());
-    m_touchLayer->addChild(m_wallBackbatchNode, 100);
-    m_wallFrontbatchNode = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_13.png")->getTexture());
-    m_touchLayer->addChild(m_wallFrontbatchNode, 1998);
+    m_wallBatchs[2] = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_1.png")->getTexture());
+    m_touchLayer->addChild(m_wallBatchs[2], m_buildBatchMap[2]->getZOrder()-1);
     
+    m_wallBatchs[3] = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_1.png")->getTexture());
+    m_touchLayer->addChild(m_wallBatchs[3], m_buildBatchMap[2]->getZOrder()+1);
+    
+    m_wallBatchs[4] = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_1.png")->getTexture());
+    m_touchLayer->addChild(m_wallBatchs[4], m_buildBatchMap[3]->getZOrder()-2);
+
     m_wallBuild = WallBuild::create();
-    m_wallBuild->setNamePos(m_wallNode->getPositionX(), m_wallNode->getPositionY(), m_signLayer, m_wallBackbatchNode, m_wallFrontbatchNode, 0);
+    m_wallBuild->setNamePos(m_wallNode->getPositionX(), m_wallNode->getPositionY(), this, &m_wallBatchs,100);
+    
+	
+//    auto frame = CCLoadSprite::loadResource("pic_ziyuan_men.png");
+//    frame->getTexture()->setAntiAliasTexParameters();
+//    m_wallTextureBatchNode = SpriteBatchNode::createWithTexture(frame->getTexture());
+//    m_touchLayer->addChild(m_wallTextureBatchNode, 2015);
+//    
+//    m_wallBackbatchNode = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_13.png")->getTexture());
+//    m_touchLayer->addChild(m_wallBackbatchNode, 100);
+//    m_wallFrontbatchNode = CCSpriteBatchNode::createWithTexture(CCLoadSprite::createSprite("wall_13.png")->getTexture());
+//    m_touchLayer->addChild(m_wallFrontbatchNode, 1998);
+//    
+//    m_wallBuild = WallBuild::create();
+//    m_wallBuild->setNamePos(m_wallNode->getPositionX(), m_wallNode->getPositionY(), m_signLayer, m_wallBackbatchNode, m_wallFrontbatchNode, 0);
     m_wallNode->addChild(m_wallBuild);
     
     initSpeBuildInWallTexture();
@@ -806,7 +855,7 @@ void ImperialScene::initSpeBuildInWallTexture()
         m_ziyuanmenBuild = SpeBuild::create(SPE_BUILD_ZIYUANMEN);
         m_ziyuanmenNode->addChild(m_ziyuanmenBuild);
         int hod = m_ziyuanmenNode->getZOrder();
-        m_ziyuanmenBuild->setNamePos(m_ziyuanmenNode->getPositionX(), m_ziyuanmenNode->getPositionY(), m_signLayer, nullptr, m_wallBackbatchNode, hod);
+        m_ziyuanmenBuild->setNamePos(m_ziyuanmenNode->getPositionX(), m_ziyuanmenNode->getPositionY(), m_signLayer, nullptr, m_wallBatchs[0], hod);
     }
 }
 
@@ -1829,12 +1878,12 @@ void ImperialScene::onUpgradeNewBuild(int buildId)
     build->setNamePos(m_nodeBuildings[pos]->getPositionX()
                       , m_nodeBuildings[pos]->getPositionY(), m_signLayer, m_popLayer, m_arrbatchNode, curBatch, od, curBlentBatch);
     
-    if (buildId == FUN_BUILD_WALL_ID && m_wallBuild) {
-        m_wallNode->removeChild(m_wallBuild);
+    if (buildId == FUN_BUILD_WALL_ID  && m_wallBuild) {
         m_wallBuild->onBuildDelete();
+        m_wallNode->removeChild(m_wallBuild);
         m_wallBuild = NULL;
         m_wallBuild = WallBuild::create();
-        m_wallBuild->setNamePos(m_wallNode->getPositionX(), m_wallNode->getPositionY(), m_signLayer, m_wallBackbatchNode, m_wallFrontbatchNode, 0);
+        m_wallBuild->setNamePos(m_wallNode->getPositionX(), m_wallNode->getPositionY(), m_signLayer, &m_wallBatchs, 0);
         m_wallNode->addChild(m_wallBuild);
     }
 }
@@ -3993,10 +4042,15 @@ bool ImperialScene::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_crossNode", CCNode*, this->m_crossNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_crossClickNode", CCNode*, this->m_crossClickNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_particalNode", CCNode*, this->m_particalNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_cityBgNode", CCNode*, this->m_cityBgNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dragonNode", CCNode*, this->m_dragonNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_ziyuanmenNode", CCNode*, this->m_ziyuanmenNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dragonCaveGlow", Node*, m_dragonCaveGlow);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_penquanRainbow", Node*, m_penquanRainbow);
+	
+	// titan node
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titanNode", CCNode*, this->m_titanNode);
+	
     return false;
 }
 
@@ -5593,7 +5647,7 @@ void ImperialScene::onDragonFly()
 {
     m_dragonFlyNode->stopAllActions();
     CCActionInterval * move1 = CCMoveTo::create(0,ccp(-600, 1020));
-    CCActionInterval * move2 = CCMoveTo::create(24,ccp(4100, 1020));
+    CCActionInterval * move2 = CCMoveTo::create(24,ccp(5100, 1020));
 //    m_dragon->runAction(CCSequence::create(move1, move2, NULL));
     m_dragonFlyNode->runAction(CCSequence::create(move1, move2, NULL));
 }
@@ -6583,4 +6637,45 @@ void ImperialScene::initPrincessTask()
         m_tilebatchNode->addChild(badge);
         m_tilebatchNode->addChild(flag);
     }
+}
+
+void ImperialScene::onCreateTitan()
+{
+//    m_Titan = Titan::create(GlobalData::shared()->titanInfo.tid);
+    m_Titan = Titan::create(60004);
+    if (!m_Titan) {
+        CCLOG("Titan create error!!!!!!!!!!!!");
+        return;
+    }
+    m_Titan->turnFront();
+    
+    //    auto node = Node::create();
+    titanRootNode = Node::create();
+    titanRootNode->setRotation3D(Vec3(38, 39, -24));
+    titanRootNode->addChild(m_Titan);
+    titanRootNode->setPosition(m_touchLayer->convertToNodeSpace(m_titanNode->convertToWorldSpace(Point(0, 0))));
+    
+    
+    m_node3d->addChild(titanRootNode);
+//    auto listener = EventListenerCustom::create(Animate3DDisplayedNotification,[this](EventCustom* ev)
+//                                                {
+//                                                    
+//                                                    auto particle = ParticleController::createFightingParticle("Dragon_landing",0.1);
+//                                                    
+//                                                    
+//                                                    m_titanNode->addChild(particle);
+//                                                    
+//                                                    particle->setScaleY(0.7);
+//                                                    
+//                                                    
+//                                                    particle->setCameraMask(m_touchLayer->getCameraMask(), true);
+//                                                }
+//                                                );
+    
+//    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, titanRootNode);
+    
+    m_touchLayer->setCameraMask((unsigned short)CameraFlag::USER4, true);
+    m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
+
+    
 }

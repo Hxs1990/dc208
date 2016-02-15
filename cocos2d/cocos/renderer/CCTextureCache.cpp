@@ -450,7 +450,7 @@ Texture2D * TextureCache::addImage(const std::string &path)
 
     if( texture == nullptr )
     {
-        CCASSERT( nullptr, "zymerror TextureCache::addImage ");
+//        CCASSERT( nullptr, "zymerror TextureCache::addImage ");
         return getFirstImage();
     }
     
