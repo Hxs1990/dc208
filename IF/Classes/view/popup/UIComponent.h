@@ -373,7 +373,7 @@ public:
     void hidePopupBG();
     void showPopupView(int type=0, bool isHD=true);
     void showResourceBar(bool _bShow);
-    void setPopupTitleName(string _name);
+    void setPopupTitleName(string _name, bool bVisible = true);
     CCNode* getNodeByIndex(string _key);
     void updateMailNum(CCObject* p);
     void updateNewChatNews(int num);

@@ -27,6 +27,9 @@
 #include "LogoutCommand.h"
 #include "GuideController.h"
 #include "BuildMoreInfoView.h"
+#include "C3DShowView.hpp"
+#include "ArcGalleryCell.hpp"
+#include "NBGRenderTarget.h"
 
 #define RIGHT_BD_SIZE 3
 
@@ -47,7 +50,6 @@ static CCClipNode* SetNodeClip(CCNode* pNode, Point ptAnchor)
     return pClipNode;
 }
 
-
 ProductionSoldiersView::ProductionSoldiersView(int buildingId)
     :m_buildingId(buildingId)
     ,m_waitInterface(NULL)
@@ -56,8 +58,11 @@ ProductionSoldiersView::ProductionSoldiersView(int buildingId)
     ,m_iMaxAttack(0)
     ,m_iMaxDefence(0)
     ,m_iMaxHP(0)
-    , m_bPlayAniInfo(false)
-    , m_bSoldiersInTouch(false)
+    ,m_bPlayAniInfo(false)
+    ,m_bSoldiersInTouch(false)
+	,m_curGalleryIndex(0)
+	,m_lastGalleryIndex(-1)
+	,m_ArcGallery(NULL)
 {
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(ProductionSoldiersView::immediatelyHarvestFinish),MSG_QUICK_TROOPS_HARVEST, NULL);
 }
@@ -83,7 +88,7 @@ ProductionSoldiersView* ProductionSoldiersView::create(int buildingId){
 
 bool ProductionSoldiersView::init()
 {
-    if (!ArcPopupBaseView::init()) {
+    if (!PopupBaseView::init()) {
         return false;
     }
     setIsHDPanel(true);
@@ -97,7 +102,8 @@ bool ProductionSoldiersView::init()
     CCLoadSprite::doResourceByCommonIndex(7, true);
     CCLoadSprite::doResourceByCommonIndex(508, true);
     CCBLoadFile("productionSoldierView",this,this);
-    setContentSize(CCDirector::sharedDirector()->getWinSize());
+	Size winSize = CCDirector::sharedDirector()->getWinSize();
+    setContentSize(winSize);
     CCLoadSprite::doLoadResourceAsync(COMMON_PATH, CCCallFuncO::create(this, callfuncO_selector(ProductionSoldiersView::AsyLoadRes), NULL), 4);
     m_resIndex = m_buildingId/1000000 - 423 + 200;
     setCleanFunction([=](){
@@ -109,46 +115,51 @@ bool ProductionSoldiersView::init()
             CCLoadSprite::doResourceByCommonIndex(m_resIndex, false);
         }
     });
+	m_colorBg->setContentSize(winSize);
     int sliderW = 300;
-    auto m_sliderBg = CCLoadSprite::createScale9Sprite("huadongtiao3.png");
+    auto m_sliderBg = CCLoadSprite::createScale9Sprite("nb_bar_bg.png");//huadongtiao3.png
     m_sliderBg->setInsetBottom(5);
     m_sliderBg->setInsetLeft(5);
     m_sliderBg->setInsetRight(5);
     m_sliderBg->setInsetTop(5);
     m_sliderBg->setAnchorPoint(ccp(0.5,0.5));
     m_sliderBg->setPosition(ccp(sliderW/2, 25));
-    m_sliderBg->setContentSize(CCSize(sliderW,18));
+    m_sliderBg->setContentSize(CCSize(sliderW+10,26));//18
     
-    auto bgSp = CCLoadSprite::createSprite("huadongtiao2.png");
+    auto bgSp = CCLoadSprite::createSprite("nb_bar_pro.png");//huadongtiao2.png
     bgSp->setVisible(false);
-    auto proSp = CCLoadSprite::createSprite("huadongtiao2.png");
-    auto thuSp = CCLoadSprite::createSprite("huadongtiao1.png");
+    auto proSp = CCLoadSprite::createSprite("nb_bar_pro.png");//huadongtiao2.png
+    auto thuSp = CCLoadSprite::createSprite("nb_cursor_icon.png");//huadongtiao1.png
     if(CCCommonUtils::isIosAndroidPad())
     {
         thuSp->setScaleX(thuSp->getScaleX() * 0.77);
     }
 
-    m_slider = CCSliderBar::createSlider(m_sliderBg, proSp, thuSp);
-    m_slider->setMinimumValue(0.0f);
-    m_slider->setMaximumValue(1.0f);
-    m_slider->setProgressScaleX(sliderW/proSp->getContentSize().width);
-    m_slider->setTag(1);
-    m_slider->setLimitMoveValue(20);
-    m_slider->setPosition(ccp(-60, -59));
+//    m_slider = CCSliderBar::createSlider(m_sliderBg, proSp, thuSp);//fusheng d
+//    m_slider->setMinimumValue(0.0f);
+//    m_slider->setMaximumValue(1.0f);
+//    m_slider->setProgressScaleX(sliderW/proSp->getContentSize().width);
+//    m_slider->setTag(1);
+//    m_slider->setLimitMoveValue(20);
+    m_slider = NBSlider::create("nb_bar_bg.png", "nb_bar_pro.png", "nb_cursor_icon.png",NBSlider::TextureResType::PLIST);
+    m_slider->setCapInsets(Rect(8, 1, 30, 13));
+    m_slider->setContentSize(Size(sliderW,15));
+//    m_slider->setPosition(ccp(-60, -59));//fusheng d
     if (CCCommonUtils::isIosAndroidPad()) {
-        m_slider->setPosition(ccp(-137, -56));
+//        m_slider->setPosition(ccp(-137, -56));//fusheng d
         m_slider->setScaleX(2.6);
         m_slider->setScaleY(2.0);
     }
-    m_slider->addTargetWithActionForControlEvents(this, cccontrol_selector(ProductionSoldiersView::moveSlider), CCControlEventValueChanged);
-    m_sliderNode->addChild(m_slider, 1);
+//    m_slider->addTargetWithActionForControlEvents(this, cccontrol_selector(ProductionSoldiersView::moveSlider), CCControlEventValueChanged);//fusheng d
+    m_slider->addEventListener(CC_CALLBACK_2(ProductionSoldiersView::moveSlider, this));
+    m_sliderPos->addChild(m_slider, 1);
 
     auto editSize = CCSizeMake(120,30);
     if (CCCommonUtils::isIosAndroidPad())
     {
         editSize = m_useEditNode->getContentSize();
     }
-    auto editpic =CCLoadSprite::createScale9Sprite("frame_text2.png");
+    auto editpic =CCLoadSprite::createScale9Sprite("zb_bp_2_hui.png"); //frame_text2.png
     editpic->setContentSize(editSize);
     editpic->setInsetBottom(10);
     editpic->setInsetTop(10);
@@ -185,7 +196,7 @@ bool ProductionSoldiersView::init()
         open_arms = tmpBuild.open_arms;
         CCLOG("error m_buildingId=%d",m_buildingId);
     }
-    
+    m_resIndex = 204;
     
     ///////////
     m_pos=0;
@@ -291,13 +302,13 @@ bool ProductionSoldiersView::init()
         m_btnTitle1->setString(_lang("102132").c_str());
         CCCommonUtils::setButtonTitle(this->m_trainBtn, _lang("102131").c_str());
         
-        // 因为这里要把坐标往上提，没太好的方法，只能写死相应的值
-        if (CCCommonUtils::isIosAndroidPad()) {
-            m_nodeDetail->setPositionY(m_soldierNode->getPositionY() + 920.f);
-        }
-        else {
-            m_nodeDetail->setPositionY(m_soldierNode->getPositionY() + 350.f);            
-        }
+//        // 因为这里要把坐标往上提，没太好的方法，只能写死相应的值
+//        if (CCCommonUtils::isIosAndroidPad()) {
+//            m_nodeDetail->setPositionY(m_soldierNode->getPositionY() + 920.f);
+//        }
+//        else {
+//            m_nodeDetail->setPositionY(m_soldierNode->getPositionY() + 350.f);            
+//        }
     }
     
     m_fortHelpBtn->setVisible(m_isFort);
@@ -316,7 +327,7 @@ bool ProductionSoldiersView::init()
     m_progrossBar->removeFromParent();
     m_barClipNode->addChild(m_progrossBar);
     m_progrossBar->setPosition(0, 0);
-    m_progrossBar->release();
+    CC_SAFE_RELEASE(m_progrossBar);
     m_barClipNode->setPosition(pos);
     
     //////各项属性
@@ -344,6 +355,16 @@ bool ProductionSoldiersView::init()
 //    if(FunBuildController::getInstance()->hasGetOneStar(m_buildingId)){
 //        upStarMode();
 //    }
+    
+    int nAdd =  winSize.height - 852;
+    if (CCCommonUtils::isIosAndroidPad())
+    {
+        nAdd =  winSize.height - 2048;
+        //        extH = winSize.height - 2048;
+    }
+    m_soldierLight->setPosition(0, 852/2 + nAdd + 10);
+    auto startparticle = ParticleController::createParticle("soldierView");
+    m_soldier_light_star->addChild(startparticle);
     update(1.0f);
     
     // 初始短信息动画
@@ -358,6 +379,7 @@ bool ProductionSoldiersView::init()
 
 void ProductionSoldiersView::upStarMode(){
     // 注意HD版界面没有m_starIcon
+    // tao.yu m_detailInfo暂时不用
     m_detailInfo->setVisible(false);
     auto starSp = CCLoadSprite::createSprite("soldier_star.png");
     m_starIcon->addChild(starSp);
@@ -386,7 +408,7 @@ ArmyInfo* ProductionSoldiersView::getArmy(std::string const& armyId)
 void ProductionSoldiersView::AsyLoadRes(CCObject* p){
     CCNode* node = CCNode::create();
     node->setPosition(ccp(-38.0, 350));
-    m_soldierNode->addChild(node,-10);
+//    m_soldierNode->addChild(node,-10);
     
     auto pic1 = CCLoadSprite::createSprite("black.png");
     pic1->setAnchorPoint(ccp(1, 0.5));
@@ -475,16 +497,17 @@ void ProductionSoldiersView::arcButtonClick(){
 }
 
 void ProductionSoldiersView::addSoldierIcon(){
+    m_soldierIconNode->setVisible(false);
     int btype = m_buildingId/1000;
     CCPoint pos = ccp(0,172);
     if(btype == FUN_BUILD_FORT){
-        pos = ccp(0,50);
+//        pos = ccp(0,50);
     }
     else if(btype == FUN_BUILD_BARRACK4)
     {
         pos = ccp(0,120);
     }
-    
+    pos = ccp(0,0);//fusheng 士兵不需要偏移
     if(!m_isFort){
 //        if (CCCommonUtils::isIosAndroidPad() && m_resIndex==200 && CCFileUtils::sharedFileUtils()->isFileExist(COMMON_PATH_200_HD))
 //        {
@@ -506,19 +529,106 @@ void ProductionSoldiersView::addSoldierIcon(){
             CCLoadSprite::doResourceByCommonIndex(m_resIndex, true);
     }
     ArmyInfo* m_info = getCurArmy();
-    CCSprite* pic = CCLoadSprite::createSprite(m_info->getBodyIcon().c_str());
-    pic->setScale(m_isFort?1.5:1);
-    pic->setPosition(pos);
+//    CCSprite* pic = CCLoadSprite::createSprite(m_info->getBodyIcon().c_str());
+    auto pic = C3DShowView::create(m_info->getModelName().c_str(),m_info->getModelTexName().c_str());
+    if (!pic) {
+        return;
+    }
+    pic->getModel().getObject()->setScale(m_info->getModelScale());
+    if(btype == FUN_BUILD_FORT){
+        pic->getModel().getObject()->setRotation3D(Vec3(0,35,0));
+        if (m_info->getModelName() == "3d/soldier/ico107902.c3b") {
+//            auto water = C3DShowView::create("3d/soldier/trap_water.c3b","3d/soldier/trap_water.jpg");
+            auto water = NBSprite3D::create("3d/soldier/trap_water.c3b");
+            water->setTexture("3d/soldier/trap_water.jpg");
+            water->setScale(m_info->getModelScale());
+            water->setOpacity(180);
+
+            auto renderTexture = NBGRenderTarget::create(200, 200, cocos2d::Texture2D::PixelFormat::RGBA4444);
+            auto pNode = CCNode::create();
+            pNode->setRotation3D(Vec3(Vec3(22, 0, 0)));
+            pNode->addChild(water);
+            renderTexture->addChild(pNode);
+            pic->addChild(renderTexture);
+            auto waterAct = Animation3D::create("3d/soldier/trap_water.c3b");
+            if (waterAct) {
+                auto pAnim = Animate3D::createWithFrames(waterAct, 0, 100);
+                if (pAnim) {
+                    auto act = RepeatForever::create(pAnim);
+                    water->runAction(act);
+                }
+            }
+        }
+    }
+    pic->setPosition3D(Vec3(pos.x,pos.y,200));
+    pic->setAnchorPoint(Vec2(0.5,0));
+    
+    Repeat* act1 = nullptr;
+    Repeat* act2 = nullptr;
+
+    std::vector<std::string> stand;
+    int standActIndex = 0;
+    int idleActIndex = 1;
+    m_info->getModelAniByName(standActIndex,stand);
+    auto anim_stand = Animation3D::create(stand[0]);
+    if (anim_stand) {
+        auto pAnim = Animate3D::createWithFrames(anim_stand, atoi(stand[1].c_str()), atoi(stand[2].c_str()));
+        if (pAnim) {
+            act1 = Repeat::create(pAnim,rand()%2+2);
+        }
+    }
+    
+    std::vector<std::string> idle;
+    m_info->getModelAniByName(idleActIndex,idle);
+    
+    auto anim_idle = Animation3D::create(idle[0]);
+    if (anim_idle) {
+        auto pAnim = Animate3D::createWithFrames(anim_idle, atoi(idle[1].c_str()), atoi(idle[2].c_str()));
+        if (pAnim) {
+            act2 = Repeat::create(pAnim,1);
+        }
+    }
+    if (act1 && act2) {
+        Sequence* pSeq = Sequence::createWithTwoActions(act2, act1);
+        auto act = RepeatForever::create(pSeq);
+        pic->getModel().getObject()->stopAllActions();
+        pic->getModel().getObject()->runAction(act);
+    }
+    else if ((act1 && !act2) || (!act1 && act2))
+    {
+        auto action = act1 ? act1 : act2;
+        auto act = RepeatForever::create(action);
+        pic->getModel().getObject()->stopAllActions();
+        pic->getModel().getObject()->runAction(act);
+    }
+    
     m_soldierIconNode->addChild(pic);
     if(m_info!=NULL && m_buildingLevel<m_info->unlockLevel){
-        CCCommonUtils::setSpriteGray(pic,true);
+        CCCommonUtils::setSprite3DGray(dynamic_cast<Sprite3D*>(pic),true);
     }
-    if(btype==FUN_BUILD_BARRACK4){
-        pic->setScale(0.85);
-        m_soldierBg->setVisible(false);
-    }else{
-         m_soldierBg->setVisible(true);
+//    if(btype==FUN_BUILD_BARRACK4){
+//        pic->setScale(0.85);
+//        m_soldierBg->setVisible(false);
+//    }else{
+//         m_soldierBg->setVisible(true);
+//    }
+    m_soldierBg->setVisible(false);
+    
+    if (CCCommonUtils::isPad())
+    {
+        pic->setScale(pic->getScale()*0.7);//fusheng pad调整大小0.7
+
     }
+    
+
+    CCActionInterval * delT = CCDelayTime::create(0.3);
+    auto func = CCCallFuncO::create(this, callfuncO_selector(ProductionSoldiersView::showSoldierIcon), m_soldierIconNode);
+    m_soldierIconNode->runAction(CCSequence::create(delT, func, NULL));
+}
+
+void ProductionSoldiersView::showSoldierIcon(CCObject *obj)
+{
+    m_soldierIconNode->setVisible(true);
 }
 
 void ProductionSoldiersView::refreshResource(CCObject* p)
@@ -526,14 +636,12 @@ void ProductionSoldiersView::refreshResource(CCObject* p)
     CCDictionary * d = CCDictionary::create();
     d->retain();
     refresh(d);
-    d->release();
+    CC_SAFE_RELEASE(d);
 }
 
 void ProductionSoldiersView::refresh(CCObject* p)
 {
     ArmyInfo* m_info = getCurArmy();
-    m_soldierIconNode->removeAllChildrenWithCleanup(true);
-    m_particleNode->removeAllChildrenWithCleanup(true);
     m_nodeShortInfo->setVisible(false);
 
     m_stoneNode->setVisible(FunBuildController::getInstance()->getMainCityLv()>=FunBuildController::getInstance()->building_base_k4);
@@ -575,6 +683,7 @@ void ProductionSoldiersView::refresh(CCObject* p)
     }
     if(m_info==NULL){
         m_makeResNode->setVisible(false);
+        m_resBGNode->setVisible(false);
         m_bottomNode->setVisible(false);
         m_numValueTxt->setString("0");
         return ;
@@ -589,14 +698,13 @@ void ProductionSoldiersView::refresh(CCObject* p)
     if(m_info!=NULL && m_buildingLevel<m_info->unlockLevel){
         m_lockTxt->setString(_lang_2("102119", _lang(m_buildingName).c_str(), CC_ITOA(m_info->unlockLevel)));
         m_makeResNode->setVisible(false);
+        m_resBGNode->setVisible(false);
         m_bottomNode->setVisible(false);
         m_numValueTxt->setString("0");
-        this->addSoldierIcon();
         m_lockTxt->setVisible(true);
         m_sliderNode->setVisible(false);
         return ;
     }
-    this->addSoldierIcon();
 
     if(m_isFort){
         std::string particleName = "WeaponsFire_Wood";
@@ -606,6 +714,7 @@ void ProductionSoldiersView::refresh(CCObject* p)
         }
     }
     m_makeResNode->setVisible(true);
+    m_resBGNode->setVisible(true);
     m_bottomNode->setVisible(true);
     m_sliderNode->setVisible(true);
     m_lockTxt->setString("");
@@ -836,7 +945,9 @@ void ProductionSoldiersView::refreshTrainNumText(int num){
     }
 }
 
-void ProductionSoldiersView::moveSlider(CCObject * pSender, Control::EventType pCCControlEvent){
+//void ProductionSoldiersView::moveSlider(CCObject * pSender, Control::EventType pCCControlEvent){
+void ProductionSoldiersView::moveSlider(Ref *pSender, NBSlider::EventType type){
+    
     if (m_invalideSlider) {
         m_invalideSlider = false;
         return ;
@@ -860,12 +971,16 @@ void ProductionSoldiersView::moveSlider(CCObject * pSender, Control::EventType p
 void ProductionSoldiersView::onEnter(){
     CCNode::onEnter();
     UIComponent::getInstance()->showResourceBar(true);
-    if(!m_isFort){
-        CCLoadSprite::doLoadResourceAsync(COMMON_PATH, CCCallFuncO::create(this, callfuncO_selector(ProductionSoldiersView::AsyLoadRes2), NULL), m_resIndex);
-    }else{
+    UIComponent::getInstance()->setPopupTitleName("",false);
+//    if(!m_isFort){
+//        CCLoadSprite::doLoadResourceAsync(COMMON_PATH, CCCallFuncO::create(this, callfuncO_selector(ProductionSoldiersView::AsyLoadRes2), NULL), m_resIndex);
+//    }else{
         this->AsyLoadRes2(NULL);
+//    }
+    if (m_ArcGallery) {
+        m_ArcGallery->setTargetIndexItem(m_pos);
     }
-    this->refresh();
+//    this->refresh();
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(ProductionSoldiersView::refresh), MSG_UPDATE_ARMY_DATA, NULL);
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(ProductionSoldiersView::refreshResource), MSG_CITY_RESOURCES_UPDATE, NULL);
     
@@ -877,31 +992,35 @@ void ProductionSoldiersView::onEnter(){
 }
 
 void ProductionSoldiersView::AsyLoadRes2(CCObject* p){
-    if(m_arcScroll==nullptr){
-        auto m_arcArmys = CCArray::create();
-        for(int i=0;i<m_armyIds.size();i++){
-            
-            if ( m_isFort ) {
-                auto& aInfo = GlobalData::shared()->fortList[m_armyIds[i]];
-                ArcInfo* info = new ArcInfo(i,CCString::createWithFormat("%s",aInfo.getName().c_str())->getCString(),aInfo.getBodyIcon(),aInfo.unlockLevel>m_buildingLevel,110,m_resIndex);
-                m_arcArmys->addObject(info);
-                info->release();
-                
-            }else {
-                auto& aInfo = GlobalData::shared()->armyList[m_armyIds[i]];
-                ArcInfo* info = new ArcInfo(i,CCString::createWithFormat("%s",aInfo.getName().c_str())->getCString(),aInfo.getHeadIcon(),aInfo.unlockLevel>m_buildingLevel,110,204,aInfo.armyId);
-                m_arcArmys->addObject(info);
-                info->release();
-            }
-        }
+    if(m_ArcGallery==NULL){
         
-        m_arcScroll = ArcScrollView::create(m_arcArmys,2,m_pos,m_buildingstarLv);
-        m_arcScroll->setCallback(this, callfunc_selector(ProductionSoldiersView::arcButtonClick));
-        m_arcNode->addChild(m_arcScroll);
+        m_ArcGallery = CCGallery::create(Size(200,215),Size(640,230));
+        m_ArcGallery->setBackScale(0.9);
+        m_ArcGallery->setDelegate(this);
+        m_ArcGallery->setCycleMode(kCCGalleryCycleModeNotCircular);
+        m_ArcGallery->setDirection(kCCGalleryDirectionHorizontal);
+        
+        for(int i=0;i<m_armyIds.size();i++){
+            ArcGalleryCell* cell = ArcGalleryCell::create();
+            m_ArcGallery->addChild(cell);
+            cell->setAnchorPoint(ccp(0.5, 0.5));
+        }
+        m_ArcGallery->addChildFinish();
+        
+        m_arcLayer->addChild(m_ArcGallery);
+        
+        // 滚动条正中间有两个小箭头，在ccb中编辑的，需要置顶
+        m_arcLayer->getChildByTag(9991)->setZOrder(9991);
+        m_arcLayer->getChildByTag(9992)->setZOrder(9992);
+        refreshGalleryCells();
+        refresh();
+//        m_arcScroll = ArcScrollView::create(m_arcArmys,2,m_pos);
+//        m_arcScroll->setCallback(this, callfunc_selector(ProductionSoldiersView::arcButtonClick));
+//        m_arcNode->addChild(m_arcScroll);
     }
-    if (m_willNum>0) {
-        updateSoldierIdAndNum(m_willArmyId, m_willNum);
-    }
+//    if (m_willNum>0) {
+//        updateSoldierIdAndNum(m_willArmyId, m_willNum);
+//    }
 }
 
 void ProductionSoldiersView::onExit(){
@@ -1408,11 +1527,17 @@ SEL_CCControlHandler ProductionSoldiersView::onResolveCCBCCControlSelector(cocos
 
 bool ProductionSoldiersView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode)
 {
-    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_colorBg", CCScale9Sprite*, this->m_colorBg);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_immediateBtn", CCControlButton*, this->m_immediateBtn);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_infoBtn", CCControlButton*, this->m_infoBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_trainBtn", CCControlButton*, this->m_trainBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_arcNode", CCNode*, this->m_arcNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_arcLayer", CCLayer*, this->m_arcLayer);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_resNode", CCNode*, this->m_resNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_resBGNode", CCNode*, this->m_resBGNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_sliderPos", CCNode*, this->m_sliderPos);
+    
+    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_numTxt", CCLabelIF*, this->m_numTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_numValueTxt", CCLabelIF*, this->m_numValueTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_woodTxt", CCLabelIF*, this->m_woodTxt);
@@ -1472,6 +1597,10 @@ bool ProductionSoldiersView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarg
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_txtHP", CCLabelIF*, this->m_txtHP);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_barHP", CCScale9Sprite*, this->m_barHP);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_barHPBack", CCScale9Sprite*, this->m_barHPBack);
+
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_soldierLight", CCNode*, this->m_soldierLight);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_soldier_light_star", CCNode*, this->m_soldier_light_star);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_soldierPrtNode", CCNode*, this->m_soldierPrtNode);
     
     return false;
 }
@@ -1518,7 +1647,7 @@ void ProductionSoldiersView::update(float time)
     pro = pro>1?1:pro;
     m_timeText->setString(CC_SECTOA(m_curTime));
     
-    int totalW = 342;
+    int totalW = 360;//fusheng 进度条宽度
     float w = totalW - pro*totalW;
     m_barClipNode->setContentSize(CCSize(w, m_progrossBar->getContentSize().height));
     
@@ -1761,4 +1890,141 @@ void ProductionSoldiersView::cilckInfoBtn()
     return;
 }
 
+void ProductionSoldiersView::refreshGalleryCells()
+{
+    m_soldierIconNode->removeAllChildrenWithCleanup(true);
+    m_particleNode->removeAllChildrenWithCleanup(true);
+    for(int i=0;i<m_armyIds.size();i++){
+        int resIndex = 204;
+        ArmyInfo aInfo;
+        std::string itemId = "";
+        bool isLock = false;
+        if ( m_isFort ) {
+            aInfo = GlobalData::shared()->fortList[m_armyIds[i]];
+            isLock = aInfo.unlockLevel > m_buildingLevel;
+        }else {
+            aInfo = GlobalData::shared()->armyList[m_armyIds[i]];
+            itemId = aInfo.armyId;
+            isLock = aInfo.unlockLevel > m_buildingLevel;
+        }
+        auto pItem = m_ArcGallery->getChildByTag(i);
+        if (!pItem) {
+            return;
+        }
+        auto pItemCCBNode = static_cast<ArcGalleryCell*>(pItem->getChildByTag(1));
+        if (!pItemCCBNode) {
+            return;
+        }
+        CCLoadSprite::doResourceByCommonIndex(resIndex, true);
+        int sIndex = resIndex;
+        setCleanFunction([sIndex](){
+            CCLoadSprite::doResourceByCommonIndex(4, false);
+            if(sIndex!=-1){
+                CCLoadSprite::doResourceByCommonIndex(sIndex, false);
+            }
+        });
+        
+        if(itemId!=""){
+            string num = itemId.substr(itemId.size()-2);
+            auto lvSpr1 = CCCommonUtils::getRomanSprite(atoi(num.c_str())+1, 1);
+            pItemCCBNode->m_lockLvNode->addChild(lvSpr1);
+            auto lvSpr2 = CCCommonUtils::getRomanSprite(atoi(num.c_str())+1);
+            pItemCCBNode->m_LvNode->addChild(lvSpr2);
+        }
+        
+        pItemCCBNode->m_buttonTxt->setString(CCString::createWithFormat("%s",aInfo.getName().c_str())->getCString());
+        pItemCCBNode->m_buttonLockTxt->setString(CCString::createWithFormat("%s",aInfo.getName().c_str())->getCString());
+        pItemCCBNode->m_icon = CCLoadSprite::createSprite(aInfo.getHeadIcon().c_str());
+        
+        if(isLock)
+        {
+            CCCommonUtils::setSpriteGray(pItemCCBNode->m_button, true);
+            pItemCCBNode->m_lockNode->setVisible(true);
+            pItemCCBNode->m_txtNode->setVisible(false);
+            CCCommonUtils::setSpriteGray(pItemCCBNode->m_icon,true);
+        }else{
+            CCCommonUtils::setSpriteGray(pItemCCBNode->m_button, false);
+            if (i == m_curGalleryIndex) {
+                pItemCCBNode->m_button->setColor(Color3B(255,255,255));
+                pItemCCBNode->m_icon->setColor(Color3B(255,255,255));
+            }
+            else {
+                pItemCCBNode->m_button->setColor(Color3B(127,127,127));
+                pItemCCBNode->m_icon->setColor(Color3B(127,127,127));
+            }
+            pItemCCBNode->m_lockNode->setVisible(false);
+            pItemCCBNode->m_txtNode->setVisible(true);
+        }
+        
+        pItemCCBNode->m_icon->setPosition(ccp(pItemCCBNode->m_button->getContentSize().width/2,pItemCCBNode->m_button->getContentSize().height/2));
+        pItemCCBNode->m_button->addChild(pItemCCBNode->m_icon,1000);
+        
+        if (CCCommonUtils::isIosAndroidPad())
+        {
+            pItemCCBNode->m_buttonTxt->setDimensions(CCSize(300, 0));
+        }
+    }
+    addSoldierIcon();
 
+}
+
+void ProductionSoldiersView::slideBegan(CCGallery *gallery)
+{
+    
+}
+
+void ProductionSoldiersView::slideEnded(CCGallery *gallery, CCGalleryItem *pGItem)
+{
+    
+}
+
+void ProductionSoldiersView::selectionChanged(CCGallery *gallery, CCGalleryItem *pGItem)
+{
+    auto arcCell = pGItem->getChildByTag(1);
+    if (!arcCell) {
+        return;
+    }
+    if(m_armyIds.size()>pGItem->getIdx()){
+        m_armyId = m_armyIds[pGItem->getIdx()];
+//        if (m_lastGalleryIndex != m_curGalleryIndex) {
+            m_lastGalleryIndex = m_curGalleryIndex;
+//        }
+        m_curGalleryIndex = pGItem->getIdx();
+    }
+    if (m_lastGalleryIndex == m_curGalleryIndex)
+    {
+        return;
+    }
+    showChangePrt();
+    refreshGalleryCells();
+    refresh();
+}
+
+void ProductionSoldiersView::selectionDecided(CCGallery *gallery, CCGalleryItem *pGItem)
+{
+    int idx = pGItem->getIdx();
+    gallery->setTargetIndexItem(idx,true);
+}
+
+void ProductionSoldiersView::showChangePrt()
+{
+    m_soldierPrtNode->setScale(0.8);
+    m_soldierPrtNode->setVisible(false);
+    if (m_soldierPrtNode->getChildrenCount() <= 0) {
+        for (int i = 0; i < 7; i++) {
+            string prtPath = "soldierchange_";
+            prtPath.append(CC_ITOA(i));
+            auto prt = ParticleController::createParticle(prtPath.c_str());
+            m_soldierPrtNode->addChild(prt);
+            prt->setTag(i);
+        }
+    }
+    for (int i = 0; i < m_soldierPrtNode->getChildrenCount(); i++) {
+        auto prt = (CCParticleSystemQuad*)(m_soldierPrtNode->getChildByTag(i));
+        if (prt) {
+            prt->resetSystem();
+        }
+    }
+    m_soldierPrtNode->setVisible(true);
+    
+}

@@ -366,17 +366,18 @@ void TextureCache::addImageAsyncCallBack(float dt)
 
 Texture2D* TextureCache::getFirstImage()
 {
-    if( !bDefaultTexture )
-        return NULL;
-    
-     std::unordered_map<std::string, Texture2D*>::iterator itor =  _textures.begin();
-    if( itor != _textures.end() )
-    {
-        CCLOG("zym use uncrashed image:%s", itor->first.c_str() );
-        return itor->second;
-    }
-    CCLOG("zym use uncrashed image: null"  );
- 
+    // tao.yu 加载第一张纹理会导致3d加载报错崩溃，暂时注掉此处代码，且原作者如此放崩溃并不科学
+//    if( !bDefaultTexture )
+//        return NULL;
+//    
+//     std::unordered_map<std::string, Texture2D*>::iterator itor =  _textures.begin();
+//    if( itor != _textures.end() )
+//    {
+//        CCLOG("zym use uncrashed image:%s", itor->first.c_str() );
+//        return itor->second;
+//    }
+//    CCLOG("zym use uncrashed image: null"  );
+// 
     return NULL;
     
 }

@@ -31,6 +31,7 @@
 #include "ProductionSoldiersView.h"
 #include "GuideController.h"
 #include "QuestController.h"
+#include "ArcGalleryCell.hpp"
 
 BuildListView* BuildListView::create(int pos){
     BuildListView* ret = new BuildListView();
@@ -52,7 +53,6 @@ bool BuildListView::init(int pos)
     setContentSize(size);
     
     CCBLoadFile("OptBuildView02",this,this);
-    m_handBg->setVisible(false);
     updateInfo(pos);
     m_openNum = 0;
     return true;
@@ -66,8 +66,6 @@ CCNode* BuildListView::getGuideNode(string _key)
     else {
         if(m_initEnd) {
             gBuildId = atoi(_key.c_str());
-//            this->getAnimationManager()->runAnimationsForSequenceNamed("Show");
-//            return m_guidNode;
             
             int idx = -1;
             for(int i=0; i<m_buildIds.size(); i++) {
@@ -76,18 +74,17 @@ CCNode* BuildListView::getGuideNode(string _key)
                     break;
                 }
             }
-            if (idx>0) {
-                int curIdx = m_buildIds.size()-1;//m_arcScroll->m_currentIndex;
+//            if (idx>0) {
+            if (idx>=0) { //fusheng
+                int curIdx = m_buildIds.size()-1;
                 bool up = false;
                 if (idx > curIdx) {
                     up = true;
                 }
                 int moveCnt = abs(curIdx-idx);
-                for (int i=0; i < moveCnt; i++) {
-//                    m_arcScroll->moveOneCell(up);
-                }
-                refeash(idx);
-//                return m_arcScroll->getShowAreaByPos(idx);
+                // tao.yu TODO 新的滑动控件需要测试引导
+                m_ArcGallery->setTargetIndexItem(idx,true);
+//                refeash(idx);
                 CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(GUIDE_INDEX_CHANGE
                                                                                        , CCString::createWithFormat("LI_%d",gBuildId));
             }
@@ -114,13 +111,12 @@ void BuildListView::updateInfo(int pos)
     m_buildLimitMap.clear();
     
     int cellCnt = 0;
-    vector<string> btnNames;
-    vector<string> btnIcons;
+
     string tmpbuilds = FunBuildController::getInstance()->getBuildByPos(pos);
     tmpbuilds = FunBuildController::getInstance()->orderBuild(tmpbuilds);
     std::vector<std::string> buildIds;
     CCCommonUtils::splitString(tmpbuilds, ";", buildIds);
-    for(int i=buildIds.size()-1;i>=0;i--)
+    for(int i = 0; i < buildIds.size();i++)
     {
         bool _tb = true;
         int tmpItemId = atoi(buildIds[i].c_str());
@@ -149,27 +145,87 @@ void BuildListView::updateInfo(int pos)
         //end
         m_buildLimitMap[tmpItemId] = limitNum;
         
-        string name = CCCommonUtils::getNameById(CC_ITOA(tmpItemId));
-        string pic = CCCommonUtils::getPropById(CC_ITOA(tmpItemId), "pic");
-        pic = pic+"_" + CC_ITOA(GlobalData::shared()->contryResType)+".png";
+
         if (limitNum>0) {
             int curNum = FunBuildController::getInstance()->getBuildNumByType(tmpItemId);
             if (curNum >= limitNum && limitNumInfo == "") {
                 _tb=false;
             }
         }
-        
+
         if (_tb) {
             cellCnt++;
-            btnNames.push_back(name);
-            btnIcons.push_back(pic);
             m_buildIds.push_back(tmpItemId);
         }
     }
     
-    int showPos = cellCnt-1;
-    CCArray* arr = CCArray::create();
+    // gallery
+    m_ArcGallery = CCGallery::create(Size(200,215),Size(640,230));
+    m_ArcGallery->setBackScale(0.9);
+    m_ArcGallery->setDelegate(this);
+    m_ArcGallery->setCycleMode(kCCGalleryCycleModeNotCircular);
+    m_ArcGallery->setDirection(kCCGalleryDirectionHorizontal);
+    
     for(int i=0;i<cellCnt;i++){
+        ArcGalleryCell* cell = ArcGalleryCell::create();
+        m_ArcGallery->addChild(cell);
+        cell->setAnchorPoint(ccp(0.5, 0.5));
+    }
+    m_ArcGallery->addChildFinish();
+    
+    m_arcLayer->addChild(m_ArcGallery);
+    
+    // 滚动条正中间有两个小箭头，在ccb中编辑的，需要置顶
+    m_arcLayer->getChildByTag(9991)->setZOrder(9991);
+    m_arcLayer->getChildByTag(9992)->setZOrder(9992);
+    
+//    m_ArcGallery->setTargetIndexItem(0);
+    refreshGalleryCells();
+   
+    refeash(0);
+    
+    
+        int gBuildId = GuideController::share()->getWillBuildItemId();
+        if (gBuildId>0) {
+            int idx = -1;
+            for(int i=0; i<m_buildIds.size(); i++) {
+                if (m_buildIds[i] == gBuildId) {
+                    idx = i;
+                    break;
+                }
+            }
+            //            if (idx>0) {
+            if (idx>=0) { //fusheng
+                int curIdx = m_buildIds.size()-1;
+                bool up = false;
+                if (idx > curIdx) {
+                    up = true;
+                }
+                int moveCnt = abs(curIdx-idx);
+                // tao.yu TODO 新的滑动控件需要测试引导
+                m_ArcGallery->setTargetIndexItem(idx,true);
+                //                refeash(idx);
+                
+            }
+    
+        }
+}
+
+void BuildListView::refreshGalleryCells()
+{
+    for(int i = 0;i < m_buildIds.size() ;i++){
+        
+        auto pItem = m_ArcGallery->getChildByTag(i);
+        if (!pItem) {
+            return;
+        }
+        auto pItemCCBNode = static_cast<ArcGalleryCell*>(pItem->getChildByTag(1));
+        if (!pItemCCBNode) {
+            return;
+        }
+        string name = CCCommonUtils::getNameById(CC_ITOA(m_buildIds[i]));
+        string pic = CCCommonUtils::getPropById(CC_ITOA(m_buildIds[i]), "pic");
+        pic = pic+"_" + CC_ITOA(GlobalData::shared()->contryResType)+"_small.png";
         
         auto dict = LocalController::shared()->DBXMLManager()->getObjectByKey(CC_ITOA(m_buildIds[i]));
         auto buildInfo = FunBuildInfo(dict);
@@ -203,28 +259,68 @@ void BuildListView::updateInfo(int pos)
             m_buildLockInfos[i] = "";
         }
         
-        if (willBuild>0 && willBuild==m_buildIds[i]) {
-            showPos = i;
-        }
+//        if (willBuild>0 && willBuild==m_buildIds[i]) {
+//            showPos = i;
+//        }
+
+
         
-        ArcInfo* info = new ArcInfo(i,btnNames[i],btnIcons[i], isLock);
-        info->maxIconSize = 100;
-        int limitNum = atoi(CCCommonUtils::getPropById(CC_ITOA(m_buildIds[i]), "num").c_str());
-        string limitNumInfo = CCCommonUtils::getPropById(CC_ITOA(m_buildIds[i]), "level_control");
-        if (limitNum>0) {
-            int curNum = FunBuildController::getInstance()->getBuildNumByType(m_buildIds[i]);
-            if (curNum >= limitNum && limitNumInfo != "") {
-                info->isGrey = true;
+        
+        
+        
+        
+        int sIndex = 204;
+        CCLoadSprite::doResourceByCommonIndex(sIndex, true);
+        setCleanFunction([sIndex](){
+            CCLoadSprite::doResourceByCommonIndex(4, false);
+            if(sIndex!=-1){
+                CCLoadSprite::doResourceByCommonIndex(sIndex, false);
             }
+        });
+        
+//        if(itemId!=""){
+//            string num = itemId.substr(itemId.size()-2);
+//            auto lvSpr1 = CCCommonUtils::getRomanSprite(atoi(num.c_str())+1, 1);
+//            pItemCCBNode->m_lockLvNode->addChild(lvSpr1);
+//            auto lvSpr2 = CCCommonUtils::getRomanSprite(atoi(num.c_str())+1);
+//            pItemCCBNode->m_LvNode->addChild(lvSpr2);
+//        }
+        pItemCCBNode->m_lockLvNode->setVisible(false);
+        pItemCCBNode->m_LvNode->setVisible(false);
+        
+        pItemCCBNode->m_buttonTxt->setString(CCString::createWithFormat("%s",name.c_str())->getCString());
+        pItemCCBNode->m_buttonLockTxt->setString(CCString::createWithFormat("%s",name.c_str())->getCString());
+        pItemCCBNode->m_icon = CCLoadSprite::createSprite(pic.c_str());
+        
+        if(isLock)
+        {
+            CCCommonUtils::setSpriteGray(pItemCCBNode->m_button, true);
+            pItemCCBNode->m_lockNode->setVisible(true);
+            pItemCCBNode->m_txtNode->setVisible(false);
+            CCCommonUtils::setSpriteGray(pItemCCBNode->m_icon,true);
+        }else{
+            CCCommonUtils::setSpriteGray(pItemCCBNode->m_button, false);
+            if (i == m_curGalleryIndex) {
+                pItemCCBNode->m_button->setColor(Color3B(255,255,255));
+                pItemCCBNode->m_icon->setColor(Color3B(255,255,255));
+            }
+            else
+            {
+                pItemCCBNode->m_button->setColor(Color3B(127,127,127));
+                pItemCCBNode->m_icon->setColor(Color3B(127,127,127));
+            }
+            pItemCCBNode->m_lockNode->setVisible(false);
+            pItemCCBNode->m_txtNode->setVisible(true);
         }
-        arr->addObject(info);
-        info->release();
+        pItemCCBNode->m_icon->setPosition(ccp(pItemCCBNode->m_button->getContentSize().width/2,pItemCCBNode->m_button->getContentSize().height/2));
+        pItemCCBNode->m_button->addChild(pItemCCBNode->m_icon,1000);
+        
+        if (CCCommonUtils::isIosAndroidPad())
+        {
+            pItemCCBNode->m_buttonTxt->setDimensions(CCSize(300, 0));
+        }
+
     }
-    m_arcScroll = ArcScrollView::create(arr, 2, showPos, 0, 1);//arr->count()-1
-    m_arcScroll->setCallback(this, callfunc_selector(BuildListView::arcButtonClick));
-    m_arcNode->addChild(m_arcScroll);
-    
-    refeash(showPos);
 }
 
 void BuildListView::refeash(int idx)
@@ -294,11 +390,9 @@ void BuildListView::refeash(int idx)
                 m_upBtn->setEnabled(true);
                 m_handParNode->removeAllChildren();
                 this->getAnimationManager()->runAnimationsForSequenceNamed("Loop");
-                m_handBg->setVisible(false);
                 m_npcNode->setVisible(false);
             }else {
                 m_upBtn->setEnabled(false);
-                m_handBg->setVisible(true);
                 showHand();
             }
         }
@@ -307,50 +401,15 @@ void BuildListView::refeash(int idx)
                 m_upBtn->setEnabled(true);
                 m_handParNode->removeAllChildren();
                 this->getAnimationManager()->runAnimationsForSequenceNamed("Loop");
-                m_handBg->setVisible(false);
                 m_npcNode->setVisible(false);
             }else {
                 m_upBtn->setEnabled(false);
-                m_handBg->setVisible(true);
                 showHand();
             }
         }
     }
 }
 
-void BuildListView::arcButtonClick()
-{
-//    if (gBuildId>0) {
-//        int idx = m_arcScroll->m_currentIndex;
-//        if (m_buildIds.size()<=0 || idx >= m_buildIds.size()) {
-//            return;
-//        }
-//        m_itemId = m_buildIds[idx];
-//        if (gBuildId != m_itemId) {
-//            int fidx = -1;
-//            for(int i=0; i<m_buildIds.size(); i++) {
-//                if (m_buildIds[i] == gBuildId) {
-//                    fidx = i;
-//                    break;
-//                }
-//            }
-//            if (fidx>0) {
-//                m_arcScroll->m_currentIndex = idx;
-//                m_itemId = gBuildId;
-//                m_arcScroll->setShowPos(fidx);
-//                return ;
-//            }
-//        }
-//    }
-    
-    refeash(m_arcScroll->m_currentIndex);
-    if(gBuildId == m_itemId) {
-        m_handBg->setVisible(false);
-        this->getAnimationManager()->runAnimationsForSequenceNamed("Loop");
-        CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(GUIDE_INDEX_CHANGE
-                                                                               , CCString::createWithFormat("LI_%d",m_itemId));
-    }
-}
 
 SEL_CCControlHandler BuildListView::onResolveCCBCCControlSelector(cocos2d::CCObject *pTarget, const char *pSelectorName){
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onCreateOrUpClick", BuildListView::onCreateOrUpClick);
@@ -363,24 +422,22 @@ bool BuildListView::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const 
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_numLabel", CCLabelIF*, this->m_numLabel);
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titleLvNode", CCNode*, this->m_titleLvNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titleLvBG", Sprite*, this->m_titleLvBG);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titleLvBG", CCScale9Sprite*, this->m_titleLvBG);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameLabel", CCLabelIF*, this->m_nameLabel);
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_handParNode", CCNode*, this->m_handParNode);
     
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_arcNode", CCNode*, this->m_arcNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_arcLayer", CCLayer*, this->m_arcLayer);
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btnNode1", CCNode*, this->m_btnNode1);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_upNode", CCNode*, this->m_upNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_moveNode", CCNode*, this->m_moveNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_guidNode", CCNode*, this->m_guidNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_upBtn", CCControlButton*, this->m_upBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_upBtnMsgLabel", CCLabelIF*, this->m_upBtnMsgLabel);
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_npcNode", CCNode*, this->m_npcNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameText", CCLabelIF*, this->m_nameText);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_contentText", CCLabelIF*, this->m_contentText);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_handBg", CCSprite*, this->m_handBg);
     return false;
 }
 
@@ -395,8 +452,6 @@ void BuildListView::onTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEv
     
     if (isTouchInside(m_upNode, pTouch) && m_upBtn->isEnabled()) {
         m_upBtn->onTouchEnded(pTouch, pEvent);
-    }
-    else if (m_arcScroll->m_isInTouch) {
     }
     else {
        // onCloseView();
@@ -479,7 +534,6 @@ void BuildListView::showHand()
         auto particle = ParticleController::createParticle(CCString::createWithFormat("FingerDown_%d",i)->getCString());
         m_handParNode->addChild(particle);
     }
-    m_handBg->setVisible(true);
     if (m_curIdx > m_itemIdx) {
         this->getAnimationManager()->runAnimationsForSequenceNamed("Show");
     }else {
@@ -494,11 +548,6 @@ void BuildListView::showHand()
 
 void BuildListView::onCreateOrUpClick(cocos2d::CCObject *pSender, Control::EventType pCCControlEvent)
 {
-    if (!m_arcScroll->getAniState()) {
-        CCLOG("fubin .....fubin .....fubin .....fubin .....fubin .....");
-        return;
-    }
-    
     if (m_questId == "init") {
         return;
     }
@@ -524,4 +573,39 @@ void BuildListView::onCloseView()
     if( layer )
         layer->hideTmpBuild(m_pos);
     PopupViewController::getInstance()->removePopupView(this);
+}
+
+void BuildListView::slideBegan(CCGallery *gallery)
+{
+    
+}
+
+void BuildListView::slideEnded(CCGallery *gallery, CCGalleryItem *pGItem)
+{
+    
+}
+
+void BuildListView::selectionChanged(CCGallery *gallery, CCGalleryItem *pGItem)
+{
+    auto arcCell = pGItem->getChildByTag(1);
+    if (!arcCell) {
+        return;
+    }
+
+    if(m_buildIds.size()>pGItem->getIdx()){
+        m_lastGalleryIndex = m_curGalleryIndex;
+        m_curGalleryIndex = pGItem->getIdx();
+    }
+    if (m_lastGalleryIndex == m_curGalleryIndex)
+    {
+        return;
+    }
+    refreshGalleryCells();
+    refeash(pGItem->getIdx());
+}
+
+void BuildListView::selectionDecided(CCGallery *gallery, CCGalleryItem *pGItem)
+{
+    int idx = pGItem->getIdx();
+    gallery->setTargetIndexItem(idx,true);
 }

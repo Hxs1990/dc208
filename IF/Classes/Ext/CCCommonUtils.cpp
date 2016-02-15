@@ -1032,8 +1032,11 @@ std::string CCCommonUtils::getResourceIconByTypeNew(int resourceType) {
     }
     return std::string("");
 }
-CCSprite* CCCommonUtils::getRomanSprite(int num){
+CCSprite* CCCommonUtils::getRomanSprite(int num, int type){
     string path = "Roman_";
+    if (type == 1) {
+        path = "Roman_g_";
+    }
     path.append(CC_ITOA(num));
     path.append(".png");
     CCSprite* spr = CCLoadSprite::createSprite(path.c_str());
@@ -1915,6 +1918,20 @@ void CCCommonUtils::setSpriteGray(CCSprite *sprite, bool gray){
             sprite->setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
     
         }
+    }
+}
+
+void CCCommonUtils::setSprite3DGray(Sprite3D *pSprite3D, bool gray){
+    if (pSprite3D == NULL) {
+        return;
+    }
+    if (gray)
+    {
+        pSprite3D->setGLProgram(GLProgramCache::getInstance()->programForKey(kCCShader_PositionTextureGray));
+    }
+    else
+    {
+        pSprite3D->setGLProgram(GLProgramCache::getInstance()->programForKey(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP));
     }
 }
 

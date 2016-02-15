@@ -1012,6 +1012,12 @@ SEL_CCControlHandler FunBuildView::onResolveCCBCCControlSelector(cocos2d::CCObje
 
 bool FunBuildView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode)
 {
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nbNameNode", CCNode*, this->m_nbNameNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_buildBG2", CCScale9Sprite*, this->m_buildBG2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "BGNode2", CCNode*, this->BGNode2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_msg_BG", CCSprite*, this->m_msg_BG);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_info_BG", CCScale9Sprite*, this->m_info_BG);
+    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_instantBtn", CCControlButton*, this->m_instantBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_upBtn", CCControlButton*, this->m_upBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_infoList", CCNode*, this->m_infoList);
