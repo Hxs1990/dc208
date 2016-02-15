@@ -39,7 +39,7 @@
 			<string>None</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb713457855362204</string>
+				<string>fb1670702669839400</string>
 			</array>
 		</dict>
 		<dict>
@@ -105,7 +105,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>713457855362204</string>
+	<string>1670702669839400</string>
 	<key>FacebookDisplayName</key>
 	<string>Clash of Kings</string>
 	<key>LSApplicationCategoryType</key>

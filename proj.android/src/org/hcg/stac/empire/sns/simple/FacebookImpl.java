@@ -9,7 +9,7 @@ import org.hcg.IF.sns.ISimpleSocial;
 import org.hcg.IF.sns.SNSCallbackListener;
 
 public class FacebookImpl implements ISimpleSocial {
-	public static final String FACEBOOK_APP_ID = "713457855362204";
+	public static final String FACEBOOK_APP_ID = "1670702669839400";
 	private FacebookFacade facebook;
 	private FacebookEventObserver facebookEventObserver;
 	private SNSCallbackListener listener;

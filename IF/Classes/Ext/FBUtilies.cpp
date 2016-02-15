@@ -24,7 +24,7 @@ static size_t write_memory_callback(void *contents, size_t size, size_t nmemb, v
 }
 
 void FBUtilies::getFriendsData(){
-//    string appId = "713457855362204";
+//    string appId = "1670702669839400";
 //    string red = "https://www.facebook.com/connect/login_success.html";
 //    char url2[1024] = {0};
 //    sprintf(url2, "https://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=%s&response_type=token&scope=email,publish_actions",appId.c_str(),red.c_str());
