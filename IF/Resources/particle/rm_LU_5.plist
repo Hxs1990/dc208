@@ -13,9 +13,9 @@
 	<key>blendFuncSource</key>
 	<integer>1</integer>
 	<key>configName</key>
-	<string>rm_LU_5</string>
+	<string>Centaur_LU_5</string>
 	<key>duration</key>
-	<real>0.14999999999999999</real>
+	<real>0.10000000000000001</real>
 	<key>emitterType</key>
 	<integer>0</integer>
 	<key>finishColorAlpha</key>
@@ -53,7 +53,7 @@
 	<key>minRadiusVariance</key>
 	<real>0.0</real>
 	<key>particleLifespan</key>
-	<real>0.34999999999999998</real>
+	<real>0.14999999999999999</real>
 	<key>particleLifespanVariance</key>
 	<real>0.050000000000000003</real>
 	<key>positionType</key>
@@ -75,13 +75,13 @@
 	<key>rotationStartVariance</key>
 	<real>360</real>
 	<key>sourcePositionVariancex</key>
-	<real>80</real>
+	<real>50</real>
 	<key>sourcePositionVariancey</key>
-	<real>100</real>
+	<real>75</real>
 	<key>speed</key>
-	<real>300</real>
+	<real>500</real>
 	<key>speedVariance</key>
-	<real>150</real>
+	<real>100</real>
 	<key>startColorAlpha</key>
 	<real>1</real>
 	<key>startColorBlue</key>
@@ -99,9 +99,9 @@
 	<key>startColorVarianceRed</key>
 	<real>0.0</real>
 	<key>startParticleSize</key>
-	<real>25</real>
+	<real>40</real>
 	<key>startParticleSizeVariance</key>
-	<real>15</real>
+	<real>10</real>
 	<key>tangentialAccelVariance</key>
 	<real>0.0</real>
 	<key>tangentialAcceleration</key>
