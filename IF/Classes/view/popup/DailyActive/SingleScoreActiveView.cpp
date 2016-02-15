@@ -69,18 +69,18 @@ bool SingleScoreActiveView::init(ActivityEventObj* info, bool isInner)
     changeBGHeight(m_viewBg);
     float extH = getExtendHeight();
     
-    auto tbg = CCLoadSprite::loadResource("technology_09.png");
-    auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
-    int maxHight = CCDirector::sharedDirector()->getWinSize().height;
-    int curHight = 0;
-    while (abs(curHight)<maxHight) {
-        auto bg = CCLoadSprite::createSprite("technology_09.png");
-        bg->setAnchorPoint(ccp(0, 1));
-        bg->setPosition(ccp(0, curHight));
-        curHight -= bg->getContentSize().height;
-        tBatchNode->addChild(bg);
-    }
-    m_bgNode->addChild(tBatchNode);
+//    auto tbg = CCLoadSprite::loadResource("technology_09.png");
+//    auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
+//    int maxHight = CCDirector::sharedDirector()->getWinSize().height;
+//    int curHight = 0;
+//    while (abs(curHight)<maxHight) {
+//        auto bg = CCLoadSprite::createSprite("technology_09.png");
+//        bg->setAnchorPoint(ccp(0, 1));
+//        bg->setPosition(ccp(0, curHight));
+//        curHight -= bg->getContentSize().height;
+//        tBatchNode->addChild(bg);
+//    }
+//    m_bgNode->addChild(tBatchNode);
     
     int innerH = 0;
     if (!isInner) {
@@ -309,6 +309,7 @@ void SingleScoreActiveView::refreshData()
     bgH += 99;
     
     tBatchNode->setPositionX(0);
+    tBatchNode->setVisible(false);
     m_scrollView->addChild(tBatchNode);
     
     int curY = bgH - socreIdVec.size()*cellH - m_midNode->getContentSize().height;
