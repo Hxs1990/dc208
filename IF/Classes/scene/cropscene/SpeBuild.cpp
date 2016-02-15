@@ -383,30 +383,31 @@ bool SpeBuild::initSpeBuild(int itemId)
             }
         }
     } else if(itemId == SPE_BUILD_SHIP) {
-        auto & arrayChildren = m_mainNode->getChildren();
-        if(arrayChildren.size()>0){
-            CCNode* tmpNode = dynamic_cast<CCNode*>(arrayChildren.at(0));//ccb 中的
-            if(tmpNode && tmpNode->getChildByTag(0) && tmpNode->getChildByTag(0)->getChildByTag(1)){
-                m_shipNode = tmpNode->getChildByTag(0)->getChildByTag(1);
-                if(tmpNode->getChildByTag(0)->getChildByTag(3)){
-                    CCSprite *sprite = dynamic_cast<CCSprite*>(tmpNode->getChildByTag(0)->getChildByTag(3));
-                    ccBlendFunc blendFunc;
-                    blendFunc.src = GL_ONE;
-                    blendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
-                    sprite->setBlendFunc(blendFunc);
-                }
-                
-                int idx = 0;
-                while (idx< 2 && tmpNode->getChildByTag(0)->getChildByTag(idx+1)) {
-                    CCNode *node = tmpNode->getChildByTag(0)->getChildByTag(idx+1);
-                    CCPoint point = node->getPosition();
-                    CCSize size = node->getContentSize();
-                    m_shipParticalRect[idx] = CCRect(point.x, point.y, size.width, size.height);
-                    ++idx;
-                }
-                
-            }
-        }
+        // tao.yu
+//        auto & arrayChildren = m_mainNode->getChildren();
+//        if(arrayChildren.size()>0){
+//            CCNode* tmpNode = dynamic_cast<CCNode*>(arrayChildren.at(0));//ccb 中的
+//            if(tmpNode && tmpNode->getChildByTag(0) && tmpNode->getChildByTag(0)->getChildByTag(1)){
+//                m_shipNode = tmpNode->getChildByTag(0)->getChildByTag(1);
+//                if(tmpNode->getChildByTag(0)->getChildByTag(3)){
+//                    CCSprite *sprite = dynamic_cast<CCSprite*>(tmpNode->getChildByTag(0)->getChildByTag(3));
+//                    ccBlendFunc blendFunc;
+//                    blendFunc.src = GL_ONE;
+//                    blendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
+//                    sprite->setBlendFunc(blendFunc);
+//                }
+//                
+//                int idx = 0;
+//                while (idx< 2 && tmpNode->getChildByTag(0)->getChildByTag(idx+1)) {
+//                    CCNode *node = tmpNode->getChildByTag(0)->getChildByTag(idx+1);
+//                    CCPoint point = node->getPosition();
+//                    CCSize size = node->getContentSize();
+//                    m_shipParticalRect[idx] = CCRect(point.x, point.y, size.width, size.height);
+//                    ++idx;
+//                }
+//                
+//            }
+//        }
         addShipPop(CCString::create("init"));
     }else if(itemId == SPE_BUILD_DRAGON){
         if (CCFileUtils::sharedFileUtils()->isFileExist("Spine/Imperial/DragonBattleEnter.json") &&
@@ -1329,7 +1330,7 @@ void SpeBuild::onClickThis(float _time)
         
         SoundController::sharedSound()->playEffects(Music_Sfx_city_building);
         if (m_clickNameKey == "monthcard") {
-            PopupViewController::getInstance()->addPopupInView(MonthCardView::create());
+            PopupViewController::getInstance()->addPopupView(MonthCardView::create());
         }else if (m_clickNameKey == "qiandao") {
             PopupViewController::getInstance()->addPopupInView(PortActView::create());
         }else {
