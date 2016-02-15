@@ -1813,12 +1813,10 @@ void UIComponent::hideReturnBtn()
 
 
 
-void UIComponent::setPopupTitleName(string _name)
-
+void UIComponent::setPopupTitleName(string _name,bool bVisible)
 {
-    
     this->m_popupTitleName->setString(_name.c_str());
-    
+    this->m_popupTitleName->setVisible(bVisible);
 }
 
 

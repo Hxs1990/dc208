@@ -479,6 +479,8 @@
 		36A9688617E8468D002129DA /* WaitInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36A9688417E8468D002129DA /* WaitInterface.cpp */; };
 		36A968A817E981DE002129DA /* YesNoDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36A968A617E981DE002129DA /* YesNoDialog.cpp */; };
 		36D7170318D9C6E3002FC987 /* CCGraySprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36D7170118D9C6E3002FC987 /* CCGraySprite.cpp */; };
+		36E031101C71697600584E7C /* ArcGalleryCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36E0310E1C71697600584E7C /* ArcGalleryCell.cpp */; };
+		36E031191C71B6EF00584E7C /* C3DShowView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36E031171C71B6EF00584E7C /* C3DShowView.cpp */; };
 		38049D001C21008700496524 /* ServerUpdateView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38049CFE1C21008700496524 /* ServerUpdateView.cpp */; };
 		563D42551C3381F000A08915 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 563D42511C3381F000A08915 /* Makefile */; };
 		563D42561C3381F000A08915 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D42541C3381F000A08915 /* SRWebSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -2420,6 +2422,10 @@
 		36A968A717E981DE002129DA /* YesNoDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YesNoDialog.h; sourceTree = "<group>"; };
 		36D7170118D9C6E3002FC987 /* CCGraySprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCGraySprite.cpp; sourceTree = "<group>"; };
 		36D7170218D9C6E3002FC987 /* CCGraySprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGraySprite.h; sourceTree = "<group>"; };
+		36E0310E1C71697600584E7C /* ArcGalleryCell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArcGalleryCell.cpp; sourceTree = "<group>"; };
+		36E0310F1C71697600584E7C /* ArcGalleryCell.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ArcGalleryCell.hpp; sourceTree = "<group>"; };
+		36E031171C71B6EF00584E7C /* C3DShowView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = C3DShowView.cpp; sourceTree = "<group>"; };
+		36E031181C71B6EF00584E7C /* C3DShowView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = C3DShowView.hpp; sourceTree = "<group>"; };
 		38049CFE1C21008700496524 /* ServerUpdateView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServerUpdateView.cpp; sourceTree = "<group>"; };
 		38049CFF1C21008700496524 /* ServerUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerUpdateView.h; sourceTree = "<group>"; };
 		563D42511C3381F000A08915 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
@@ -7281,6 +7287,8 @@
 		96CA33E519244EDB00E56EF1 /* guiExt */ = {
 			isa = PBXGroup;
 			children = (
+				36E0310E1C71697600584E7C /* ArcGalleryCell.cpp */,
+				36E0310F1C71697600584E7C /* ArcGalleryCell.hpp */,
 				7C1B8C271A1E0B6900D8E22B /* DropSacrificeAnim.cpp */,
 				7C1B8C281A1E0B6900D8E22B /* DropSacrificeAnim.h */,
 				96E68B3919F4A8CC0068A09C /* HFUrlImage.cpp */,
@@ -8655,6 +8663,8 @@
 		FD9C967717CF261F005F493D /* popup */ = {
 			isa = PBXGroup;
 			children = (
+				36E031171C71B6EF00584E7C /* C3DShowView.cpp */,
+				36E031181C71B6EF00584E7C /* C3DShowView.hpp */,
 				96DA89CF195AA89F000D62BF /* AchieveFinishView.cpp */,
 				96DA89D0195AA89F000D62BF /* AchieveFinishView.h */,
 				0CA94D9E1AD4CAB900202D52 /* achievement */,
@@ -9760,6 +9770,7 @@
 				277232011BC912CF00137B69 /* InviteTeleportMailData.m in Sources */,
 				9699E3CB1A4BE1AB00E9E66A /* MerchantView.cpp in Sources */,
 				57827FD3183477A400872571 /* SuggestionView.cpp in Sources */,
+				36E031191C71B6EF00584E7C /* C3DShowView.cpp in Sources */,
 				59DEBDF61B058B40007FC5CB /* UIDevice+ADJAdditions.m in Sources */,
 				9688FACB1AADA0DF009AE069 /* VolatileTexture_richlabel.cpp in Sources */,
 				0C02A4821ADFD26B003C5112 /* HFHttpClient.cpp in Sources */,
@@ -10388,6 +10399,7 @@
 				E64DC728187F9BE9009D113C /* DataRecordCommand.cpp in Sources */,
 				6CA8C91C1B4573BE0061F829 /* AFHTTPSessionManager.m in Sources */,
 				6C1F66961C18372400EE33E1 /* YYTextLine.m in Sources */,
+				36E031101C71697600584E7C /* ArcGalleryCell.cpp in Sources */,
 				96A558BA1A3F1AC500E3D84E /* PushKingdomThroneOwne.cpp in Sources */,
 				96E2C90B1A67CAE400883B0E /* AllianceCommentShieldAdd.cpp in Sources */,
 				E634D269188D4D0F00635BAB /* SettingPopUpView.cpp in Sources */,

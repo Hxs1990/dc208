@@ -255,6 +255,51 @@ std::string ArmyInfo::getHeadIcon(){
     return "ico" + itemId+ "_small.png";
 }
 
+// tao.yu 造兵界面3d相关
+
+std::string ArmyInfo::getModelName(){
+    std::string itemId = getRealItemId();
+    return "3d/soldier/" + CCCommonUtils::getPropById(itemId, "icon") + ".c3b";
+//    return "3d/soldier/ico107000.c3b";
+}
+
+std::string ArmyInfo::getModelTexName(){
+    std::string itemId = getRealItemId();
+    return "3d/soldier/" + CCCommonUtils::getPropById(itemId, "image") + ".jpg";
+//    return "3d/soldier/ico107000.jpg";
+}
+
+float ArmyInfo::getModelScale(){
+    std::string itemId = getRealItemId();
+    return atof(CCCommonUtils::getPropById(itemId, "scale").c_str());
+//    return 1.f;
+}
+
+void ArmyInfo::getModelAniByName(int actIndex, std::vector<std::string>& ret){
+    // tao.yu  ret的三个string分别是 动作名 起始帧数 结束帧数
+    std::string itemId = getRealItemId();
+    std::string anims = CCCommonUtils::getPropById(itemId, "animations");
+    vector<string> strArr;
+    CCCommonUtils::splitString(anims, "|", strArr);
+    
+    if (actIndex >= strArr.size())
+    {
+        ret.push_back("");
+        ret.push_back("");
+        ret.push_back("");
+        return;
+    }
+    
+    vector<string> strArr1;
+    CCCommonUtils::splitString(strArr.at(actIndex), ";", strArr1);
+    ret.push_back("3d/soldier/"+strArr1.at(0)+".c3b");
+    ret.push_back(strArr1.at(1));
+    ret.push_back(strArr1.at(2));
+
+}
+
+// tao.yu end
+
 void ArmyInfo::setFinishiTime(cocos2d::CCDictionary *dict){
     std::string str = dict->valueForKey("finish")->getCString();
     if(str != ""){

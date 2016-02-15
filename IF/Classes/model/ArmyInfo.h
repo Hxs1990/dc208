@@ -52,6 +52,13 @@ public:
     std::string getName();
     std::string getIcon();
     std::string getBodyIcon();
+    
+    std::string getModelName();
+    std::string getModelTexName();
+    std::string getModelAniName();
+    float getModelScale();
+    void getModelAniByName(int actIndex, std::vector<std::string>& ret);
+    
     std::string getHeadIcon();
     std::string getDesc();
     std::string getBuildId();

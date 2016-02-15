@@ -178,6 +178,11 @@ namespace CCCommonUtils {
 
     //更改Sprite变灰
     void setSpriteGray(CCSprite *sprite, bool gray);
+    
+    //更改Sprite3D变灰
+    void setSprite3DGray(Sprite3D *pSprite3D, bool gray);
+   
+    
     //检查武将状态
     bool checkGeneralState(int _state);
     //icon字段读取
@@ -247,7 +252,7 @@ namespace CCCommonUtils {
     int getGoldBuyItem(std::string itemId);
     //设置图片最大宽度
     CCSprite* setSpriteMaxSize(CCSprite* spr, int limitNum, bool isForce=false);
-    CCSprite* getRomanSprite(int num);
+    CCSprite* getRomanSprite(int num, int type=0);
     //变灰色
     CCSprite* graylightWithCCSprite(CCSprite* oldSprite,bool isLight);
     

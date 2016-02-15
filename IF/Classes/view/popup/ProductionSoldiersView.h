@@ -12,15 +12,19 @@
 #include "CommonInclude.h"
 #include "CCBExtension.h"
 #include "CCLabelIF.h"
-#include "ArcPopupBaseView.h"
+#include "PopupBaseView.h"
 #include "ArcScrollView.h"
 #include "CCSliderBar.h"
 #include "CCClipNode.h"
+#include "CCGallery.h"
+#include "NBSlider.h"
 
-class ProductionSoldiersView: public ArcPopupBaseView
+class ProductionSoldiersView: public PopupBaseView
 ,public CCBSelectorResolver
 ,public CCBMemberVariableAssigner
 ,public CCEditBoxDelegate
+,public CCGalleryDelegate
+
 //,public CCTouchDelegate
 {
 public:
@@ -32,6 +36,11 @@ public:
     CCNode* getGuideNode(string _key);
     virtual void update(float time);
 	void setSoldierIdAndNum(string armyId, int num);
+public:
+    virtual void slideBegan(CCGallery *gallery);
+    virtual void slideEnded(CCGallery *gallery, CCGalleryItem *pGItem);
+    virtual void selectionChanged(CCGallery *gallery, CCGalleryItem *pGItem);
+    virtual void selectionDecided(CCGallery *gallery, CCGalleryItem *pGItem);
 protected:
     
     virtual bool onTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -56,7 +65,8 @@ private:
     void onTrainBtnClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void onInfoBtnClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void onFortHelpClick(CCObject * pSender, Control::EventType pCCControlEvent);
-    void moveSlider(CCObject * pSender, Control::EventType pCCControlEvent);
+//    void moveSlider(CCObject * pSender, Control::EventType pCCControlEvent);//fusheng d
+    void moveSlider(Ref *pSender, NBSlider::EventType type);
     void onAddClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void onReduceClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void onClearCDClick(CCObject * pSender, Control::EventType pCCControlEvent);
@@ -103,12 +113,20 @@ private:
 
     ArmyInfo* getCurArmy();
     ArmyInfo* getArmy(std::string const& armyId);
+	
+	void showSoldierIcon(CCObject *obj);
+    void refreshGalleryCells();
+    void showChangePrt();
     
-    CCSafeObject<CCSliderBar> m_slider;
+//    CCSafeObject<CCSliderBar> m_slider; //fusheng d
+    CCSafeObject<NBSlider> m_slider;
     CCSafeObject<ArcScrollView> m_arcScroll;
+    CCSafeObject<CCGallery> m_arcGallery;
     CCSafeObject<CCControlButton> m_immediateBtn;
     CCSafeObject<CCControlButton> m_trainBtn;
+    CCSafeObject<CCControlButton> m_infoBtn;
     CCSafeObject<CCNode> m_arcNode;
+    CCSafeObject<CCLayer> m_arcLayer;
     CCSafeObject<CCNode> m_resNode;
     CCSafeObject<CCLabelIF> m_numTxt;
     CCSafeObject<CCLabelIF> m_numValueTxt;
@@ -127,11 +145,17 @@ private:
     CCSafeObject<CCLabelIF> m_btnUseGoldTxt;
     CCSafeObject<CCLabelIF> m_btnTitle2;
     CCSafeObject<CCNode> m_useEditNode;
+    CCSafeObject<CCNode> m_resBGNode;
     CCSafeObject<CCEditBox> m_useEditTxt;
+    CCSafeObject<CCNode> m_sliderPos;
     
+    CCSafeObject<CCGallery> m_ArcGallery;
+    int m_lastGalleryIndex;
+    int m_curGalleryIndex;
     string m_armyId;
     vector<string> m_armyIds;
     
+    CCSafeObject<CCScale9Sprite> m_colorBg;
     CCSafeObject<CCNode> m_soldierNode;
     CCSafeObject<CCLabelIF> m_lockTxt;
     CCSafeObject<CCNode> m_makeResNode;
@@ -145,8 +169,9 @@ private:
     CCSafeObject<CCNode> m_stoneNode;
     CCSafeObject<CCNode> m_sliderNode;
     CCSafeObject<CCNode> m_particleNode;
+    CCSafeObject<CCNode> m_soldierPrtNode;
     CCSafeObject<CCControlButton> m_fortHelpBtn;
-    
+    CCSafeObject<Node> m_trapsNumNode;
     CCSafeObject<CCNode> m_cdBarNode;
     CCSafeObject<CCLabelIF> m_nameText;
     CCSafeObject<CCScale9Sprite> m_progrossBar;
@@ -181,6 +206,8 @@ private:
     CCSafeObject<CCScale9Sprite> m_barHP;
     CCSafeObject<CCScale9Sprite> m_barHPBack;
     
+	CCSafeObject<CCNode> m_soldierLight;
+    CCSafeObject<CCNode> m_soldier_light_star;
     int m_pos;
     int m_resIndex;
     int m_buildingId;

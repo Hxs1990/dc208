@@ -17,18 +17,26 @@
 #include "FunBuildInfo.h"
 #include "ArcScrollView.h"
 #include "BuildUpgradeView.h"
+#include "CCGallery.h"
 
-class BuildListView : public ArcPopupBaseView
+class BuildListView
+: public ArcPopupBaseView
 , public CCBSelectorResolver
 , public CCBMemberVariableAssigner
+, public CCGalleryDelegate
   
 {
 public:
     static BuildListView* create(int pos);
-    BuildListView():m_pos(0),m_openNum(0),m_itemId(0),m_initEnd(false),gBuildId(0){};
+    BuildListView():m_pos(0),m_openNum(0),m_itemId(0),m_initEnd(false),gBuildId(0),m_lastGalleryIndex(-1),m_curGalleryIndex(0){};
     ~BuildListView(){};
     void updateInfo(int pos);
     CCNode *getGuideNode(string _key);
+public:
+    virtual void slideBegan(CCGallery *gallery);
+    virtual void slideEnded(CCGallery *gallery, CCGalleryItem *pGItem);
+    virtual void selectionChanged(CCGallery *gallery, CCGalleryItem *pGItem);
+    virtual void selectionDecided(CCGallery *gallery, CCGalleryItem *pGItem);
     
 private:
     virtual void onExit();
@@ -42,7 +50,8 @@ private:
     virtual void onTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     
     void onCloseView();
-    void arcButtonClick();
+	void refreshGalleryCells();
+//    void arcButtonClick();
     void refeash(int idx);
     void onInitEnd(float _time);
     
@@ -53,7 +62,7 @@ private:
     void onCreateOrUpClick(cocos2d::CCObject * pSender, Control::EventType pCCControlEvent);
     
     CCSafeObject<CCNode> m_btnNode1;
-    CCSafeObject<CCNode> m_arcNode;
+    CCSafeObject<CCLayer> m_arcLayer;
     CCSafeObject<CCNode> m_upNode;
     CCSafeObject<CCLabelIF> m_upBtnMsgLabel;
     CCSafeObject<CCLabelIF> m_desLabel;
@@ -64,17 +73,17 @@ private:
     CCSafeObject<CCNode> m_handParNode;
     
     CCSafeObject<CCNode> m_titleLvNode;
-    CCSafeObject<Sprite> m_titleLvBG;
+    CCSafeObject<CCScale9Sprite> m_titleLvBG;
     CCSafeObject<CCLabelIF> m_nameLabel;
     CCSafeObject<CCNode> m_moveNode;
-    CCSafeObject<CCNode> m_guidNode;
-    CCSafeObject<CCSprite> m_handBg;
     
     CCSafeObject<CCNode> m_npcNode;
     CCSafeObject<CCLabelIF> m_nameText;
     CCSafeObject<CCLabelIF> m_contentText;
     
-    CCSafeObject<ArcScrollView> m_arcScroll;
+    CCSafeObject<CCGallery> m_ArcGallery;
+    int m_lastGalleryIndex;
+    int m_curGalleryIndex;
     
     vector<int> m_buildIds;
     map<int,string> m_buildLockInfos;
