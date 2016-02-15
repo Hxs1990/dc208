@@ -90,6 +90,7 @@ private:
     CCSafeObject<CCNode> m_scrollNode;
     
     CCSafeObject<CCNode> m_sceinceNode;
+    CCSafeObject<CCNode> m_buildBG;
     CCSafeObject<CCNode> m_bgContainer;
     CCSafeObject<CCLabelIF> m_descriptionText;
     CCSafeObject<CCLabelIF> m_nameText;
