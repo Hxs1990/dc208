@@ -1,6 +1,6 @@
 package com.clash.of.kings;
 
-import org.hcg.IF.UtilApplication;
+import org.nbg.IF.UtilApplication;
 
 import android.app.Application;
 import android.util.Log;

@@ -6,8 +6,8 @@ import android.app.Activity;
 import com.clash.of.kings.EmpireActivity;
 import com.clash.of.util.*;
 
-import org.hcg.IF.IF;
-import org.hcg.IF.Payment;
+import org.nbg.IF.IF;
+import org.nbg.IF.Payment;
 import org.apache.commons.lang.StringUtils;
 import org.cocos2dx.ext.Device;
 import org.cocos2dx.ext.Native;

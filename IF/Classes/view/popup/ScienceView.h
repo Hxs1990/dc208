@@ -68,6 +68,7 @@ private:
     CCSafeObject<CCNode> m_bottomNode;
     CCSafeObject<CCNode> m_fireNode1;
     CCSafeObject<CCNode> m_fireNode2;
+    CCSafeObject<CCSprite> m_huaWenBottom;
 
     int m_buildId;
     int m_openNum;
@@ -211,8 +212,8 @@ private:
     CCSafeObject<CCNode> m_timeBarNode;
     
     CCSafeObject<CCLabelIF> m_maxMsgLabel;
-    CCSafeObject<CCScale9Sprite> m_bigBG;
-    CCSafeObject<CCScale9Sprite> m_smallBG;
+    CCSafeObject<CCNode> m_bigBG;
+    CCSafeObject<CCNode> m_smallBG;
     CCSafeObject<CCScale9Sprite> m_listBG;
     CCSafeObject<CCNode> m_btnNode;
     CCSafeObject<CCNode> m_mainNode;

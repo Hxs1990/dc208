@@ -46,8 +46,10 @@ bool ScienceListView::init(int buildId)
     setIsHDPanel(true);
     CCLoadSprite::doResourceByCommonIndex(8, true);
     CCLoadSprite::doResourceByCommonIndex(4, true);
+    CCLoadSprite::doResourceByCommonIndex(6, true);
     setCleanFunction([](){
         CCLoadSprite::doResourceByCommonIndex(4, false);
+        CCLoadSprite::doResourceByCommonIndex(6, false);
         CCLoadSprite::doResourceByCommonIndex(8, false);
         CCLoadSprite::releaseDynamicResourceByType(CCLoadSpriteType_SCIENCE);
     });
@@ -87,22 +89,24 @@ bool ScienceListView::init(int buildId)
     
     // 屏幕自适应
     int addHeight = getExtendHeight();
-    //m_sceinceNode->setPositionY(m_sceinceNode->getPositionY()+addHeight);
+    m_sceinceNode->setPositionY(m_sceinceNode->getPositionY()+addHeight);
     m_infoList->setContentSize(CCSize(m_infoList->getContentSize().width, m_infoList->getContentSize().height+addHeight));
-    
+    m_mainNode->setPositionY(m_mainNode->getPositionY()+addHeight/4+15);
+//    m_buildBG->setPositionY(m_buildBG->getPositionY()+addHeight) ;
+    changeBGHeight(m_buildBG);
     // 将齿轮节点从主界面移除并添加到新增的滚动区域中
-    m_scrollView = CCScrollView::create(m_infoList->getContentSize());
-    m_scrollView->setDirection(kCCScrollViewDirectionVertical);
-    m_infoList->addChild(m_scrollView);
-    m_scrollView->setTouchPriority(Touch_Popup);
-    
-    m_scrollNode->removeFromParent();
-    m_scrollNode->setPosition(0, 0);
-    m_scrollView->addChild(m_scrollNode);
-    
-    m_scrollView->setViewSize(m_infoList->getContentSize());
-    m_scrollView->setContentSize(m_scrollNode->getContentSize());
-    m_scrollView->setContentOffset(ccp(0, m_infoList->getContentSize().height - m_scrollNode->getContentSize().height));
+//    m_scrollView = CCScrollView::create(m_infoList->getContentSize());
+//    m_scrollView->setDirection(kCCScrollViewDirectionVertical);
+//    m_infoList->addChild(m_scrollView);
+//    m_scrollView->setTouchPriority(Touch_Popup);
+//    
+//    m_scrollNode->removeFromParent();
+//    m_scrollNode->setPosition(0, 0);
+//    m_scrollView->addChild(m_scrollNode);
+//    
+//    m_scrollView->setViewSize(m_infoList->getContentSize());
+//    m_scrollView->setContentSize(m_scrollNode->getContentSize());
+//    m_scrollView->setContentOffset(ccp(0, m_infoList->getContentSize().height - m_scrollNode->getContentSize().height));
     
     // ?
     FunBuildInfo& m_info = FunBuildController::getInstance()->getFunbuildById(m_buildId);
@@ -498,7 +502,7 @@ bool ScienceListView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, con
     //CCLOG("onAssignCCBMemberVariable :%s", pMemberVariableName);
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_scrollNode", CCNode*, this->m_scrollNode);
-    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_buildBG", CCNode*, this->m_buildBG);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_mainNode", CCNode*, this->m_mainNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bottomNode", CCNode*, this->m_bottomNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_infoList", CCNode*, this->m_infoList);

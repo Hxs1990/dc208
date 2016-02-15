@@ -1470,7 +1470,7 @@ bool ActivityController::activityIsOpen(){
 void ActivityController::rewardRecordHandle(){
     string isoLink = CCUserDefault::sharedUserDefault()->getStringForKey("iso_fbAPPLink","");
     string androidLink = CCUserDefault::sharedUserDefault()->getStringForKey("fbAPPLink","");
-//    androidLink = 'fb713457855362204:///?al_applink_data={"target_url":"https:\/\/fb.me\/789290781112244?feed_key=755614521189659_feed","extras":[],"referer_app_link":{"url":"fb:\/\/\/?backtrack_id=g96pyKiVmzIk68c9","app_name":"Facebook"}}';
+//    androidLink = 'fb1670702669839400:///?al_applink_data={"target_url":"https:\/\/fb.me\/789290781112244?feed_key=755614521189659_feed","extras":[],"referer_app_link":{"url":"fb:\/\/\/?backtrack_id=g96pyKiVmzIk68c9","app_name":"Facebook"}}';
     //https://apps.facebook.com/clash-of-kings/?fb_source=notification&request_ids=784316265008949%2C426879690814991%2C436752513145361%2C1566301930312008%2C1587409761526906&ref=notif&app_request_type=user_to_user&content=send%3A739067812873207&fb_ref=no_ref_specified&notif_t=app_request
     //https://apps.facebook.com/clash-of-kings/?fb_source=notification&request_ids=340417592833858%2C554860414655455&ref=notif&app_request_type=user_to_user&content=askfor%3A426169294209352&notif_t=app_request
     

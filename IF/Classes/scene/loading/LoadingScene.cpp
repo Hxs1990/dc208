@@ -1166,7 +1166,7 @@ void LoadingScene::onLoginTimeout(float t)
     string _serverId = CCUserDefault::sharedUserDefault()->getStringForKey(SERVER_ID, "");
     string _serverIp = CCUserDefault::sharedUserDefault()->getStringForKey(ACCOUNT_IP, "");
 //#if COCOS2D_DEBUG == 1
-//    url = CCString::createWithFormat("http://10.1.6.72:8081/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
+//    url = CCString::createWithFormat("http://10.1.4.107:9933/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
 //#else
 //#if COCOS2D_DEBUG == 2
 //    url = CCString::createWithFormat("http://p1.cok.elexapp.com/probe.php?uuid=%s&loginFlag=%d&country=%s&gameuid=%s&lang=%s&serverId=%s&serverIp=%s",_uuid.c_str(),1,_Country.c_str(),_gameUid.c_str(),_lang.c_str(),_serverId.c_str(),_serverIp.c_str());
@@ -1339,10 +1339,10 @@ void LoadingScene::sendCmdGetServerList(CCObject* p){
         string _PublishRegion = cocos2d::extension::CCDevice::getPublishChannel();
         param = CCString::createWithFormat("uuid=%s&loginFlag=%d&pfId=%s&pf=%s&token=%s&country=%s&t=%s&sig=%s",_uuid.c_str(),1,_platformUID.c_str(),_PublishRegion.c_str(),_platformToken.c_str(),_Country.c_str(),timeStr.c_str(),md5Str.c_str())->getCString();
 #if COCOS2D_DEBUG == 1
-        url = CCString::createWithFormat("http://%s:8081/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
+        url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
 #else
 #if COCOS2D_DEBUG == 2
-        url = CCString::createWithFormat("http://%s:8081/phpserver/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
+        url = CCString::createWithFormat("http://%s/phpserver/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
 #else
         if(isChinaPhone && m_getServerListRetryTime % 2 == 0){
             url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s",SERVERLIST_CHINA_IP1,param.c_str());
@@ -1356,10 +1356,10 @@ void LoadingScene::sendCmdGetServerList(CCObject* p){
     {
         param = CCString::createWithFormat("uuid=%s&loginFlag=%d&country=%s&t=%s&sig=%s",_uuid.c_str(),1,_Country.c_str(),timeStr.c_str(),md5Str.c_str())->getCString();
 #if COCOS2D_DEBUG == 1
-        url = CCString::createWithFormat("http://%s:8081/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
+        url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
 #else
 #if COCOS2D_DEBUG == 2
-        url = CCString::createWithFormat("http://%s:8081/phpserver/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
+        url = CCString::createWithFormat("http://%s/phpserver/gameservice/getserverlist.php?%s",SERVERLIST_IP,param.c_str());
 #else
         if(isChinaPhone && m_getServerListRetryTime % 2 == 0){
             url = CCString::createWithFormat("http://%s/gameservice/getserverlist.php?%s",SERVERLIST_CHINA_IP1,param.c_str());
@@ -1469,7 +1469,7 @@ void LoadingScene::onGetServerList(CCHttpClient* client, CCHttpResponse* respons
     
 //#if COCOS2D_DEBUG != 0
 //    测试用切换服务器
-//    ip = "10.1.6.72";
+//    ip = "10.1.4.107";
 //    zone = "COK1";
 //    CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, ip);
 //    CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_ZONE, zone);
@@ -1589,7 +1589,7 @@ void LoadingScene::onGetServerList(CCHttpClient* client, CCHttpResponse* respons
 //    
     
        //真空的灵魂
-//    ip = "10.1.6.72";
+//    ip = "10.1.4.107";
 //    zone = "COK1";
 //    CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, ip);
 //     CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_UUID, "1C2BD6B8-291A-44E5-927E-C0E956B08440_1450338018");
@@ -1598,7 +1598,7 @@ void LoadingScene::onGetServerList(CCHttpClient* client, CCHttpResponse* respons
 //    CCUserDefault::sharedUserDefault()->setStringForKey(GAME_UID, "1385806382000001");
 //    CCUserDefault::sharedUserDefault()->flush();
     
-//    ip = "10.1.6.72";
+//    ip = "10.1.4.107";
 //    zone = "COK1";
 //    CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, ip);
 //     CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_UUID, "");
@@ -1618,7 +1618,7 @@ void LoadingScene::onGetServerList(CCHttpClient* client, CCHttpResponse* respons
 //        CCUserDefault::sharedUserDefault()->flush();
  
     
-//    ip = "10.1.6.72";
+//    ip = "10.1.4.107";
 //    zone = "COK1";
 //    CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, ip);
 //     CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_UUID, "");
@@ -1629,7 +1629,7 @@ void LoadingScene::onGetServerList(CCHttpClient* client, CCHttpResponse* respons
     
 //    138939645000001
 //    1387736473000001
-//        ip = "10.1.6.72";
+//        ip = "10.1.4.107";
 //        zone = "COK1";
 //        CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_IP, ip);
 //         CCUserDefault::sharedUserDefault()->setStringForKey(ACCOUNT_UUID, "");

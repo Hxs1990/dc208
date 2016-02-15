@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="preferExternal"
-    package="com.hcg.cok.gp"
+    package="com.nbg.gp"
     android:versionCode="999"
     android:versionName="1.0.71" >
 
@@ -35,8 +35,8 @@
     
 	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 	<permission android:protectionLevel="signature"
-	    android:name="com.hcg.cok.gp.permission.C2D_MESSAGE" />
-	<uses-permission android:name="com.hcg.cok.gp.permission.C2D_MESSAGE" />
+	    android:name="com.nbg.gp.permission.C2D_MESSAGE" />
+	<uses-permission android:name="com.nbg.gp.permission.C2D_MESSAGE" />
 
     <!-- shared sdk  -->
   <!-- <uses-permission android:name="android.permission.GET_TASKS" /> -->
@@ -57,8 +57,8 @@
 	<!-- GCM需求 END -->
 	
     <application
-        android:name="com.clash.of.kings.EmpireApplication"
-        android:icon="@drawable/cok_icon"
+        android:name="com.clash.of.kings.NBGApplication"
+        android:icon="@drawable/ic_launcher"
         android:debuggable="false"
         android:label="@string/app_name"
         android:backupAgent="com.clash.of.kings.MyPrefsBackupAgent"
@@ -85,7 +85,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.hcg.stac.empire.intent.action.IF" />
+                <action android:name="org.nbg.stac.empire.intent.action.IF" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
            <intent-filter>
@@ -115,7 +115,7 @@
    		 <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/fb_app_id" />
-        <provider android:authorities="com.facebook.app.FacebookContentProvider713457855362204"
+        <provider android:authorities="com.facebook.app.FacebookContentProvider1670702669839400"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
 		<!-- facebook end -->
@@ -138,13 +138,13 @@
             </intent-filter>
         </receiver>
 		
-		<service android:name="org.hcg.notifies.LocalNotificationIntentService"/>
-        <receiver android:name="org.hcg.notifies.LocalBroadcastReceiver" />
+		<service android:name="org.nbg.notifies.LocalNotificationIntentService"/>
+        <receiver android:name="org.nbg.notifies.LocalBroadcastReceiver" />
         
-		<receiver android:name="org.hcg.stac.empire.common.manager.NotificationReceiver" android:process=":remote" >
+		<receiver android:name="org.nbg.stac.empire.common.manager.NotificationReceiver" android:process=":remote" >
 		    <intent-filter>
-                <action android:name="com.hcg.cok.intent.action.NOTIFICATION" />
-                <action android:name="com.hcg.cok.intent.action.FREE_LOTTERY"/>
+                <action android:name="com.nbg.intent.action.NOTIFICATION" />
+                <action android:name="com.nbg.intent.action.FREE_LOTTERY"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 		</receiver>
@@ -160,22 +160,22 @@
         <!-- GCM 需求 START -->
         <meta-data
             android:name="com.parse.push.gcm_sender_id"
-            android:value="id:312229299745" />
+            android:value="id:664052380024" />
         <receiver android:name="com.parse.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
 		  <intent-filter>
 		    <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 		    <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-		    <category android:name="com.hcg.cok.gp" />
+		    <category android:name="com.nbg.gp" />
 		  </intent-filter>
 		</receiver>
         <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
 		  <intent-filter>
 		    <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 		    <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-		    <category android:name="com.hcg.cok.gp" />
+		    <category android:name="com.nbg.gp" />
 		  </intent-filter>
 		</receiver>
-		<service android:name="org.hcg.stac.empire.common.manager.GCMIntentService" />
+		<service android:name="org.nbg.stac.empire.common.manager.GCMIntentService" />
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 		<!-- GCM 需求 END -->
 		
@@ -197,7 +197,7 @@
         <receiver android:name="com.clash.of.notifies.HFParseCustomReceiver" 
             android:exported="false">
 		  <intent-filter>
-		    <action android:name="com.hcg.cok.gp.UPDATE_STATUS" />
+		    <action android:name="com.nbg.gp.UPDATE_STATUS" />
 		  </intent-filter>
 		</receiver>
 		

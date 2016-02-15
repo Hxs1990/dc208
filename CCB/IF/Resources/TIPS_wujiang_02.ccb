@@ -1389,7 +1389,7 @@
 										<key>value</key>
 										<array>
 											<string>Common/Common_1.plist</string>
-											<string>btn_04grey.png</string>
+											<string>nb_but_2.png</string>
 										</array>
 									</dict>
 									<dict>
@@ -1597,7 +1597,7 @@
 										<key>value</key>
 										<array>
 											<string>Common/Common_1.plist</string>
-											<string>btn_04grey.png</string>
+											<string>nb_but_2_green.png</string>
 										</array>
 									</dict>
 									<dict>
@@ -3129,8 +3129,6 @@
 										<false/>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 							</dict>
 							<dict>
 								<key>baseClass</key>
@@ -3791,9 +3789,9 @@
 														<string>ScaleLock</string>
 														<key>value</key>
 														<array>
-															<real>1.2772555351257324</real>
-															<real>0.94798058271408081</real>
-															<false/>
+															<real>1</real>
+															<real>1</real>
+															<true/>
 															<integer>0</integer>
 														</array>
 													</dict>
@@ -3847,8 +3845,8 @@
 												<string>Position</string>
 												<key>value</key>
 												<array>
-													<real>9.5999994277954102</real>
-													<real>-42.600002288818359</real>
+													<real>6.5999994277954102</real>
+													<real>-40.600002288818359</real>
 													<integer>0</integer>
 												</array>
 											</dict>
@@ -3870,8 +3868,8 @@
 												<string>ScaleLock</string>
 												<key>value</key>
 												<array>
-													<real>0.59062033891677856</real>
-													<real>0.81879842281341553</real>
+													<real>1</real>
+													<real>1</real>
 													<false/>
 													<integer>0</integer>
 												</array>
@@ -4351,7 +4349,7 @@
 												<string>Position</string>
 												<key>value</key>
 												<array>
-													<real>-175</real>
+													<real>-172</real>
 													<real>-7</real>
 													<integer>0</integer>
 												</array>
@@ -4453,6 +4451,8 @@
 												<real>0.0</real>
 											</dict>
 										</array>
+										<key>selected</key>
+										<true/>
 									</dict>
 									<dict>
 										<key>baseClass</key>

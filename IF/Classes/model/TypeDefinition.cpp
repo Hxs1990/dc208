@@ -23,12 +23,12 @@
 // Server连接信息
 #if CHANGE_SERVER == 1
     // 本地服
-    #define __SERVER__IP "10.1.6.72"
-    #define __SERVER__PORT 80
-    #define __SERVER__ZONE "COK1"
+    #define __SERVER__IP "10.1.4.107"
+    #define __SERVER__PORT 9933
+    #define __SERVER__ZONE "COK3"
 
-    #define __SERVERLIST__IP "10.1.6.72"
-    #define __GET__SERVERLIST__IP "10.1.6.72:8081"
+    #define __SERVERLIST__IP "10.1.4.121"
+    #define __GET__SERVERLIST__IP "10.1.4.121"
 #elif CHANGE_SERVER == 2
     // 测试服
     #define __SERVER__IP "169.45.155.123"

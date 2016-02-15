@@ -104,6 +104,7 @@ bool ScienceView::init(int buildId, int scienceType)
         m_infoList->setContentSize(CCSizeMake(oldWidth, oldHeight+addHeight));
         m_infoList->setPositionY(m_infoList->getPositionY()-addHeight);
         m_bottomNode->setPositionY(m_bottomNode->getPositionY() - addHeight);
+        m_huaWenBottom->setPositionY(m_huaWenBottom->getPositionY()-getExtendHeight()) ;
         this->m_bgContainer->setPositionY(this->m_bgContainer->getPositionY() - addHeight);
     }
     m_scrollView = CCScrollView::create(m_infoList->getContentSize());
@@ -113,6 +114,7 @@ bool ScienceView::init(int buildId, int scienceType)
     m_desLabel->setString(_lang("121990"));
     reInitView();
     addBGPic();
+    changeBGMaxHeight(m_buildBG);
     
     for (int i=1; i<=4; i++) {
         auto particle = ParticleController::createParticle(CCString::createWithFormat("UiFire_%d",i)->getCString());
@@ -425,7 +427,7 @@ bool ScienceView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const c
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bottomNode", CCNode*, this->m_bottomNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_fireNode1", CCNode*, this->m_fireNode1);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_fireNode2", CCNode*, this->m_fireNode2);
-
+     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_huaWenBottom", CCSprite*, this->m_huaWenBottom);
     return false;
 }
 
@@ -877,8 +879,8 @@ bool SciencePopupView::init(int scienceId) {
         m_scrollView = CCScrollView::create(m_infoList->getContentSize());
         m_scrollView->setDirection(kCCScrollViewDirectionVertical);
         m_infoList->addChild(m_scrollView);
-        m_littleshadow->setVisible(false);
-        m_mateneeded->setVisible(false);
+//        m_littleshadow->setVisible(false);
+//        m_mateneeded->setVisible(false);
         updateInfo(NULL);
         ret = true;
     }
@@ -958,7 +960,7 @@ void SciencePopupView::updateInfo(CCObject* obj)
         else
             m_btnMsgLabel->setMaxScaleXByWidth(180.0);
         CCCommonUtils::setButtonTitle(m_instantBtn, "");
-        CCCommonUtils::setButtonSprite(m_instantBtn, "btn_green3.png");
+        CCCommonUtils::setButtonSprite(m_instantBtn, "nb_but_2_green.png");
         m_infoNode->setVisible(true);
         m_isUping = false;
     }
@@ -1014,9 +1016,9 @@ void SciencePopupView::onUpdateRes(int type)
     m_scrollView->getContainer()->removeAllChildren();
     m_inBtnGoldNum->setString("9999");
     if (type==0 || type==3) {
-        m_mateneeded->setString(_lang("102130"));
-        m_mateneeded->setVisible(true);
-        m_littleshadow->setVisible(true);
+//        m_mateneeded->setString(_lang("102130"));
+//        m_mateneeded->setVisible(true);
+//        m_littleshadow->setVisible(true);
         vector<string> resItems;
         CCCommonUtils::splitString(m_info.resCondition, "|", resItems);
         for (int i=0; i<resItems.size(); i++) {
@@ -1280,15 +1282,15 @@ bool SciencePopupView::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, con
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_smallNode", CCNode*, m_smallNode);
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_maxMsgLabel", CCLabelIF*, m_maxMsgLabel);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bigBG", CCScale9Sprite*, m_bigBG);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_smallBG", CCScale9Sprite*, m_smallBG);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bigBG", CCNode*, m_bigBG);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_smallBG", CCNode*, m_smallBG);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_listBG", CCScale9Sprite*, m_listBG);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btnNode", CCNode*, m_btnNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_mainNode", CCNode*, m_mainNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_curNode", CCNode*, m_curNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nextNode", CCNode*, m_nextNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_mateneeded", CCLabelIF*, m_mateneeded);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_littleshadow", CCScale9Sprite*, m_littleshadow);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_mateneeded", CCLabelIF*, m_mateneeded);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_littleshadow", CCScale9Sprite*, m_littleshadow);
     return false;
 }
 

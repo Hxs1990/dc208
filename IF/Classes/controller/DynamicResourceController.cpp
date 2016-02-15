@@ -14,7 +14,7 @@
 //    同时修改 docs/locale/LUA.txt 中该资源对应的版本号，譬如1.0.1修改成1.0.2
 //    修改之后将 SVN 修改提交
 // 3. 使用scp将资源包上传到指定服务器，命令如下。然后后台应该就有脚本自动将最新版本号更新到服务器配置中。
-//    scp <lua.zip> cokserver@10.1.6.72:/IF/trunk/src/server/smartfoxserver/SFS2X/resource/lua
+//    scp <lua.zip> cokserver@10.1.4.107:/IF/trunk/src/server/smartfoxserver/SFS2X/resource/lua
 //    password : elexhcg
 //
 
