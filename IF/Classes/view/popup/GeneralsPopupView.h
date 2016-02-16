@@ -99,6 +99,7 @@ private:
     
     CCSafeObject<CCNode> m_infoNode;
     CCSafeObject<CCNode> m_bgNode;
+    CCSafeObject<CCNode> BGNode2 ;
     CCSafeObject<CCScale9Sprite> m_buildBG;
 	CCSafeObject<CCNode> m_particleNode;
     

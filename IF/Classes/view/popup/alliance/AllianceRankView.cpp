@@ -74,17 +74,18 @@ bool AllianceRankView::init()
 //        m_totalNode->addChild(pic);
 //        pic->setPositionY(219-(i+1)*100);
     }
-    
+     
     m_textTitle1->setString(_lang("115825"));
     
     m_rankTitle->setString(_lang_1("108104",""));
     
+    auto bg = CCLoadSprite::createSprite("UI_Popup_BG.png");
     m_tabView = CCTableView::create(this, m_infoList->getContentSize());
     m_tabView->setDirection(kCCScrollViewDirectionVertical);
     m_tabView->setVerticalFillOrder(kCCTableViewFillTopDown);
     m_tabView->setTouchPriority(Touch_Default);
     m_infoList->addChild(m_tabView);
-    m_infoList->setVisible(false);
+    m_infoList->addChild(bg);
     getRankData();
 
     return true;
