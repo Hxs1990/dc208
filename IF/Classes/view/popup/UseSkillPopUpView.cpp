@@ -87,6 +87,7 @@ bool UseSkillPopUpView::init(){
         m_tabView->setVerticalFillOrder(kCCTableViewFillTopDown);
         m_tabView->setMultiColTableViewDelegate(this);
         m_tabView->setTouchPriority(0);
+        m_tabView->getContainer()->runAction(CCMoveBy::create(1.0, Vec2(0, 1))); //simon
         m_listContainer->addChild(m_tabView);
         
         m_skillId = "";
