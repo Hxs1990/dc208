@@ -1,6 +1,6 @@
 package com.google.android.apps.analytics;
 
-import org.hcg.util.GameContext;
+import org.nbg.util.GameContext;
 
 import android.app.Activity;
 

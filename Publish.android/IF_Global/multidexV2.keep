@@ -7,5 +7,5 @@ android/support/multidex/MultiDexExtractor$1.class
 android/support/multidex/MultiDexExtractor.class
 android/support/multidex/ZipUtil$CentralDirectory.class
 android/support/multidex/ZipUtil.class
-org/hcg/IF/UtilApplication.class
+org/nbg/IF/UtilApplication.class
 com/clash/of/kings/UtilCOKApplication.class

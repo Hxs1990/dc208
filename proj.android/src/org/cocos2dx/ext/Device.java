@@ -9,7 +9,7 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.io.IOException;
 
-import org.hcg.util.GameContext;
+import org.nbg.util.GameContext;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;

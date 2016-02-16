@@ -166,7 +166,7 @@ bool SpriteFrameCache::addSpriteFramesWithDictionaryNOTexture(ValueMap& dictiona
                 std::string _pngpath = FileUtils::getInstance()->getWritablePath()+frameName;
                 if (FileUtils::getInstance()->isFileExist(_pngpath))
                 {
-                    std::remove(_pngpath.c_str());
+                    remove(_pngpath.c_str());
                 }
                 CCLOG("_pngpath=%s", _pngpath.c_str());
                 image->saveToFile(_pngpath, false);
@@ -205,7 +205,7 @@ bool SpriteFrameCache::addSpriteFramesWithDictionaryNOTexture(ValueMap& dictiona
                 std::string _pngpath = FileUtils::getInstance()->getWritablePath()+frameName;
                 if (FileUtils::getInstance()->isFileExist(_pngpath))
                 {
-                    std::remove(_pngpath.c_str());
+                    remove(_pngpath.c_str());
                 }
                 CCLOG("_pngpath=%s", _pngpath.c_str());
                 image->saveToFile(_pngpath, false);
@@ -958,7 +958,7 @@ bool SpriteFrameCache::addSpriteFramesWithDataNoTexture(const unsigned char* buf
             std::string _pngpath = FileUtils::getInstance()->getWritablePath()+frameName;
             if (FileUtils::getInstance()->isFileExist(_pngpath))
             {
-                std::remove(_pngpath.c_str());
+                remove(_pngpath.c_str());
             }
             CCLOG("_pngpath=%s", _pngpath.c_str());
             image->saveToFile(_pngpath, false);

@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.hcg.IF.R;
-import org.hcg.notifies.*;
+import org.nbg.IF.R;
+import org.nbg.notifies.*;
 
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;

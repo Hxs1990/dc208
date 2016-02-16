@@ -38,7 +38,7 @@ import android.util.Log;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import org.hcg.stac.empire.common.manager.GCMIntentService;
+import org.nbg.stac.empire.common.manager.GCMIntentService;
 
 /**
  * Skeleton for application-specific {@link IntentService}s responsible for

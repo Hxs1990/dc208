@@ -20,7 +20,7 @@
 
 void AppLibHelper::relogin(){
     JniMethodInfo minfo;
-    if (! JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "relogin", "()V") ) {
+    if (! JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "relogin", "()V") ) {
         CCLOG("JNI: Jni method relogin not found!");
         return;
     }

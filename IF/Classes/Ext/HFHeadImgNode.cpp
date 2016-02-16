@@ -266,7 +266,7 @@ void HFHeadImgNode::onMyheadImgBack2(cocos2d::CCObject *pObj)
     CCSpriteFrame* pFrame = getSpriteFrame(image->getCString());
     if (pFrame == NULL)
     {
-        int removeState = std::remove(image->getCString());
+        int removeState = remove(image->getCString());
         if (removeState==0 && m_retry<6)//重试5次
         {
             autoDefaultEnable tmp;

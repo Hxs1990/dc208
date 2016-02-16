@@ -74,7 +74,7 @@ bool AllianceRankView::init()
 //        m_totalNode->addChild(pic);
 //        pic->setPositionY(219-(i+1)*100);
     }
-     
+    
     m_textTitle1->setString(_lang("115825"));
     
     m_rankTitle->setString(_lang_1("108104",""));

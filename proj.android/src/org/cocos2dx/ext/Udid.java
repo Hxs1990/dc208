@@ -5,8 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.UUID;
 
-import org.hcg.IF.IF;
-import org.hcg.stac.empire.publish.IPublishChannel;
+import org.nbg.IF.IF;
+import org.nbg.stac.empire.publish.IPublishChannel;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;

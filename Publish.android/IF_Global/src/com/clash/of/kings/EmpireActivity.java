@@ -36,7 +36,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.google.ads.conversiontracking.AdWordsConversionReporter;
 //import com.clash.of.util.MyGooglePlusUtil;
 import com.google.android.apps.analytics.AdInstallRefMointor;
-import com.hcg.cok.gp.R;
+import com.nbg.gp.R;
 import com.parse.ParseAnalytics;
 import com.google.android.gms.GoogleGameServiceHelper;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
