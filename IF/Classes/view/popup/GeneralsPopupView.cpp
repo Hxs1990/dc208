@@ -310,7 +310,11 @@ bool GeneralsPopupView::init()
         m_noMedalLable->setString(_lang("113987"));
         m_bottomNode->setVisible(false);
         m_selfInfoNode->setVisible(false);
-//        m_otherNode->setVisible(true);//fusheng 美术没做
+        m_otherNode->setVisible(true);//simon
+        ForCCBAnimation->setPositionY(ForCCBAnimation->getPositionY()+70);
+        m_bustPic->setPositionY(m_bustPic->getPositionY()+70);
+        m_otherNode->setPositionY(m_otherNode->getPositionY()+82);
+        BGNode2->setPositionY(BGNode2->getPositionY()+80);
         m_medalLable->setString(_lang(""));
         string lvmsg = "Lv.";
         lvmsg += CC_ITOA(m_info->level);
@@ -852,6 +856,7 @@ bool GeneralsPopupView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, c
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_touchLayer", CCNode*, this->m_touchLayer);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bottomNode", CCNode*, this->m_bottomNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bNode", CCNode*, this->m_bNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "BGNode2", CCNode*, this->BGNode2);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameTxt", Label*, this->m_nameTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameSpr", CCSprite*, this->m_nameSpr);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_pointText", CCLabelIF*, this->m_pointText);

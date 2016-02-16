@@ -99,7 +99,7 @@ bool AllRankListPopUpView::init(){
 
 void AllRankListPopUpView::refresh(){
     int totalH = m_infoList->getContentSize().height;
-    int start = (totalH-750)/2;
+    int start = (totalH-750)/2+10;
     if (CCCommonUtils::isIosAndroidPad())
     {
         start = (totalH-1850)/2;
@@ -203,7 +203,7 @@ bool AllRankListCell::init()
     CCBLoadFile("AllRankListCell",this,this);
     //当前联盟排行2条,玩家排行4条..为了展示全,所以暂定玩家高度4,联盟2
     CCSize nodeSize = m_listNode->getContentSize();
-    int cellH = 70;
+    int cellH = 80;
     int cellTotalH = 0;
     if(m_parentType==1){
         cellTotalH = cellH * 4;
@@ -222,8 +222,8 @@ bool AllRankListCell::init()
     m_listNode->setContentSize(CCSize(nodeSize.width, cellTotalH));
 //    m_nodeTop->setPositionY(m_nodeTop->getPositionY()-changeH);
     
-    m_top1->setPositionY(m_top1->getPositionY() - changeH);
-    m_top2->setPositionY(m_top2->getPositionY() - changeH);
+    m_top1->setPositionY(m_top1->getPositionY() - 0);
+    m_top2->setPositionY(m_top2->getPositionY() - 0);
     m_bg1->setContentSize(m_bg1->getContentSize() + Size(0, -changeH));
     m_bg2->setContentSize(m_bg2->getContentSize() + Size(0, -changeH));
     
@@ -242,7 +242,8 @@ bool AllRankListCell::init()
     m_scrollView->setDirection(kCCScrollViewDirectionVertical);
     m_scrollView->setTouchPriority(Touch_Default);
     m_listNode->addChild(m_scrollView);
-    
+    m_listNode->setPositionY(m_listNode->getPositionY()-30);
+    m_bg1->setPositionY(m_listNode->getPositionY());
     string name = "";
     string pic = "";
     int curY = 0;
@@ -306,7 +307,7 @@ bool AllRankListCell::init()
 //    }
     m_headNode->addChild(picspr);
     m_scrollView->setContentSize(CCSize(nodeSize.width,curY));
-    m_scrollView->setContentOffset(ccp(0, cellTotalH - curY));
+    m_scrollView->setContentOffset(ccp(0, cellTotalH - curY+10));
     return true;
 }
 

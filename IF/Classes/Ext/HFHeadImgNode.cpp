@@ -10,6 +10,8 @@
 #include "HFUrlImageCache.h"
 #include "UploadImageController.h"
 
+using namespace std;
+
 #define CREATE_SPRITE_FRAME CCLoadSprite::loadResource
 
 
@@ -194,7 +196,7 @@ void HFHeadImgNode::onMyHeadImgLoaded(CCObject* object)
     CCSpriteFrame* pFrame = getSpriteFrame(image->getCString());
     if (pFrame == NULL)
     {
-        int removeState = std::remove(image->getCString());
+        int removeState = remove(image->getCString());
         if (removeState==0 && m_retry<6)//重试5次
         {
             autoDefaultEnable tmp;
@@ -220,7 +222,7 @@ void HFHeadImgNode::onMyheadImgBack(cocos2d::CCObject *pObj)
     CCSpriteFrame* pFrame = getSpriteFrame(image->getCString());
     if (pFrame == NULL)
     {
-        int removeState = std::remove(image->getCString());
+        int removeState = remove(image->getCString());
         if (removeState==0 && m_retry<6)//重试5次
         {
             m_retry++;

@@ -41,9 +41,11 @@ bool PlayerRankListView::init()
     setIsHDPanel(true);
     CCLoadSprite::doResourceByCommonIndex(7, true);
     CCLoadSprite::doResourceByCommonIndex(510, true);
+    CCLoadSprite::doResourceByCommonIndex(504, true);
     setCleanFunction([](){
         CCLoadSprite::doResourceByCommonIndex(7, false);
         CCLoadSprite::doResourceByCommonIndex(510, false);
+        CCLoadSprite::doResourceByCommonIndex(504, false);
     });
     auto tmpCCB = CCBLoadFile("AllianceRank",this,this);
     this->setContentSize(tmpCCB->getContentSize());
@@ -67,9 +69,9 @@ bool PlayerRankListView::init()
     
     int BGcount = (newBgHeight-80)/100+1-1;
     for (int i=0; i<BGcount; i++) {
-        auto pic = CCLoadSprite::createSprite("technology_09.png");
-        m_totalNode->addChild(pic);
-        pic->setPositionY(219-(i+1)*100);
+//        auto pic = CCLoadSprite::createSprite("technology_09.png");
+//        m_totalNode->addChild(pic);
+//        pic->setPositionY(219-(i+1)*100);
     }
     
     m_textTitle1->setString(_lang("115825"));
@@ -250,12 +252,12 @@ void PlayerRankListCell::setData(PlayerRankInfo* info,int index,int type)
     CCSprite* pic;
     if(m_info->pic==""){
         pic = CCLoadSprite::createSprite("guidePlayerIcon.png");
-        pic->setScale(0.7);
+        pic->setScale(1);
     }else{
         string mpic = m_info->pic+".png";
         pic = CCLoadSprite::createSprite(mpic.c_str(),true,CCLoadSpriteType_HEAD_ICON);
     }
-    CCCommonUtils::setSpriteMaxSize(pic, 60);
+    CCCommonUtils::setSpriteMaxSize(pic, 90);
     m_headNode->addChild(pic);
     if (CCCommonUtils::isUseCustomPic(m_info->picVer))
     {
@@ -270,13 +272,13 @@ void PlayerRankListCell::setData(PlayerRankInfo* info,int index,int type)
     m_numspr2->setVisible(false);
     m_numspr3->setVisible(false);
     if(m_index==0){
-        m_sprBG1->setVisible(true);
+        m_sprBG1->setVisible(false);
         m_numspr1->setVisible(true);
     }else if(m_index==1){
-        m_sprBG2->setVisible(true);
+        m_sprBG2->setVisible(false);
         m_numspr2->setVisible(true);
     }else if(m_index==2){
-        m_sprBG3->setVisible(true);
+        m_sprBG3->setVisible(false);
         m_numspr3->setVisible(true);
     }else{
         m_numText->setVisible(true);
@@ -286,7 +288,7 @@ void PlayerRankListCell::setData(PlayerRankInfo* info,int index,int type)
     if(m_info->uid==GlobalData::shared()->playerInfo.uid){
         m_selfheadSpr->setVisible(true);
         m_otherheadSpr->setVisible(false);
-        m_sprBG4->setVisible(true);
+        m_sprBG4->setVisible(false);
         m_sprBG1->setVisible(false);
         m_sprBG2->setVisible(false);
         m_sprBG3->setVisible(false);

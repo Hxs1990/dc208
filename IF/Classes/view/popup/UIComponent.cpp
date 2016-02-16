@@ -1042,7 +1042,7 @@ void UIComponent::onEnter()
     CCSprite* head = CCLoadSprite::createSprite(GlobalData::shared()->playerInfo.getPic().c_str(),true,CCLoadSpriteType_HEAD_ICON);
     m_pic->addChild(head);
     
-    CCCommonUtils::setSpriteMaxSize(head, 77,true);
+    CCCommonUtils::setSpriteMaxSize(head, 80,true);
     if (m_headImgNode == nullptr)
     {
         m_headImgNode = HFHeadImgNode::create();

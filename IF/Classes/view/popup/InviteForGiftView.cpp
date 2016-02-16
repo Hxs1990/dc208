@@ -741,7 +741,7 @@ void InviteForGiftView::onBranchBtnClick(CCObject * pSender, CCControlEvent pCCC
 void InviteForGiftView::onJumpBtnClick(CCObject * pSender, CCControlEvent pCCControlEvent){
 //    PopupViewController::getInstance()->addPopupView(InvitationMethodView::create());
    //    PopupViewController::getInstance()->removePopupView(this);
-   //    string url = "https://www.facebook.com/Clash.Of.Kings.Game";
+   //    string url = "https://www.facebook.com/Dragon-Clans-1484362238534405";
    //    GameController::getInstance()->goTurntoUrl(url);
    GlobalData::shared()->isBind = true;
    this->unschedule(schedule_selector(InviteForGiftView::checkFb));

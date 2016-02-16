@@ -171,23 +171,23 @@ bool RoleInfoView::init()
     {
         addHeight = CCDirector::sharedDirector()->getWinSize().height - 2048;
     }
-    auto tbg = CCLoadSprite::loadResource("technology_09.png");
-    auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
-    int maxHight = CCDirector::sharedDirector()->getWinSize().height;
-    int width = CCDirector::sharedDirector()->getWinSize().width;
-    int curHight = -maxHight/2.0f;
-    while (curHight<maxHight) {
-        auto bg = CCLoadSprite::createSprite("technology_09.png");
-        bg->setAnchorPoint(ccp(0.5, 0));
-        bg->setPosition(ccp(0, curHight));
-        curHight += bg->getContentSize().height;
-        bg->runAction(CCFadeIn::create(0.5));
-        tBatchNode->addChild(bg);
-    }
-    if (CCCommonUtils::isIosAndroidPad()) {
-        tBatchNode->setScaleX(1536 * 1.0 / 640);
-    }
-    m_viewNode->addChild(tBatchNode);
+//    auto tbg = CCLoadSprite::loadResource("technology_09.png");
+//    auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
+//    int maxHight = CCDirector::sharedDirector()->getWinSize().height;
+//    int width = CCDirector::sharedDirector()->getWinSize().width;
+//    int curHight = -maxHight/2.0f;
+//    while (curHight<maxHight) {
+//        auto bg = CCLoadSprite::createSprite("technology_09.png");
+//        bg->setAnchorPoint(ccp(0.5, 0));
+//        bg->setPosition(ccp(0, curHight));
+//        curHight += bg->getContentSize().height;
+//        bg->runAction(CCFadeIn::create(0.5));
+//        tBatchNode->addChild(bg);
+//    }
+//    if (CCCommonUtils::isIosAndroidPad()) {
+//        tBatchNode->setScaleX(1536 * 1.0 / 640);
+//    }
+//    m_viewNode->addChild(tBatchNode);
     m_viewNode->setPositionY(m_viewNode->getPositionY()-addHeight);
     int oldWidth = m_infoList->getContentSize().width;
     int oldHeight = m_infoList->getContentSize().height;
@@ -230,13 +230,27 @@ bool RoleInfoView::init()
     m_scrollView->setDirection(kCCScrollViewDirectionVertical);
     m_infoList->addChild(m_scrollView);
     
+    
+    auto s9RoleInfoBG = Scale9Sprite::createWithSpriteFrameName("nb_roleinfoS9BG.png",Rect(8,8,1,1));
+    
+    
+    s9RoleInfoBG->setContentSize(m_infoList->getContentSize());
+    
+    s9RoleInfoBG->setAnchorPoint(m_infoList->getAnchorPoint());
+    
+    s9RoleInfoBG->setPosition(m_infoList->getPosition());
+    m_buildBG->setZOrder(-2);
+    m_infoList->getParent()->addChild(s9RoleInfoBG,-1);
+    
+    
+    
     int total = GlobalData::shared()->playerInfo.buildingPower+GlobalData::shared()->playerInfo.sciencePower+GlobalData::shared()->playerInfo.armyPower+GlobalData::shared()->playerInfo.fortPower+GlobalData::shared()->playerInfo.questpower+GlobalData::shared()->playerInfo.playerPower+GlobalData::shared()->playerInfo.heroPower + GlobalData::shared()->playerInfo.equipPower;
     m_cellHeight = 44;
     if (CCCommonUtils::isIosAndroidPad()) {
         m_cellHeight = 82.5;
     }
     int contentHeight = 22*m_cellHeight+8;
-    
+    changeBGMaxHeight(m_buildBG);
     std::string leagueShort = "";
     if(m_info->isInAlliance()){
         leagueShort = std::string("(") + m_info->allianceInfo.shortName + ")";
@@ -749,24 +763,61 @@ void RoleInfoView::initPlayerStats(){
         for (int i=0; i<attVec.size(); i++) {
             AttributeInfo& aInfo = GeneralManager::getInstance()->GeneralAttMap[attVec[i]];
             if (i==0) {
-                CCSprite* spr = CCLoadSprite::createSprite("Alliance_title.png");
+//                CCSprite* spr = CCLoadSprite::createSprite("Alliance_title.png");
+                CCSprite* spr = CCLoadSprite::createSprite("nb_roleinfoItemTitleBG1.png");
+                
+                CCSprite* sprCenter = CCLoadSprite::createSprite("nb_roleinfoItemTitleBG2.png");
+                
+                CCSprite* spr1 = CCLoadSprite::createSprite("nb_roleinfoItemTitleBG1.png");
+                
+                float temp = 5;
+                
+                float gapX = 3;
+                
+//                spr1->setFlippedX(true);
+                
                 if (CCCommonUtils::isIosAndroidPad()) {
                     spr->setScaleY(1.5);
                     spr->setScaleX(1536 * 1.0 / spr->getContentSize().width);
                     bar_dy = spr->getContentSize().height * spr->getScaleY() - 82.5;
                     spr->setAnchorPoint(CCPointZero);
                 } else {
-                    spr->setScaleY(0.8);
+//                    spr->setScaleY(0.8);
                 }
-                spr->setPosition(ccp(0, (cellNum-count)*m_cellHeight-bar_dy));
+//                spr->setPosition(ccp(0, (cellNum-count)*m_cellHeight-bar_dy));
+                spr->setPosition(ccp(0+gapX, (cellNum-count)*m_cellHeight));
+                
+                spr->setScaleY((m_cellHeight+temp)/spr->getContentSize().height);
+                
                 m_scrollView->addChild(spr);
+                
+                sprCenter->setPosition(ccp(spr->getContentSize().width, (cellNum-count)*m_cellHeight));
+                
+                float sx =(m_infoList->getContentSize().width-spr1->getContentSize().width*2-gapX)/sprCenter->getContentSize().width;
+                
+                sprCenter->setScaleX(sx);
+                
+                sprCenter->setScaleY((m_cellHeight+temp)/sprCenter->getContentSize().height);
+                
+                m_scrollView->addChild(sprCenter);
+//                spr1->setAnchorPoint(Vec2(0,0.5));//fusheng anchorpoint 无效
+                
+                spr1->setFlipX(true);
+                
+                spr1->setScaleY((m_cellHeight+temp)/spr1->getContentSize().height);
+//                spr1->setPosition(ccp(m_infoList->getContentSize().width-spr1->getContentSize().width, (cellNum-count)*m_cellHeight-bar_dy));
+                 spr1->setPosition(ccp(m_infoList->getContentSize().width-spr1->getContentSize().width-gapX, (cellNum-count)*m_cellHeight));
+                
+                m_scrollView->addChild(spr1);
                 float width = CCDirector::sharedDirector()->getWinSize().width;
                 CCLabelIF* lable = CCLabelIF::create(_lang(aInfo.name).c_str(), 24);
                 if (CCCommonUtils::isIosAndroidPad()) {
                     lable->setFontSize(45);
                 }
                 lable->setAnchorPoint(ccp(0.5, 0.5));
-                lable->setColor({255,177,89});
+//                lable->setColor({255,177,89});
+                lable->setColor(ccWHITE);
+
                 float lableWidth = lable->getContentSize().width*lable->getOriginScaleX();
                 lable->setPosition(ccp((width-lableWidth)/2.0f,(cellNum-count)*m_cellHeight+10));
                 if (CCCommonUtils::isIosAndroidPad())
@@ -1336,6 +1387,7 @@ bool RoleInfoView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const 
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_desName", CCLabelIF*, this->m_desName);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_desLabel", CCLabelIF*, this->m_desLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_superManTipNode", CCNode*, this->m_superManTipNode);
+   CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_buildBG", CCScale9Sprite*, this->m_buildBG);
     return false;
 }
 
@@ -1434,6 +1486,8 @@ bool RoleCell::init()
     }
     m_valueTxt->setString(m_value.c_str());
     m_bg1->setVisible(m_type==0?false:true);
+    m_huaWen0->setVisible(m_type==0?true:false);
+    m_huaWen1->setVisible(m_type==0?false:true);
 //    m_bg2->setVisible(m_type==0?false:true);
     m_bg2->setVisible(false);
 //    m_tipNode->setVisible(false);
@@ -1499,6 +1553,10 @@ bool RoleCell::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_valueTxt", CCLabelIF*, this->m_valueTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg1", CCScale9Sprite*, this->m_bg1);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg2", CCScale9Sprite*, this->m_bg2);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_huaWen0", CCSprite*, this->m_huaWen0);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_huaWen1", CCSprite*, this->m_huaWen1);
+    
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_tipNode", CCNode*, this->m_tipNode);
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_desName", CCLabelIF*, this->m_desName);
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_desLabel", CCLabelIF*, this->m_desLabel);

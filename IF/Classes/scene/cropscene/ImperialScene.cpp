@@ -80,7 +80,9 @@
 #endif
 
 //begin a by ljf
-#include "NBWaterSprite.hpp"
+#include "NBWaterSprite.hpp" //water
+#include "Walker.h" //villager
+#include "Enemy.h" //wild man
 //end a by ljf
 
 #define HD_SCALE 1.2f
@@ -274,6 +276,8 @@ bool ImperialScene::init()
     m_cityBgNode->setZOrder(m_cityBgNode->getOrderOfArrival());
     m_waterNode->setZOrder(m_waterNode->getOrderOfArrival());
     m_vikingParentNode->setZOrder(m_vikingParentNode->getOrderOfArrival());
+    m_isPauseEnemy = false;
+    m_enemyNum = 10;
     //end a by ljf
     
     map<int, CCSafeNode<CCNode>>::iterator it=m_bigTileNodes.begin();
@@ -470,6 +474,9 @@ bool ImperialScene::init()
     }
     
     //begin a by ljf
+    m_walkerLayer = CCLayer::create();
+    m_touchLayer->addChild(m_walkerLayer,2999);
+    
     m_isVikingShipMove = false;
     mVikingShipDict = CCDictionary::create();
     mShipLevel = 0;
@@ -481,7 +488,6 @@ bool ImperialScene::init()
     
     water->setAnchorPoint(Vec2(0.5,0.5));
     m_waterNode->addChild(water, 1);
-    //water->setGlobalZOrder(1);
     //RecommendAllianceController::getInstance()->checkToSendRecommendRequest();
     
     //end a by ljf
@@ -806,6 +812,24 @@ void ImperialScene::buildingCallBack(CCObject* params)
     if(!GuideController::share()->isInTutorial() && GlobalData::shared()->playerInfo.isInAlliance() && GlobalData::shared()->dbFightBeginTime < GlobalData::shared()->getWorldTime()  && GlobalData::shared()->dbFightEndTime>GlobalData::shared()->getWorldTime() && ActivityController::getInstance()->isMoveToDragonBuild){
        onMoveToPos(3280, 236, TYPE_POS_MID, 0, 1, true);
     }
+    
+    //begin a by ljf
+    //walker
+    cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Imperial/Imperial_22.plist");
+    
+    m_walkerBatchNode = CCSpriteBatchNode::createWithTexture(CCLoadSprite::loadResource("b010_0_N_move_0.png")->getTexture());
+    m_touchLayer->addChild(m_walkerBatchNode, 1999);
+    
+    cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Imperial/Imperial_1.plist");
+    m_jianBatchNode = CCSpriteBatchNode::createWithTexture(CCLoadSprite::loadResource("jian_0.png")->getTexture());
+    m_touchLayer->addChild(m_jianBatchNode, 1999);
+    
+    this->schedule(schedule_selector(ImperialScene::createWalker), 0.25, 1, 0.0f);
+    
+    //this->schedule(schedule_selector(ImperialScene::createEnemy), 15.0, CC_REPEAT_FOREVER, 0.0f);
+    
+    //this->schedule(schedule_selector(ImperialScene::checkPopRecommendAlliance), 2.0, CC_REPEAT_FOREVER, 20.0f);
+    //end a by ljf
 }
 
 //void ImperialScene::MiracleCallBack(CCObject* params)
@@ -1605,6 +1629,14 @@ void ImperialScene::clearGuideState(float _time)
 void ImperialScene::onExit()
 {
     m_exit = true;
+    //begin a by ljf
+    m_walkerBatchNode->removeAllChildren();
+    m_jianBatchNode->removeAllChildren();
+    m_walkerLayer->removeFromParent();
+    mVikingShipDict->removeAllObjects();
+    m_enemyArray.clear();
+    //end a by ljf
+    
     if(GlobalData::shared()->isUiInti){
         UIComponent::getInstance()->updateBuildState(false);
         //        UIComponent::getInstance()->onDeleteCropSceneUI();
@@ -7246,11 +7278,52 @@ bool ImperialScene::onVikingsShipLockTouched(CCTouch* pTouch)
 
 void ImperialScene::createWalker(float t)
 {
-    
+    if(true)
+    {
+        for (int i = 1; i <= 1; i++)
+        {
+            string m_icon = "b020";
+            Walker* soldier = Walker::create(m_walkerBatchNode, NULL,0,0,m_icon,"NE",false);
+            soldier->getShadow()->setScale(0.5);
+            
+            soldier->setAnchorPoint(ccp(0.5, 0.5));
+            
+            m_walkerLayer->addChild(soldier);
+            soldier->setSprScale(1);
+        }
+        
+        for (int i = 1; i <= 1; i++)
+        {
+            string m_icon = "b010";
+            Walker* soldier = Walker::create(m_walkerBatchNode, NULL, 0,0,m_icon,"NE",false);
+            soldier->getShadow()->setScale(0.5);
+            
+            soldier->setAnchorPoint(ccp(0.5, 0.5));
+            
+            m_walkerLayer->addChild(soldier);
+            soldier->setSprScale(1);
+        }
+        
+    }
 }
 void ImperialScene::createEnemy(float t)
 {
-    
+    if(m_isPauseEnemy)
+        return;
+    m_enemyArray.clear();
+    for (int i = 1; i <= m_enemyNum; i++)
+    {
+        OutsideEnemy* soldier = OutsideEnemy::create(m_walkerBatchNode, m_jianBatchNode, ENEMY_TYPE_WILDMAN);
+        //soldier->getShadow()->setScale(0.5);
+        
+        soldier->setAnchorPoint(ccp(0.5, 0.5));
+        
+        m_walkerLayer->addChild(soldier);
+        
+        soldier->start();
+        m_enemyArray.pushBack(soldier);
+        //soldier->setSprScale(1);
+    }
 }
 void ImperialScene::checkPopRecommendAlliance(float t)
 {
@@ -7336,13 +7409,33 @@ void ImperialScene::requestRecommendAlliance()
 }
 
 
-void ImperialScene::pauseEnemy(bool inGuide )
+void ImperialScene::pauseEnemy(bool isGuide )
 {
-    
+    m_isPauseEnemy = true;
+    int i = 0;
+    for( ; i < m_enemyArray.size(); i++ )
+    {
+        auto node = m_enemyArray.at(i);
+        
+        node->PauseEnemy();
+    }
+    if (!isGuide) {
+        this->unschedule(schedule_selector(ImperialScene::createEnemy));
+    }
 }
-void ImperialScene::resumeEnemy(bool inGuide )
+void ImperialScene::resumeEnemy(bool isGuide )
 {
-    
+    m_isPauseEnemy = false;
+    int i = 0;
+    for( ; i < m_enemyArray.size(); i++ )
+    {
+        auto node = m_enemyArray.at(i);
+        
+        node->ResumeEnemy();
+    }
+    if (!isGuide) {
+        this->schedule(schedule_selector(ImperialScene::createEnemy), 30.0f, CC_REPEAT_FOREVER, 0.0f);
+    }
 }
 
 //end a by ljf
@@ -7511,5 +7604,26 @@ void ImperialScene::onRefreshOutsideTraps(CCObject* obj)
     
 }
 
-
+void ImperialScene::cartoonHander(CCObject* params)
+{
+    /*
+    if(params)
+    {
+        string str = ((CCString*)params)->_string;
+        if (str == "cartoon2") {
+            m_enemyNum = 30;
+            createEnemy(0);
+        }
+        else if (str == "cartoon3") {
+            this->pauseEnemy(true);
+        }
+        else if (str == "cartoon4") {
+            this->resumeEnemy(true);
+        }
+        else if (str == "cartoon5") {
+            UIComponent::getInstance()->playQuestAnimation();
+        }
+    }
+    */
+}
 
