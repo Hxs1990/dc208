@@ -1042,7 +1042,7 @@ void UIComponent::onEnter()
     CCSprite* head = CCLoadSprite::createSprite(GlobalData::shared()->playerInfo.getPic().c_str(),true,CCLoadSpriteType_HEAD_ICON);
     m_pic->addChild(head);
     
-    CCCommonUtils::setSpriteMaxSize(head, 77,true);
+    CCCommonUtils::setSpriteMaxSize(head, 80,true);
     if (m_headImgNode == nullptr)
     {
         m_headImgNode = HFHeadImgNode::create();
@@ -3279,7 +3279,7 @@ bool UIComponent::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const c
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpNum", CCLabelIF*, this->m_helpNum);
     
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpNumBg", CCNode*, this->m_helpNumBg);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpNumBg", CCNode*, this->m_helpNumBg);
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpNode", CCNode*, this->m_helpNode);
     

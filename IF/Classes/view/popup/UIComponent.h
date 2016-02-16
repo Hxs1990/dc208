@@ -816,7 +816,7 @@ private:
     
     //help
     CCSafeObject<CCLabelIF> m_helpNum;
-    CCSafeObject<CCNode> m_helpNumBg;
+//    CCSafeObject<CCNode> m_helpNumBg;
     CCSafeObject<CCNode> m_helpNode;
     CCSafeObject<CCNode> m_helpNumNode;
     CCSafeObject<CCLabelIF> m_helpNumTxt;
