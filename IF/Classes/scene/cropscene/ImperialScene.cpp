@@ -79,6 +79,12 @@
 #include "platform/android/jni/JniHelper.h"
 #endif
 
+//begin a by ljf
+#include "NBWaterSprite.hpp" //water
+#include "Walker.h" //villager
+#include "Enemy.h" //wild man
+//end a by ljf
+
 #define HD_SCALE 1.2f
 
 using namespace cocos2d;
@@ -224,6 +230,7 @@ bool ImperialScene::init()
     m_waterLayer->setName("m_waterLayer");
     m_touchLayer->addChild(m_waterLayer, 91);
     
+    
     if (GlobalData::shared()->contryResType==0) {
         auto node = CCBLoadFile("ImperialCities",m_touchLayer,this);
         node->setZOrder(90);
@@ -264,6 +271,14 @@ bool ImperialScene::init()
     m_qijiNode->setZOrder(m_qijiNode->getOrderOfArrival());
     m_dragonNode->setZOrder(m_dragonNode->getOrderOfArrival());
     m_ziyuanmenNode->setZOrder(m_ziyuanmenNode->getOrderOfArrival());
+    
+    //begin a by ljf
+    m_cityBgNode->setZOrder(m_cityBgNode->getOrderOfArrival());
+    m_waterNode->setZOrder(m_waterNode->getOrderOfArrival());
+    m_vikingParentNode->setZOrder(m_vikingParentNode->getOrderOfArrival());
+    m_isPauseEnemy = false;
+    m_enemyNum = 10;
+    //end a by ljf
     
     map<int, CCSafeNode<CCNode>>::iterator it=m_bigTileNodes.begin();
     for (; it!=m_bigTileNodes.end(); it++) {
@@ -342,6 +357,7 @@ bool ImperialScene::init()
     m_touchLayer->addChild(m_cludeBatchNode, 2010);
     
     m_viewPort = HFViewport::create();
+    
     m_viewPort->setViewPortTarget(m_touchLayer);
     m_viewPort->setSceneSize(sumWidth, sumHight);
     m_viewPort->setTouchDelegate(this);
@@ -456,6 +472,25 @@ bool ImperialScene::init()
     if(WorldController::getInstance()->selfPoint.x < 0 && ActivityController::getInstance()->ckfNeedLeave!=1 ){
         CCDirector::sharedDirector()->getRunningScene()->addChild(CityCrashView::create());
     }
+    
+    //begin a by ljf
+    m_walkerLayer = CCLayer::create();
+    m_touchLayer->addChild(m_walkerLayer,2999);
+    
+    m_isVikingShipMove = false;
+    mVikingShipDict = CCDictionary::create();
+    mShipLevel = 0;
+    m_isBridgeCanClick = true;
+    
+    auto water = NBWaterSprite::create(WATER_NORMALS);
+    water->setScaleX(3.0 * water->getShapeScaleX());
+    water->setScaleY(3.0 * water->getShapeScaleY());
+    
+    water->setAnchorPoint(Vec2(0.5,0.5));
+    m_waterNode->addChild(water, 1);
+    //RecommendAllianceController::getInstance()->checkToSendRecommendRequest();
+    
+    //end a by ljf
     return true;
 }
 void ImperialScene::downloadXML(float _time)
@@ -620,6 +655,7 @@ void ImperialScene::buildingCallBack(CCObject* params)
     
     initMc2();
     m_buildingInitState = true;
+    onCreateBridge();
     onCreateTitan();
     onEnterFrame(0);
     initBigTile();
@@ -776,6 +812,24 @@ void ImperialScene::buildingCallBack(CCObject* params)
     if(!GuideController::share()->isInTutorial() && GlobalData::shared()->playerInfo.isInAlliance() && GlobalData::shared()->dbFightBeginTime < GlobalData::shared()->getWorldTime()  && GlobalData::shared()->dbFightEndTime>GlobalData::shared()->getWorldTime() && ActivityController::getInstance()->isMoveToDragonBuild){
        onMoveToPos(3280, 236, TYPE_POS_MID, 0, 1, true);
     }
+    
+    //begin a by ljf
+    //walker
+    cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Imperial/Imperial_22.plist");
+    
+    m_walkerBatchNode = CCSpriteBatchNode::createWithTexture(CCLoadSprite::loadResource("b010_0_N_move_0.png")->getTexture());
+    m_touchLayer->addChild(m_walkerBatchNode, 1999);
+    
+    cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Imperial/Imperial_1.plist");
+    m_jianBatchNode = CCSpriteBatchNode::createWithTexture(CCLoadSprite::loadResource("jian_0.png")->getTexture());
+    m_touchLayer->addChild(m_jianBatchNode, 1999);
+    
+    this->schedule(schedule_selector(ImperialScene::createWalker), 0.25, 1, 0.0f);
+    
+    //this->schedule(schedule_selector(ImperialScene::createEnemy), 15.0, CC_REPEAT_FOREVER, 0.0f);
+    
+    //this->schedule(schedule_selector(ImperialScene::checkPopRecommendAlliance), 2.0, CC_REPEAT_FOREVER, 20.0f);
+    //end a by ljf
 }
 
 //void ImperialScene::MiracleCallBack(CCObject* params)
@@ -988,6 +1042,8 @@ void ImperialScene::onEnter()
     UIComponent::getInstance()->onCreateCropSceneUI();
     
     CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(ImperialScene::onEnterFrame), this, 1.0,kCCRepeatForever, 0.0f, false);
+    
+    Director::getInstance()->getScheduler()->schedule(schedule_selector(ImperialScene::update), this, 0, false);
     
     
     //    //CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this, Touch_Default);
@@ -1573,6 +1629,14 @@ void ImperialScene::clearGuideState(float _time)
 void ImperialScene::onExit()
 {
     m_exit = true;
+    //begin a by ljf
+    m_walkerBatchNode->removeAllChildren();
+    m_jianBatchNode->removeAllChildren();
+    m_walkerLayer->removeFromParent();
+    mVikingShipDict->removeAllObjects();
+    m_enemyArray.clear();
+    //end a by ljf
+    
     if(GlobalData::shared()->isUiInti){
         UIComponent::getInstance()->updateBuildState(false);
         //        UIComponent::getInstance()->onDeleteCropSceneUI();
@@ -1583,6 +1647,7 @@ void ImperialScene::onExit()
     FunBuildController::getInstance()->oldy = m_touchLayer->getPositionY();
     setTouchEnabled(false);
     CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(schedule_selector(ImperialScene::onEnterFrame), this);
+     Director::getInstance()->getScheduler()->unschedule(schedule_selector(ImperialScene::update), this);
     CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(schedule_selector(ImperialScene::onShowFeedbackAnim), this);
     CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(schedule_selector(ImperialScene::onShowFeedbackAgainAnim), this);
     CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(schedule_selector(ImperialScene::onShowFeedbackAgainLaterAnim), this);
@@ -2456,6 +2521,25 @@ void ImperialScene::onSingleTouchEnd(CCTouch* pTouch)
     
     m_buildBtnsView->onHide();
     m_speBuildBtnsView->onHide();
+    
+    // tao.yu titan touch
+    if (m_Titan && m_Titan->onTouched(pTouch)) {
+        return;
+    }
+    //begin a by ljf
+    if(onVikingsShipTouched(pTouch))
+    {
+        return;
+    }
+    if(onVikingsShipLockTouched(pTouch))
+    {
+        return;
+    }
+
+    //end a by ljf
+    if (onBridgeTouched(pTouch)) {
+        return;
+    }
     if (curTouchBuildId > -1) {
         if(lastTouchBuildId != curTouchBuildId)
         {
@@ -2845,6 +2929,20 @@ void ImperialScene::onShowHTPAnim(float dt){
         m_HTPlabel->setString(msg.c_str());
     }
 }
+
+void ImperialScene::update(float dt)
+{
+    if (m_Titan)
+    {
+        m_Titan->update(dt);
+    }
+    if(mShipLevel > 0)
+    {
+        updateVikingsShipNum();
+    }
+    //RecommendAllianceController::getInstance()->checkToPopRecommendAlliance();
+}
+
 void ImperialScene::onEnterFrame(float dt)
 {
     if(!GlobalData::shared()->isInitFlag){
@@ -2929,6 +3027,13 @@ void ImperialScene::onEnterFrame(float dt)
                     FunBuildController::getInstance()->clearUpBuildingInfo((it->second).itemId);
                 }
             }
+            
+            //begin a by ljf
+            //修改创建码头的时候未创建船的bug
+            if ((it->second).type == FUN_BUILD_TRAINFIELD) {
+                onCreateVikingsShip((it->second).level);
+            }
+            //end a by ljf
         }
         
         if((it->second).state==FUN_BUILD_UPING_END)//升级中状态 转变为 正常状态
@@ -2956,6 +3061,13 @@ void ImperialScene::onEnterFrame(float dt)
                     QueueController::getInstance()->startFinishQueue(qid, false);
                     FunBuildController::getInstance()->clearUpBuildingInfo((it->second).itemId);
                 }
+                
+                //begin a by ljf
+                //船坞升级后，更新船的模型
+                if ((it->second).type == FUN_BUILD_TRAINFIELD) {
+                    onUpgradeVikingsShip((it->second).level);
+                }
+                //end a by ljf
             }
         }
         
@@ -3323,6 +3435,10 @@ void ImperialScene::onUpdateInfo()
                               , m_nodeBuildings[(it->second).pos]->getPositionY(), m_signLayer, m_popLayer, m_arrbatchNode, curBatch, od, curBlentBatch);
             m_buildItems[it->first] = build;
             build->m_key = 1000-od;
+            
+            if ((it->second).type == FUN_BUILD_TRAINFIELD) {
+                onCreateVikingsShip((it->second).level);
+            }
         }
     }
     
@@ -4050,7 +4166,37 @@ bool ImperialScene::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const
 	
 	// titan node
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titanNode", CCNode*, this->m_titanNode);
-	
+    
+    //begin a by ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingNode", CCNode*, this->m_vikingNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingPath1", CCNode*, this->m_vikingPath1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingPath2", CCNode*, this->m_vikingPath2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingPath3", CCNode*, this->m_vikingPath3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingPath4", CCNode*, this->m_vikingPath4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingPath5", CCNode*, this->m_vikingPath5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingTouchNode", CCNode*, this->m_vikingTouchNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingNode2", CCNode*, this->m_vikingNode2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingTouchNode2", CCNode*, this->m_vikingTouchNode2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingNode3", CCNode*, this->m_vikingNode3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingTouchNode3", CCNode*, this->m_vikingTouchNode3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingNode4", CCNode*, this->m_vikingNode4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingTouchNode4", CCNode*, this->m_vikingTouchNode4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingNode5", CCNode*, this->m_vikingNode5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingTouchNode5", CCNode*, this->m_vikingTouchNode5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_waterNode", CCNode*, this->m_waterNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_vikingParentNode", CCNode*, this->m_vikingParentNode);
+    
+    //end a by ljf
+   
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bridgeNode", CCNode*, this->m_bridgeNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bridgeTouchNode", CCNode*, this->m_bridgeTouchNode);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_waterNode_L", CCNode*, this->m_waterNode_L);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_waterNode_R", CCNode*, this->m_waterNode_R);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_ziyuanmenNode", CCNode*, this->m_ziyuanmenNode);
+    
+    
     return false;
 }
 
@@ -4298,9 +4444,9 @@ void ImperialScene::initBigTile()
         m_shipBuild = SpeBuild::create(SPE_BUILD_SHIP);
         m_shipNode->addChild(m_shipBuild);
         int hod = m_shipNode->getZOrder();
-//        m_shipBuild->setNamePos(m_shipNode->getPositionX(), m_shipNode->getPositionY(), m_signLayer, m_arrbatchNode, m_chrTreeBatchNode, hod, m_chrTreeBlentBatchNode);
         m_shipBuild->setNamePos(m_shipNode->getPositionX(), m_shipNode->getPositionY(), m_signLayer, m_arrbatchNode, m_chrTreeBatchNode, hod);
         m_shipBuild->updateShipState();
+        createDockShip();
     }
     if(true) {
         m_merchanteBuild = SpeBuild::create(SPE_BUILD_MERCHANTE);
@@ -6641,6 +6787,7 @@ void ImperialScene::initPrincessTask()
 
 void ImperialScene::onCreateTitan()
 {
+    
 //    m_Titan = Titan::create(GlobalData::shared()->titanInfo.tid);
     m_Titan = Titan::create(60004);
     if (!m_Titan) {
@@ -6679,3 +6826,804 @@ void ImperialScene::onCreateTitan()
 
     
 }
+
+// tao.yu vikings
+void ImperialScene::onCreateVikingsShip(int level)
+{
+    mShipLevel = level;
+    int maxMarchCount = WorldController::getInstance()->getMaxMarchCount();
+    int currentMarchCount = WorldController::getInstance()->getCurrentMarchCount();
+    int showShipNum = maxMarchCount-currentMarchCount;
+    for(int i = 0; i < showShipNum; i++)
+    {
+        createOneVikingsShip(i + 1,   level);
+    }
+}
+//begin a by ljf
+int ImperialScene::getVikingsShipModelLevel(int level)
+{
+    int modelLevel = 1;
+    
+    auto dict = _dict(LocalController::shared()->DBXMLManager()->getGroupByKey("building")->objectForKey("427000"));
+    vector<string> picVec;
+    picVec.clear();
+    string picOrder = dict->valueForKey("pic_order")->getCString();
+    CCCommonUtils::splitString(picOrder, ";", picVec);
+    for (int i=0; i<picVec.size(); i++) {
+        int blv = atoi(picVec[i].c_str());
+        if(level >= blv)
+        {
+            modelLevel++;
+        }
+    }
+    
+    return modelLevel;
+}
+void ImperialScene::onUpgradeVikingsShip(int level)
+{
+    for(int i = 1; i <= 5; i++)
+    {
+        VikingShip * pShip = dynamic_cast<VikingShip *> (mVikingShipDict->objectForKey(i));
+        if(!pShip)
+            continue;
+        int oldModelLevel = pShip->getModelLevel();
+        int newModelLevel = getVikingsShipModelLevel(level);
+        
+        if(oldModelLevel != newModelLevel)
+        {
+            pShip->setModelLevel(newModelLevel);
+            NBSprite3D * p3D = pShip->getViking3D();
+            CCNode * pParent = p3D->getParent();
+            p3D->removeFromParent();
+            
+            char modelPath[256];
+            sprintf(modelPath, "%s%d%s", "3d/ship/ship_", newModelLevel, "_skin.c3b");
+            char texturePath[256];
+            sprintf(texturePath, "%s%d%s", "3d/ship/ship_", newModelLevel, ".jpg");
+            
+            p3D = NBSprite3D::create(modelPath);
+            p3D->setTexture(texturePath);
+            p3D->setScale(1.0);
+            //p3D->setRotation3D(Vec3(0, -80, 0));
+            pParent->addChild(p3D);
+            p3D->setCameraMask(pParent->getCameraMask());
+            pShip->setViking3D(p3D);
+            if(pShip->getActionStatus() == VIKING_SHIP_ACTION_IDLE)
+                pShip->playIdle();
+            if(pShip->getActionStatus() == VIKING_SHIP_ACTION_MOVE)
+                pShip->playMove();
+        }
+    }
+}
+
+void ImperialScene::shipActionAfterMove(CCNode* pNode, void *pObj)
+{
+    VikingShip * pShipInfo = (VikingShip *)(pObj);
+    if(!pShipInfo)
+        return;
+    
+    pShipInfo->playIdle();
+    CCNode * particleNode = pShipInfo->getParticleNode();
+    if(particleNode ->getChildByTag(233632))
+    {
+        particleNode ->getChildByTag(233632)->removeFromParent();
+    }
+    
+    m_isVikingShipMove = false;
+}
+
+void ImperialScene::createOneVikingsShip(int seq,   int level)
+{
+    CCNode * pPosCCBNode = getVikingsShipCCBPosNodeBySeq(seq);
+    CCNode * pTouchCCBNode = getVikingsShipCCBTouchNodeBySeq(seq);
+    if((!pPosCCBNode) || (!pTouchCCBNode))
+        return;
+    if(mVikingShipDict->objectForKey(seq) != nullptr)
+    {
+        return;
+    }
+    int modelLevel = getVikingsShipModelLevel(level);
+    
+    //NBSprite3D * m_vikings3D = p3d;
+    char modelPath[256];
+    sprintf(modelPath, "%s%d%s", "3d/ship/ship_", modelLevel, "_skin.c3b");
+    char texturePath[256];
+    sprintf(texturePath, "%s%d%s", "3d/ship/ship_", modelLevel, ".jpg");
+    //NBSprite3D * m_vikings3D = NBSprite3D::create("3d/ship/ship_3_skin.c3b");
+    //m_vikings3D->setTexture("3d/ship/ship_3.jpg");
+    NBSprite3D * m_vikings3D = NBSprite3D::create(modelPath);
+    m_vikings3D->setTexture(texturePath);
+    m_vikings3D->setScale(1.1);
+    //m_vikings3D->setRotation3D(Vec3(0, -80, 0));
+    
+    auto vikingsRootNode = CCNode::create();
+    vikingsRootNode->setRotation3D(Vec3(38, 39, -24));
+    auto rotateNode = CCNode::create();
+    rotateNode->addChild(m_vikings3D);
+    rotateNode->setRotation3D(Vec3(0, -80, 0));
+    vikingsRootNode->addChild(rotateNode);
+    //vikingsRootNode->addChild(m_vikings3D);
+    
+    vikingsRootNode->setPosition(m_touchLayer->convertToNodeSpace(pPosCCBNode->convertToWorldSpace(Point(0, 0))));
+    
+    Node * m_vikingsParticleNode = Node::create();
+    vikingsRootNode->addChild(m_vikingsParticleNode);
+    auto pVikingNode = Node::create();
+    pVikingNode->addChild(vikingsRootNode);
+    pVikingNode->setTag(238893 + seq);
+    m_node3d->addChild(pVikingNode);
+    
+    m_vikingsParticleNode->setRotation3D(Vec3(0, -80, 0));
+    
+    VikingShip * pShip = VikingShip::create(pPosCCBNode, pTouchCCBNode,  seq, m_vikings3D, m_vikingsParticleNode, modelLevel);
+    mVikingShipDict->setObject(pShip, seq);
+    
+    
+    if(pShip)
+        pShip->playIdle();
+    
+    m_touchLayer->setCameraMask((unsigned short)CameraFlag::USER4, true);
+    m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
+}
+
+void ImperialScene::destroyOneVikingsShip(int seq)
+{
+    if(mVikingShipDict->objectForKey(seq) == nullptr)
+    {
+        return;
+    }
+    CCNode * removeNode = m_node3d->getChildByTag(238893 + seq);
+    if(removeNode)
+        removeNode->removeFromParent();
+    mVikingShipDict->removeObjectForKey(seq);
+}
+
+void ImperialScene::updateVikingsShipNum()
+{
+    int maxMarchCount = WorldController::getInstance()->getMaxMarchCount();
+    int currentMarchCount = WorldController::getInstance()->getCurrentMarchCount();
+    int showShipNum = maxMarchCount-currentMarchCount;
+    for(int i = showShipNum + 1; i <= maxMarchCount; i++)
+    {
+        destroyOneVikingsShip(i);
+        
+    }
+    for(int i = 0; i < showShipNum ; i++)
+    {
+        createOneVikingsShip(i + 1, mShipLevel);
+        
+    }
+    for(int i = 1; i <= maxMarchCount ; i++)
+    {
+        updateVikingsShipLock(i, false);
+    }
+    for(int i = maxMarchCount + 1; i <= 5; i++)
+    {
+        updateVikingsShipLock(i, true);
+    }
+}
+
+void ImperialScene::onVikingsShipMove(VikingShip * pShipInfo)
+{
+    if(m_isVikingShipMove)
+    {
+        return;
+    }
+    if(!pShipInfo)
+        return;
+    NBSprite3D * pSprite3d = pShipInfo->getViking3D();
+    CCNode * m_vikingsParticleNode = pShipInfo->getParticleNode();
+    if(!pSprite3d)
+    {
+        return;
+    }
+    
+    pShipInfo->playMove();
+    //auto actionBeforeMove = CallFuncN::create([&](Node* sender){
+    
+    //回调动作代码
+    m_isVikingShipMove = true;
+    
+    auto viking3dPositon = pSprite3d->getPosition3D();
+    auto particleNode = Node::create();
+    particleNode->setTag(233632);
+    //pSprite3d->addChild(particleNode);
+    m_vikingsParticleNode->addChild(particleNode);
+    //船尾水花
+    float scale = pSprite3d->getScale();
+    
+    for( int i = 0; i <= 1; i++)
+    {
+        auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","CityBoat_back_",i)->getCString());
+        //float posZ = scale * 100 + (level - 2) * 20; //120, 3
+        float posZ = scale * 100 * 0.85;
+        particle->setPosition3D(Vec3(0, 0, 0 - posZ) );
+        particle->setRotation3D(Vec3(90, -60 , 0));
+        
+        particleNode->addChild(particle);
+        particle->setGlobalZOrder(-1);
+        particle->setCameraMask(particleNode->getParent()->getCameraMask());
+        
+    }
+    //船浆水花
+    for( int i = 0; i <= 1; i++)
+    {
+        auto particle = ParticleController::createParticle(CCString::createWithFormat("%s","CityBoat_spray")->getCString());
+        particle->setRotation3D(Vec3(90, 90 , 0));
+        //float posX = scale * 100 + (level - 0.3) * 20; //155, 3
+        float posX = scale * 100 * 1.3;
+        particle->setPosition3D(Vec3(posX - i * 2 * posX, 0, 20)); //左侧船桨位置
+        particleNode->addChild(particle);
+        particle->setGlobalZOrder(-1);
+        particle->setCameraMask(particleNode->getParent()->getCameraMask());
+    }
+    //船侧水花
+    for(int i = 0; i <= 1; i++)
+    {
+        for(int j = 0; j <=1; j++)
+        {
+            auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","CityBoat_water_",i)->getCString());
+            //float posX = scale * 50 + (level - 3.5) * 10; //45, 3
+            float posX = scale * 50 * 0.75;
+            particle->setRotation3D(Vec3(90, 0 , 180 * j));
+            particle->setPosition3D(Vec3(posX - j * 2 * posX, 0, 20));
+            particleNode->addChild(particle);
+            particle->setGlobalZOrder(-1);
+            particle->setCameraMask(particleNode->getParent()->getCameraMask());
+        }
+    }
+    
+    //});
+    vector<int> openBridgeSeq;
+    vector<int> closeBridgeSeq;
+    vector<CCPoint> path;
+    Vec2 lastPos = m_touchLayer->convertToNodeSpace(pSprite3d->getParent()->convertToWorldSpace(Point::ZERO));
+    path.push_back(Vec2(lastPos.x - 200, lastPos.y - 200));
+    path.push_back(Vec2(m_vikingPath1->getPositionX(), m_vikingPath1->getPositionY()));
+    path.push_back(Vec2(m_vikingPath2->getPositionX(), m_vikingPath2->getPositionY()));
+    openBridgeSeq.push_back(path.size() -1 );
+    path.push_back(Vec2(m_vikingPath3->getPositionX(), m_vikingPath3->getPositionY()));
+    closeBridgeSeq.push_back(path.size() -1 );
+    path.push_back(Vec2(m_vikingPath4->getPositionX(), m_vikingPath4->getPositionY()));
+    path.push_back(Vec2(m_vikingPath5->getPositionX(), m_vikingPath5->getPositionY()));
+    path.push_back(Vec2(m_vikingPath4->getPositionX(), m_vikingPath4->getPositionY()));
+    path.push_back(Vec2(m_vikingPath3->getPositionX(), m_vikingPath3->getPositionY()));
+    openBridgeSeq.push_back(path.size() -1 );
+    path.push_back(Vec2(m_vikingPath2->getPositionX(), m_vikingPath2->getPositionY()));
+    closeBridgeSeq.push_back(path.size() -1 );
+    path.push_back(Vec2(m_vikingPath1->getPositionX(), m_vikingPath1->getPositionY()));
+    //path.push_back(Vec2(m_vikingNode->getPositionX(), m_vikingNode->getPositionY()));
+    path.push_back(Vec2(lastPos.x - 200, lastPos.y - 200));
+    path.push_back(lastPos);
+    //Vec2 lastPos = Vec2(m_vikingNode->getPositionX(), m_vikingNode->getPositionY());
+    
+    
+    float moveSpeed = 70;
+    //float lastAngle = -52.5;
+    //float lastAngle = pSprite3d->getRotationY();
+    //Vec3 angle = pSprite3d->getRotation3D();
+    //float lastAngle = angle.y;
+    //lastAngle = lastAngle + pSprite3d->getParent()->getRotation3D().y;
+    float lastAngle = -90.0 + pSprite3d->getRotation3D().y + pSprite3d->getParent()->getRotation3D().y + pSprite3d->getParent()->getParent()->getRotation3D().y;
+    float originalAngle = lastAngle;
+    bool isResetAngle = true;
+    float rotateSeppd = 50.0;
+    Vector<FiniteTimeAction*> arrayOfMoveActions;
+    Vector<FiniteTimeAction*> arrayOfRotateActions;
+    //arrayOfRotateActions.pushBack(actionBeforeMove);
+    int seq = 0;
+    float pastTime = 0;
+    vector<float> openBridgeTimes;
+    vector<float> closeBridgeTimes;
+    for(auto iter = path.begin(); iter != path.end(); ++iter)
+    {
+        Vec2 onePos = *iter;
+        CCPoint gap = ccpSub(onePos, lastPos);
+        float len = ccpLength(gap);
+        float moveTime = len/moveSpeed;
+        
+        float oneAngle=CCMathUtils::getAngle(lastPos, onePos);
+        float rotateAngle = fabsf(oneAngle - lastAngle);
+        float rotateDirection = 1.0;
+        if(oneAngle < lastAngle)
+            rotateDirection = -1.0 * rotateDirection;
+        if (rotateAngle > 180)
+        {
+            rotateAngle = 360 - rotateAngle;
+            rotateDirection = -1.0 * rotateDirection;
+        }
+        float rotateTime = rotateAngle / rotateSeppd;
+        
+        auto move1 = MoveBy::create(moveTime, gap);
+        auto moveDelay = DelayTime::create(rotateTime);
+        arrayOfMoveActions.pushBack(moveDelay);
+        arrayOfMoveActions.pushBack(move1);
+        
+        
+        auto rotate1 = RotateBy::create(rotateTime, Vec3(0, (rotateAngle) * rotateDirection, 0));
+        auto rotateDelay = CCDelayTime::create(moveTime);
+        arrayOfRotateActions.pushBack(rotate1);
+        arrayOfRotateActions.pushBack(rotateDelay);
+        
+        lastPos = onePos;
+        lastAngle = oneAngle;
+        
+        pastTime += moveTime + rotateTime;
+        for(auto iter1 = openBridgeSeq.begin(); iter1 != openBridgeSeq.end(); ++iter1)
+        {
+            int openSeq = *(iter1);
+            if(openSeq == seq)
+            {
+                
+                openBridgeTimes.push_back(pastTime - 3.5);
+            }
+        }
+        for(auto iter1 = closeBridgeSeq.begin(); iter1 != closeBridgeSeq.end(); ++iter1)
+        {
+            int openSeq = *(iter1);
+            if(openSeq == seq)
+            {
+                //this->schedule(schedule_selector(ImperialScene::closeBridge), 100, 0,  pastTime);
+                closeBridgeTimes.push_back(pastTime);
+            }
+        }
+        seq += 1;
+    }
+    if(isResetAngle)
+    {
+        auto rotate1 = RotateBy::create(fabsf(originalAngle - lastAngle) / rotateSeppd, Vec3(0, originalAngle - lastAngle, 0));
+        arrayOfRotateActions.pushBack(rotate1);
+    }
+    
+    CCCallFuncND* actionAfterMove = CCCallFuncND::create(this, callfuncND_selector(ImperialScene::shipActionAfterMove), (void *)(pShipInfo));
+    arrayOfRotateActions.pushBack(actionAfterMove);
+    pSprite3d->getParent()->getParent()->getParent()->runAction(CCSequence::create(arrayOfMoveActions));
+    CCSequence * rotateSeq = CCSequence::create(arrayOfRotateActions);
+    pSprite3d->getParent()->runAction(rotateSeq);
+    particleNode->runAction(rotateSeq->clone());
+    
+    if(openBridgeTimes.size() == 2)
+    {
+        this->schedule(schedule_selector(ImperialScene::openBridge), openBridgeTimes[1] - openBridgeTimes[0], 1, openBridgeTimes[0]);
+    }
+    if(closeBridgeTimes.size() == 2)
+    {
+        this->schedule(schedule_selector(ImperialScene::closeBridge), closeBridgeTimes[1] - closeBridgeTimes[0], 1, closeBridgeTimes[0]);
+    }
+}
+
+bool ImperialScene::onVikingsShipTouched(CCTouch* pTouch)
+{
+    for(int i = 1; i <= 5; i++)
+    {
+        VikingShip * pShip = dynamic_cast<VikingShip *> (mVikingShipDict->objectForKey(i));
+        if(!pShip)
+            continue;
+        NBSprite3D * p3D = pShip->getViking3D();
+        CCNode * pTouchNode = pShip->getTouchCCBNode();
+        
+        if(p3D == nullptr || pTouchNode == nullptr)
+        {
+            continue;
+        }
+        Vec2 touchPoint = pTouchNode->convertToNodeSpace(pTouch->getLocation());
+        // 下面的touch点转换是为了让点击区域在模型内
+        float originX = -1 * pTouchNode->getContentSize().width * pTouchNode->getAnchorPoint().x;
+        float originY = -1 * pTouchNode->getContentSize().height * pTouchNode->getAnchorPoint().y;
+        touchPoint.x = touchPoint.x + originX;
+        touchPoint.y = touchPoint.y + originY;
+        
+        Rect boundingBox(originX, originY, pTouchNode->getContentSize().width, pTouchNode->getContentSize().height);
+        //    Rect boundingBox = this->getBoundingBox();
+        bool isTouched = boundingBox.containsPoint(touchPoint);
+        if (!isTouched)
+        {
+            continue;
+        }
+        else
+        {
+            onVikingsShipMove(pShip);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ImperialScene::onVikingsShipLockTouched(CCTouch* pTouch)
+{
+    int lockTag = 832389;
+    for(int i = 1; i <= 5; i++)
+    {
+        auto posCCBNode = getVikingsShipCCBPosNodeBySeq(i);
+        if(!posCCBNode)
+            continue;
+        auto pSpr = posCCBNode->getChildByTag(lockTag);
+        if(!pSpr || pSpr->isVisible() == false)
+        {
+            continue;
+        }
+        
+        Vec2 touchPoint = pSpr->convertToNodeSpace(pTouch->getLocation());
+        // 下面的touch点转换是为了让点击区域在模型内
+        float originX = -1 * pSpr->getContentSize().width * pSpr->getAnchorPoint().x;
+        float originY = -1 * pSpr->getContentSize().height * pSpr->getAnchorPoint().y;
+        touchPoint.x = touchPoint.x + originX;
+        touchPoint.y = touchPoint.y + originY;
+        
+        Rect boundingBox(originX, originY, pSpr->getContentSize().width, pSpr->getContentSize().height);
+        //    Rect boundingBox = this->getBoundingBox();
+        bool isTouched = boundingBox.containsPoint(touchPoint);
+        if (!isTouched)
+        {
+            continue;
+        }
+        else
+        {
+            unsigned int current =  WorldController::getInstance()->getCurrentMarchCount();
+            unsigned int max = WorldController::getInstance()->getMaxMarchCount();
+            //if (current >= max)
+            {
+                WorldController::getInstance()->showMarchAlert(max);
+                //return;
+            }
+            
+            //begin ljf test
+            //requestRecommendAlliance();
+            //end ljf test
+            return true;
+        }
+    }
+    return false;
+}
+
+void ImperialScene::createWalker(float t)
+{
+    if(true)
+    {
+        for (int i = 1; i <= 1; i++)
+        {
+            string m_icon = "b020";
+            Walker* soldier = Walker::create(m_walkerBatchNode, NULL,0,0,m_icon,"NE",false);
+            soldier->getShadow()->setScale(0.5);
+            
+            soldier->setAnchorPoint(ccp(0.5, 0.5));
+            
+            m_walkerLayer->addChild(soldier);
+            soldier->setSprScale(1);
+        }
+        
+        for (int i = 1; i <= 1; i++)
+        {
+            string m_icon = "b010";
+            Walker* soldier = Walker::create(m_walkerBatchNode, NULL, 0,0,m_icon,"NE",false);
+            soldier->getShadow()->setScale(0.5);
+            
+            soldier->setAnchorPoint(ccp(0.5, 0.5));
+            
+            m_walkerLayer->addChild(soldier);
+            soldier->setSprScale(1);
+        }
+        
+    }
+}
+void ImperialScene::createEnemy(float t)
+{
+    if(m_isPauseEnemy)
+        return;
+    m_enemyArray.clear();
+    for (int i = 1; i <= m_enemyNum; i++)
+    {
+        OutsideEnemy* soldier = OutsideEnemy::create(m_walkerBatchNode, m_jianBatchNode, ENEMY_TYPE_WILDMAN);
+        //soldier->getShadow()->setScale(0.5);
+        
+        soldier->setAnchorPoint(ccp(0.5, 0.5));
+        
+        m_walkerLayer->addChild(soldier);
+        
+        soldier->start();
+        m_enemyArray.pushBack(soldier);
+        //soldier->setSprScale(1);
+    }
+}
+void ImperialScene::checkPopRecommendAlliance(float t)
+{
+    
+}
+void ImperialScene::shootArrow(float t)
+{
+    
+}
+void ImperialScene::openBridge(float t)
+{
+    if(m_bridgeOpened == false)
+    {
+        onBridgeOpen();
+    }
+}
+void ImperialScene::closeBridge(float t)
+{
+    if(m_bridgeOpened == true)
+    {
+        onBridgeClose();
+    }
+}
+void ImperialScene::updateVikingsShipLock(int seq, bool isShow)
+{
+    CCNode * posCCBNode = getVikingsShipCCBPosNodeBySeq(seq);
+    if(!posCCBNode)
+        return;
+    int lockTag = 832389;
+    if(isShow == true)
+    {
+        auto pNode = posCCBNode->getChildByTag(lockTag);
+        if (!pNode)
+        {
+            pNode = CCLoadSprite::createSprite("build_lock.png");
+            //pNode->setGlobalZOrder(1);
+            pNode->setPosition(13, 34);
+            posCCBNode->addChild(pNode, 1);
+            pNode->setTag(lockTag);
+        }
+        
+        pNode->setVisible(true);
+    }
+    if(isShow == false)
+    {
+        auto pNode = posCCBNode->getChildByTag(lockTag);
+        if(pNode)
+            pNode->setVisible(false);
+    }
+}
+CCNode * ImperialScene::getVikingsShipCCBPosNodeBySeq(int seq)
+{
+    if(seq == 1)
+        return m_vikingNode;
+    if(seq == 2)
+        return m_vikingNode2;
+    if(seq == 3)
+        return m_vikingNode3;
+    if(seq == 4)
+        return m_vikingNode4;
+    if(seq == 5)
+        return m_vikingNode5;
+}
+CCNode * ImperialScene::getVikingsShipCCBTouchNodeBySeq(int seq)
+{
+    if(seq == 1)
+        return m_vikingTouchNode;
+    if(seq == 2)
+        return m_vikingTouchNode2;
+    if(seq == 3)
+        return m_vikingTouchNode3;
+    if(seq == 4)
+        return m_vikingTouchNode4;
+    if(seq == 5)
+        return m_vikingTouchNode5;
+}
+
+
+
+void ImperialScene::requestRecommendAlliance()
+{
+    
+}
+
+
+void ImperialScene::pauseEnemy(bool isGuide )
+{
+    m_isPauseEnemy = true;
+    int i = 0;
+    for( ; i < m_enemyArray.size(); i++ )
+    {
+        auto node = m_enemyArray.at(i);
+        
+        node->PauseEnemy();
+    }
+    if (!isGuide) {
+        this->unschedule(schedule_selector(ImperialScene::createEnemy));
+    }
+}
+void ImperialScene::resumeEnemy(bool isGuide )
+{
+    m_isPauseEnemy = false;
+    int i = 0;
+    for( ; i < m_enemyArray.size(); i++ )
+    {
+        auto node = m_enemyArray.at(i);
+        
+        node->ResumeEnemy();
+    }
+    if (!isGuide) {
+        this->schedule(schedule_selector(ImperialScene::createEnemy), 30.0f, CC_REPEAT_FOREVER, 0.0f);
+    }
+}
+
+//end a by ljf
+
+
+void ImperialScene::createDockShip()//fusheng 码头的船
+{
+    NBSprite3D * dockShip = NBSprite3D::create("3d/ship/ship_gem.c3b");
+    dockShip->setTexture("3d/ship/ship_gem.jpg");
+    dockShip->setScale(1.5);
+    auto dockShipRootNode = CCNode::create();
+    dockShipRootNode->addChild(dockShip);
+    
+    dockShipRootNode->setPosition(m_touchLayer->convertToNodeSpace(m_shipNode->convertToWorldSpace(Point(0, 0))));
+    
+    auto a3d = Animation3D::create("3d/ship/ship_gem.c3b");
+    
+    dockShip->runAction(RepeatForever::create(Animate3D::create(a3d)));
+    
+    m_node3d->addChild(dockShipRootNode);
+    
+    dockShipRootNode->setRotation3D(Vec3(38, 39, -24));
+    
+    
+    m_touchLayer->setCameraMask((unsigned short)CameraFlag::USER4, true);
+    
+    m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
+}
+
+void ImperialScene::onCreateBridge()
+{
+    auto bridgeRootNode = CCNode::create();
+    bridgeRootNode->setRotation3D(Vec3(38, 39, -24));
+    //    bridgeRootNode->setRotation3D(Vec3(0, 0, 0));
+    bridgeRootNode->setPosition(m_touchLayer->convertToNodeSpace(m_bridgeNode->convertToWorldSpace(Point(0, 0))));
+    auto pBridgeNode = Node::create();
+    pBridgeNode->addChild(bridgeRootNode);
+    m_node3d->addChild(pBridgeNode);
+    
+    m_bridge3D_Up = NBSprite3D::create("3d/bridge/bridge_1_skin.c3b");
+    m_bridge3D_Up->setTexture("3d/bridge/bridge_1.jpg");
+    m_bridge3D_Up->setScale(5.5);
+    bridgeRootNode->addChild(m_bridge3D_Up);
+    
+    m_bridge3D_Down = NBSprite3D::create("3d/bridge/bridge_1_skin.c3b");
+    m_bridge3D_Down->setTexture("3d/bridge/bridge_1.jpg");
+    m_bridge3D_Down->setScale(5.5);
+    m_bridge3D_Down->setRotation3D(Vec3(0, 180, 0));
+    bridgeRootNode->addChild(m_bridge3D_Down);
+    
+    auto anim = Animation3D::create("3d/bridge/bridge_1_open.c3b");
+    if (anim) {
+        auto pAnim = Animate3D::createWithFrames(anim, 0, 1);
+        if (pAnim) {
+            auto act = Repeat::create(pAnim,1);
+            auto act2 = act->clone();
+            m_bridge3D_Up->runAction(act);
+            m_bridge3D_Down->runAction(act2);
+        }
+    }
+    
+    m_touchLayer->setCameraMask((unsigned short)CameraFlag::USER4, true);
+    m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
+    m_bridge3D_Up->setCameraMask((unsigned short) CameraFlag::USER2, true);
+    m_bridge3D_Down->setCameraMask((unsigned short) CameraFlag::USER2, true);
+}
+
+bool ImperialScene::onBridgeTouched(CCTouch* pTouch)
+{
+    if(!m_isBridgeCanClick || m_bridge3D_Up == nullptr || m_bridge3D_Down == nullptr || m_bridgeTouchNode == nullptr)
+    {
+        return false;
+    }
+    //begin a by ljf
+    if(m_isVikingShipMove)
+    {
+        return false;
+    }
+    //end a by ljf
+    Vec2 touchPoint = m_bridgeTouchNode->convertToNodeSpace(pTouch->getLocation());
+    // 下面的touch点转换是为了让点击区域在模型内
+    float originX = -1 * m_bridgeTouchNode->getContentSize().width * m_bridgeTouchNode->getAnchorPoint().x;
+    float originY = -1 * m_bridgeTouchNode->getContentSize().height * m_bridgeTouchNode->getAnchorPoint().y;
+    touchPoint.x = touchPoint.x + originX;
+    touchPoint.y = touchPoint.y + originY;
+    
+    Rect boundingBox(originX, originY, m_bridgeTouchNode->getContentSize().width, m_bridgeTouchNode->getContentSize().height);
+    
+    bool isTouched = boundingBox.containsPoint(touchPoint);
+    if (!isTouched) {
+        return false;
+    }
+    m_isBridgeCanClick = false;
+    
+    if (m_bridgeOpened) {
+        onBridgeClose();
+    }
+    else {
+        onBridgeOpen();
+    }
+    //    auto particle = ParticleController::createParticle(CCString::createWithFormat("BridgeMoveF")->getCString());
+    //    m_bridgeNode->addChild(particle);
+    //    particle->setTag(9527);
+    return true;
+}
+void ImperialScene::onBridgeOpen()
+{
+    auto anim1 = Animation3D::create("3d/bridge/bridge_1_open.c3b");
+    if (anim1) {
+        auto pAnim = Animate3D::createWithFrames(anim1, 0, 104); //close 105-256
+        if (pAnim) {
+            auto act = Repeat::create(pAnim,1);
+            auto act2 = act->clone();
+            m_bridge3D_Up->runAction(act);
+            m_bridge3D_Down->runAction(act2);
+            this->runAction(CCSequence::create(CCDelayTime::create(4.0), CCCallFuncN::create(this, callfuncN_selector(ImperialScene::changeBridgeState)), NULL));
+        }
+    }
+}
+void ImperialScene::onBridgeClose()
+{
+    auto anim1 = Animation3D::create("3d/bridge/bridge_1_close.c3b");
+    if (anim1) {
+        auto pAnim = Animate3D::createWithFrames(anim1, 140, 260); //close 140-260
+        if (pAnim) {
+            auto act = Repeat::create(pAnim,1);
+            auto act2 = act->clone();
+            m_bridge3D_Up->runAction(act);
+            m_bridge3D_Down->runAction(act2);
+            this->runAction(CCSequence::create(CCDelayTime::create(4.0), CCCallFuncN::create(this, callfuncN_selector(ImperialScene::changeBridgeState)), NULL));
+        }
+    }
+}
+void ImperialScene::changeBridgeState(CCNode* p)
+{
+    m_bridgeOpened = !m_bridgeOpened;
+    m_isBridgeCanClick = true;
+    // 桥落下的时候播放水花粒子
+    if (false && !m_bridgeOpened) {
+        auto prt_l_0 = ParticleController::createParticle(CCString::createWithFormat("BridgeWaterL_0")->getCString());
+        prt_l_0->setAutoRemoveOnFinish(true);
+        auto prt_l_1 = ParticleController::createParticle(CCString::createWithFormat("BridgeWaterL_1")->getCString());
+        prt_l_1->setAutoRemoveOnFinish(true);
+        m_waterNode_L->addChild(prt_l_0);
+        m_waterNode_L->addChild(prt_l_1);
+        
+        auto prt_r_0 = ParticleController::createParticle(CCString::createWithFormat("BridgeWaterR_0")->getCString());
+        prt_r_0->setAutoRemoveOnFinish(true);
+        auto prt_r_1 = ParticleController::createParticle(CCString::createWithFormat("BridgeWaterR_1")->getCString());
+        prt_r_1->setAutoRemoveOnFinish(true);
+        m_waterNode_R->addChild(prt_r_0);
+        m_waterNode_R->addChild(prt_r_1);
+    }
+    //    if (m_bridgeNode->getChildByTag(9527)) {
+    //        m_bridgeNode->removeChildByTag(9527);
+    //    }
+}
+
+int ImperialScene::getTrapsPicNumber(int num)
+{
+    return 0;
+}
+
+void ImperialScene::onRefreshOutsideTraps(CCObject* obj)
+{
+    
+}
+
+void ImperialScene::cartoonHander(CCObject* params)
+{
+    /*
+    if(params)
+    {
+        string str = ((CCString*)params)->_string;
+        if (str == "cartoon2") {
+            m_enemyNum = 30;
+            createEnemy(0);
+        }
+        else if (str == "cartoon3") {
+            this->pauseEnemy(true);
+        }
+        else if (str == "cartoon4") {
+            this->resumeEnemy(true);
+        }
+        else if (str == "cartoon5") {
+            UIComponent::getInstance()->playQuestAnimation();
+        }
+    }
+    */
+}
+

@@ -1562,6 +1562,9 @@
 		E6FD35A81BBA964F004320C7 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FD35A71BBA964F004320C7 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E6FD35B21BBA9EB0004320C7 /* ReplayKitsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E6FD35B11BBA9EB0004320C7 /* ReplayKitsController.mm */; };
 		E6FE9EB7182738E3000020FA /* TipsView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6FE9EB5182738E3000020FA /* TipsView.cpp */; };
+		ED7E77FD1C71E4F2004D5E2F /* VikingShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7E77FB1C71E4F2004D5E2F /* VikingShip.cpp */; };
+		ED82CF5D1C72C0DC005C590C /* Walker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED82CF5B1C72C0DC005C590C /* Walker.cpp */; };
+		ED82CF641C72C25E005C590C /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED82CF621C72C25E005C590C /* Enemy.cpp */; };
 		EDBDF2EB1C632CFF002A4C1A /* eeeq_0.png in Resources */ = {isa = PBXBuildFile; fileRef = EDBDF2E91C632CFF002A4C1A /* eeeq_0.png */; };
 		EDBDF2EC1C632CFF002A4C1A /* eeeq.fnt in Resources */ = {isa = PBXBuildFile; fileRef = EDBDF2EA1C632CFF002A4C1A /* eeeq.fnt */; };
 		F429408C1B67AE7000078155 /* ComposeView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F429408A1B67AE7000078155 /* ComposeView.cpp */; };
@@ -4549,6 +4552,12 @@
 		E6FD35B11BBA9EB0004320C7 /* ReplayKitsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ReplayKitsController.mm; sourceTree = "<group>"; };
 		E6FE9EB5182738E3000020FA /* TipsView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TipsView.cpp; sourceTree = "<group>"; };
 		E6FE9EB6182738E3000020FA /* TipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsView.h; sourceTree = "<group>"; };
+		ED7E77FB1C71E4F2004D5E2F /* VikingShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VikingShip.cpp; path = vikingship/VikingShip.cpp; sourceTree = "<group>"; };
+		ED7E77FC1C71E4F2004D5E2F /* VikingShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VikingShip.h; path = vikingship/VikingShip.h; sourceTree = "<group>"; };
+		ED82CF5B1C72C0DC005C590C /* Walker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Walker.cpp; sourceTree = "<group>"; };
+		ED82CF5C1C72C0DC005C590C /* Walker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Walker.h; sourceTree = "<group>"; };
+		ED82CF621C72C25E005C590C /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		ED82CF631C72C25E005C590C /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		EDBDF2E91C632CFF002A4C1A /* eeeq_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eeeq_0.png; path = Resources/eeeq_0.png; sourceTree = "<group>"; };
 		EDBDF2EA1C632CFF002A4C1A /* eeeq.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eeeq.fnt; path = Resources/eeeq.fnt; sourceTree = "<group>"; };
 		F429408A1B67AE7000078155 /* ComposeView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComposeView.cpp; sourceTree = "<group>"; };
@@ -6286,6 +6295,10 @@
 		366E308117D5C4DB006CCCBF /* cropscene */ = {
 			isa = PBXGroup;
 			children = (
+				ED82CF621C72C25E005C590C /* Enemy.cpp */,
+				ED82CF631C72C25E005C590C /* Enemy.h */,
+				ED82CF5B1C72C0DC005C590C /* Walker.cpp */,
+				ED82CF5C1C72C0DC005C590C /* Walker.h */,
 				5736A1A918224071007C431C /* ImperialScene.h */,
 				5736A1AA1822407D007C431C /* ImperialScene.cpp */,
 				5736A1AE18227244007C431C /* FunBuild.h */,
@@ -8283,6 +8296,7 @@
 		DBA087DE17CDA95F001C68AD /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				ED7E77F61C71E4C4004D5E2F /* VikingShip */,
 				365A721E1C63519100E7E509 /* titan */,
 				5724402E1B218344000DAF5F /* dragon */,
 				FD3E3809183B3F19005596BD /* world */,
@@ -8384,6 +8398,15 @@
 				943188421BE0B2B000BA3E4B /* MailHeiqishiListView.hpp */,
 			);
 			name = mail;
+			sourceTree = "<group>";
+		};
+		ED7E77F61C71E4C4004D5E2F /* VikingShip */ = {
+			isa = PBXGroup;
+			children = (
+				ED7E77FB1C71E4F2004D5E2F /* VikingShip.cpp */,
+				ED7E77FC1C71E4F2004D5E2F /* VikingShip.h */,
+			);
+			name = VikingShip;
 			sourceTree = "<group>";
 		};
 		FD0E65291844860300101958 /* gtmbase64 */ = {
@@ -9652,6 +9675,7 @@
 				6C1F66A01C18372400EE33E1 /* YYTextRunDelegate.m in Sources */,
 				0CD306B31A7FABA500C1DB80 /* LotteryActView.cpp in Sources */,
 				6C1F66821C18372400EE33E1 /* CALayer+YYWebImage.m in Sources */,
+				ED7E77FD1C71E4F2004D5E2F /* VikingShip.cpp in Sources */,
 				BAC6921B1A2DB7DC0014C752 /* ShopIAPHelper.mm in Sources */,
 				597D8D241C23266D00B6DEA7 /* HelpshiftCocos2dx.cpp in Sources */,
 				94913B6C1B257DB9000DB0B7 /* TerritoryTowerPush.cpp in Sources */,
@@ -10084,6 +10108,7 @@
 				6CD847C71B2EED7600C8AF0D /* UIImage+resized.m in Sources */,
 				B2557C471C1FD89F0008D554 /* DragonBattlePrizeView.cpp in Sources */,
 				FD1BA2631827883E00E2A12C /* ScienceCommand.cpp in Sources */,
+				ED82CF5D1C72C0DC005C590C /* Walker.cpp in Sources */,
 				366E307717D58D75006CCCBF /* LogoutCommand.cpp in Sources */,
 				366E307A17D591EE006CCCBF /* SFHFKeychainUtils.m in Sources */,
 				366E308C17D70557006CCCBF /* NetController.cpp in Sources */,
@@ -10219,6 +10244,7 @@
 				272AB67B1B15C7BC0052E896 /* TopUIView.mm in Sources */,
 				6CDD45231B8491520023AFB8 /* MailListCell.mm in Sources */,
 				947E7FBF1B0B2247000195D5 /* TerritoryResourcePush.cpp in Sources */,
+				ED82CF641C72C25E005C590C /* Enemy.cpp in Sources */,
 				E6FC9B12181E02D000BAFCFF /* MailCell.cpp in Sources */,
 				57E35C3619051E22009E34E0 /* BatchBuyItemView.cpp in Sources */,
 				E6FC9B13181E02D000BAFCFF /* MailPopUpView.cpp in Sources */,

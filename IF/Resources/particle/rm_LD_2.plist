@@ -5,7 +5,7 @@
 	<key>absolutePosition</key>
 	<false/>
 	<key>angle</key>
-	<real>220</real>
+	<real>0.0</real>
 	<key>angleVariance</key>
 	<real>0.0</real>
 	<key>blendFuncDestination</key>
@@ -13,9 +13,9 @@
 	<key>blendFuncSource</key>
 	<integer>1</integer>
 	<key>configName</key>
-	<string>rm_LD_2</string>
+	<string>Centaur_LD_2</string>
 	<key>duration</key>
-	<real>0.050000000000000003</real>
+	<real>0.115</real>
 	<key>emitterType</key>
 	<integer>0</integer>
 	<key>finishColorAlpha</key>
@@ -23,9 +23,9 @@
 	<key>finishColorBlue</key>
 	<real>0.0</real>
 	<key>finishColorGreen</key>
-	<real>0.013354077935218811</real>
+	<real>0.027706276625394821</real>
 	<key>finishColorRed</key>
-	<real>0.25911423563957214</real>
+	<real>0.37075141072273254</real>
 	<key>finishColorVarianceAlpha</key>
 	<real>0.0</real>
 	<key>finishColorVarianceBlue</key>
@@ -35,9 +35,9 @@
 	<key>finishColorVarianceRed</key>
 	<real>0.0</real>
 	<key>finishParticleSize</key>
-	<real>300</real>
+	<real>310</real>
 	<key>finishParticleSizeVariance</key>
-	<real>0.0</real>
+	<real>25</real>
 	<key>gravityx</key>
 	<real>0.0</real>
 	<key>gravityy</key>
@@ -67,11 +67,11 @@
 	<key>rotatePerSecondVariance</key>
 	<real>0.0</real>
 	<key>rotationEnd</key>
-	<real>240</real>
+	<real>280</real>
 	<key>rotationEndVariance</key>
 	<real>0.0</real>
 	<key>rotationStart</key>
-	<real>250</real>
+	<real>350</real>
 	<key>rotationStartVariance</key>
 	<real>0.0</real>
 	<key>sourcePositionVariancex</key>
@@ -79,15 +79,15 @@
 	<key>sourcePositionVariancey</key>
 	<real>0.0</real>
 	<key>speed</key>
-	<real>200</real>
+	<real>0.0</real>
 	<key>speedVariance</key>
-	<real>25</real>
+	<real>0.0</real>
 	<key>startColorAlpha</key>
 	<real>1</real>
 	<key>startColorBlue</key>
-	<real>0.34573456645011902</real>
+	<real>0.117893286049366</real>
 	<key>startColorGreen</key>
-	<real>0.57796686887741089</real>
+	<real>0.65355885028839111</real>
 	<key>startColorRed</key>
 	<real>1</real>
 	<key>startColorVarianceAlpha</key>
@@ -99,7 +99,7 @@
 	<key>startColorVarianceRed</key>
 	<real>0.0</real>
 	<key>startParticleSize</key>
-	<real>100</real>
+	<real>50</real>
 	<key>startParticleSizeVariance</key>
 	<real>0.0</real>
 	<key>tangentialAccelVariance</key>
@@ -107,7 +107,7 @@
 	<key>tangentialAcceleration</key>
 	<real>0.0</real>
 	<key>textureFileName</key>
-	<string>Effect_0164.png</string>
+	<string>Effect_0147.png</string>
 	<key>textureImageData</key>
 	<string></string>
 	<key>yCoordFlipped</key>

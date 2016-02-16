@@ -239,14 +239,14 @@ cocos2d::CCSpriteFrame* CCLoadSprite::getSF(const char *fileName) {
 
 void CCLoadSprite::loadCommonResource() {
     int generalIconIndex = 1;
-//    for (int i=generalIconIndex; i<=COMMON_COUNT; i++) {
-//        doLoadResource(COMMON_PATH, i);
-//        doLoadResourceAsync(COMMON_PATH, NULL, i);
-//    }
-    
-    doLoadResource(COMMON_PATH, 1);
-    doLoadResourceAsync(COMMON_PATH, NULL, 2);
-    doLoadResourceAsync(COMMON_PATH, NULL, 3);
+    for (int i=generalIconIndex; i<=COMMON_COUNT; i++) {
+        doLoadResource(COMMON_PATH, i);
+        doLoadResourceAsync(COMMON_PATH, NULL, i);
+    }
+    // tao.yu TODO 解决主界面资源消失问题临时解决
+//    doLoadResource(COMMON_PATH, 1);
+//    doLoadResourceAsync(COMMON_PATH, NULL, 2);
+//    doLoadResourceAsync(COMMON_PATH, NULL, 3);
     doLoadResourceAsync(COMMON_PATH, NULL, 9);
     
     if (CCCommonUtils::isIosAndroidPad())

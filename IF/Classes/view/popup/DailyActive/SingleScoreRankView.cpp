@@ -16,6 +16,8 @@
 #include "RewardController.h"
 #include "SingleScoreHistoryRankView.hpp"
 
+#define CELL_WIDTH (620 - 60)
+
 static int SType = 0; //0 个人排行榜奖励 1 联盟排行榜奖励 2 王国个人排行榜奖励 3 王国联盟排行榜奖励
 SingleScoreRankView* SingleScoreRankView::create(int type)
 {
@@ -89,7 +91,7 @@ bool SingleScoreRankView::init(int type)
     }else {
         m_info3Label->setString(CC_ITOA( curRank ));
     }
-    m_info3Label->setPositionX( m_info2Label->getPositionX() + m_info2Label->getContentSize().width*m_info2Label->getOriginScaleX() + 10 );
+    // m_info3Label->setPositionX( m_info2Label->getPositionX() + m_info2Label->getContentSize().width*m_info2Label->getOriginScaleX() + 10 );
     
     m_tableView = CCTableView::create(this, m_infoList->getContentSize());
     m_tableView->setDirection(kCCScrollViewDirectionVertical);
@@ -260,12 +262,12 @@ CCSize SingleScoreRankView::tableCellSizeForIndex(  cocos2d::extension::TableVie
     {
         return CCSizeZero;
     }
-    return CCSizeMake(620, 60);
+    return CCSizeMake(CELL_WIDTH, 60);
 }
 
 CCSize SingleScoreRankView::cellSizeForTable(  cocos2d::extension::TableView *table)
 {
-    return CCSizeMake(620, 60);
+    return CCSizeMake(CELL_WIDTH, 60);
 }
 
 CCTableViewCell* SingleScoreRankView::tableCellAtIndex(  cocos2d::extension::TableView *table, ssize_t idx)
@@ -343,7 +345,7 @@ bool SingleScoreRankCell::init()
     }else if (SType == 3) {
         m_stateLabel->setString(_lang("150369"));
     }
-    setContentSize(CCSizeMake(620, 60));
+    setContentSize(CCSizeMake(CELL_WIDTH, 60));
     return true;
 }
 void SingleScoreRankCell::onEnter()
