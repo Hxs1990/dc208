@@ -542,6 +542,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/scene/cropscene/WallBuild.cpp \
 ../../IF/Classes/scene/loading/LoadingScene.cpp \
 ../../IF/Classes/scene/SceneContainer.cpp \
+../../IF/Classes/scene/titan/DrawNode3D.cpp \
 ../../IF/Classes/scene/titan/NBGPostEffectLayer.cpp \
 ../../IF/Classes/scene/titan/NBSprite3D.cpp \
 ../../IF/Classes/scene/titan/Titan.cpp \
@@ -603,6 +604,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/guide/GuidePlotView.cpp \
 ../../IF/Classes/view/guide/GuideView.cpp \
 ../../IF/Classes/view/guide/NewPlotView.cpp \
+../../IF/Classes/view/guiExt/ArcGalleryCell.cpp \
 ../../IF/Classes/view/guiExt/ArcScrollView.cpp \
 ../../IF/Classes/view/guiExt/CCSliderBar.cpp \
 ../../IF/Classes/view/guiExt/CCStarBar.cpp \
@@ -712,6 +714,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/view/popup/BuildQueueView.cpp \
 ../../IF/Classes/view/popup/BuildUpgradeView.cpp \
 ../../IF/Classes/view/popup/ButtonLightEffect.cpp \
+../../IF/Classes/view/popup/C3DShowView.cpp \
 ../../IF/Classes/view/popup/CaptchaView.cpp \
 ../../IF/Classes/view/popup/CDkeyPopUpView.cpp \
 ../../IF/Classes/view/popup/ChangeNickNameView.cpp \
