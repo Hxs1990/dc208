@@ -6766,8 +6766,6 @@ void ImperialScene::onCreateTitan()
     
     //    auto node = Node::create();
     titanRootNode = Node::create();
-    auto spr = CCLoadSprite::createSprite("nb_main_bottom_bg.png");
-    titanRootNode->addChild(spr);
     titanRootNode->setRotation3D(Vec3(38, 39, -24));
     titanRootNode->addChild(m_Titan);
     titanRootNode->setPosition(m_touchLayer->convertToNodeSpace(m_titanNode->convertToWorldSpace(Point(0, 0))));
