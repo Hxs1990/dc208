@@ -111,6 +111,7 @@ public:
 
     //end a by ljf
     
+    void cartoonHander(CCObject* params);
     
     void createDockShip();//fusheng 码头的船
     
