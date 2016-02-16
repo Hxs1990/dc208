@@ -4444,9 +4444,9 @@ void ImperialScene::initBigTile()
         m_shipBuild = SpeBuild::create(SPE_BUILD_SHIP);
         m_shipNode->addChild(m_shipBuild);
         int hod = m_shipNode->getZOrder();
-//        m_shipBuild->setNamePos(m_shipNode->getPositionX(), m_shipNode->getPositionY(), m_signLayer, m_arrbatchNode, m_chrTreeBatchNode, hod, m_chrTreeBlentBatchNode);
         m_shipBuild->setNamePos(m_shipNode->getPositionX(), m_shipNode->getPositionY(), m_signLayer, m_arrbatchNode, m_chrTreeBatchNode, hod);
         m_shipBuild->updateShipState();
+        createDockShip();
     }
     if(true) {
         m_merchanteBuild = SpeBuild::create(SPE_BUILD_MERCHANTE);
@@ -7443,7 +7443,26 @@ void ImperialScene::resumeEnemy(bool isGuide )
 
 void ImperialScene::createDockShip()//fusheng 码头的船
 {
+    NBSprite3D * dockShip = NBSprite3D::create("3d/ship/ship_gem.c3b");
+    dockShip->setTexture("3d/ship/ship_gem.jpg");
+    dockShip->setScale(1.5);
+    auto dockShipRootNode = CCNode::create();
+    dockShipRootNode->addChild(dockShip);
     
+    dockShipRootNode->setPosition(m_touchLayer->convertToNodeSpace(m_shipNode->convertToWorldSpace(Point(0, 0))));
+    
+    auto a3d = Animation3D::create("3d/ship/ship_gem.c3b");
+    
+    dockShip->runAction(RepeatForever::create(Animate3D::create(a3d)));
+    
+    m_node3d->addChild(dockShipRootNode);
+    
+    dockShipRootNode->setRotation3D(Vec3(38, 39, -24));
+    
+    
+    m_touchLayer->setCameraMask((unsigned short)CameraFlag::USER4, true);
+    
+    m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
 }
 
 void ImperialScene::onCreateBridge()

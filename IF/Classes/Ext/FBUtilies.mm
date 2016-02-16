@@ -863,7 +863,7 @@ static AOEUtiliesIOS *_sharedUtilies;
     }
     [FBSDKSettings setLimitEventAndDataUsage:YES];
     _sharedUtilies.mlike = [[FBSDKLikeButton alloc] init];
-    _sharedUtilies.mlike.objectID = @"https://www.facebook.com/Clash.Of.Kings.Game";
+    _sharedUtilies.mlike.objectID = @"https://www.facebook.com/Dragon-Clans-1484362238534405";
     _sharedUtilies.mlike.userInteractionEnabled = true;
     _sharedUtilies.mlike.objectType = FBSDKLikeObjectTypeOpenGraph;
     _sharedUtilies.mlike.hidden = YES;

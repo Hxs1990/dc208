@@ -553,7 +553,7 @@ void SpeBuildBtnsView::onClickFunc(int idx)
         if(key == "133187"){
             PopupViewController::getInstance()->addPopupInView(PortActView::create());
         }else if( key == "101283"){
-            PopupViewController::getInstance()->addPopupInView(MonthCardView::create());
+            PopupViewController::getInstance()->addPopupView(MonthCardView::create());
         }
     }else if(m_buildingKey == SPE_BUILD_QIJI){
 //        if(key == "1003"){

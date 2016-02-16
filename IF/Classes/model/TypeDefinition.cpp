@@ -200,10 +200,10 @@ const char * getCollecDataURL()
 void FBUtilies::fbShowFansWall(){
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.facebook.com/ClashOfKingsIF"]];
 }
-"https://www.facebook.com/Clash.Of.Kings.Game"
+"https://www.facebook.com/Dragon-Clans-1484362238534405"
 "https://fb.me/789290781112244?feed_key=ios_appInvite"
 "http://cok.eleximg.com/cok/img/fb_share_icon1.png"
-"https://www.facebook.com/Clash.Of.Kings.Game"
+"https://www.facebook.com/Dragon-Clans-1484362238534405"
 "http://news.qq.com/a/20140408/012675.htm"
 "http://t.gdt.qq.com/conv/app/945274928/conv?%s"
 "http://t.gdt.qq.com/conv/app/945274928/conv?v=%s&conv_type=MOBILEAPP_ACTIVITE&app_type=IOS&advertiser_id=552722"

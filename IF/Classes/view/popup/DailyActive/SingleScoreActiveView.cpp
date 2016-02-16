@@ -269,55 +269,55 @@ void SingleScoreActiveView::refreshData()
     vector<string> socreIdVec;
     CCCommonUtils::splitString(scoreIds, "|", socreIdVec);
     
-    int cellH = 60;
+    int cellH = 63;
     
     int bgH = 0;
-    auto tbg = CCLoadSprite::loadResource("Commond7_6_2.png");
-    auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
-    auto tbg1 = CCLoadSprite::createSprite("Commond7_6_2.png");
-    tbg1->setFlipY(true);
-    auto tbg2 = CCLoadSprite::createSprite("Commond7_6_2.png");
-    tbg2->setFlipX(true);
-    tbg2->setFlipY(true);
-    tbg1->setPosition(ccp(161, bgH+51));
-    tbg2->setPosition(ccp(479, bgH+51));
-    tBatchNode->addChild(tbg1);
-    tBatchNode->addChild(tbg2);
+//    auto tbg = CCLoadSprite::loadResource("Commond7_6_2.png");
+//    auto tBatchNode = CCSpriteBatchNode::createWithTexture(tbg->getTexture());
+//    auto tbg1 = CCLoadSprite::createSprite("Commond7_6_2.png");
+//    tbg1->setFlipY(true);
+//    auto tbg2 = CCLoadSprite::createSprite("Commond7_6_2.png");
+//    tbg2->setFlipX(true);
+//    tbg2->setFlipY(true);
+//    tbg1->setPosition(ccp(161, bgH+51));
+//    tbg2->setPosition(ccp(479, bgH+51));
+//    tBatchNode->addChild(tbg1);
+//    tBatchNode->addChild(tbg2);
     bgH += 99;
     
     int limitH = m_midNode->getContentSize().height + socreIdVec.size()*cellH - 100;
     
     while(bgH < limitH)
     {
-        auto tbgL = CCLoadSprite::createSprite("Commond7_6_3.png");
-        auto tbgR = CCLoadSprite::createSprite("Commond7_6_3.png");
-        tbgR->setFlipX(true);
-        tbgL->setPosition(ccp(161, bgH + 50));
-        tbgR->setPosition(ccp(479, bgH + 50));
-        tBatchNode->addChild(tbgL);
-        tBatchNode->addChild(tbgR);
+//        auto tbgL = CCLoadSprite::createSprite("Commond7_6_3.png");
+//        auto tbgR = CCLoadSprite::createSprite("Commond7_6_3.png");
+//        tbgR->setFlipX(true);
+//        tbgL->setPosition(ccp(161, bgH + 50));
+//        tbgR->setPosition(ccp(479, bgH + 50));
+//        tBatchNode->addChild(tbgL);
+//        tBatchNode->addChild(tbgR);
         bgH += 99;
     }
     
-    auto tbg3 = CCLoadSprite::createSprite("Commond7_6_2.png");
-    auto tbg4 = CCLoadSprite::createSprite("Commond7_6_2.png");
-    tbg4->setFlipX(true);
-    tbg3->setPosition(ccp(161, bgH+49));
-    tbg4->setPosition(ccp(479, bgH+49));
-    tBatchNode->addChild(tbg3);
-    tBatchNode->addChild(tbg4);
+//    auto tbg3 = CCLoadSprite::createSprite("Commond7_6_2.png");
+//    auto tbg4 = CCLoadSprite::createSprite("Commond7_6_2.png");
+//    tbg4->setFlipX(true);
+//    tbg3->setPosition(ccp(161, bgH+49));
+//    tbg4->setPosition(ccp(479, bgH+49));
+//    tBatchNode->addChild(tbg3);
+//    tBatchNode->addChild(tbg4);
     bgH += 99;
     
-    tBatchNode->setPositionX(0);
-    tBatchNode->setVisible(false);
-    m_scrollView->addChild(tBatchNode);
+//    tBatchNode->setPositionX(0);
+//    tBatchNode->setVisible(false);
+//    m_scrollView->addChild(tBatchNode);
     
-    int curY = bgH - socreIdVec.size()*cellH - m_midNode->getContentSize().height;
+    int curY = bgH - socreIdVec.size()*cellH - m_midNode->getContentSize().height - 110;
     for (int i=0; i<socreIdVec.size(); i++) {
         auto cell = SingleScoreCell::create(socreIdVec[i]);
         cell->setPosition(ccp(0, curY));
         m_scrollView->addChild(cell);
-        curY += 60;
+        curY += 67;
     }
     
     m_midNode->removeFromParent();
@@ -576,14 +576,14 @@ bool SingleScoreRwdPopView::init(CCArray* data, int score, int price, bool hasGe
     m_stateLabel->setString(_lang("150303"));
     m_priceLabel->setString(_lang_1("150304", CC_ITOA(m_price)));
     
-    m_info3Label->setPositionX( m_info1Label->getPositionX()+m_info1Label->getContentSize().width*m_info1Label->getOriginScaleX() + 10 );
-    m_scoreIcon->setPositionX( m_info3Label->getPositionX()+m_info3Label->getContentSize().width*m_info3Label->getOriginScaleX() + 40 );
-    m_info2Label->setPositionX( m_scoreIcon->getPositionX() + 40 );
-    int lastW = 610/2 - m_info2Label->getPositionX();
-    if (CCCommonUtils::isIosAndroidPad()) {
-        lastW *=2;// 1350/2- m_info2Label->getPositionX();
-    }
-    m_info2Label->setDimensions(CCSizeMake(lastW, 0));
+//    m_info3Label->setPositionX( m_info1Label->getPositionX()+m_info1Label->getContentSize().width*m_info1Label->getOriginScaleX() + 10 );
+//    m_scoreIcon->setPositionX( m_info3Label->getPositionX()+m_info3Label->getContentSize().width*m_info3Label->getOriginScaleX() + 40 );
+//    m_info2Label->setPositionX( m_scoreIcon->getPositionX() + 40 );
+//    int lastW = 610/2 - m_info2Label->getPositionX();
+//    if (CCCommonUtils::isIosAndroidPad()) {
+//        lastW *=2;// 1350/2- m_info2Label->getPositionX();
+//    }
+//    m_info2Label->setDimensions(CCSizeMake(lastW, 0));
     m_info2Label->setString(_lang("150298"));
     
     if (m_bHasGet) {
