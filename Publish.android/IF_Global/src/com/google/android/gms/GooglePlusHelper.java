@@ -25,7 +25,7 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
 import com.google.android.gms.plus.model.people.Person.Name;
-import com.hcg.cok.gp.R;
+import com.nbg.gp.R;
 
 public class GooglePlusHelper implements GoogleApiClient.ConnectionCallbacks,
 	GoogleApiClient.OnConnectionFailedListener, OnResponseListener_GooglePlus {

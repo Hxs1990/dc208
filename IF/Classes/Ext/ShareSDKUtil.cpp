@@ -20,7 +20,7 @@ void ShareSDKUtil::screenShare(){};   // 截屏分享
 void ShareSDKUtil::showShareActionSheet(const char* msg, const char* url)
 {
     JniMethodInfo minfo;
-    if (! JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/sharesdk/ShareSDKUtil", "showShareSDK", "(Ljava/lang/String;Ljava/lang/String;)V") ) {
+    if (! JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/sharesdk/ShareSDKUtil", "showShareSDK", "(Ljava/lang/String;Ljava/lang/String;)V") ) {
         CCLOG("JNI: method loginPlatform not found!");
         return;
     }

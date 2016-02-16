@@ -34,7 +34,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import org.cocos2dx.lib.Cocos2dxHelper.Cocos2dxHelperListener;
-import org.hcg.stac.empire.sns.FBUtil;
+import org.nbg.stac.empire.sns.FBUtil;
 //import com.chukong.cocosplay.client.CocosPlayClient;
 
 import android.app.Activity;

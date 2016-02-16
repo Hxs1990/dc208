@@ -276,7 +276,7 @@ bool DumpCallback(const google_breakpad::MinidumpDescriptor& descriptor,
 	SendFile(descriptor.path(), true);
 	//崩溃堆栈log上传后，再上传崩溃logcat
     JniMethodInfo minfo;
-    if (! JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "saveCrashPID", "()V") ) {
+    if (! JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "saveCrashPID", "()V") ) {
         CCLOG("JNI: Jni method saveCrashPID not found!");
         return succeeded;
     }

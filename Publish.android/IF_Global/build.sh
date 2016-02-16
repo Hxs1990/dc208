@@ -192,6 +192,14 @@ else
 python build_native.py
 fi
 
+# >>>>>>
+cd $scriptRoot
+rm -rf assets
+mkdir assets
+cp -rf $scriptRoot/../../proj.android/assets $scriptRoot/
+# <<<<<<
+
+cd $scriptRoot/../../proj.android >/dev/null 2>/dev/null
 echo "copy shareSDK.xml $PackageName "
 cp $scriptRoot/ShareSDK.xml assets
 

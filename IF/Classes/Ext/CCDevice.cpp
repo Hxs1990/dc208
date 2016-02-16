@@ -360,7 +360,7 @@ string CCDevice::getGaid()
 void CCDevice::pushNotice(int type,int time, std::string body,std::string soundKey,std::string pushType)
 {
     JniMethodInfo minfo;
-    if (! JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "pushNotification", "(IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V") ) {
+    if (! JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "pushNotification", "(IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V") ) {
         CCLOGFUNC("jni: no method");
         return;
     }
@@ -378,7 +378,7 @@ void CCDevice::pushNotice(int type,int time, std::string body,std::string soundK
 void CCDevice::cancelNotice(int type)
 {
     JniMethodInfo minfo;
-    if (! JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "cancelNotification", "(I)V") ) {
+    if (! JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "cancelNotification", "(I)V") ) {
         CCLOGFUNC("jni: no method");
         return;
     }
@@ -390,7 +390,7 @@ void CCDevice::cancelNotice(int type)
 string CCDevice::getPushRecordData(){
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     JniMethodInfo minfo;
-    if (! JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "getPushRecordData", "()Ljava/lang/String;") ) {
+    if (! JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "getPushRecordData", "()Ljava/lang/String;") ) {
         CCLOGFUNC("jni: no method");
         return "";
     }
@@ -406,7 +406,7 @@ string CCDevice::getPushRecordData(){
 string CCDevice::getPushClickData(){
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     JniMethodInfo minfo;
-    if (! JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "getPushClickData", "()Ljava/lang/String;") ) {
+    if (! JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "getPushClickData", "()Ljava/lang/String;") ) {
         CCLOGFUNC("jni: no method");
         return "";
     }
@@ -420,7 +420,7 @@ string CCDevice::getPushClickData(){
 
 void CCDevice::clearPushCache(){
     JniMethodInfo minfo;
-    if (! JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "clearPushCache", "()V") ) {
+    if (! JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "clearPushCache", "()V") ) {
         CCLOGFUNC("jni: no method");
         return;
     }
@@ -431,7 +431,7 @@ void CCDevice::clearPushCache(){
 void CCDevice::finishGame(){
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     JniMethodInfo minfo;
-    if (!JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "finishGame", "()V")) {
+    if (!JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "finishGame", "()V")) {
         CCLOGFUNC("jni: no method");
         return;
     }
@@ -493,7 +493,7 @@ void CCDevice::doPlatformCollectUserInfo(const string &userId,const string &user
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     // return;
     JniMethodInfo minfo;
-    if (!JniHelper::getStaticMethodInfo(minfo, "org/hcg/IF/Jni", "doSetHelpShiftUserInfo", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")) {
+    if (!JniHelper::getStaticMethodInfo(minfo, "org/nbg/IF/Jni", "doSetHelpShiftUserInfo", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")) {
         CCLOGFUNC("jni: no method");
         return;
     }
@@ -806,7 +806,7 @@ int CCDevice::getNetworkStatus()
     
     cocos2d::JniMethodInfo minfo;
     if(cocos2d::JniHelper::getStaticMethodInfo(minfo,
-                                               "org/hcg/IF/IF",
+                                               "org/nbg/IF/IF",
                                                "getNetWorkType",
                                                "()I"))
     {
@@ -837,7 +837,7 @@ bool CCDevice::isExternalStoragePermissionsAvaiable(){
 
     cocos2d::JniMethodInfo minfo;
     if(cocos2d::JniHelper::getStaticMethodInfo(minfo,
-                                               "org/hcg/IF/IF",
+                                               "org/nbg/IF/IF",
                                                "isExternalStoragePermissionsAvaiable",
                                                "()Z"))
     {

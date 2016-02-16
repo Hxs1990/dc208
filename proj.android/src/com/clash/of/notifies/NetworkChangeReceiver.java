@@ -1,7 +1,7 @@
 package com.clash.of.notifies;
 
 import org.cocos2dx.ext.Native;
-import org.hcg.IF.IF;
+import org.nbg.IF.IF;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -176,7 +176,7 @@ void ChatServiceCocos2dx::initDatabase(bool isNewUser)
     
     cocos2d::JniMethodInfo minfo;
     bool hasMethod = cocos2d::JniHelper::getStaticMethodInfo(minfo,
-                                                             "org/hcg/IF/IF",
+                                                             "org/nbg/IF/IF",
                                                              "initDatabase",
                                                              "(ZZ)V");
     
@@ -1532,7 +1532,7 @@ void ChatServiceCocos2dx::trackExceptionOnFB(string exceptionType, string functi
 {
     if(!enableNativeChat) return;
     cocos2d::JniMethodInfo minfo;
-    if(!cocos2d::JniHelper::getStaticMethodInfo(minfo,"org/hcg/stac/empire/sns/FBUtil","appEventException", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
+    if(!cocos2d::JniHelper::getStaticMethodInfo(minfo,"org/nbg/stac/empire/sns/FBUtil","appEventException", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V"))
     {
         return;
     }

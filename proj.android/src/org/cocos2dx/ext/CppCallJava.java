@@ -16,13 +16,13 @@ import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.Map;
 
-import org.hcg.stac.empire.pay.PayItemData;
-import org.hcg.stac.empire.publish.IPublishChannel;
-import org.hcg.stac.empire.sns.FBUtil;
-import org.hcg.util.CommonUtil;
-import org.hcg.util.GameContext;
+import org.nbg.stac.empire.pay.PayItemData;
+import org.nbg.stac.empire.publish.IPublishChannel;
+import org.nbg.stac.empire.sns.FBUtil;
+import org.nbg.util.CommonUtil;
+import org.nbg.util.GameContext;
 import org.json.JSONObject;
-import org.hcg.IF.IF;
+import org.nbg.IF.IF;
 
 import com.adjust.sdk.Reflection;
 import com.appsflyer.AppsFlyerLib;

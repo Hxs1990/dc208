@@ -30,7 +30,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.lang.Runnable;
-import org.hcg.IF.IF;
+import org.nbg.IF.IF;
 //import com.chukong.cocosplay.client.CocosPlayClient;
 
 import android.app.Activity;
