@@ -59,7 +59,7 @@
             <key>Allance_team_Members_lock.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2909,1198},{100,93}}</string>
+                <string>{{2909,1201},{100,93}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>Allance_team_Plus.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3100,946},{50,50}}</string>
+                <string>{{3100,895},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>Allance_team_attack_frame.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2706,831},{100,150}}</string>
+                <string>{{2763,831},{100,150}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>Allance_team_head_frame.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3036,822},{70,70}}</string>
+                <string>{{3093,823},{70,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +241,7 @@
             <key>Allance_team_head_frame01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2793,1343},{100,104}}</string>
+                <string>{{2796,1616},{100,104}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -527,7 +527,7 @@
             <key>Alliance_Flag_02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3012,368},{160,160}}</string>
+                <string>{{3012,369},{160,160}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -579,7 +579,7 @@
             <key>Alliance_Flag_Gre.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2748,983},{160,160}}</string>
+                <string>{{2748,985},{160,160}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -657,41 +657,41 @@
             <key>Alliance_Ranking2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2890,312},{74,55}}</string>
+                <string>{{2627,1152},{83,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{74,55}}</string>
+                <string>{{0,0},{83,56}}</string>
                 <key>sourceSize</key>
-                <string>{74,55}</string>
+                <string>{83,56}</string>
             </dict>
             <key>Alliance_Ranking3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2950,1145},{74,50}}</string>
+                <string>{{2542,1152},{83,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{74,50}}</string>
+                <string>{{0,0},{83,56}}</string>
                 <key>sourceSize</key>
-                <string>{74,50}</string>
+                <string>{83,56}</string>
             </dict>
             <key>Alliance_Ranking4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3078,1106},{73,48}}</string>
+                <string>{{2806,312},{83,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{73,48}}</string>
+                <string>{{0,0},{83,56}}</string>
                 <key>sourceSize</key>
-                <string>{73,48}</string>
+                <string>{83,56}</string>
             </dict>
             <key>Alliance_Restriction.png</key>
             <dict>
@@ -722,7 +722,7 @@
             <key>Alliance_WarResult_frame_blue.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3030,656},{92,92}}</string>
+                <string>{{3076,1012},{92,92}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -735,7 +735,7 @@
             <key>Alliance_WarResult_frame_grey.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3076,1012},{92,92}}</string>
+                <string>{{3006,918},{92,92}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1099,7 +1099,7 @@
             <key>Alliance_tips_kuang2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2806,312},{82,56}}</string>
+                <string>{{2712,1152},{82,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1125,7 +1125,7 @@
             <key>Btn_Alliance_info_back.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3124,656},{64,64}}</string>
+                <string>{{3117,657},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1307,7 +1307,7 @@
             <key>Commond7_4_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2849,1449},{54,54}}</string>
+                <string>{{2833,1452},{54,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1320,7 +1320,7 @@
             <key>Commond7_4_6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3100,894},{50,50}}</string>
+                <string>{{3066,1143},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1333,7 +1333,7 @@
             <key>Commond7_4_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2721,1451},{70,58}}</string>
+                <string>{{3111,306},{70,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1398,7 +1398,7 @@
             <key>Commond7_5_11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3015,530},{124,124}}</string>
+                <string>{{3015,531},{124,124}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1437,7 +1437,7 @@
             <key>Commond7_5_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3102,750},{64,64}}</string>
+                <string>{{3102,751},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1567,7 +1567,7 @@
             <key>Commond7_6_6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3026,1143},{50,50}}</string>
+                <string>{{3014,1143},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1593,11 +1593,11 @@
             <key>Commond7_6_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2542,1152},{152,55}}</string>
+                <string>{{2706,831},{152,55}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{152,55}}</string>
                 <key>sourceSize</key>
@@ -1606,7 +1606,7 @@
             <key>Commond7_6_9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2696,1152},{126,55}}</string>
+                <string>{{2891,312},{126,55}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1931,7 +1931,7 @@
             <key>Commond_VIP_01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2796,1619},{106,70}}</string>
+                <string>{{2793,1344},{106,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1944,7 +1944,7 @@
             <key>Commond_VIP_02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2762,1511},{106,70}}</string>
+                <string>{{2762,1508},{106,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -1970,7 +1970,7 @@
             <key>Commond_VIP_04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2721,1343},{106,70}}</string>
+                <string>{{2721,1344},{106,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2022,7 +2022,7 @@
             <key>Commond_VIP_08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2824,1145},{52,52}}</string>
+                <string>{{2888,1147},{52,52}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2074,7 +2074,7 @@
             <key>Commond_VIP_12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2995,1300},{96,96}}</string>
+                <string>{{2965,1303},{96,96}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2113,7 +2113,7 @@
             <key>Commond_VIP_16.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2793,1449},{54,54}}</string>
+                <string>{{2777,1452},{54,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2152,7 +2152,7 @@
             <key>Commond_VIP_19.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2966,312},{54,54}}</string>
+                <string>{{2721,1452},{54,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2191,7 +2191,7 @@
             <key>Commond_VIP_22.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3030,750},{70,70}}</string>
+                <string>{{3030,751},{70,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2373,7 +2373,7 @@
             <key>UI_Alliance_kuang.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3006,918},{92,92}}</string>
+                <string>{{2999,824},{92,92}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2464,7 +2464,7 @@
             <key>alliance_paihang.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3004,1197},{94,94}}</string>
+                <string>{{2910,965},{94,94}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2542,7 +2542,7 @@
             <key>common103_hb_wangguan.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2834,1505},{100,100}}</string>
+                <string>{{2834,1508},{100,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2555,7 +2555,7 @@
             <key>common7_youhuaBg1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2910,965},{94,94}}</string>
+                <string>{{2889,1412},{94,94}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2568,7 +2568,7 @@
             <key>common7_youhuaBg2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2942,824},{92,92}}</string>
+                <string>{{3004,1198},{92,92}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2802,7 +2802,7 @@
             <key>daily_forest.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2808,831},{132,132}}</string>
+                <string>{{2865,831},{132,132}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2828,7 +2828,7 @@
             <key>daily_kingdoms.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2674,1209},{132,132}}</string>
+                <string>{{2674,1210},{132,132}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -2880,7 +2880,7 @@
             <key>event_announce.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2878,1145},{70,51}}</string>
+                <string>{{2942,1145},{70,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -3036,7 +3036,7 @@
             <key>icon_Allance_team_kingBattleAttack.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3114,306},{59,90}}</string>
+                <string>{{3019,306},{59,90}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -3049,7 +3049,7 @@
             <key>icon_Allance_team_kingBattleDefense.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{3022,306},{59,90}}</string>
+                <string>{{2796,1147},{59,90}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -3387,7 +3387,7 @@
             <key>nb_al_help_icon_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2808,1209},{100,99}}</string>
+                <string>{{2808,1208},{100,99}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -3530,7 +3530,7 @@
             <key>nb_alliance_bottom_button_bg1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2895,1311},{100,98}}</string>
+                <string>{{2865,1310},{100,98}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -3738,11 +3738,11 @@
             <key>nb_container_bg1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2905,1413},{85,92}}</string>
+                <string>{{3030,657},{85,92}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{85,92}}</string>
                 <key>sourceSize</key>
@@ -3823,7 +3823,7 @@
             <key>size</key>
             <string>{4096,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2437befd8dd9b56c3fef74a1f564cc43:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:72d7645ace3a93d475b51f6837f28a8b:1/1$</string>
             <key>textureFileName</key>
             <string>Common_7.pvr.ccz</string>
         </dict>
