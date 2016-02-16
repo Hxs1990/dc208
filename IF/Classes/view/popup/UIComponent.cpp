@@ -3279,7 +3279,7 @@ bool UIComponent::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const c
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpNum", CCLabelIF*, this->m_helpNum);
     
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpNumBg", CCNode*, this->m_helpNumBg);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpNumBg", CCNode*, this->m_helpNumBg);
     
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpNode", CCNode*, this->m_helpNode);
     
