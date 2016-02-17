@@ -79,10 +79,11 @@ private:
     {};
     bool init();
     
-    CCAnimate *getAnimate(float direction, int state);
+    FiniteTimeAction *getAnimate(float direction, int state);
     void resetAnimate(float direction, int state);
     void playDeadAniBack(CCObject* obj);
     void playAttackAnimation(float _time);
+    void playNBAttackAnimation(float _time);//fusheng 添加粒子效果
     void addParitcle();
     void addActParticle();
     std::string getLandType();

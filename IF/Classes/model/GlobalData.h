@@ -38,6 +38,7 @@
 #include "SacrificeInfo.h"
 #include "PushSettingInfo.h"
 #include "SettingObject.hpp"
+#include "TitanInfo.h"//fusheng 泰坦info
 
 #define FULL_WIN_WIDTH    768
 #define FULL_WIN_HEIGHT   1364
@@ -409,6 +410,7 @@ public:
     LoginServerInfo loginServerInfo;
     MailConfig mailConfig;
     GeneralConfig generalConfig;
+    TitanInfo titanInfo;
 
     PlayerInfo playerInfo;
     // for lua use  --add by js

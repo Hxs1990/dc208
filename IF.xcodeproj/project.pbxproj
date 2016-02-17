@@ -1309,6 +1309,9 @@
 		96FBF1E91A4AA7C200281C55 /* PushKingdomWinner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FBF1E71A4AA7C200281C55 /* PushKingdomWinner.cpp */; };
 		96FBF1EC1A4AB06200281C55 /* CountryChooseFlagView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FBF1EA1A4AB06200281C55 /* CountryChooseFlagView.cpp */; };
 		96FBF1EF1A4AC10C00281C55 /* KingdomBannerCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FBF1ED1A4AC10C00281C55 /* KingdomBannerCommand.cpp */; };
+		97F44CEC1C7485F300591FA5 /* TitanInfoCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97F44CEA1C7485F300591FA5 /* TitanInfoCommand.cpp */; };
+		97F44CF31C74860000591FA5 /* TitanController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97F44CF11C74860000591FA5 /* TitanController.cpp */; };
+		97F44CF61C74861000591FA5 /* TitanInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97F44CF41C74861000591FA5 /* TitanInfo.cpp */; };
 		A817139A1B660629008DE4D4 /* ChatTestCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81713941B660629008DE4D4 /* ChatTestCommand.cpp */; };
 		A817139B1B660629008DE4D4 /* GetNewMailMsgCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81713961B660629008DE4D4 /* GetNewMailMsgCommand.cpp */; };
 		A817139C1B660629008DE4D4 /* GetUpdateMailCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81713981B660629008DE4D4 /* GetUpdateMailCommand.cpp */; };
@@ -4098,6 +4101,12 @@
 		96FBF1EB1A4AB06200281C55 /* CountryChooseFlagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryChooseFlagView.h; sourceTree = "<group>"; };
 		96FBF1ED1A4AC10C00281C55 /* KingdomBannerCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KingdomBannerCommand.cpp; sourceTree = "<group>"; };
 		96FBF1EE1A4AC10C00281C55 /* KingdomBannerCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KingdomBannerCommand.h; sourceTree = "<group>"; };
+		97F44CEA1C7485F300591FA5 /* TitanInfoCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitanInfoCommand.cpp; sourceTree = "<group>"; };
+		97F44CEB1C7485F300591FA5 /* TitanInfoCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitanInfoCommand.h; sourceTree = "<group>"; };
+		97F44CF11C74860000591FA5 /* TitanController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitanController.cpp; sourceTree = "<group>"; };
+		97F44CF21C74860000591FA5 /* TitanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitanController.h; sourceTree = "<group>"; };
+		97F44CF41C74861000591FA5 /* TitanInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitanInfo.cpp; sourceTree = "<group>"; };
+		97F44CF51C74861000591FA5 /* TitanInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitanInfo.h; sourceTree = "<group>"; };
 		A81713941B660629008DE4D4 /* ChatTestCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChatTestCommand.cpp; sourceTree = "<group>"; };
 		A81713951B660629008DE4D4 /* ChatTestCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTestCommand.h; sourceTree = "<group>"; };
 		A81713961B660629008DE4D4 /* GetNewMailMsgCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetNewMailMsgCommand.cpp; sourceTree = "<group>"; };
@@ -5777,6 +5786,8 @@
 			isa = PBXGroup;
 			children = (
 				83AF431E1C4A2C8D00FB8ED0 /* SendHeartCommand.cpp */,
+				97F44CEA1C7485F300591FA5 /* TitanInfoCommand.cpp */,
+				97F44CEB1C7485F300591FA5 /* TitanInfoCommand.h */,
 				83AF431F1C4A2C8D00FB8ED0 /* SendHeartCommand.hpp */,
 				00D663031BF97E2A00BC809C /* CheckEmulatorCommand.cpp */,
 				00D663041BF97E2A00BC809C /* CheckEmulatorCommand.h */,
@@ -8042,6 +8053,8 @@
 				0008131D1BF32236003080D0 /* DeviceInfoController.cpp */,
 				0008131E1BF32236003080D0 /* DeviceInfoController.h */,
 				60E668321BDF168200CF4258 /* AllianceDailyController.cpp */,
+				97F44CF11C74860000591FA5 /* TitanController.cpp */,
+				97F44CF21C74860000591FA5 /* TitanController.h */,
 				60E668331BDF168200CF4258 /* AllianceDailyController.h */,
 				1D341ECB1BCBC39F00A1B249 /* FriendsController.cpp */,
 				1D341ECC1BCBC39F00A1B249 /* FriendsController.h */,
@@ -8215,6 +8228,8 @@
 				DBA087DD17CDA95F001C68AD /* GlobalData.h */,
 				7CD25561185FF166005870B8 /* GoldExchangeItem.cpp */,
 				7CD25562185FF166005870B8 /* GoldExchangeItem.h */,
+				97F44CF41C74861000591FA5 /* TitanInfo.cpp */,
+				97F44CF51C74861000591FA5 /* TitanInfo.h */,
 				6498E5C11BDE6E5F005E096D /* IFAllianceHelpReportInfo.cpp */,
 				6498E5C21BDE6E5F005E096D /* IFAllianceHelpReportInfo.hpp */,
 				5728F7191C3E316F00AE5CAB /* KnightTitleInfo.cpp */,
@@ -9716,6 +9731,7 @@
 				57E4777E198A9A5B003FBABB /* BuildQueueCell.cpp in Sources */,
 				96E4C47F197F4CE6007247BA /* ChangeSignSetCommand.cpp in Sources */,
 				57D4D7B01908BD2B00EEC4D8 /* ItemPush.cpp in Sources */,
+				97F44CEC1C7485F300591FA5 /* TitanInfoCommand.cpp in Sources */,
 				59DEBE021B058B40007FC5CB /* Adjust.m in Sources */,
 				C2E8E1D81A5FDBD500765330 /* CCFlagWaveSprite.cpp in Sources */,
 				57EFDB231C3D12B600F100D0 /* EquipInfoView.cpp in Sources */,
@@ -9961,6 +9977,7 @@
 				6C2E292C1C20037B00B1546F /* ChatChannel+ChatMessage.mm in Sources */,
 				57E4777B1989F505003FBABB /* FlyCell.cpp in Sources */,
 				6CF624DF1B341A3900FA96A7 /* NSString+Extension.m in Sources */,
+				97F44CF31C74860000591FA5 /* TitanController.cpp in Sources */,
 				6C5AECE61BD94A6700EE3A74 /* FMDatabaseAdditions.m in Sources */,
 				068F15921B0B187D008AC0E4 /* SuperMinePopupView.cpp in Sources */,
 				94F1FA861AC13B1F0089AB1C /* WorldBannerRankView.cpp in Sources */,
@@ -10030,6 +10047,7 @@
 				FD6F417A17CDD218008FDB9C /* CCClipNode.cpp in Sources */,
 				6C1F66AE1C18372400EE33E1 /* YYTransaction.m in Sources */,
 				FD6F417B17CDD218008FDB9C /* CCEditLabel.cpp in Sources */,
+				97F44CF61C74861000591FA5 /* TitanInfo.cpp in Sources */,
 				FD6F417C17CDD218008FDB9C /* CCModelLayer.cpp in Sources */,
 				B80876D51C5F26B9008704DC /* NBWorldMapMainCity.cpp in Sources */,
 				57E414CE18BDF9C600B7286E /* MainCityMoreView.cpp in Sources */,

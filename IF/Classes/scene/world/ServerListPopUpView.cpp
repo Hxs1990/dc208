@@ -978,10 +978,10 @@ void ServerListPopUpView::addServerCell(ServerListInfo &info){
         int x = name->getPositionX() + name->getContentSize().width * name->getOriginScaleX() + newSprite->getContentSize().width / 2 + 5;
         newSprite->setPosition(ccp(x, nameBG->getPositionY()));
         
-        auto newLabel = CCLabelIF::create(_lang("108753").c_str());
-        newLabel->setFontSize(18);
-        m_serverNameNode->addChild(newLabel);
-        newLabel->setPosition(newSprite->getPosition());
+//        auto newLabel = CCLabelIF::create(_lang("108753").c_str());
+//        newLabel->setFontSize(18);
+//        m_serverNameNode->addChild(newLabel);
+//        newLabel->setPosition(newSprite->getPosition());
     }
     addCityNum++;
 }

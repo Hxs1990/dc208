@@ -269,6 +269,7 @@ void FunBuildController::refreshResTime(CCDictionary* dict)//城市被攻击后�
 
 void FunBuildController::retDataFromServer(CCDictionary* dict)
 {
+    return ;
     ClientRecordMap.clear();
     if (dict->objectForKey("mixedInfo")) {
         CCDictionary* mixedInfo = _dict(dict->objectForKey("mixedInfo"));

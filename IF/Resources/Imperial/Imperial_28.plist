@@ -98,33 +98,33 @@
             <key>wall_13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{264,284},{96,84}}</string>
+                <string>{{264,284},{103,74}}</string>
                 <key>offset</key>
-                <string>{0,3}</string>
+                <string>{2,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,3},{96,84}}</string>
+                <string>{{12,12},{103,74}}</string>
                 <key>sourceSize</key>
-                <string>{96,96}</string>
+                <string>{123,98}</string>
             </dict>
             <key>wall_14.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{366,284},{96,96}}</string>
+                <string>{{4,460},{157,143}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{96,96}}</string>
+                <string>{{0,0},{157,143}}</string>
                 <key>sourceSize</key>
-                <string>{96,96}</string>
+                <string>{157,143}</string>
             </dict>
             <key>wall_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,460},{215,173}}</string>
+                <string>{{167,460},{215,173}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>wall_3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{225,460},{183,128}}</string>
+                <string>{{4,639},{183,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>wall_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,639},{140,121}}</string>
+                <string>{{193,639},{140,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>wall_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{150,639},{75,121}}</string>
+                <string>{{339,639},{75,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>wall_notice1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{231,639},{182,114}}</string>
+                <string>{{4,773},{182,114}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,7 +189,7 @@
             <key>wall_notice2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{419,639},{27,22}}</string>
+                <string>{{192,773},{27,22}}</string>
                 <key>offset</key>
                 <string>{-2,1}</string>
                 <key>rotated</key>
@@ -209,7 +209,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c207eada61458c5d212c1c3a81dc5998:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:aba0e379bb4e178f52cb6bbdd576ec8e:1/1$</string>
             <key>textureFileName</key>
             <string>Imperial_28.pvr.ccz</string>
         </dict>

@@ -37,6 +37,7 @@
 #include "fireandcomman.h"
 #include "BuildUpgradeView.h"
 #include "ChatController.h"
+#include "NBCommonUtils.h"
 #include "CountryChatCommand.h"
 #include "SoldierIconCell.hpp"
 const float numPerRow = 1.0;
@@ -49,17 +50,48 @@ BattleView* BattleView::create(unsigned int startIndex ,unsigned int targetIndex
     }
     return ret;
 }
+#pragma mark 测试代码
+//fusheng test begin
+#include "TitanController.h"
+//fusheng end
+
+BattleView::BattleView():m_startIndex(0),m_targetIndex(0),m_haveOwner(0),m_rally(0),m_bType(-1),m_wtIndex(0),m_other(string()),m_targetType(0),m_slow(1.0),isBegin(true),selectDragon(false)
+{
+#pragma mark 测试代码
+    //fusheng test begin
+    CCDictionary* dict = CCDictionary::create();
+    dict->setObject(CCString::create("9223372036854775807"), "feedcd");
+    dict->setObject(CCString::create("100"), "turemaxmanual");
+    dict->setObject(CCString::create("0"), "exp");
+    dict->setObject(CCString::create("5"), "costmanual");
+    dict->setObject(CCString::create("1"), "feednum");
+    dict->setObject(CCString::create("107402"), "titanid");
+    dict->setObject(CCString::create("200"), "needexp");
+    dict->setObject(CCString::create("2"), "level");
+    dict->setObject(CCString::create("500"), "needfood");
+    dict->setObject(CCString::create("1"), "recoverymanual");
+    dict->setObject(CCString::create("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"), "feedcdtime");
+    dict->setObject(CCString::create("1455588615"), "feedcdfix");
+    dict->setObject(CCString::create("100"), "maxmanual");
+    dict->setObject(CCString::create("300"), "recoverInterval");
+    dict->setObject(CCString::create("0"), "status");
+    
+    TitanController::getInstance()->parse(dict);
+    //fusheng end
+
+};
 BattleView::~BattleView()
 {
     WorldController::getInstance()->alertProectFlag = false;
 }
 
 void BattleView::loadResource(){
-    CCLoadSprite::doResourceByCommonIndex(8, true,true);
-    CCLoadSprite::doResourceByCommonIndex(7, true,true);
-    CCLoadSprite::doResourceByCommonIndex(504, true,true);
-    CCLoadSprite::doResourceByCommonIndex(105, true,true);
-    CCLoadSprite::doResourceByCommonIndex(204, true,true);
+    CCLoadSprite::doResourceByCommonIndex(204, true);
+    CCLoadSprite::doResourceByCommonIndex(8, true);
+    CCLoadSprite::doResourceByCommonIndex(7, true);
+    CCLoadSprite::doResourceByCommonIndex(6, true);
+    CCLoadSprite::doResourceByCommonIndex(504, true);
+    CCLoadSprite::doResourceByCommonIndex(105, true);
 }
 
 
@@ -70,11 +102,12 @@ bool BattleView::init(unsigned int startIndex,unsigned int targetIndex,unsigned 
     }
     loadResource();
     setCleanFunction([](){
-        CCLoadSprite::doResourceByCommonIndex(8, false,true);
-        CCLoadSprite::doResourceByCommonIndex(7, false,true);
-        CCLoadSprite::doResourceByCommonIndex(504, false,true);
-        CCLoadSprite::doResourceByCommonIndex(105, false,true);
-        CCLoadSprite::doResourceByCommonIndex(204, false,true);
+        CCLoadSprite::doResourceByCommonIndex(204, false);
+        CCLoadSprite::doResourceByCommonIndex(8, false);
+        CCLoadSprite::doResourceByCommonIndex(7, false);
+        CCLoadSprite::doResourceByCommonIndex(6, false);
+        CCLoadSprite::doResourceByCommonIndex(504, false);
+        CCLoadSprite::doResourceByCommonIndex(105, false);
     });
     setIsHDPanel(true);
     m_slow=slow;
@@ -234,6 +267,76 @@ bool BattleView::init(unsigned int startIndex,unsigned int targetIndex,unsigned 
 //    }
     onClickQuickBtn(NULL, Control::EventType::TOUCH_DOWN);
     SoundController::sharedSound()->playEffects(Music_Sfx_world_click_attack);
+    
+    
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = [this](Touch* touch, Event* evt)
+    {
+        if (isTouchInside(m_2touchBtnBg, touch)) {
+            return true;
+        }
+        return false;
+    };
+    
+    listener->onTouchEnded = [this](Touch* touch, Event* evt)
+    {
+//        CCCommonUtils::flyHint("", "", "hehe");
+        auto armyInfo = GlobalData::shared()->armyList[GlobalData::shared()->titanInfo.titanId];
+        if(armyInfo.free == 0)
+        {
+            return ;
+        }
+        if (selectDragon) {
+            
+            selectDragon = false;//
+            
+            this->refreshDragonNumStatus();
+            
+        }
+        else
+        {
+            //fusheng 需要判断是否可以点击派出龙   出征部队人数已满
+
+            
+            SoundController::sharedSound()->playEffects(Music_Sfx_click_button);
+
+            
+            TroopsController::getInstance()->changeArrTime();
+            
+            int maxForceNum = TroopsController::getInstance()->getMaxSoilder();
+            if (m_bType == MethodUnion || m_bType == MethodYuanSolider)
+            {
+                maxForceNum = MIN(m_rally, maxForceNum);
+            }
+            
+            int total = 0;
+            map<string, int>::iterator it;
+            for (it = TroopsController::getInstance()->m_tmpBattleInfos.begin(); it != TroopsController::getInstance()->m_tmpBattleInfos.end(); it++) {
+                if (TroopsController::getInstance()->m_tmpBattleInfos[it->first] > 0) {
+                    total += TroopsController::getInstance()->m_tmpBattleInfos[it->first];
+                }
+            }
+            
+            int d = maxForceNum - total - 1;
+            if(d >= 0){
+                selectDragon = true;
+                this->refreshDragonNumStatus();
+            }
+            
+                 
+        }
+        
+         return ;
+    };
+    
+    listener->setSwallowTouches(true);
+    
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, m_bg);
+    
+    m_ProTiTanAPMaxWidth = m_ProTiTanAP->getContentSize().width;
+    m_dragonMarchingLable->setString(_lang("500020"));
+    refreshDragonStatus(nullptr);
+  
     return true;
 }
 
@@ -246,12 +349,12 @@ void BattleView::setAddBtnState(){
     if(CCCommonUtils::getStateEffectValueByNum(COMMAND_EFFECT) > FLT_EPSILON){
         this->m_addBtn->setVisible(false);
         this->m_addIcon->setVisible(false);
-        this->m_addIcon1->setVisible(false);
+
         this->m_msg3Label->setColor(ccc3(86, 180, 29));
     }else{
         this->m_addBtn->setVisible(true);
         this->m_addIcon->setVisible(true);
-        this->m_addIcon1->setVisible(true);
+
         this->m_msg3Label->setColor(ccc3(255, 247, 255));
         this->getAnimationManager()->runAnimationsForSequenceNamed("Default Timeline");
     }
@@ -322,6 +425,93 @@ void BattleView::onExit()
     CCSafeNotificationCenter::sharedNotificationCenter()->removeObserver(this,MSG_TROOPS_BACK);
     CCNode::onExit();
 }
+void BattleView::titanInfoChange(CCObject* obj)
+{
+//    auto& children = m_tabView->getContainer()->getChildren();
+//    for (auto child : children)
+//    {
+//        auto& childrenArr = child->getChildren();
+//        SoldierCell *cell = dynamic_cast<SoldierCell*>(childrenArr.at(0));
+//        if(cell){
+//           
+//            int sid = atoi(cell->m_soldierId.c_str());
+//            if(sid>=107401&&sid<=107430)//fusheng 存在泰坦
+//            {
+//                string oldID = cell->m_soldierId;
+//                cell->m_soldierId = GlobalData::shared()->titanInfo.titanId;
+//                
+//                if (oldID == GlobalData::shared()->titanInfo.titanId) {
+//                    CCLOG("march titan ti li hui fu");
+//                }
+//                else
+//                {
+//                    if (TroopsController::getInstance()->m_tmpBattleInfos.find(oldID)!=TroopsController::getInstance()->m_tmpBattleInfos.end()) {
+//                        
+//                        TroopsController::getInstance()->m_tmpBattleInfos[cell->m_soldierId] = TroopsController::getInstance()->m_tmpBattleInfos[oldID];
+//                        
+//                        TroopsController::getInstance()->m_tmpBattleInfos[oldID] = 0;
+//                        
+//                        TroopsController::getInstance()->m_tmpFreeSoldiers[cell->m_soldierId] = TroopsController::getInstance()->m_tmpFreeSoldiers[oldID];
+//                        
+//                        TroopsController::getInstance()->m_tmpFreeSoldiers[oldID] = 0;
+//                        
+//                        TroopsController::getInstance()->m_tmpConfSoldiers[cell->m_soldierId] = TroopsController::getInstance()->m_tmpConfSoldiers[oldID];
+//                        
+//                        TroopsController::getInstance()->m_tmpConfSoldiers[oldID] = 0;
+//                        
+//                        CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(MSG_TITAN_COUNT_CHANGE
+//                                                                                               , CCInteger::create(TroopsController::getInstance()->m_tmpBattleInfos[cell->m_soldierId])); //计算体力是否充足
+//                        
+//                        CCLOG("march update titan");
+//                    }
+//                }
+//                
+//                
+//                
+//                cell->refresh();
+//            }
+//            
+//        }
+//    }
+    
+    auto armyInfo = GlobalData::shared()->armyList[GlobalData::shared()->titanInfo.titanId];
+    if(armyInfo.free != 0)//士兵里有龙
+    {
+        if (GlobalData::shared()->titanInfo.level == 1)
+        {
+            
+        }
+        else
+        {
+            string oldID = CCString::createWithFormat("%d", GlobalData::shared()->titanInfo.level + 107400 - 1)->getCString();
+            
+            if (TroopsController::getInstance()->m_tmpBattleInfos.find(oldID)!=TroopsController::getInstance()->m_tmpBattleInfos.end()) {
+                
+                TroopsController::getInstance()->m_tmpBattleInfos[GlobalData::shared()->titanInfo.titanId] = TroopsController::getInstance()->m_tmpBattleInfos[oldID];
+                
+                TroopsController::getInstance()->m_tmpBattleInfos[oldID] = 0;
+                
+                TroopsController::getInstance()->m_tmpFreeSoldiers[GlobalData::shared()->titanInfo.titanId] = TroopsController::getInstance()->m_tmpFreeSoldiers[oldID];
+                
+                TroopsController::getInstance()->m_tmpFreeSoldiers[oldID] = 0;
+                
+                TroopsController::getInstance()->m_tmpConfSoldiers[GlobalData::shared()->titanInfo.titanId] = TroopsController::getInstance()->m_tmpConfSoldiers[oldID];
+                
+                TroopsController::getInstance()->m_tmpConfSoldiers[oldID] = 0;
+                
+                CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(MSG_TITAN_COUNT_CHANGE
+                                                                                       , CCInteger::create(TroopsController::getInstance()->m_tmpBattleInfos[GlobalData::shared()->titanInfo.titanId])); //计算体力是否充足
+                
+                CCLOG("march update titan");
+                
+                //fusheng 需要刷新龙相关的节点
+            }
+           
+        }
+       
+    }
+}
+
 
 void BattleView::generalSelect(){
 //    std::string generalUid = GlobalData::shared()->generals.begin()->first;
@@ -435,6 +625,45 @@ void BattleView::updateLoadInfo(CCObject* obj)
     }
     m_msg3Label->setString(CC_ITOA(maxSoilder));
 }
+void BattleView::titanNumChange(CCObject* obj)
+{
+    auto info = WorldController::getInstance()->getCityInfos().find(m_targetIndex);
+    
+    CCLOG("titanNumChange" );
+    if(m_targetType==ActBossTile || (info != WorldController::getInstance()->getCityInfos().end() && (info->second.cityType == FieldMonster || info->second.cityType == MonsterTile || info->second.cityType == MonsterRange || info->second.cityType == ActBossTile))){
+        CCInteger *num = dynamic_cast<CCInteger*>(obj);
+        if (num) {
+            CCLOG("titanNumChange %d %d %d", num->getValue(),GlobalData::shared()->titanInfo.currentManual, GlobalData::shared()->titanInfo.costmanual);
+            if (num->getValue() == 1)
+            {
+                if (GlobalData::shared()->titanInfo.currentManual<GlobalData::shared()->titanInfo.costmanual)
+                {
+                    this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::NORMAL)->setState(cocos2d::ui::Scale9Sprite::State::GRAY);
+                    this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::HIGH_LIGHTED)->setState(cocos2d::ui::Scale9Sprite::State::GRAY);
+                    this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::SELECTED)->setState(cocos2d::ui::Scale9Sprite::State::GRAY);
+                    
+                }
+                else
+                {
+                    this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::NORMAL)->setState(cocos2d::ui::Scale9Sprite::State::NORMAL);
+                    this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::HIGH_LIGHTED)->setState(cocos2d::ui::Scale9Sprite::State::NORMAL);
+                    this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::SELECTED)->setState(cocos2d::ui::Scale9Sprite::State::NORMAL);
+                }
+            }
+            else
+            {
+                this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::NORMAL)->setState(cocos2d::ui::Scale9Sprite::State::NORMAL);
+                this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::HIGH_LIGHTED)->setState(cocos2d::ui::Scale9Sprite::State::NORMAL);
+                this->m_marchBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::SELECTED)->setState(cocos2d::ui::Scale9Sprite::State::NORMAL);
+            }
+            //        m_marchBtn->setEnabled(true);
+        }
+
+    } //fusheng 花费体力的出征
+    
+}
+
+
 
 SEL_CCControlHandler BattleView::onResolveCCBCCControlSelector(cocos2d::CCObject * pTarget, const char * pSelectorName)
 {
@@ -453,6 +682,23 @@ SEL_CCControlHandler BattleView::onResolveCCBCCControlSelector(cocos2d::CCObject
 
 bool BattleView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode)
 {
+    
+
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dragonPicNode", CCNode*, this->m_dragonPicNode);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dragonPicNode2", CCNode*, this->m_dragonPicNode2);
+    
+      CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dragonMarchingNode", CCNode*, this->m_dragonMarchingNode);
+      CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dragonMarchingLable", CCLabelIF*, this->m_dragonMarchingLable);
+      CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dragonNode", CCNode*, this->m_dragonNode);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dragonName", CCLabelIF*, this->m_dragonName);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titanAPTxt_0", CCLabelIF*, this->m_titanAPTxt_0);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titanAPTxt_1", CCLabelIF*, this->m_titanAPTxt_1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titanAPTxt_2", CCLabelIF*, this->m_titanAPTxt_2);
+    
+      CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_ProTiTanAP", CCScale9Sprite*, this->m_ProTiTanAP);
+    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_marchBtn", CCControlButton*, this->m_marchBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_quickBtn", CCControlButton*, this->m_quickBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_msg1Label", CCLabelIF*, this->m_msg1Label);
@@ -471,7 +717,7 @@ bool BattleView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const ch
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_hintText1", CCLabelIF*, m_hintText1);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_addBtn", CCControlButton*, m_addBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_addIcon", CCSprite*, m_addIcon);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_addIcon1", CCSprite*, m_addIcon1);
+  
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_helpBtn", CCControlButton*, m_helpBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_stamineNode", CCNode*, this->m_stamineNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_formationNode", Node*, this->m_formationNode);
@@ -485,6 +731,8 @@ bool BattleView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const ch
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_formationBtn3", CCControlButton*, m_formationBtn3);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_formationBtn2", CCControlButton*, m_formationBtn2);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_formationBtn1", CCControlButton*, m_formationBtn1);
+	CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_2touchBtnBg", CCSprite*, this->m_2touchBtnBg);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_2touchBtn", CCSprite*, this->m_2touchBtn);
     return false;
 }
 
@@ -721,6 +969,7 @@ void BattleView::updateArmyNumber(CCObject* obj)
         }
     }
     updateInfo();
+    refreshDragonStatus(nullptr);
 }
 
 void BattleView::march()
@@ -1114,6 +1363,124 @@ CCNode* BattleView::getGuideNode(string _key)
     return NULL;
 }
 
+void BattleView::refreshDragonNumStatus()
+{
+    auto armyInfo = GlobalData::shared()->armyList[GlobalData::shared()->titanInfo.titanId];
+    if(armyInfo.free != 0 )//士兵里有龙
+    {
+   
+        CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(MSG_TITAN_COUNT_CHANGE
+                                                                               , CCInteger::create(selectDragon?1:0));
+    
+        m_2touchBtn->setPositionX(selectDragon?94:20);
+        
+        
+        m_2touchBtn->setSpriteFrame(selectDragon?"nb_checkboxBlockON.png":"nb_checkboxBlockOFF.png");
+        
+        m_2touchBtnBg->setSpriteFrame(selectDragon?"nb_checkboxBGSend.png":"nb_checkboxBGStay.png");
+    
+        TroopsController::getInstance()->updateTmpBattleData(GlobalData::shared()->titanInfo.titanId, selectDragon?1:0, GlobalData::shared()->titanInfo.titanId);
+    }
+}
+
+void BattleView::refreshDragonStatus(CCObject* obj)
+{
+    auto armyInfo = GlobalData::shared()->armyList[GlobalData::shared()->titanInfo.titanId];
+    if(armyInfo.free != 0)//士兵里有龙
+    {
+        m_dragonNode->setVisible(true);
+        m_dragonMarchingNode->setVisible(false);
+       
+        string name = CCCommonUtils::getNameById(GlobalData::shared()->titanInfo.titanId);
+        m_dragonName->setString(name);
+   
+        
+        string id = CC_ITOA(GlobalData::shared()->titanInfo.tid);
+        
+        string picName = CCCommonUtils::getPropById(id, "dragonUI");
+        picName.append(".png");
+        auto spr = CCLoadSprite::createSprite(picName.c_str());
+       
+        m_dragonPicNode->removeAllChildren();
+        m_dragonPicNode->addChild(spr);
+        
+        auto sprFrame = CCLoadSprite::createSprite("d_march_frame.png");
+        m_dragonPicNode->addChild(sprFrame,100);
+        
+        if(GlobalData::shared()->titanInfo.maxManual!=0)
+        {
+            float ratio =((float)GlobalData::shared()->titanInfo.currentManual)/GlobalData::shared()->titanInfo.maxManual;
+            
+            auto size = this->m_ProTiTanAP->getContentSize();
+            
+            size.width = m_ProTiTanAPMaxWidth * ratio;
+            
+            
+            m_ProTiTanAP->setVisible(ratio != 0);
+            
+            auto oriSize = m_ProTiTanAP->getOriginalSize();
+            
+            if (size.width<oriSize.width) {
+                
+                this->m_ProTiTanAP->setContentSize(oriSize);
+                
+            }
+            else
+            {
+                this->m_ProTiTanAP->setContentSize(size);
+                
+            }
+            
+            
+            
+           
+            this->m_titanAPTxt_0->setString("(");
+            this->m_titanAPTxt_1->setString(CCString::createWithFormat("%d",GlobalData::shared()->titanInfo.currentManual<0?0:GlobalData::shared()->titanInfo.currentManual)->getCString());
+            this->m_titanAPTxt_2->setString(CCString::createWithFormat("/%d)",GlobalData::shared()->titanInfo.maxManual)->getCString());
+            
+            vector<cocos2d::CCLabelIF *> labels;
+            labels.push_back(m_titanAPTxt_0);
+            labels.push_back(m_titanAPTxt_1);
+            labels.push_back(m_titanAPTxt_2);
+            
+            NBCommonUtils::arrangeLabel(labels);
+
+            
+        }
+        else
+        {
+            
+            auto size = this->m_ProTiTanAP->getContentSize();
+            size.width = 0;
+            this->m_ProTiTanAP->setContentSize(size);
+
+            
+        }
+        
+        
+        
+
+    }
+    else
+    {
+        
+        string id = CC_ITOA(GlobalData::shared()->titanInfo.tid);
+        
+        string picName = CCCommonUtils::getPropById(id, "dragonUI");
+        picName.append(".png");
+        auto spr = CCLoadSprite::createSprite(picName.c_str());
+        
+        m_dragonPicNode2->removeAllChildren();
+        m_dragonPicNode2->addChild(spr);
+        
+        auto sprFrame = CCLoadSprite::createSprite("d_march_frame.png");
+        m_dragonPicNode2->addChild(sprFrame,100);
+        
+        m_dragonNode->setVisible(false);
+        m_dragonMarchingNode->setVisible(true);
+    }
+}
+
 #pragma mark -
 #pragma mark HeroCell Part
 
@@ -1130,39 +1497,60 @@ SoldierCell* SoldierCell::create(string itemId, int num, int type, int rally)
 
 bool SoldierCell::init(string itemId, int num, int type, int rally)
 {
+    CCLoadSprite::doResourceByCommonIndex(8, true);
+    CCLoadSprite::doResourceByCommonIndex(204, true);
+    setCleanFunction([](){
+        CCLoadSprite::doResourceByCommonIndex(8, false);
+        CCLoadSprite::doResourceByCommonIndex(204, false);
+    });
+    
     bool ret = true;
     CCBLoadFile("March2",this,this);
     setContentSize(CCSize(604, 134));
     
 //    m_subBtn->setTouchPriority(Touch_Popup_Item);
 //    m_addBtn->setTouchPriority(Touch_Popup_Item);
-    auto m_sliderBg = CCLoadSprite::createScale9Sprite("huadongtiao3.png");
-    m_sliderBg->setInsetBottom(5);
-    m_sliderBg->setInsetLeft(5);
-    m_sliderBg->setInsetRight(5);
-    m_sliderBg->setInsetTop(5);
-    m_sliderBg->setAnchorPoint(ccp(0.5,0.5));
-    m_sliderBg->setPosition(ccp(252/2, 25));
-    m_sliderBg->setContentSize(CCSize(252,18));
     
-    auto bgSp = CCLoadSprite::createSprite("huadongtiao4.png");
-    bgSp->setVisible(false);
-    auto proSp = CCLoadSprite::createSprite("huadongtiao4.png");
-    auto thuSp = CCLoadSprite::createSprite("huadongtiao1.png");
+//    auto m_sliderBg = CCLoadSprite::createScale9Sprite("huadongtiao3.png");
+//    m_sliderBg->setInsetBottom(5);
+//    m_sliderBg->setInsetLeft(5);
+//    m_sliderBg->setInsetRight(5);
+//    m_sliderBg->setInsetTop(5);
+//    m_sliderBg->setAnchorPoint(ccp(0.5,0.5));
+//    m_sliderBg->setPosition(ccp(252/2, 20));
+//    m_sliderBg->setContentSize(CCSize(252,18));
+//    
+//    auto bgSp = CCLoadSprite::createSprite("huadongtiao4.png");
+//    bgSp->setVisible(false);
+//    auto proSp = CCLoadSprite::createSprite("huadongtiao4.png");
+//    auto thuSp = CCLoadSprite::createSprite("huadongtiao1.png");
+//    
+//    m_slider = CCSliderBar::createSlider(m_sliderBg, proSp, thuSp);
+//    m_slider->setMinimumValue(0.0f);
+//    m_slider->setMaximumValue(1.0f);
+//    m_slider->setProgressScaleX(248/proSp->getContentSize().width);
+//    m_slider->setTag(1);
+//    m_slider->setLimitMoveValue(25);
+////    m_slider->setTouchPriority(Touch_Popup);
+//    m_slider->addTargetWithActionForControlEvents(this, cccontrol_selector(SoldierCell::valueChange), CCControlEventValueChanged);
+//    m_sliderNode->addChild(m_slider, 1);
     
-    m_slider = CCSliderBar::createSlider(m_sliderBg, proSp, thuSp);
-    m_slider->isPrecies=true;
-    m_slider->setMinimumValue(0.0f);
-    m_slider->setMaximumValue(1.0f);
-    m_slider->setProgressScaleX(248/proSp->getContentSize().width);
-    m_slider->setTag(1);
-    m_slider->setLimitMoveValue(25);
-//    m_slider->setTouchPriority(Touch_Popup);
-    m_slider->addTargetWithActionForControlEvents(this, cccontrol_selector(SoldierCell::valueChange), CCControlEventValueChanged);
+    m_slider = NBSlider::create("nb_bar_bg.png", "nb_bar_pro.png", "nb_cursor_icon.png",NBSlider::TextureResType::PLIST);
+    m_slider->setCapInsets(Rect(8, 1, 30, 13));
+    m_slider->setContentSize(Size(230, 15));
+    //    m_slider->setPosition(ccp(-60, -59));//fusheng d
+    if (CCCommonUtils::isIosAndroidPad()) {
+        //        m_slider->setPosition(ccp(-137, -56));//fusheng d
+        m_slider->setScaleX(2.6);
+        m_slider->setScaleY(2.0);
+    }
+    //    m_slider->addTargetWithActionForControlEvents(this, cccontrol_selector(ProductionSoldiersView::moveSlider), CCControlEventValueChanged);//fusheng d
+    m_slider->addEventListener(CC_CALLBACK_2(SoldierCell::valueChange, this));
+    m_slider->setPosition(-230 / 2, -15 / 2);
     m_sliderNode->addChild(m_slider, 1);
     
     auto editSize = m_editNode->getContentSize();
-    m_editBox = CCEditBox::create(editSize, CCLoadSprite::createScale9Sprite("frame_3.png"));
+    m_editBox = CCEditBox::create(editSize, CCLoadSprite::createScale9Sprite("cz_bt_01.png"));
     m_editBox->setInputMode(kEditBoxInputModeNumeric);
     m_editBox->setText("0");
     m_editBox->setDelegate(this);
@@ -1170,11 +1558,8 @@ bool SoldierCell::init(string itemId, int num, int type, int rally)
     m_editBox->setMaxLength(12);
     m_editBox->setReturnType(kKeyboardReturnTypeDone);
     m_editBox->setPosition(ccp(editSize.width/2, editSize.height/2));
+    m_editBox->setFontColor({0xB6, 0xD1, 0xEC});
     m_editNode->addChild(m_editBox);
-
-    setCleanFunction([](){
-        CCLoadSprite::doResourceByCommonIndex(204, false);
-    });
 
     setData(itemId, num, type, rally);
     return ret;
@@ -1190,21 +1575,25 @@ void SoldierCell::setData(string itemId, int num, int type, int rally)
     string name = CCCommonUtils::getNameById(m_soldierId);
     string picName = GlobalData::shared()->armyList[m_soldierId].getHeadIcon();
     m_cntNum = TroopsController::getInstance()->m_tmpConfSoldiers[m_soldierId];
-    m_slider->setEnabled(true);
+//    m_slider->setEnabled(true);
     m_nameLabel->setString(name.c_str());
     
     m_picNode->removeAllChildren();
     
+    int id = atoi(itemId.c_str());
     m_iconPath = picName;
-//    auto pic = CCLoadSprite::createSprite(picName.c_str());
-//    CCCommonUtils::setSpriteMaxSize(pic, 110);
-//    m_picNode->addChild(pic);
-//    pic->setPositionY(-10);
-    int star = ArmyController::getInstance()->getStarlvById(m_soldierId);
-    auto pic = SoldierIconCell::create(picName, 110,m_soldierId,true,star);
-//    CCCommonUtils::setSpriteMaxSize(pic, 110);
-    m_picNode->addChild(pic);
-    pic->setPositionY(-10);
+    if (picName != "ico107401_small.png")
+    {
+        auto pic = CCLoadSprite::createSprite(picName.c_str());
+        CCCommonUtils::setSpriteMaxSize(pic, 110);
+        m_picNode->addChild(pic);
+        pic->setPositionY(-10);
+        
+        m_picBg0->setVisible(id % 4 == 0);
+        m_picBg1->setVisible(id % 4 == 1);
+        m_picBg2->setVisible(id % 4 == 2);
+        m_picBg3->setVisible(id % 4 == 3);
+    }
 
     this->m_levelNode->removeAllChildren();
     string num1 = m_soldierId.substr(m_soldierId.size()-2);
@@ -1232,7 +1621,7 @@ void SoldierCell::refresh(){
     setData(m_soldierId, num, m_type, m_rally);
 }
 
-void SoldierCell::valueChange(CCObject * pSender, Control::EventType pCCControlEvent)
+void SoldierCell::valueChange(Ref *pSender, NBSlider::EventType type)
 {
     if (m_invalidSliderMove) {
         m_invalidSliderMove = false;
@@ -1318,6 +1707,11 @@ bool SoldierCell::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const ch
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_subBtn", CCControlButton*, m_subBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_addBtn", CCControlButton*, m_addBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_headTouchNode", CCNode*, m_headTouchNode);
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picBg0", Sprite*, m_picBg0);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picBg1", Sprite*, m_picBg1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picBg2", Sprite*, m_picBg2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picBg3", Sprite*, m_picBg3);
 
     return false;
 }

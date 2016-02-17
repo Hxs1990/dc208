@@ -16,6 +16,9 @@
 #include "CCMultiColTableView.h"
 #include "CheckBox.h"
 #include "CCSliderBar.h"
+#include "NBSlider.h"
+
+const char * const MSG_TITAN_COUNT_CHANGE = "MSG_TITAN_COUNT_CHANGE"; //fusheng 泰坦数量变化
 
 class BattleView: public PopupBaseView
 ,public CCBSelectorResolver
@@ -25,7 +28,9 @@ class BattleView: public PopupBaseView
 {
 public:
     static BattleView* create(unsigned int startIndex,unsigned int targetIndex,unsigned int haveOwner,float slow=1.0,int rally=0,int bType=-1,int wtIndex=-1,std::string other="", int targetType=0);
-    BattleView():m_startIndex(0),m_targetIndex(0),m_haveOwner(0),m_rally(0),m_bType(-1),m_wtIndex(0),m_other(string()),m_targetType(0),m_slow(1.0){};
+    
+    BattleView();
+
     virtual ~BattleView();
     CCNode* getGuideNode(string _key);
 protected:
@@ -63,6 +68,8 @@ private:
     void generateData();
     void loadResource(float _time);
     void updateLoadInfo(CCObject* obj);
+    void titanNumChange(CCObject* obj);//fusheng 泰坦数量变化
+    void titanInfoChange(CCObject* obj);//fusheng 泰坦属性变化（升级）
     void setAddBtnState();
     void makeArrTime(CCObject* obj);
     void march();
@@ -100,7 +107,7 @@ private:
     CCSafeObject<CCControlButton> m_formationBtn2;
     CCSafeObject<CCControlButton> m_formationBtn1;
     CCSafeObject<CCSprite> m_addIcon;
-    CCSafeObject<CCSprite> m_addIcon1;
+
     CCSafeObject<CCScale9Sprite> m_bg;
     CCSafeObject<CCScale9Sprite> m_renderBG;
 //    CCSafeObject<CheckBox> m_box;
@@ -110,6 +117,36 @@ private:
     CCSafeObject<CCNode> m_stamineNode;
     CCSafeObject<CCMultiColTableView > m_tabView;
     CCSafeObject<CCArray> m_tmpArray;
+    
+    
+    CCSafeObject<CCSprite> m_2touchBtnBg;
+    CCSafeObject<CCSprite> m_2touchBtn;
+    
+    
+    CCSafeObject<CCNode> m_dragonMarchingNode;
+    
+    CCSafeObject<CCLabelIF> m_dragonMarchingLable;
+    
+    
+    CCSafeObject<CCNode> m_dragonNode;
+    CCSafeObject<CCNode> m_dragonPicNode;
+    
+    CCSafeObject<CCNode> m_dragonPicNode2;
+    
+    CCSafeObject<CCLabelIF> m_dragonName;
+    
+    CCSafeObject<CCLabelIF> m_titanAPTxt_0;
+    CCSafeObject<CCLabelIF> m_titanAPTxt_1;
+    CCSafeObject<CCLabelIF> m_titanAPTxt_2;
+    CCSafeObject<CCScale9Sprite> m_ProTiTanAP;
+    
+    float m_ProTiTanAPMaxWidth;
+    
+
+    void refreshDragonNumStatus();//选择不选择龙  会影响是否可以出征
+    
+    void refreshDragonStatus(CCObject* obj);//根据龙的出征状态 修改node
+    
     unsigned int m_startIndex;
     unsigned int m_targetIndex;
     int m_rally;
@@ -120,7 +157,14 @@ private:
     unsigned int m_haveOwner;
     int m_index;
     float m_slow;
+    bool isBegin;
+    
+    bool selectDragon;//fusheng 龙出征
+    
+    
 };
+
+class NBSlider;
 
 class SoldierCell :
 public CCBSelectorResolver
@@ -135,6 +179,7 @@ public:
     void setData(string itemId, int num, int type, int rally);
     void refresh();
     void cellTouchEnded(CCTouch* pTouch);
+    string m_soldierId;
 private:
     virtual bool init(string itemId, int num, int type, int rally);
     virtual void onEnter();
@@ -143,7 +188,7 @@ private:
 	virtual SEL_CCControlHandler onResolveCCBCCControlSelector(cocos2d::CCObject * pTarget, const char * pSelectorName);
 	virtual bool onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode);
     
-    void valueChange(CCObject * pSender, Control::EventType pCCControlEvent);
+    void valueChange(Ref *pSender, NBSlider::EventType type);
     void onSubClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void onAddClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void editBoxReturn(CCEditBox *editBox);
@@ -154,11 +199,16 @@ private:
     CCSafeObject<CCNode> m_picNode;
     CCSafeObject<CCNode> m_levelNode;
     CCSafeObject<CCNode> m_sliderNode;
-    CCSafeObject<CCSliderBar> m_slider;
+    CCSafeObject<NBSlider> m_slider;
     CCSafeObject<CCNode> m_editNode;
     CCSafeObject<CCNode> m_headTouchNode;
     CCEditBox* m_editBox;
-    string m_soldierId;
+    
+    CCSafeObject<Sprite> m_picBg0;
+    CCSafeObject<Sprite> m_picBg1;
+    CCSafeObject<Sprite> m_picBg2;
+    CCSafeObject<Sprite> m_picBg3;
+    
     int m_num;
     int m_cntNum;
     int m_type;

@@ -345,6 +345,14 @@ enum Error{
     Error_Network_Timeout,  // 网络超时
     Error_Network_Lost,     // 网络链接丢失
     
+    
+    TITAN_NO_ENOUGH_TILI = 14000,//泰坦出征体力不足
+    TITAN_ALL_READLY_GO = 14001,//泰坦已经出征
+    TITAN_EXP_FULL = 14002,//泰坦经验已满
+    TITAN_NO_FEED_NUM = 14003,//泰坦没有喂食次数
+    TITAN_NEED_WAIT = 14004,//泰坦需要等待CD
+    TITAN_NOT_ENOUGH_FOOD = 14005,//没有足够的食物
+    
     STATUS_FACILITY_CAPACITY_EXCEED=70 // facility overflow
 };
 
