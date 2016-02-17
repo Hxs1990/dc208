@@ -13,8 +13,8 @@ ReNative=true
 CrashUpload=false
 ReleaseOut=true
 DelManifest=false
-ProjectName="COK_google"
-PackageName="COK_Global"
+ProjectName="DC_google"
+PackageName="DC_Global"
 
 
 Mode="$1"
@@ -92,13 +92,13 @@ logfileName=$logRoot/$curDate/$BUILD_NUMBER-$curDate-$curTime
 #echo $logfileName
 mkdir $logRoot/$curDate >/dev/null 2>/dev/null
 
-apkSrcPath=./bin/$PackageName-release.apk
+apkSrcPath=./bin/$PackageName-${TYPE}.apk
 soPath=./libs/armeabi/libgame.so
 apkTargetDir=$packageroot/$curDate
 soTargetDir=$soRootPath/$curDate
 mkdir $soTargetDir >/dev/null 2>/dev/null
 
-apkTargetPath=$apkTargetDir/$BUILD_NUMBER-$ProjectName-$curDate-$curTime.apk
+apkTargetPath=$apkTargetDir/$BUILD_NUMBER-${TYPE}-$ProjectName-$curDate-$curTime.apk
 apkTargetLastPath=$apkTargetDir/$ProjectName.apk
 
 if [ ! -n "$ANDROID_HOME" ]; then
