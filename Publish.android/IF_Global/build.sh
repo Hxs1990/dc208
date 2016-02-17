@@ -154,8 +154,12 @@ rm -rf *.bak
 
 #Packaing Processing
 if $RepackRes ; then
-
-	cd $scriptRoot/../../Android_Resource >/dev/null 2>/dev/null
+	TMP_DIRECTORY=$scriptRoot/../../Android_Resource
+	if [ ! -d "$TMP_DIRECTORY" ]; then
+  		# Control will enter here if $TMP_DIRECTORY doesn't exist.
+  		mkdir $TMP_DIRECTORY
+	fi
+	cd $TMP_DIRECTORY >/dev/null 2>/dev/null
 	rm -rf *
 
 	cd $scriptRoot/../../CCB/IF >/dev/null 2>/dev/null
