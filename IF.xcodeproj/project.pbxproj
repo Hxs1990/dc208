@@ -204,6 +204,8 @@
 		1D72B7321AA19E4D004EE9F0 /* InviteTeleportCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D72B7301AA19E4D004EE9F0 /* InviteTeleportCommand.cpp */; };
 		1D79175A1B5F279D0016D6E4 /* TrialCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D7917581B5F279D0016D6E4 /* TrialCommand.cpp */; };
 		1D8CD5BD1B1F241C00A8D174 /* ActExcCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D8CD5BB1B1F241C00A8D174 /* ActExcCommand.cpp */; };
+		1D91E6081C747E9500C1EFC9 /* nb_fnt1.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 1D91E6061C747E9500C1EFC9 /* nb_fnt1.fnt */; };
+		1D91E6091C747E9500C1EFC9 /* nb_fnt1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D91E6071C747E9500C1EFC9 /* nb_fnt1.png */; };
 		1D94C6901BE85C8B00FC5219 /* GoldExchangeView_NEW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D94C68E1BE85C8B00FC5219 /* GoldExchangeView_NEW.cpp */; };
 		1D94C6971BE87EAC00FC5219 /* GoldExchangeItemView_NEW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D94C6951BE87EAC00FC5219 /* GoldExchangeItemView_NEW.cpp */; };
 		1D94C69E1BE8B45C00FC5219 /* GoldExchangeAdvertisingView_NEW.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1D94C69C1BE8B45C00FC5219 /* GoldExchangeAdvertisingView_NEW.cpp */; };
@@ -1955,6 +1957,8 @@
 		1D7917591B5F279D0016D6E4 /* TrialCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrialCommand.h; sourceTree = "<group>"; };
 		1D8CD5BB1B1F241C00A8D174 /* ActExcCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActExcCommand.cpp; sourceTree = "<group>"; };
 		1D8CD5BC1B1F241C00A8D174 /* ActExcCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActExcCommand.h; sourceTree = "<group>"; };
+		1D91E6061C747E9500C1EFC9 /* nb_fnt1.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = nb_fnt1.fnt; path = Resources/nb_fnt1.fnt; sourceTree = "<group>"; };
+		1D91E6071C747E9500C1EFC9 /* nb_fnt1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nb_fnt1.png; path = Resources/nb_fnt1.png; sourceTree = "<group>"; };
 		1D94C68E1BE85C8B00FC5219 /* GoldExchangeView_NEW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GoldExchangeView_NEW.cpp; sourceTree = "<group>"; };
 		1D94C68F1BE85C8B00FC5219 /* GoldExchangeView_NEW.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GoldExchangeView_NEW.hpp; sourceTree = "<group>"; };
 		1D94C6951BE87EAC00FC5219 /* GoldExchangeItemView_NEW.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GoldExchangeItemView_NEW.cpp; sourceTree = "<group>"; };
@@ -7908,6 +7912,8 @@
 		DB9F590717CD9A520037F7E5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1D91E6061C747E9500C1EFC9 /* nb_fnt1.fnt */,
+				1D91E6071C747E9500C1EFC9 /* nb_fnt1.png */,
 				EDBDF2E91C632CFF002A4C1A /* eeeq_0.png */,
 				EDBDF2EA1C632CFF002A4C1A /* eeeq.fnt */,
 				365A720D1C61A3D500E7E509 /* 3d */,
@@ -9261,6 +9267,7 @@
 				1D1E45D91C609C4500712A22 /* mail_list_edit_buttonbar_bg.9.png in Resources */,
 				1D1E46031C609C4500712A22 /* mail_list_main_icon_studio.png in Resources */,
 				272AB6241B15C7BC0052E896 /* alliance_02.png in Resources */,
+				1D91E6081C747E9500C1EFC9 /* nb_fnt1.fnt in Resources */,
 				DB9F591D17CD9A520037F7E5 /* iTunesArtwork in Resources */,
 				1D1E46061C609C4500712A22 /* mail_pic_flag_2.png in Resources */,
 				1D1E46011C609C4500712A22 /* mail_list_main_icon_recycler.png in Resources */,
@@ -9277,6 +9284,7 @@
 				1D1E45E11C609C4500712A22 /* mail_list_head_bg_battle.png in Resources */,
 				272AB6521B15C7BC0052E896 /* horn_bg_right.png in Resources */,
 				272AB6351B15C7BC0052E896 /* chat_from_bg_pressed.png in Resources */,
+				1D91E6091C747E9500C1EFC9 /* nb_fnt1.png in Resources */,
 				1D1E45D81C609C4500712A22 /* mail_list_divider.png in Resources */,
 				272AB66B1B15C7BC0052E896 /* ui_popup_bg.png in Resources */,
 				272AB6361B15C7BC0052E896 /* chat_right_bg_normal.png in Resources */,

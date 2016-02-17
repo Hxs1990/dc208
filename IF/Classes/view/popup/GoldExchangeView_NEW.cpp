@@ -66,16 +66,16 @@ bool GoldExchangeView_NEW::init(){
             m_listNode->setContentSize(Size(m_listNode->getContentSize().width, m_listNode->getContentSize().height + addH));
         }
         float height = 0;
-        auto fr = CCLoadSprite::loadResource("technology_09.png");
-        SpriteBatchNode* batch = SpriteBatchNode::createWithTexture(fr->getTexture());
-        while (height < winsize.height) {
-            Sprite* pic = CCLoadSprite::createSprite("technology_09.png");
-            pic->setAnchorPoint(Vec2(0, 0));
-            pic->setPosition(0, height);
-            batch->addChild(pic);
-            height += pic->getContentSize().height;
-        }
-        m_BGNode->addChild(batch);
+//        auto fr = CCLoadSprite::loadResource("technology_09.png");
+//        SpriteBatchNode* batch = SpriteBatchNode::createWithTexture(fr->getTexture());
+//        while (height < winsize.height) {
+//            Sprite* pic = CCLoadSprite::createSprite("technology_09.png");
+//            pic->setAnchorPoint(Vec2(0, 0));
+//            pic->setPosition(0, height);
+//            batch->addChild(pic);
+//            height += pic->getContentSize().height;
+//        }
+//        m_BGNode->addChild(batch);
         auto layer = Layer::create();
         layer->setTouchEnabled(true);
         layer->setSwallowsTouches(true);
@@ -101,7 +101,7 @@ void GoldExchangeView_NEW::refresh(CCObject* obj){
             float addH = node->getContentSize().height;
             listSize.height += addH;
             m_listNode->setContentSize(listSize);
-            m_listNode->setPositionY(m_listNode->getPositionY()+addH);
+//            m_listNode->setPositionY(m_listNode->getPositionY()+addH+200);
             m_scrollView->setViewSize(listSize);
             m_scrollView->setContentOffset(ccp(0, m_listNode->getContentSize().height - m_scrollView->getContentSize().height));
             node->removeFromParent();
@@ -160,6 +160,7 @@ void GoldExchangeView_NEW::initList(){
     
     int i=0;
     float dy=0;
+    float tmp = 15;
     CCNode* listNode = CCNode::create();
     m_scrollView->addChild(listNode);
     
@@ -168,7 +169,7 @@ void GoldExchangeView_NEW::initList(){
     if (GlobalData::shared()->bFreshRechargeOpen)
     {
         FreshRechargeEnter* rukou = FreshRechargeEnter::create();
-        dy -= 168;
+        dy -= 0;
         rukou->setPosition(Vec2(0, dy));
         listNode->addChild(rukou);
     }
@@ -180,8 +181,12 @@ void GoldExchangeView_NEW::initList(){
             if((*it)->type=="1" && (*it)->popup_image != "hide" && (*it)->popup_image != "envelope_gift" ){
                 cell =  GoldExchangeItemView_NEW::create((*it));
                 cell->setPositionX(0);
+                if(CCCommonUtils::isIosAndroidPad()&& CCCommonUtils::getIsHDViewPort())
+                    cell->setPositionX(tmp*2.4);
+                else
+                    cell->setPositionX(tmp);
                 listNode->addChild(cell);
-                dy -= 120;
+                dy -= 155;
                 cell->setPositionY(dy);
             }
         }
@@ -196,8 +201,12 @@ void GoldExchangeView_NEW::initList(){
             mCardList.push_back(item1);
             cell =  GoldExchangeItemView_NEW::create(item1);
             cell->setPositionX(0);
+            if(CCCommonUtils::isIosAndroidPad()&& CCCommonUtils::getIsHDViewPort())
+                cell->setPositionX(tmp*2.4);
+            else
+                cell->setPositionX(tmp);
             listNode->addChild(cell);
-            dy -= 120;
+            dy -= 155;
             cell->setPositionY(dy);
             ++iIndex;
         }
@@ -208,14 +217,19 @@ void GoldExchangeView_NEW::initList(){
     }
     
     listNode->setPositionY(abs(dy));
-    m_scrollView->setContentSize(CCSize(m_listNode->getContentSize().width, abs(dy)));
+    m_scrollView->setContentSize(CCSize(m_listNode->getContentSize().width, abs(dy)+60));
     m_scrollView->setContentOffset(ccp(0, m_listNode->getContentSize().height - abs(dy)));
     m_listNode->addChild(m_scrollView);
+    m_listNode->setPositionY(m_listNode->getPositionY()+60);
+    m_listNode->setContentSize(CCSize(m_listNode->getContentSize().width, abs(dy)+800));
     m_scrollView->setDelegate(this);
     
     //显示 advertising
     GoldExchangeAdvertisingView_NEW* advertisingview = GoldExchangeAdvertisingView_NEW::create();
+    advertisingview->setAnchorPoint(Vec2(0, 0));
     m_advertisNode->addChild(advertisingview);
+    m_advertisNode->setPositionX(0);
+     m_advertisNode->setPositionY(m_advertisNode->getPositionY()+170);//simon
 }
 
 void GoldExchangeView_NEW::onEnter(){
