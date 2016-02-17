@@ -289,6 +289,13 @@ void Soldier::attack(){
     }else if(m_type == CHE){
         CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(Soldier::playRockAttackAnimation), this, 2.6, 3, 0.4, false);
     }
+    
+    
+    
+    
+    
+    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(Soldier::playNBAttackAnimation), this, 1, 7, 0.4, false);//fusheng 粒子效果
+    
 }
 
 void Soldier::dead(float _time){
@@ -342,6 +349,45 @@ void Soldier::playAttackAnimation(float _time){
     arrow1->attack(m_startPoint, m_endPoint1, 2.1);
     
 }
+void Soldier::playNBAttackAnimation(float _time){
+    if( WorldMapView::instance() == NULL )
+        return;
+    
+    auto it = WorldController::getInstance()->m_marchInfo.find(m_uuid);
+    if(it == WorldController::getInstance()->m_marchInfo.end()){
+        return;
+    }
+
+    CCLog("particle fuck");
+    
+    CCPoint m_startPoint = m_sprite->getPosition();
+   
+    auto node = Node::create();
+    
+    for (int i = 0; i < 4; i++) {
+        auto part = ParticleController::createParticle(CCString::createWithFormat("AttackTail_%d",i)->getCString());
+
+        part->setAutoRemoveOnFinish(true);
+        
+        node->addChild(part);
+    
+    }
+    
+    node->setRotation(45);//以左方向为0 ， 逆时针为正方向建系
+    
+    node->setRotation(node->getRotation() - m_direction);
+    
+    auto particleNode = m_sprite->getChildByTag(1008611);
+    
+    if (particleNode) {
+        node->setPosition(particleNode->getPosition());
+    }
+    
+    m_sprite->addChild(node);
+    
+//    this->m_direction;
+    
+}
 
 void Soldier::playRockAttackAnimation(float _time){
     if( WorldMapView::instance() == NULL )
@@ -368,37 +414,39 @@ void Soldier::playRockAttackAnimation(float _time){
     rock->attack(m_startPoint, m_endPoint, 3.1, MarchArmy::getStartIndex(m_uuid), m_col + 1);
 }
 
-CCAnimate *Soldier::getAnimate(float direction, int state){
+FiniteTimeAction *Soldier::getAnimate(float direction, int state){
     std::string stateStr = "";
     
     Vector<SpriteFrame*> arr; //= CCArray::create();
-    int totalFrame = 0;
-    if(state == 2){
-        totalFrame = 6;
-        stateStr = "die";
-    }else if(state == 1){
-        totalFrame = 12;
-        stateStr = "attack";
-    }else{
-        totalFrame = 8;
-        stateStr = "move";
-    }
-    std::string str = "a060_0_%s_%s_%d.png";
-    if(m_type == BU){
-        str = "a010_0_%s_%s_%d.png";
-    }
-    else if(m_type == QI){
-        totalFrame = 7;
-        str = "a020_0_%s_%s_%d.png";
-    }
-    else if (m_type == CHE){
-        str = "zhanche_0_%s_%s_%d.png";
-        if (stateStr == "attack") {
-            totalFrame = 6;
-        }else if (stateStr == "move") {
-            totalFrame = 4;
-        }
-    }
+    int totalFrame = 8;
+//    if(state == 2){
+//        totalFrame = 6;
+//        stateStr = "die";
+//    }else if(state == 1){
+//        totalFrame = 12;
+//        stateStr = "attack";
+//    }else{
+//        totalFrame = 8;
+//        stateStr = "move";
+//    }
+	stateStr = "move";
+	totalFrame = 8;
+    std::string str = "vikings_0_%s_%s_%d.png";
+//    if(m_type == BU){
+//        str = "a010_0_%s_%s_%d.png";
+//    }
+//    else if(m_type == QI){
+//        totalFrame = 7;
+//        str = "a020_0_%s_%s_%d.png";
+//    }
+//    else if (m_type == CHE){
+//        str = "zhanche_0_%s_%s_%d.png";
+//        if (stateStr == "attack") {
+//            totalFrame = 6;
+//        }else if (stateStr == "move") {
+//            totalFrame = 4;
+//        }
+//    }
     
     std::string directionStr = "";
     bool isFlipX = false;
@@ -407,26 +455,46 @@ CCAnimate *Soldier::getAnimate(float direction, int state){
     direction = fmodf(direction, 360);
     
     float angle = 360 / 16;
-    
+
+
+#pragma mark 找到粒子特效添加的位置 fusheng
+    int posX = 0;
+    int posY = 0;
     if((direction >= 360 - angle && direction <= 360) || (direction >= 0 && direction <= angle)){
         directionStr = "W";
+        posX = 0;
+        posY = m_sprite->getBoundingBox().size.height/2;
     }else if(direction > angle && direction <= 90 - angle){
         directionStr = "SW";
+        posX = 0;
+        posY = 0;
     }else if(direction > 90 - angle && direction <= 90 + angle){
         directionStr = "S";
+        posX = m_sprite->getBoundingBox().size.width/2;
+        posY = 0;
     }else if(direction > 90 + angle && direction <= 180 - angle){
         directionStr = "SW";
         isFlipX = true;
+        posX = m_sprite->getBoundingBox().size.width;
+        posY = 0;
     }else if(direction > 180 - angle && direction <= 180 + angle){
         directionStr = "W";
         isFlipX = true;
+        posX = m_sprite->getBoundingBox().size.width;
+        posY = m_sprite->getBoundingBox().size.height/2;
     }else if(direction > 180 + angle && direction <= 270 - angle){
         directionStr = "NW";
         isFlipX = true;
+        posX = m_sprite->getBoundingBox().size.width;
+        posY = m_sprite->getBoundingBox().size.height;
     }else if(direction > 270 - angle && direction <= 270 + angle){
         directionStr = "N";
+        posX = m_sprite->getBoundingBox().size.width/2;
+        posY = m_sprite->getBoundingBox().size.height;
     }else if(direction > 270 + angle && direction <= 360 - angle){
         directionStr = "NW";
+        posX = 0;
+        posY = m_sprite->getBoundingBox().size.height;
     }
     int spriteW = 0;
     int index = 0;
@@ -452,12 +520,43 @@ CCAnimate *Soldier::getAnimate(float direction, int state){
     }
     m_sprite->setFlipX(isFlipX);
     CCAnimation *animation = CCAnimation::createWithSpriteFrames(arr, 0.1f);
-    if(m_currentState == 2){
-        animation->setLoops(1);
-    }else{
-        animation->setLoops(std::numeric_limits<int>::max());
+    
+    FiniteTimeAction* act = nullptr;
+//    fusheng test
+    auto particleNode = m_sprite->getChildByTag(1008611);
+    if(particleNode)
+    {
+        particleNode->setPosition(posX,posY);
     }
-    CCAnimate *animate = CCAnimate::create(animation);
+    else
+    {
+        CCLayerColor* lc =CCLayerColor::create({255,0,0,128}, 10, 10);
+        lc->setTag(1008611);
+        lc->setPosition(posX,posY);
+        m_sprite->addChild(lc);
+    }
+    
+    if(m_currentState == 2){
+
+        CCAnimate *animate = CCAnimate::create(animation);
+        act = animate;
+    }
+    else if(m_currentState == 1) {
+//        animation->setLoops(std::numeric_limits<int>::max());
+        CCAnimate *animate = CCAnimate::create(animation);
+        auto seq = Sequence::create(animate,CallFunc::create([]
+                                                  {
+                                                      CCLog("march fuck");
+                                                  }), NULL);
+        act = RepeatForever::create(seq);
+    }
+    else
+    {
+        CCAnimate *animate = CCAnimate::create(animation);
+
+        act = RepeatForever::create(animate);
+    }
+
 //    if(m_kingSprite1){
 //       float s = 0.3;
 //       auto w = spriteW * m_sprite->getScale() * s;
@@ -469,7 +568,7 @@ CCAnimate *Soldier::getAnimate(float direction, int state){
         auto w = spriteW * m_sprite->getScale() * s;
         m_kingParNode->setScale(w / 140);
     }
-    return animate;
+    return act;
 }
 
 void Soldier::resetAnimate(float direction, int state){
@@ -555,10 +654,13 @@ bool Soldier::init(){
         addActParticle();
     }
     
-    m_sprite = CCLoadSprite::createSprite("a030_0_S_attack_0.png");
-    m_sprite->setScale(0.6);
+    m_sprite = CCLoadSprite::createSprite("vikings_0_N_move_0.png");
+
     m_parent->addChild(m_sprite, 1);
     m_sprite->setVisible(false);
+//
+//    CCLayerColor* lc =CCLayerColor::create({255,0,0,128}, 10, 10);
+//    m_sprite->addChild(lc);
     
 //    if(m_info.officer == KINGDOM_KING_ID){
 //        m_kingSprite2 = CCLoadSprite::createSprite("KingsArmy_2.png");
@@ -1123,8 +1225,16 @@ void Phalanx::spreadTo(CCArray *data){
             pt2 = getSoldierPosByRowAndCol(row, col, direction, m_row, m_col, startPt, 130, 130);
         }else if(m_type == GONG){
             int numPerLine = (m_col * m_row) / 2;
+            
+            if(numPerLine == 0)
+            {
+                numPerLine = 1;
+            }
+            
             row = it->first / numPerLine;
             col = it->first % numPerLine;
+            
+
             
             pt2 = getSoldierPosByRowAndCol(row, col, direction, 2, numPerLine, startPt, 80, 120);
         }
@@ -1205,7 +1315,7 @@ bool Phalanx::init(){
         int num = map[BU].total;
         if(num < vector[0]){
             m_row = 1;
-            m_col = 4;
+            m_col = 1;
         }else if(num >= vector[0] && num <= vector[1]){
             m_row = 2;
             m_col = 5;
@@ -1218,7 +1328,7 @@ bool Phalanx::init(){
         int num = map[QI].total;
         if(num < vector[0]){
             m_row = 1;
-            m_col = 3;
+            m_col = 1;
         }else if(num >= vector[0] && num <= vector[1]){
             m_row = 2;
             m_col = 3;
@@ -1231,7 +1341,7 @@ bool Phalanx::init(){
         int num = map[GONG].total;
         if(num < vector[0]){
             m_row = 1;
-            m_col = 4;
+            m_col = 1;
         }else if(num >= vector[0] && num <= vector[1]){
             m_row = 2;
             m_col = 5;

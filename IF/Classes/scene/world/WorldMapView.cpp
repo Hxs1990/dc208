@@ -5742,40 +5742,45 @@ CCAnimate* WorldMapView::createMarchAni(MarchAniType type,int direction, float d
             frameCount = 8;
         }
             break;
+//        case AniCollectCloth:{
+//            temp = "CJ_yifu_%s_%d.png";
+//            frameCount = 0;
+//        }
+//            break;
         case AniDeal:{
             frameCount = 8;
             temp = "JY_body_%s_%d.png";
         }
             break;
-        case AniDealCloth:{
-            frameCount = 8;
-            temp = "JY_yifu_%s_%d.png";
-        }
-            break;
+//        case AniDealCloth:{
+//            frameCount = 0;
+//            temp = "JY_yifu_%s_%d.png";
+//        }
+//            break;
         case AniScout:{
             frameCount = 7;
             temp = "ZC_body_%s_%d.png";
         }
             break;
         case AniScoutCloth:{
-            frameCount = 7;
+            frameCount = 0;
             temp = "ZC_yifu_%s_%d.png";
         }
             break;
-        case AniCityProtect:{
-            frameCount = 8;
-            frameStart = 1;
-            directionStr = "";
-            temp = "Protect_B_%s%d.png";
-        }
-            break;
-        case AniCityResourceProtect:{
-            frameCount = 8;
-            frameStart = 1;
-            directionStr = "";
-            temp = "Protect_Y_%s%d.png";
-        }
-            break;
+//        case AniCityProtect:{
+//            frameCount = 8;
+//            frameStart = 1;
+//            directionStr = "";
+//            temp = "Protect_B_%s%d.png";
+//        }
+//            break;
+//        case AniCityResourceProtect:{
+//            frameCount = 8;
+//            frameStart = 1;
+//            directionStr = "";
+//            temp = "Protect_Y_%s%d.png";
+//        }
+//            break;
         case AniEdgy:{
             frameCount = 7;
             directionStr = "";
