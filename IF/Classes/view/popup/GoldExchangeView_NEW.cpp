@@ -221,7 +221,7 @@ void GoldExchangeView_NEW::initList(){
     m_scrollView->setContentOffset(ccp(0, m_listNode->getContentSize().height - abs(dy)));
     m_listNode->addChild(m_scrollView);
     m_listNode->setPositionY(m_listNode->getPositionY()+60);
-    m_listNode->setContentSize(CCSize(m_listNode->getContentSize().width, abs(dy)+800));
+    m_listNode->setContentSize(CCSize(m_listNode->getContentSize().width, abs(dy)));
     m_scrollView->setDelegate(this);
     
     //显示 advertising

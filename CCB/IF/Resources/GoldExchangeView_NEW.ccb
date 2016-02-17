@@ -411,7 +411,7 @@
 						<key>value</key>
 						<array>
 							<real>640</real>
-							<real>465</real>
+							<real>505</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -434,8 +434,8 @@
 						<key>value</key>
 						<array>
 							<real>1.0000042915344238</real>
-							<real>1</real>
-							<false/>
+							<real>1.0000042915344238</real>
+							<true/>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -475,7 +475,7 @@
 									<key>value</key>
 									<array>
 										<real>0.0</real>
-										<real>387</real>
+										<real>380</real>
 									</array>
 								</dict>
 							</array>
@@ -513,7 +513,7 @@
 						<key>value</key>
 						<array>
 							<real>0.0</real>
-							<real>387</real>
+							<real>380</real>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -547,7 +547,7 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
+							<real>0.99895447492599487</real>
 							<real>1</real>
 							<false/>
 							<integer>0</integer>
