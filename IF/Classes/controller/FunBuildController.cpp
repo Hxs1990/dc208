@@ -269,7 +269,7 @@ void FunBuildController::refreshResTime(CCDictionary* dict)//城市被攻击后�
 
 void FunBuildController::retDataFromServer(CCDictionary* dict)
 {
-    return ;
+
     ClientRecordMap.clear();
     if (dict->objectForKey("mixedInfo")) {
         CCDictionary* mixedInfo = _dict(dict->objectForKey("mixedInfo"));
@@ -333,13 +333,13 @@ void FunBuildController::retDataFromServer(CCDictionary* dict)
         string guideMod = CCUserDefault::sharedUserDefault()->getStringForKey("Guide_Mod","");
         string GuideBuildKey = "";
         if ( guideMod == "1") {
-            GuideBuildKey = makeGuideBuildDataB(id, pos, level);
+//            GuideBuildKey = makeGuideBuildDataB(id, pos, level);
         }else {
-            GuideBuildKey = makeGuideBuildDataA(id, pos, level);
+//            GuideBuildKey = makeGuideBuildDataA(id, pos, level);
         }
         
         if (GuideBuildKey != "") {
-            m_guideBuildMap[GuideBuildKey] = info;
+//            m_guideBuildMap[GuideBuildKey] = info;
             continue;
         }
         //分析提取引导数据结束
