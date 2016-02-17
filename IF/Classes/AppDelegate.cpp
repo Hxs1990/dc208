@@ -72,6 +72,7 @@ AppDelegate::~AppDelegate()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    Texture2D::setSmallFlag(false);
     CCTexture2D::setDownloadFlag(false);
     CCLoadSprite::init();
     
