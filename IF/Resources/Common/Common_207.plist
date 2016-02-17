@@ -72,7 +72,7 @@
             <key>BaozhangGlow_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{491,4},{177,89}}</string>
+                <string>{{409,4},{177,89}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>BaozhangGlow_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{774,4},{157,141}}</string>
+                <string>{{692,4},{157,141}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>facebook_default_head.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{674,4},{94,94}}</string>
+                <string>{{592,4},{94,94}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -133,19 +133,6 @@
                 <string>{{0,0},{94,94}}</string>
                 <key>sourceSize</key>
                 <string>{94,94}</string>
-            </dict>
-            <key>icon_Record.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{409,4},{76,72}}</string>
-                <key>offset</key>
-                <string>{2,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{4,4},{76,72}}</string>
-                <key>sourceSize</key>
-                <string>{80,80}</string>
             </dict>
             <key>share_check_box.png</key>
             <dict>
@@ -183,7 +170,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fdbe3e224ebd6d2dcf16ca27ef90c798:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:8bbbb247ef5f4fa365c8e3f4e09a5049:1/1$</string>
             <key>textureFileName</key>
             <string>Common_207.pvr.ccz</string>
         </dict>

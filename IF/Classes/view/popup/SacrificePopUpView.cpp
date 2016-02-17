@@ -69,10 +69,12 @@ bool SacrificePopUpView::init()
     CCLoadSprite::doResourceByCommonIndex(8, true);
     CCLoadSprite::doResourceByCommonIndex(7, true);
     CCLoadSprite::doResourceByCommonIndex(6, true);
+    CCLoadSprite::doResourceByCommonIndex(204, true);//fusheng 添加
     setCleanFunction([](){
         CCLoadSprite::doResourceByCommonIndex(8, false);
         CCLoadSprite::doResourceByCommonIndex(7, false);
         CCLoadSprite::doResourceByCommonIndex(6, false);
+        CCLoadSprite::doResourceByCommonIndex(204, false);
         
     });
     auto tmpCCB = CCBLoadFile("SacrificeCCB",this,this);
@@ -97,17 +99,17 @@ bool SacrificePopUpView::init()
     m_tabView->setDirection(kCCScrollViewDirectionVertical);
     m_tabView->setVerticalFillOrder(kCCTableViewFillTopDown);
     m_tabView->setTouchPriority(Touch_Default);
-    
+    changeBGMaxHeight(m_buildBG);
     m_infoList->addChild(m_tabView);
-    int count = (m_buildBG->getContentSize().height)/100+1;
-    for (int i=0; i<count; i++) {
-        auto pic = CCLoadSprite::createSprite("technology_09.png");
-        if (CCCommonUtils::isIosAndroidPad()) {
-            pic->setScaleX(2.51);
-        }
-        pic->setPositionY(-i*100);
-        this->m_bgNode->addChild(pic);
-    }
+//    int count = (m_buildBG->getContentSize().height)/100+1;
+//    for (int i=0; i<count; i++) {
+//        auto pic = CCLoadSprite::createSprite("technology_09.png");
+//        if (CCCommonUtils::isIosAndroidPad()) {
+//            pic->setScaleX(2.51);
+//        }
+//        pic->setPositionY(-i*100);
+//        this->m_bgNode->addChild(pic);
+//    }
     m_getNumText->setVisible(false);
     addCommonAnim();
     getData();
@@ -165,9 +167,9 @@ void SacrificePopUpView::refresh(CCObject* p){
     m_data->removeAllObjects();
     m_data->addObject(CCInteger::create(0));
     m_data->addObject(CCInteger::create(1));
-    if(info.isSteelOpen==true){
-        m_data->addObject(CCInteger::create(2));
-    }
+//    if(info.isSteelOpen==true){//fusheng 3行变两行
+//        m_data->addObject(CCInteger::create(2));
+//    }
     float needH = m_data->count() * Sacrifice_Cell_Height;
     if (CCCommonUtils::isIosAndroidPad()) {
         needH = m_data->count() * Sacrifice_Cell_HD_Height;
@@ -604,66 +606,47 @@ void SacrificeCell::setData(int type)
         auto cell = SacrificeOneCell::create(Wood);
         m_cellNode->addChild(cell);
         cell->setTag(99);
+        
+        cell->setPositionX(66);
         auto cell1 = SacrificeOneCell::create(Food);
         m_cellNode->addChild(cell1);
         if (CCCommonUtils::isIosAndroidPad()) {
             cell1->setPositionX(748);
         }
         else
-            cell1->setPositionX(319);
+//            cell1->setPositionX(319);//fusheng
+            cell1->setPositionX(236);
         cell1->setTag(100);
-    }else if(m_type==1){
+        
+        //fusheng begin 把原本的第二行提上来
         auto &info = GlobalData::shared()->sacrificeInfo;
-        if(info.isSteelOpen==true){
+//        if(info.isSteelOpen==true){
+        if(false){
             int mlv = FunBuildController::getInstance()->getMainCityLv();
             if (mlv>=FunBuildController::getInstance()->building_base_k3){
                 auto cell = SacrificeOneCell::create(Iron);
                 m_cellNode->addChild(cell);
-                cell->setTag(99);
-                if (mlv>=FunBuildController::getInstance()->building_base_k4) {
-                    auto cell1 = SacrificeOneCell::create(Stone);
-                    m_cellNode->addChild(cell1);
-                    if (CCCommonUtils::isIosAndroidPad()) {
-                        cell1->setPositionX(748);
-                    }
-                    else
-                        cell1->setPositionX(319);
-                    cell1->setTag(100);
-                }else{
-                    auto cell1 = SacrificeOneCell::create(Silver);
-                    m_cellNode->addChild(cell1);
-                    if (CCCommonUtils::isIosAndroidPad()) {
-                        cell1->setPositionX(748);
-                    }
-                    else
-                        cell1->setPositionX(319);
-                    cell1->setTag(100);
+                cell->setTag(101);
+                
+                cell->setPositionX(406);
                 }
-            }else{
+            else{
                 auto cell = SacrificeOneCell::create(Silver);
                 m_cellNode->addChild(cell);
-                cell->setTag(99);
-                auto cell1 = SacrificeOneCell::create(Iron);
-                m_cellNode->addChild(cell1);
-                if (CCCommonUtils::isIosAndroidPad()) {
-                    cell1->setPositionX(748);
-                }
-                else
-                    cell1->setPositionX(319);
-                cell1->setTag(100);
+                cell->setTag(101);
+                
+                cell->setPositionX(406);
+                
+                
+
             }
         }else{
             auto cell = SacrificeOneCell::create(Iron);
             m_cellNode->addChild(cell);
-            cell->setTag(99);
-            auto cell1 = SacrificeOneCell::create(Stone);
-            m_cellNode->addChild(cell1);
-            if (CCCommonUtils::isIosAndroidPad()) {
-                cell1->setPositionX(748);
-            }
-            else
-                cell1->setPositionX(319);
-            cell1->setTag(100);
+            cell->setTag(101);
+            
+            cell->setPositionX(406);
+
         }
     }else if(m_type==2){
         int mlv = FunBuildController::getInstance()->getMainCityLv();
