@@ -949,6 +949,7 @@ void ImperialScene::onPlayMoveTroops(int buildId)
 
 void ImperialScene::startGuide(float _time)
 {
+    return;
     setUnMoveScence(false);
     if(WorldController::getInstance()->selfPoint.x < 0){
         return;
