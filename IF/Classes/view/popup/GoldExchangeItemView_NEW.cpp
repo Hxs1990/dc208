@@ -139,8 +139,9 @@ void GoldExchangeItemView_NEW::refreshData(CCObject* p)
             sprid = 5;
         }
         string strID = CC_ITOA(sprid);
-        string boxName = "Icon_Gold_0" + strID + "_gold_new.png";
+        string boxName = "gift000" + strID + ".png";
         CCSprite* sprite = CCLoadSprite::createSprite(boxName.c_str());
+        sprite->cocos2d::Node::setScale(0.8);
         m_iconNode->addChild(sprite);
         if (m_currdataItem->type == "2") {
             m_blueBtn->setVisible(false);
