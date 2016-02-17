@@ -533,7 +533,7 @@ bool LoadingScene::init()
             auto logo = CCLoadSprite::createSprite("logo.png");
             logo->setAnchorPoint(ccp(0.5, 0));
             
-            logo->setPosition(ccp(size.width/2, 150));//
+            logo->setPosition(ccp(size.width/2, size.height - 300));//
             logo->setTag(LOADING_LOGO_TAG);
             addChild(logo);
             
