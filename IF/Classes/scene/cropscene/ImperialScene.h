@@ -489,6 +489,8 @@ private:
     CCSafeObject<CCNode> m_soldierFlagNode;
     map<int,CCSpriteBatchNode*> m_buildBatchMap;
     
+    map<int,CCLayer*> m_buildSpineMap;
+    
     CCSafeObject<CCArray> m_personArray;
     CCSafeObject<CCArray> m_prinessPersonArray;
 

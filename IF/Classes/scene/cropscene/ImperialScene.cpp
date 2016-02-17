@@ -361,7 +361,7 @@ bool ImperialScene::init()
     m_viewPort->setViewPortTarget(m_touchLayer);
     m_viewPort->setSceneSize(sumWidth, sumHight);
     m_viewPort->setTouchDelegate(this);
-    m_viewPort->setWorldBound(CCRect(0,250, sumWidth, sumHight));
+    m_viewPort->setWorldBound(CCRect(0,0, sumWidth, sumHight));
     
     m_touchLayer->setScale(FunBuildController::getInstance()->oldScale);
     
@@ -3433,6 +3433,10 @@ void ImperialScene::onUpdateInfo()
             int od = m_nodeBuildings[(it->second).pos]->getZOrder();
             build->setNamePos(m_nodeBuildings[(it->second).pos]->getPositionX()
                               , m_nodeBuildings[(it->second).pos]->getPositionY(), m_signLayer, m_popLayer, m_arrbatchNode, curBatch, od, curBlentBatch);
+            if (m_buildSpineMap.find((it->second).pos) != m_buildSpineMap.end()) {
+                build->setSpineLayer( m_buildSpineMap[(it->second).pos] ); //a by ljf
+            }
+            
             m_buildItems[it->first] = build;
             build->m_key = 1000-od;
             
@@ -3446,14 +3450,23 @@ void ImperialScene::onUpdateInfo()
         int cnt = m_nodeBuildings[i]->getChildrenCount();
         if (cnt<=0) {
             //加入地块
-            FunBuild* build = FunBuild::create( i , m_nameLayer);
-            build->setTag(i);
-            m_nodeBuildings[i]->addChild(build);
-            m_nodeBuildings[i]->setContentSize(CCSizeMake(build->mainWidth, build->mainHeight));
-            int od = m_nodeBuildings[i]->getZOrder();
-            m_nodeBuildings[i]->setZOrder(od);
-            build->setTileBatch(m_nodeBuildings[i]->getPositionX(), m_nodeBuildings[i]->getPositionY(), m_resbatchNode, od);
-            build->m_key = 1000-od;
+            FunBuild* build = FunBuild::create( i , m_nameLayer);  //ljf, 此时funbuild的itemId为position字段
+            if (build) {
+                build->setTag(i);
+                m_nodeBuildings[i]->addChild(build);
+                
+                m_nodeBuildings[i]->setContentSize(CCSizeMake(build->mainWidth, build->mainHeight));
+                int od = m_nodeBuildings[i]->getZOrder();
+                m_nodeBuildings[i]->setZOrder(od);
+                
+                build->setTileBatch(m_nodeBuildings[i]->getPositionX(), m_nodeBuildings[i]->getPositionY(), m_resbatchNode, od);
+                build->m_key = 1000-od;
+                //begin a by ljf
+                if (m_buildSpineMap.find(i) != m_buildSpineMap.end()) {
+                    build->setSpineLayer( m_buildSpineMap[(it->second).pos] ); //a by ljf
+                }
+                //end a by ljf
+            }
         }
     }
 }
