@@ -530,10 +530,15 @@ bool LoadingScene::init()
             addFireParticle(logFireNode2, "LoadingLOGO_2", ccp(430, size.height - 240));
         }else{
             //logo
-            auto logo = CCLoadSprite::createSprite("logo.png");
+            string logoPic = "logo.png";
+            
+            if (isChina()) {
+                logoPic = "logo_cn.png";
+            }
+            auto logo = CCLoadSprite::createSprite(logoPic.c_str());
             logo->setAnchorPoint(ccp(0.5, 0));
             
-            logo->setPosition(ccp(size.width/2, size.height - 300));//
+            logo->setPosition(ccp(size.width/2, size.height - 260));//
             logo->setTag(LOADING_LOGO_TAG);
             addChild(logo);
             
@@ -836,10 +841,10 @@ void LoadingScene::onEnterInit()
     
     if(isChina() && !m_isAdd){
         CCSprite *logo = dynamic_cast<CCSprite*>(this->getChildByTag(LOADING_LOGO_TAG));
-        if(logo){
-            logo->setDisplayFrame(CCLoadSprite::loadResource("logo_only.png"));
-            logo->setPositionY(logo->getPositionY() + 40);
-        }
+//        if(logo){ simon
+//            logo->setDisplayFrame(CCLoadSprite::loadResource("logo_only.png"));
+//            logo->setPositionY(logo->getPositionY() + 40);
+//        }
         auto layer = CCLayerColor::create(ccc4(0, 0, 0, 200), CCDirector::sharedDirector()->getWinSize().width, 70);
         this->addChild(layer);
         layer->setAnchorPoint(ccp(0.5, 0));
