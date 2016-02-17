@@ -102,6 +102,7 @@ public:
     
     void canShowState();
     void setNamePos(int x, int y, CCLayer* sginLayer, CCLayer* popLayer, CCSpriteBatchNode* popBatchNode, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch=NULL);
+    void setSpineLayer(CCLayer* spineLayer);
     void addTips();
     void removeTips();
     void setTileBatch(int x, int y, CCSpriteBatchNode* batchNode, int zOrder);
@@ -133,6 +134,9 @@ protected:
     bool isUnLock;
     bool isCanClick;
     bool isEffectRunning;
+    //beign a by ljf
+    int m_effectState;
+    //end a by ljf
     int m_zOrder;
     int m_clickType;
     int m_output;
@@ -149,6 +153,12 @@ protected:
     CCSafeObject<CCNode> m_arrNode;
 //    CCSafeObject<CCSprite> m_spr;
     CCSafeObject<CCSprite> m_lvBG;
+    
+    //begin a by ljf
+    CCLayer* m_spineLayer;
+    CCSafeObject<CCNode> m_spineNode;
+    CCSafeObject<CCNode> m_particleNode;
+    //end a by ljf
     
     CCSafeObject<CCNode> m_mainNode;
     
@@ -176,6 +186,8 @@ protected:
     
     CCSafeObject<FunBuildState> m_buildState;
     CCSafeObject<BuildCCB> m_buildCCB;
+    // tao.yu
+    CCSafeObject<IFSkeletonAnimation> m_spineAni;
     
     CCSafeObject<Sprite> m_soider1;
     CCSafeObject<Sprite> m_soider2;
@@ -244,6 +256,10 @@ private:
     string STClickName;
     
     CCSafeObject<CCNode> m_allianceNode;
+    
+    void initEffectState(); //a by ljf
+    void initSpineNode(string picName, Node * spineParent); //a by ljf
+    void initParticle(int type); //a by ljf
 };
 
 class FunBuildState: public CCAniNode

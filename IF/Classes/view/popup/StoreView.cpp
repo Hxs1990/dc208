@@ -59,19 +59,19 @@ bool StoreView::init()
     m_infoList->setContentSize(CCSizeMake(oldWidth, oldHeight+addHeight));
     
     int bgcount = newBgHeight/100+1;
-    for (int i = 0; i<=bgcount; i++) {
-        auto pic = CCLoadSprite::createSprite("technology_09.png");
-        pic->setPositionY(-i*100);
-        pic->setScaleX(0.98);
-        if (CCCommonUtils::isIosAndroidPad())
-        {
-            pic->setPositionY((i-3)*100);
-            pic->setScaleX(2.4f);
-            pic->setAnchorPoint(ccp(0, 1));
-//            pic->setVisible(false);
-        }
-        m_BGNode->addChild(pic);
-    }
+//    for (int i = 0; i<=bgcount; i++) {
+//        auto pic = CCLoadSprite::createSprite("technology_09.png");
+//        pic->setPositionY(-i*100);
+//        pic->setScaleX(0.98);
+//        if (CCCommonUtils::isIosAndroidPad())
+//        {
+//            pic->setPositionY((i-3)*100);
+//            pic->setScaleX(2.4f);
+//            pic->setAnchorPoint(ccp(0, 1));
+////            pic->setVisible(false);
+//        }
+//        m_BGNode->addChild(pic);
+//    }
     
     CCCommonUtils::setButtonTitle(m_storeBtn, _lang("104900").c_str());
     CCCommonUtils::setButtonTitle(m_bagBtn, _lang("104901").c_str());

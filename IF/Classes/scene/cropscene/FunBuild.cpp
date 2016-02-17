@@ -41,6 +41,12 @@
 #include "AllianceDailyController.h"
 #include "AllianceDailyPublishView.h"
 
+//begin a by ljf
+//#include "TileOpenView.h"
+#define WORKING_PARTICLE_NODE_TAG 23346
+#define FINISH_PARTICLE_NODE_TAG 32363
+//end a by ljf
+
 using namespace cocos2d;
 
 const float nameWidth = 456;
@@ -660,6 +666,35 @@ void FunBuild::setNamePos(int x, int y, CCLayer* sginLayer, CCLayer* popLayer, C
         }
     }
 }
+
+
+void FunBuild::setSpineLayer(CCLayer* spineLayer)
+{
+    m_spineLayer = spineLayer;
+    m_spineLayer->setPosition(ccp(parentX, parentY));
+
+}
+//begin a by ljf
+void FunBuild::initSpineNode(string picName, Node * spineParent)
+{
+    if(m_spineNode)
+    {
+        const string spineJsonName = "Spine/Imperial/" + picName + "_spine.json";
+        const string spineAtlasName = "Imperial/Imperial_30.atlas";
+
+        if (CCFileUtils::sharedFileUtils()->isFileExist(spineJsonName) &&
+            CCFileUtils::sharedFileUtils()->isFileExist(spineAtlasName))
+        {
+            m_spineAni = new IFSkeletonAnimation(spineJsonName.c_str(), spineAtlasName.c_str());
+            if (m_spineAni) {
+                {
+                    m_spineNode->addChild(m_spineAni);
+                }
+            }
+        }
+    }
+}
+//end a by ljf
 
 void FunBuild::onGetMsgTmpSkinChange(Ref* ref)
 {
@@ -2217,6 +2252,90 @@ void FunBuild::canShowState()
     }
 }
 
+//begin a by ljf
+void FunBuild::initEffectState()
+{
+    if (m_info->type == FUN_BUILD_WOOD || m_info->type == FUN_BUILD_FOOD || m_info->type == FUN_BUILD_IRON || m_info->type == FUN_BUILD_STONE)
+    {
+        if(FunBuildController::getInstance()->canShowOutPut(m_info->itemId) == false)
+        {
+            m_effectState = 0;
+        }
+        else
+        {
+            m_effectState = 2;
+        }
+    }
+}
+
+void FunBuild::initParticle(int type)
+{
+    
+    
+    if(m_upEffectNode)
+    {
+        m_particleNode = Node::create();
+        m_upEffectNode->addChild(m_particleNode);
+        if(type == FUN_BUILD_STONE) //12, 魔晶矿
+        {
+            //添加working粒子特效
+            auto workingParticleNode = Node::create();
+            workingParticleNode->setTag(WORKING_PARTICLE_NODE_TAG);
+            m_particleNode->addChild(workingParticleNode);
+            workingParticleNode->setVisible(false);
+            workingParticleNode->setScale(0.5);
+            for(int i = 0; i <= 1; i++)
+            {
+                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","MagicSprings_work_",i)->getCString());
+                particle->setPosition(Vec2(m_spineAni->getContentSize().width / 2  , m_spineAni->getContentSize().height));
+                //particle->setRotation3D(Vec3(90, 0, 180 * j));
+                particle->setPosition(Vec2(-10 , 60));
+                workingParticleNode->addChild(particle);
+            }
+            //添加ready粒子特效
+            auto readyParticleNode = Node::create();
+            readyParticleNode->setTag(FINISH_PARTICLE_NODE_TAG);
+            m_particleNode->addChild(readyParticleNode);
+            readyParticleNode->setVisible(false);
+            for(int i = 0; i <= 1; i++)
+            {
+                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","MagicSprings_ready_",i)->getCString());
+                //particle->setPosition(Vec2(0 , -10));
+                particle->setPosition(Vec2(-10  , 100));
+                //particle->setRotation3D(Vec3(90, 0, 180 * j));
+                readyParticleNode->addChild(particle);
+            }
+        }
+        if(type == FUN_BUILD_HOSPITAL) //11，月亮井,以后要改成有伤兵才有效果
+        {
+            
+            auto workingParticleNode = Node::create();
+            workingParticleNode->setTag(WORKING_PARTICLE_NODE_TAG);
+            m_particleNode->addChild(workingParticleNode);
+            
+            workingParticleNode->setVisible(true);
+            
+            //m_particleNode->setZOrder(m_spr->getZOrder() + 5);
+            for(int i = 0; i <= 2; i++)
+            {
+                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","Medicalsp_",i)->getCString());
+                particle->setPosition(Vec2(0 , 0));
+                //particle->setRotation3D(Vec3(90, 0, 180 * j));
+                workingParticleNode->addChild(particle);
+                
+                
+                //particle->setPosition(ccp(parentX+mainWidth/2, parentY+0));
+                //addParticleToBatch(particle);
+                
+                //m_upEffectNode->addChild(particle);
+            }
+            
+        }
+    }
+}
+
+//end a by ljf
+
 void FunBuild::retTouch(CCTouch *pTouch, CCEvent *pEvent)
 {
     if(pTouch==NULL)
@@ -2521,6 +2640,9 @@ bool FunBuild::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_arrSpr", CCSprite*, this->m_arrSpr);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lvBG", CCSprite*, this->m_lvBG);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_arrStar", CCSprite*, this->m_arrStar);
+    //begin a by ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_spineNode", CCNode*, this->m_spineNode);
+    //end a by ljf
     return false;
 }
 
