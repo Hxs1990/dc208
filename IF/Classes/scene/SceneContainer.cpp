@@ -90,7 +90,7 @@ bool SceneContainer::init() {
         isdown=true;
 #endif
 #endif
-        CCTexture2D::setDownloadFlag(isdown);
+        // CCTexture2D::setDownloadFlag(isdown);
         ret = true;
     }
     return ret;

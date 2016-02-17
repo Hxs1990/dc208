@@ -1642,6 +1642,9 @@ void Texture2D::removeSpriteFrameCapInset(SpriteFrame* spriteFrame)
 int Texture2D::SmallCommonList[CC_SAMLL_TEXTURE_CNT] = {4,5,6,7,8,10,11,100,101,102,104,105,200,201,202,203,204,205,206,207,208,209,305,308,310,500,501,502,503,504,505,506,508,509,512,307,513,514};
 int Texture2D::SmallGeneralList[CC_SMALL_GENERAL_TEXTURE_CNT] = {1,2,3};
 bool Texture2D::isSmallTexture(std::string textureFile){
+    
+    if (!m_useSmallFlag) return m_useSmallFlag;
+    
     auto pos = textureFile.find_last_of("/");
     std::string picName = "";
     if(pos!=std::string::npos){
@@ -1722,6 +1725,13 @@ bool Texture2D::isSmallTexture(std::string textureFile){
 #endif
     return false;
 }
+
+bool Texture2D::m_useSmallFlag = false;
+void Texture2D::setSmallFlag(bool small)
+{
+    m_useSmallFlag = small;
+}
+
 void Texture2D::setTextureName(const char *file){
     m_fileName = file;
 }
