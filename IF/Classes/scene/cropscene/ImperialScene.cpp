@@ -676,7 +676,7 @@ void ImperialScene::buildingCallBack(CCObject* params)
         float scale = 0.8;
         bool newPlayerST = false;
         string gFake = CCUserDefault::sharedUserDefault()->getStringForKey("Guide_Fake","");
-        if (GlobalData::shared()->playerInfo.level==1 && GlobalData::shared()->playerInfo.exp==0 && (gFake=="" || gFake=="start_1")) {
+        if (GlobalData::shared()->playerInfo.level==1 && GlobalData::shared()->playerInfo.exp==0 && (gFake=="" || gFake=="start_1")&&false) {
 //            onPlayBattle();
             newPlayerST = true;
             m_curBuildPosx = 480;
