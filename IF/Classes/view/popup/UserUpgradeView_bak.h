@@ -47,7 +47,6 @@ private:
     void onOKBtnClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void onRewardBtnClick(CCObject * pSender, Control::EventType pCCControlEvent);
     void onShareBtnClick(CCObject * pSender, Control::EventType pCCControlEvent);
-    void onGetOkBtnClick(CCObject * pSender, Control::EventType pCCControlEvent); //ljf
     void playLvAnim();
     void playLvParticle();
     void playhatParticle();
@@ -56,42 +55,67 @@ private:
     void playGetRewardAnim();
     void shareSuccess(CCObject* param);
     void delayClose(float _time);
-    
-    CCSafeObject<CCMultiColTableView> m_tabView;
-    
-    //CCSafeObject<CCControlButton> m_okBtn;
-//    CCSafeObject<CCControlButton> m_skillBtn;
+    void refreshView();
+    void addNewPar(float t);
+    void doFinishFadeIn();
+//    CCSafeObject<CCMultiColTableView> m_tabView;
     CCSafeObject<CCLabelIF> m_titleLabel;
-//    CCSafeObject<CCLabelIF> m_nameLabel;
     CCSafeObject<CCLabelIF> m_lvLabel;
     CCSafeObject<CCLabelIF> m_powLabel;
-    //CCSafeObject<CCLabelBMFont> m_powNumLabel;
-    CCSafeObject<CCLabelIF> m_powNumLabel;
     CCSafeObject<CCLabelIF> m_skillLabel;
-    //CCSafeObject<CCLabelBMFont> m_skillNumLabel;
+    CCSafeObject<CCLabelIF> m_powNumLabel;
     CCSafeObject<CCLabelIF> m_skillNumLabel;
-    CCSafeObject<CCNode>  m_rewardlist;
-    CCSafeObject<CCScale9Sprite> m_buildBG;
-    CCSafeObject<CCScale9Sprite> m_kuangBG;
-    CCSafeObject<CCNode>  m_LvAnimNode;
-    CCSafeObject<CCNode>  m_hatAnimNode;
+//    CCSafeObject<CCNode>  m_rewardlist;
+//    CCSafeObject<CCNode>  m_LvAnimNode;
+//    CCSafeObject<CCNode>  m_hatAnimNode;
     CCSafeObject<CCNode>  m_likeNode;
-    CCSafeObject<CCArray> m_cellArr;
+//    CCSafeObject<CCArray> m_cellArr;
     CCSafeObject<CCLabelIFTTF> m_fbTxt;
     CCSafeObject<CCControlButton> m_fbShareBtn;
-    
     CCSafeObject<WaitInterface> m_waitInterFace;
     
+    CCSafeObject<Node> m_picNode1;
+    CCSafeObject<CCLabelIF> m_name1;
+    CCSafeObject<CCLabelIF> m_num1;
+    CCSafeObject<Node> m_node1;
+    
+    CCSafeObject<Node> m_picNode2;
+    CCSafeObject<CCLabelIF> m_name2;
+    CCSafeObject<CCLabelIF> m_num2;
+    CCSafeObject<Node> m_node2;
+    
+    CCSafeObject<Node> m_picNode3;
+    CCSafeObject<CCLabelIF> m_name3;
+    CCSafeObject<CCLabelIF> m_num3;
+    CCSafeObject<Node> m_node3;
+    
+    CCSafeObject<Node> m_picNode4;
+    CCSafeObject<CCLabelIF> m_name4;
+    CCSafeObject<CCLabelIF> m_num4;
+    CCSafeObject<Node> m_node4;
+    
+    CCSafeObject<Node> m_picNode5;
+    CCSafeObject<CCLabelIF> m_name5;
+    CCSafeObject<CCLabelIF> m_num5;
+    CCSafeObject<Node> m_node5;
+    
+    CCSafeObject<Node> m_picNode6;
+    CCSafeObject<CCLabelIF> m_name6;
+    CCSafeObject<CCLabelIF> m_num6;
+    CCSafeObject<Node> m_node6;
+    
+    CCSafeObject<Node> m_parNode;
+
     vector<std::string> vector_item;
     vector<std::string> vector_number;
+    
+    vector<CCSafeObject<Node>> vector_node;
+    vector<CCSafeObject<CCLabelIF>> vector_num;
+    vector<CCSafeObject<CCLabelIF>> vector_name;
+    vector<CCSafeObject<Node>> vector_picNode;
     int m_falg;
     int m_endfalg;
-    
-    //begin a by ljf
-    CCSafeObject<CCControlButton> m_btnJoin;
-    CCSafeObject<CCNode>  m_bgNode;
-     CCSafeObject<CCNode>  m_spineNode;
-    //end a by ljf
+    bool aniFinish;
 };
 
 #endif

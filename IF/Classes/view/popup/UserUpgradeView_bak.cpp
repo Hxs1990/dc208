@@ -11,7 +11,6 @@
 #include "CCCommonUtils.h"
 #include "FunBuildController.h"
 #include "YesNoDialog.h"
-//#include "TalentController.h"
 #include "GeneralManager.h"
 #include "DataRecordCommand.h"
 #include "RewardController.h"
@@ -22,24 +21,12 @@
 #include "GuideController.h"
 #include "SoundController.h"
 
-//begin a by ljf
-#include  "IFSkeletonAnimation.h"
-//end a by ljf
-
 UserUpgradeView::UserUpgradeView(){
-    CCLoadSprite::doResourceByCommonIndex(104, true);
-    CCLoadSprite::doResourceByCommonIndex(7, true);
-    CCLoadSprite::doResourceByCommonIndex(8, true);
-    setCleanFunction([](){
-        CCLoadSprite::doResourceByCommonIndex(104, false);
-        CCLoadSprite::doResourceByCommonIndex(7, false);
-        CCLoadSprite::doResourceByCommonIndex(8, false);
-    });
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(UserUpgradeView::shareSuccess), MSG_FBFeedDialogResult, NULL);
 };
 
 UserUpgradeView::~UserUpgradeView(){
-    CC_SAFE_RELEASE(m_cellArr);
+//    m_cellArr->release();
     CCSafeNotificationCenter::sharedNotificationCenter()->removeObserver(this, MSG_FBFeedDialogResult);
 };
 
@@ -71,13 +58,15 @@ bool UserUpgradeView::init()
         return false;
     }
     setIsHDPanel(true);
-    m_cellArr = CCArray::create();
-    m_cellArr->retain();
-    //TalentController::getInstance()->makeEndowment();
-    
-    //auto tmpCCB = CCBLoadFile("UserUpgradeView",this,this);
-    auto tmpCCB = CCBLoadFile("UserUpgradeViewNew",this,this); //ljf
-    //this->setContentSize(tmpCCB->getContentSize());
+//    m_cellArr = CCArray::create();
+//    m_cellArr->retain();
+    CCLoadSprite::doResourceByCommonIndex(505, true);
+    CCLoadSprite::doResourceByCommonIndex(11, true);
+    setCleanFunction([](){
+        CCLoadSprite::doResourceByCommonIndex(505, false);
+        CCLoadSprite::doResourceByCommonIndex(11, false);
+    });
+    auto tmpCCB = CCBLoadFile("NewUserUpgradeView",this,this);
     CCSize size=CCDirector::sharedDirector()->getWinSize();
     setContentSize(size);
     this->setModelLayerTouchCallback([&](cocos2d::CCTouch *pTouch){
@@ -86,18 +75,41 @@ bool UserUpgradeView::init()
             this->onRewardBtnClick(NULL, Control::EventType::TOUCH_DOWN);
         }
     });
-    m_hatAnimNode->setPositionY(m_hatAnimNode->getPositionY()+40);
-//    m_titleLabel->setString(_lang("103461").c_str());
+    vector_node.clear();
+    vector_node.push_back(m_node1);
+    vector_node.push_back(m_node2);
+    vector_node.push_back(m_node3);
+    vector_node.push_back(m_node4);
+    vector_node.push_back(m_node5);
+    vector_node.push_back(m_node6);
+    vector_num.clear();
+    vector_num.push_back(m_num1);
+    vector_num.push_back(m_num2);
+    vector_num.push_back(m_num3);
+    vector_num.push_back(m_num4);
+    vector_num.push_back(m_num5);
+    vector_num.push_back(m_num6);
+    vector_name.clear();
+    vector_name.push_back(m_name1);
+    vector_name.push_back(m_name2);
+    vector_name.push_back(m_name3);
+    vector_name.push_back(m_name4);
+    vector_name.push_back(m_name5);
+    vector_name.push_back(m_name6);
+    vector_picNode.clear();
+    vector_picNode.push_back(m_picNode1);
+    vector_picNode.push_back(m_picNode2);
+    vector_picNode.push_back(m_picNode3);
+    vector_picNode.push_back(m_picNode4);
+    vector_picNode.push_back(m_picNode5);
+    vector_picNode.push_back(m_picNode6);
+//    m_hatAnimNode->setPositionY(m_hatAnimNode->getPositionY()+40);
     m_titleLabel->setString(_lang("113184"));
-//    m_nameLabel->setString(GlobalData::shared()->playerInfo.name);
-   // int userLv = GlobalData::shared()->playerInfo.level;
+    m_titleLabel->setColor({67,39,7});
     int userLv = GlobalData::shared()->lordInfo.levelUp+1;
-//    string lvInfo = _lang_1("103462",CC_ITOA(userLv));
-    
-    //string lvInfo = _lang_1("113185", CC_ITOA(userLv)); //d by ljf
     string lvInfo = CC_ITOA(userLv);
     if(userLv>=GlobalData::shared()->MaxPlayerLv) {
-        //lvInfo += _lang("102183"); //ljf, 不知道cok中为什么注释掉了
+//        lvInfo += _lang("102183");
     }
     m_lvLabel->setString(lvInfo.c_str());
     
@@ -115,125 +127,43 @@ bool UserUpgradeView::init()
         lastPower = lastdict->valueForKey("power")->intValue();
     }
     
-    m_powLabel->setString(_lang("105034").c_str());
+    m_powLabel->setFntFile("Arial_Bold_Regular.fnt");
+    m_powNumLabel->setFntFile("Arial_Bold_Regular.fnt");
+    m_skillLabel->setFntFile("Arial_Bold_Regular.fnt");
+    m_skillNumLabel->setFntFile("Arial_Bold_Regular.fnt");
+    m_powLabel->setString(_lang("105034"));
+    string powerInfo = "";
+    powerInfo.append(" +");
+    powerInfo.append(CC_ITOA(curPower-lastPower));
+    m_powNumLabel->setString(powerInfo);
     
-    std::string language = LocalController::shared()->getLanguageFileName();
-    float sizeWidth = m_powLabel->getContentSize().width;
-    if (!m_powLabel->canBeSupportedWithBmpFont(language))
-    {
-        if(language == "pt")
-        {
-            sizeWidth = 255;
-        }
-        else
-        {
-            sizeWidth = 165;
-        }
-    }
+    m_skillLabel->setString(_lang("105035"));
+    string skillInfo = "";
+    skillInfo.append(" +");
+    skillInfo.append(CC_ITOA(curEndowment-lastEndowment));
+    m_skillNumLabel->setString(skillInfo);
     
-    string powerInfo = "+";
-    powerInfo = powerInfo + CC_ITOA(curPower-lastPower);
-    m_powNumLabel->setString(powerInfo.c_str());
-    //m_powNumLabel->setPositionX(m_powLabel->getPositionX() + sizeWidth*m_powLabel->getOriginScaleX()+20); //d by ljf
-    
-    m_skillLabel->setString(_lang("105035").c_str());
-//    m_skillLabel->setMaxScaleXByWidth(200);
-    sizeWidth = m_skillLabel->getContentSize().width;
-    if (!m_skillLabel->canBeSupportedWithBmpFont(language))
-    {
-        if(language == "pt")
-        {
-            sizeWidth = 255;
-        }
-        else
-        {
-            sizeWidth = 165;
-        }
-    }
-    string skillInfo = "+";
-    skillInfo = skillInfo + CC_ITOA(curEndowment-lastEndowment);
-    m_skillNumLabel->setString(skillInfo.c_str());
     float px=m_skillLabel->getPositionX() + m_skillLabel->getContentSize().width+20;
-//    m_skillNumLabel->setPositionX(px>m_powNumLabel->getPositionX()?px:m_powNumLabel->getPositionX());//m_skillLabel->getPositionX() + sizeWidth*m_skillLabel->getOriginScaleX()+20
-    if (CCCommonUtils::isIosAndroidPad()) {
-        //m_skillNumLabel->setPositionX(m_skillLabel->getPositionX() + sizeWidth*m_skillLabel->getOriginScaleX()+20); //d by ljf
-    }
-    else
-    {
-        //m_skillNumLabel->setPositionX(px>m_powNumLabel->getPositionX()?px:m_powNumLabel->getPositionX()); //d by ljf
-    }
-    //CCCommonUtils::setButtonTitle(m_okBtn, _lang("confirm").c_str());
-    //string skillBtnInfo = _lang("103451") + ": " + CC_ITOA(TalentController::getInstance()->curEndowment);
-//    CCCommonUtils::setButtonTitle(m_skillBtn, skillBtnInfo.c_str());
-//    std::string btnStr = "";
-//    std::map<int, int>::iterator it = GlobalData::shared()->generalConfig.abilityOpenedLevel.find(GlobalData::shared()->playerInfo.level);
-//    if(it != GlobalData::shared()->generalConfig.abilityOpenedLevel.end()){
-//        btnStr = _lang("105033");
-//    }else{
-//        //btnStr = _lang_1("105032", CC_ITOA(GeneralManager::getInstance()->getTotalFreeSkillPoint(GlobalData::shared()->generals.begin()->second)));
-//        btnStr = _lang_1("105032", CC_ITOA(TalentController::getInstance()->curEndowment));
-//    }
-//    CCCommonUtils::setButtonTitle(m_skillBtn, btnStr.c_str());
     
     //get reward item
     m_fbTxt->setString(_lang("107098").c_str());
-    //begin a by ljf
-    CCCommonUtils::setButtonTitle(m_btnJoin, _lang("101274").c_str());
-    //end a by ljf
     string item =  dict->valueForKey("level_item")->getCString();   CCLOG("///i///%s",item.c_str());
     int offY = 150;
-    if(item=="")
-    {
-        if (!CCCommonUtils::isIosAndroidPad()) {
-            this->m_buildBG->setContentSize(CCSize(m_buildBG->getContentSize().width, m_buildBG->getContentSize().height-150));
-            this->m_buildBG->setPositionY(this->m_buildBG->getPositionY()+150/2);
-            m_kuangBG->setVisible(false);
-            m_likeNode->setPositionY(m_likeNode->getPositionY() + offY);
-            m_bgNode->setPositionY(m_bgNode->getPositionY() + offY );
-        }
+    if(item==""){
         return true;
     }
     CCCommonUtils::splitString(item, "|", vector_item);             CCLOG("///n///%s",vector_item[0].c_str());
     item =  dict->valueForKey("level_num")->getCString();          CCLOG("///n///%s",item.c_str());
     CCCommonUtils::splitString(item, "|", vector_number);
     
-    int length = (vector_item.size()-1)/3+1;
-    if (CCCommonUtils::isIosAndroidPad()) {
-        length = (vector_item.size()-1)/4+1;
-    }
-    if(length>1){
-        int dh = (length-1)*150;
-        if (CCCommonUtils::isIosAndroidPad()) {
-            dh = length*260;
-            offY = dh - m_rewardlist->getContentSize().height;
-            this->m_rewardlist->setContentSize(CCSize(m_rewardlist->getContentSize().width, this->m_rewardlist->getContentSize().height+offY));
-            this->m_buildBG->setContentSize(CCSize(m_buildBG->getContentSize().width, m_buildBG->getContentSize().height+offY));
-            this->m_buildBG->setPositionY(this->m_buildBG->getPositionY()-offY/2);
-            this->m_kuangBG->setContentSize(CCSize(m_kuangBG->getContentSize().width, m_kuangBG->getContentSize().height+offY));
-            this->m_kuangBG->setPositionY(this->m_kuangBG->getPositionY()-offY/2);
-            m_bgNode->setPositionY(m_bgNode->getPositionY() -offY * 0.75);
-        }
-        else {
-            offY = dh;
-            this->m_rewardlist->setContentSize(CCSize(m_rewardlist->getContentSize().width, this->m_rewardlist->getContentSize().height+dh));
-            this->m_buildBG->setContentSize(CCSize(m_buildBG->getContentSize().width, m_buildBG->getContentSize().height+dh * 0.6));
-            this->m_buildBG->setPositionY(this->m_buildBG->getPositionY()-dh* 0.3);
-            this->m_kuangBG->setContentSize(CCSize(m_kuangBG->getContentSize().width, m_kuangBG->getContentSize().height+dh));
-            this->m_kuangBG->setPositionY(this->m_kuangBG->getPositionY()-dh/2);
-            m_bgNode->setPositionY(m_bgNode->getPositionY() - dh * 0.6 );
-        }
-    }else{
-        offY = 0;
-    }
-    
-    m_tabView = CCMultiColTableView::create(this, m_rewardlist->getContentSize());
-    m_tabView->setDirection(kCCScrollViewDirectionVertical);
-    m_tabView->setVerticalFillOrder(kCCTableViewFillTopDown);
-    m_tabView->setMultiColTableViewDelegate(this);
+//    m_tabView = CCMultiColTableView::create(this, m_rewardlist->getContentSize());
+//    m_tabView->setDirection(kCCScrollViewDirectionVertical);
+//    m_tabView->setVerticalFillOrder(kCCTableViewFillTopDown);
+//    m_tabView->setMultiColTableViewDelegate(this);
 //    m_tabView->setTouchPriority(Touch_Default);
-    m_rewardlist->addChild(m_tabView);
-    m_tabView->setTouchEnabled(false);
-    m_tabView->reloadData();
+//    m_rewardlist->addChild(m_tabView);
+//    m_tabView->setTouchEnabled(false);
+//    m_tabView->reloadData();
     
     std:: map<string, CCDictionary*>::iterator it = GlobalData::shared()->shareFbmap.find("level_up");
     bool flag = false;
@@ -250,14 +180,14 @@ bool UserUpgradeView::init()
         flag = false;
     }
     if(GlobalData::shared()->playerInfo.level>3 && flag){
-        m_likeNode->setPositionY(m_likeNode->getPositionY() - offY);
+//        m_likeNode->setPositionY(m_likeNode->getPositionY() - offY);
         m_likeNode->setVisible(true);
     }
     m_waitInterFace = NULL;
     if(GlobalData::shared()->playerInfo.level==6){
         CCPoint locPos = ccp(40, 70);
-        CCPoint pos = m_buildBG->convertToWorldSpace(locPos);
-        int len = (1-(pos.y/CCDirector::sharedDirector()->getWinSize().height))*100;
+//        CCPoint pos = m_buildBG->convertToWorldSpace(locPos);
+//        int len = (1-(pos.y/CCDirector::sharedDirector()->getWinSize().height))*100;
         GlobalData::shared()->isBind = true;
 //#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 //        //pos = CCDirector::sharedDirector()->convertToUI(pos);
@@ -269,33 +199,60 @@ bool UserUpgradeView::init()
 //        FBUtilies::fbLike(pos);
 //#endif
     }
+    
+    refreshView();
+    return true;
+}
 
-    //begin a by ljf
-     //spine  有问题，先去掉。
-    const string spineJsonName = "Spine/Imperial/shengji.json";
-    const string spineAtlasName = "Imperial/Imperial_30.atlas";
-    if (CCFileUtils::sharedFileUtils()->isFileExist(spineJsonName) &&
-        CCFileUtils::sharedFileUtils()->isFileExist(spineAtlasName))
-    {
-        IFSkeletonAnimation * m_spineAni = new IFSkeletonAnimation(spineJsonName.c_str(), spineAtlasName.c_str());
-        if (m_spineAni && m_spineNode )
-        {
-            m_spineNode->addChild(m_spineAni);
-            
-            spTrackEntry* entry = m_spineAni->setAnimation(0, "in", false);
-            m_spineAni->addAnimation(0, "loop", true);
-            //m_spineAni->setTimeScale(1);
-            m_spineAni->setTag(88022);
+void UserUpgradeView::doFinishFadeIn()
+{
+    aniFinish = true;
+}
+
+void UserUpgradeView::addNewPar(float t)
+{
+    auto particle = ParticleController::createParticle(CCString::createWithFormat("UserUpgrade")->getCString());
+    particle->setPosition(0, 0);
+    m_parNode->addChild(particle);
+}
+
+void UserUpgradeView::refreshView()
+{
+    int num = vector_item.size();
+    int num1 = vector_number.size();
+    int minCount = MIN(num, num1);
+    int i = 0;
+    int j = minCount;
+    int type = R_GOODS;
+    int value = atoi(vector_item[0].c_str());
+    int count = atoi(vector_number[0].c_str());
+    std::string str = "";
+    while (vector_node.size() - j > 0) {
+        if (j+1<vector_node.size()) {
+            vector_node[j+1]->setVisible(false);
+            j++;
         }
     }
-    
-    //end a by ljf
-    return true;
+    while (i < minCount && i < vector_node.size()) {
+        string name = CCCommonUtils::getNameById(vector_item[i]);
+        vector_name[i]->setString(name);
+        vector_num[i]->setString(vector_number[i]);
+        vector_picNode[i]->removeAllChildren();
+        value = atoi(vector_item[i].c_str());
+        auto icon = CCLoadSprite::createSprite(RewardController::getInstance()->getPicByType(type, value).c_str());
+        CCCommonUtils::setSpriteMaxSize(icon, 80);
+        vector_picNode[i]->addChild(icon);
+        i++;
+    }
 }
 
 void UserUpgradeView::onEnter(){
     PopupBaseView::onEnter();
-    playLvAnim();
+//    playLvAnim();
+    aniFinish = false;
+    this->getAnimationManager()->setAnimationCompletedCallback(this, callfunc_selector(UserUpgradeView::doFinishFadeIn));
+    this->getAnimationManager()->runAnimationsForSequenceNamed("Default Timeline");
+    this->scheduleOnce(schedule_selector(UserUpgradeView::addNewPar), 1.0);
 }
 
 void UserUpgradeView::onExit(){
@@ -303,14 +260,6 @@ void UserUpgradeView::onExit(){
     CCDirector::sharedDirector()->getScheduler()->unscheduleSelector(schedule_selector(UserUpgradeView::playGiftAnim), this);
     PopupBaseView::onExit();
 }
-
-//begin a by ljf
-void UserUpgradeView::onGetOkBtnClick(CCObject * pSender, Control::EventType pCCControlEvent)
-{
-    //this->closeSelf();
-    this->onRewardBtnClick(NULL, Control::EventType::TOUCH_DOWN);
-}
-//end a by ljf
 
 void UserUpgradeView::onShareBtnClick(CCObject * pSender, Control::EventType pCCControlEvent){
     m_fbShareBtn->setEnabled(false);
@@ -349,40 +298,49 @@ void UserUpgradeView::onShareBtnClick(CCObject * pSender, Control::EventType pCC
 
 SEL_CCControlHandler UserUpgradeView::onResolveCCBCCControlSelector(cocos2d::CCObject * pTarget, const char * pSelectorName)
 {
-   // CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onSkillBtnClick", UserUpgradeView::onSkillBtnClick);
-    //CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onOKBtnClick", UserUpgradeView::onOKBtnClick);
     CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onShareBtnClick", UserUpgradeView::onShareBtnClick);
-    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onGetOkBtnClick", UserUpgradeView::onGetOkBtnClick);
     return NULL;
 }
 
 bool UserUpgradeView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const char * pMemberVariableName, cocos2d::CCNode * pNode)
 {
- //   CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_okBtn", CCControlButton*, this->m_okBtn);
-//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_skillBtn", CCControlButton*, this->m_skillBtn);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_titleLabel", CCLabelIF*, this->m_titleLabel);
-//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_nameLabel", CCLabelIF*, this->m_nameLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_lvLabel", CCLabelIF*, this->m_lvLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_powLabel", CCLabelIF*, this->m_powLabel);
-    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_powNumLabel", CCLabelBMFont*, this->m_powNumLabel); //d by ljf
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_powNumLabel", CCLabelIF*, this->m_powNumLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_skillLabel", CCLabelIF*, this->m_skillLabel);
-    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_skillNumLabel", CCLabelBMFont*, this->m_skillNumLabel); //d by ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_powNumLabel", CCLabelIF*, this->m_powNumLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_skillNumLabel", CCLabelIF*, this->m_skillNumLabel);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_rewardlist", CCNode*, this->m_rewardlist);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_hatAnimNode", CCNode*, this->m_hatAnimNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_LvAnimNode", CCNode*, this->m_LvAnimNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_buildBG", CCScale9Sprite*, this->m_buildBG);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_kuangBG", CCScale9Sprite*, this->m_kuangBG);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_rewardlist", CCNode*, this->m_rewardlist);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_hatAnimNode", CCNode*, this->m_hatAnimNode);
+//    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_LvAnimNode", CCNode*, this->m_LvAnimNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_likeNode", CCNode*, this->m_likeNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_fbTxt", CCLabelIFTTF*, this->m_fbTxt);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_fbShareBtn", CCControlButton*, this->m_fbShareBtn);
-    //begin a by ljf
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_btnJoin", CCControlButton*, this->m_btnJoin);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bgNode", CCNode*, this->m_bgNode);
-    //CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_LvAnimNode", CCNode*, this->m_LvAnimNode);
-    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_spineNode", CCNode*, this->m_spineNode);
-    //end a by ljf
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picNode1", Node*, m_picNode1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_name1", CCLabelIF*, m_name1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_num1", CCLabelIF*, m_num1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_node1", Node*, m_node1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picNode2", Node*, m_picNode2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_name2", CCLabelIF*, m_name2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_num2", CCLabelIF*, m_num2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_node2", Node*, m_node2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picNode3", Node*, m_picNode3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_name3", CCLabelIF*, m_name3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_num3", CCLabelIF*, m_num3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_node3", Node*, m_node3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picNode4", Node*, m_picNode4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_name4", CCLabelIF*, m_name4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_num4", CCLabelIF*, m_num4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_node4", Node*, m_node4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picNode5", Node*, m_picNode5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_name5", CCLabelIF*, m_name5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_num5", CCLabelIF*, m_num5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_node5", Node*, m_node5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_picNode6", Node*, m_picNode6);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_name6", CCLabelIF*, m_name6);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_num6", CCLabelIF*, m_num6);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_node6", Node*, m_node6);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_parNode", Node*, m_parNode);
     return false;
 }
 
@@ -390,33 +348,16 @@ void UserUpgradeView::playLvAnim(){
     CCActionInterval * delatTime = CCDelayTime::create(0.15);
     CCCallFunc * funcall= CCCallFunc::create(this, callfunc_selector(UserUpgradeView::playLvParticle));
     m_titleLabel->setScale(0.1);
-    if (CCCommonUtils::isIosAndroidPad()) {
-        CCScaleTo* iconRotate = CCScaleTo::create(0.125f, 2.6);
-        CCScaleTo* iconRotate1 = CCScaleTo::create(0.125f, 1.8);
-        CCScaleTo* iconRotate2 = CCScaleTo::create(0.125f, 0.2);
-        CCScaleTo* iconRotate3 = CCScaleTo::create(0.25f, 2.0);
-        CCScaleTo* iconRotate4 = CCScaleTo::create(0.25f, 1.0);
-        CCSequence* action  =CCSequence::create(iconRotate, iconRotate1,iconRotate2,iconRotate3,NULL);
-        CCSequence* action1  =CCSequence::create(iconRotate, iconRotate1,iconRotate2,iconRotate4,NULL);
-        m_titleLabel->runAction(action1);
-        m_powNumLabel->runAction((CCAction *)action->clone());
-        m_skillNumLabel->runAction((CCAction *)action->clone());
-        this->runAction(CCSequence::create(delatTime,  funcall,NULL));
-    }
-    else {
-        CCScaleTo* iconRotate = CCScaleTo::create(0.125f, 1.3);
-        CCScaleTo* iconRotate1 = CCScaleTo::create(0.125f, 0.9);
-        CCScaleTo* iconRotate2 = CCScaleTo::create(0.125f, 1.1);
-        CCScaleTo* iconRotate3 = CCScaleTo::create(0.25f, 1.0);
-        CCSequence* action  =CCSequence::create(iconRotate, iconRotate1,iconRotate2,iconRotate3,NULL);
-        m_titleLabel->runAction(action);
-        m_powNumLabel->runAction((CCAction *)action->clone());
-        m_skillNumLabel->runAction((CCAction *)action->clone());
-        this->runAction(CCSequence::create(delatTime,  funcall,NULL));
-    }
+    CCScaleTo* iconRotate = CCScaleTo::create(0.125f, 1.3);
+    CCScaleTo* iconRotate1 = CCScaleTo::create(0.125f, 0.9);
+    CCScaleTo* iconRotate2 = CCScaleTo::create(0.125f, 1.1);
+    CCScaleTo* iconRotate3 = CCScaleTo::create(0.25f, 1.0);
+    CCSequence* action  =CCSequence::create(iconRotate, iconRotate1,iconRotate2,iconRotate3,NULL);
+    m_titleLabel->runAction(action);
+    this->runAction(CCSequence::create(delatTime,  funcall,NULL));
 }
 void UserUpgradeView::playLvParticle(){
-    m_LvAnimNode->removeAllChildren();
+//    m_LvAnimNode->removeAllChildren();
     ParticleController::initParticle();
     
     auto newBatch = ParticleController::createParticleBatch();
@@ -432,7 +373,7 @@ void UserUpgradeView::playLvParticle(){
     newBatch->addChild(praticle5);
     auto praticle6 = ParticleController::createParticle("Capacity_6");
     newBatch->addChild(praticle6);
-    m_LvAnimNode->addChild(newBatch);
+//    m_LvAnimNode->addChild(newBatch);
     int dx = 0;
     praticle1->setPosition(ccp(dx, 0));
     praticle1->setAnchorPoint(ccp(0, 0));
@@ -446,6 +387,12 @@ void UserUpgradeView::playLvParticle(){
     praticle5->setAnchorPoint(ccp(0, 0));
     praticle6->setPosition(ccp(dx, 0));
     praticle6->setAnchorPoint(ccp(0, 0));
+    praticle1->setAutoRemoveOnFinish(true);
+    praticle2->setAutoRemoveOnFinish(true);
+    praticle3->setAutoRemoveOnFinish(true);
+    praticle4->setAutoRemoveOnFinish(true);
+    praticle5->setAutoRemoveOnFinish(true);
+    praticle6->setAutoRemoveOnFinish(true);
     playhatParticle();
     SoundController::sharedSound()->playEffects(Music_Sfx_UI_levelup);
 //    for (int i=0; i<5; i++) {
@@ -458,13 +405,14 @@ void UserUpgradeView::playLvParticle(){
 
 }
 void UserUpgradeView::playhatParticle(){
-    this->m_hatAnimNode->removeAllChildren();
+//    this->m_hatAnimNode->removeAllChildren();
     auto newBatch = ParticleController::createParticleBatch();
     for (int i=1; i<8; i++) {
         auto praticle1 = ParticleController::createParticle(CCString::createWithFormat("LevelUp_%d",i)->getCString());
+        praticle1->setAutoRemoveOnFinish(true);
         newBatch->addChild(praticle1);
     }
-    m_hatAnimNode->addChild(newBatch);
+//    m_hatAnimNode->addChild(newBatch);
 }
 void UserUpgradeView::playGiftAnim(float t){
     m_falg++;
@@ -472,6 +420,7 @@ void UserUpgradeView::playGiftAnim(float t){
     for (int i=1; i<5; i++) {
         
         auto praticle1 = ParticleController::createParticle(CCString::createWithFormat("Fireworks_%d",i)->getCString());
+        praticle1->setAutoRemoveOnFinish(true);
         newBatch->addChild(praticle1);
     }
     CCSize size=CCDirector::sharedDirector()->getWinSize();
@@ -491,12 +440,13 @@ void UserUpgradeView::playGiftEndAnim(){
     auto node  = this->getChildByTag(m_endfalg+1000);
     if(node!=NULL){
         auto praticle1 = ParticleController::createParticle(CCString::createWithFormat("Fireworks_%d",5)->getCString());
+        praticle1->setAutoRemoveOnFinish(true);
         node->addChild(praticle1);
     }
 
 }
 void UserUpgradeView::playGetRewardAnim(){
-    int count = m_cellArr->count();
+    int count = vector_node.size();
     float delay[count-1];
 
     vector<float> v;
@@ -507,18 +457,15 @@ void UserUpgradeView::playGetRewardAnim(){
     random_shuffle(v.begin(), v.end());
 
     for (int i = 0; i<count; i++) {
-        CCTableViewCell* cell = dynamic_cast<CCTableViewCell*>(m_cellArr->objectAtIndex(i));
-        auto node = cell->getChildByTag(1000);
-        auto node1 = node->getChildByTag(999);
-        if(node1){
-
+        Node* cellNode = vector_node[i];
+        if(cellNode->isVisible()){
             float delaytime = v[i];
             int type = R_GOODS;
             int value = atoi(vector_item[i].c_str());
             string picth = RewardController::getInstance()->getPicByType(type, value);
-            CCPoint p = node1->getPosition();
+            CCPoint p = cellNode->getPosition();
             CCDirector::sharedDirector()->convertToGL(p);
-            CCPoint p2 = node1->getParent()->convertToWorldSpace(p);
+            CCPoint p2 = cellNode->getParent()->convertToWorldSpace(p);
         //CCPoint localP = m_gView->convertToNodeSpaceAR(p2);
             FlyRewardPic::addFlyRewardAnim("goods",p2 , picth,delaytime);
             SoundController::sharedSound()->playEffects(Music_Sfx_UI_collect_item);
@@ -546,8 +493,12 @@ void UserUpgradeView::onOKBtnClick(CCObject * pSender, Control::EventType pCCCon
 }
 void UserUpgradeView::onRewardBtnClick(CCObject * pSender, Control::EventType pCCControlEvent)
 {
-    
-    
+    if (aniFinish == false) {
+        aniFinish = true;
+        this->getAnimationManager()->setAnimationCompletedCallback(this, NULL);
+        this->getAnimationManager()->runAnimations("Finish");
+        return;
+    }
     if(vector_item.size()>0){
         playGetRewardAnim();
     }
@@ -573,6 +524,7 @@ void UserUpgradeView::onRewardBtnClick(CCObject * pSender, Control::EventType pC
         }
     }
     
+    this->closeSelf();
 //    CCDictionary* tmp = CCDictionary::create();
 //    CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(MSG_PLAYER_LEVELUP,tmp);
 }
@@ -581,16 +533,14 @@ void UserUpgradeView::gridTouched(cocos2d::extension::CCMultiColTableView* table
 }
 
 cocos2d::CCSize UserUpgradeView::gridSizeForTable(cocos2d::extension::CCMultiColTableView *table){
-    if (CCCommonUtils::isIosAndroidPad()) {
-        return  CCSizeMake(250, 230);
-    }
-    return CCSize(140, 132);
+    return CCSize(140, 140);
 }
 
 CCTableViewCell* UserUpgradeView::gridAtIndex(cocos2d::extension::CCMultiColTableView *table, ssize_t idx){
     int num = vector_item.size();
     int type = R_GOODS;
     int value = atoi(vector_item[0].c_str());
+    int count = atoi(vector_item[0].c_str());
     std::string str = "";
     if(idx >= num){
         return NULL;
@@ -601,90 +551,30 @@ CCTableViewCell* UserUpgradeView::gridAtIndex(cocos2d::extension::CCMultiColTabl
             pCell = new CCTableViewCell();
             pCell->autorelease();
             CCNode* node = CCNode::create();
-            //begin d by ljf
-            /*
             auto bg = CCLoadSprite::createScale9Sprite("icon_kuang.png");
-            if (CCCommonUtils::isIosAndroidPad()) {
-                bg->setPreferredSize(CCSizeMake(150, 150));
-            }
-            else
-                bg->setPreferredSize(CCSize(98,98));
+            bg->setPreferredSize(CCSize(98,98));
             node->addChild(bg);
-            */
-            //end d by ljf
-            
-            //bebin a by ljf
-            value = atoi(vector_item[idx].c_str());
-            CCScale9Sprite * bg = nullptr;
-            if(value < 10 )
-            {
-                bg = CCLoadSprite::createScale9Sprite(CCCommonUtils::getToolBgByColor(2).c_str());
-                if (CCCommonUtils::isIosAndroidPad()) {
-                    bg->setPreferredSize(CCSizeMake(150, 150));
-                }
-                else
-                    bg->setPreferredSize(CCSize(98,98));
-                node->addChild(bg);
-            }
-            else
-            {
-                if (CCCommonUtils::isIosAndroidPad()) {
-                    //bg->setPreferredSize(CCSizeMake(150, 150));
-                    CCCommonUtils::createGoodsIcon(value, node, CCSize(150, 150),NULL,nullptr);
-                }
-                else
-                {
-                    //bg->setPreferredSize(CCSize(98,98));
-                    CCCommonUtils::createGoodsIcon(value, node, CCSize(98, 98),NULL,nullptr);
-                }
-                
-            }
-            //end a by ljf
-            
             string name = CCCommonUtils::getNameById(vector_item[idx]);
             auto text = CCLabelIF::create(name.c_str());
-            if (CCCommonUtils::isIosAndroidPad()) {
-                text->setDimensions(CCSize(250, 0));
-            }
-            else
-                text->setDimensions(CCSize(140, 0));
+            text->setDimensions(CCSize(140, 0));
             text->setAnchorPoint(ccp(0.5,1.0));
             text->setAlignment(kCCTextAlignmentCenter);
             text->setVerticalAlignment(kCCVerticalTextAlignmentTop);
-            if (CCCommonUtils::isIosAndroidPad()) {
-                text->setFontSize(35);
-            }
-            else
-                text->setFontSize(16);
-            //text->setColor({60,28,0});
-            text->setColor({187,193,223});
-            if (CCCommonUtils::isIosAndroidPad()) {
-                text->setPosition(ccp(0, -80));
-            }
-            else
-                text->setPosition(ccp(0, -50));
+            text->setFontSize(16);
+            text->setColor({60,28,0});
+            text->setPosition(ccp(0, -50));
             node->addChild(text);
-            //value = atoi(vector_item[idx].c_str());
+            value = atoi(vector_item[idx].c_str());
             auto icon = CCLoadSprite::createScale9Sprite(RewardController::getInstance()->getPicByType(type, value).c_str());
-            
-            
             float scale = 94/icon->getContentSize().width;
             if(scale>1){
                 scale = 1.0;
             }
-            if (CCCommonUtils::isIosAndroidPad()) {
-                icon->setScale(scale * 1.5);
-            }
-            else
-                icon->setScale(scale);
+            icon->setScale(scale);
             node->addChild(icon,999,999);
-            if (CCCommonUtils::isIosAndroidPad()) {
-                node->setPosition(ccp(120, 130));
-            }
-            else
-                node->setPosition(ccp(70,70));
+            node->setPosition(ccp(70,90));
             pCell->addChild(node,1000,1000);
-            m_cellArr->addObject(pCell);
+//            m_cellArr->addObject(pCell);
         }else{
             
         }
@@ -695,17 +585,9 @@ CCTableViewCell* UserUpgradeView::gridAtIndex(cocos2d::extension::CCMultiColTabl
 
 ssize_t UserUpgradeView::numberOfCellsInTableView(cocos2d::extension::CCMultiColTableView *table){
     int num = vector_item.size();
-    if (CCCommonUtils::isIosAndroidPad()) {
-        return ceil(num/4.0);
-    }
     return ceil(num/3.0);
 }
 
 ssize_t UserUpgradeView::numberOfGridsInCell(cocos2d::extension::CCMultiColTableView *multiTable){
-    if (CCCommonUtils::isIosAndroidPad()) {
-        return 4;
-    }
     return 3;
 }
-
-
