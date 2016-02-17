@@ -947,6 +947,8 @@
 								<false/>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -8133,8 +8135,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1968.986083984375</real>
-							<real>309.78945922851562</real>
+							<real>2033</real>
+							<real>390</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8217,8 +8219,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2466.994384765625</real>
-							<real>548.25994873046875</real>
+							<real>2500</real>
+							<real>478</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8301,8 +8303,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>3405.16845703125</real>
-							<real>1041.50146484375</real>
+							<real>3049</real>
+							<real>600</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -8374,8 +8376,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>3003.64013671875</real>
-							<real>596.11700439453125</real>
+							<real>3722</real>
+							<real>936</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -9062,8 +9064,6 @@
 								<string>pichuochuan.ccb</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
