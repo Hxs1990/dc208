@@ -1960,7 +1960,7 @@ void ProductionSoldiersView::refreshGalleryCells()
         }
         
         pItemCCBNode->m_icon->setPosition(ccp(pItemCCBNode->m_button->getContentSize().width/2,pItemCCBNode->m_button->getContentSize().height/2));
-        pItemCCBNode->m_button->addChild(pItemCCBNode->m_icon,1000);
+        pItemCCBNode->m_button->addChild(pItemCCBNode->m_icon);
         
         if (CCCommonUtils::isIosAndroidPad())
         {

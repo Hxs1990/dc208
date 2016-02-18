@@ -118,6 +118,16 @@ private:
     int m_installNum;
     
     int m_viewType; //0---码头  1---首登弹出框
+    
+    // 用于定位
+    CCSafeObject<CCNode> m_listPositionNodes;
+    CCSafeObject<CCSprite> m_CCSprite_0;
+    CCSafeObject<CCSprite> m_CCSprite_1;
+    CCSafeObject<CCSprite> m_CCSprite_2;
+    CCSafeObject<CCSprite> m_CCSprite_3;
+    CCSafeObject<CCSprite> m_CCSprite_4;
+    CCSafeObject<CCSprite> m_CCSprite_5;
+    CCSafeObject<CCSprite> m_CCSprite_6;
 };
 
 class DailyCell:
@@ -147,6 +157,8 @@ private:
     
     void onRefreshBaoXiang(bool st);
     
+    void setGlowVisible(bool b);
+    
     CCSafeObject<CCSprite> m_bgSpr;
     CCSafeObject<CCSprite> m_picSpr;
     CCSafeObject<CCLabelIF> m_numLabel;
@@ -156,6 +168,8 @@ private:
     CCSafeObject<CCNode> m_picNode;
     CCSafeObject<CCNode> m_particleNode;
     CCSafeObject<CCNode> m_touchNode;
+    CCSafeObject<CCSprite> m_itemBG;
+    CCSafeObject<CCSprite> m_numBG;
     CCNode* m_clickArea;
     CCPoint m_startPos;
     

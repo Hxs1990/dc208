@@ -223,6 +223,8 @@ bool DailyRwdView::init(int type)
         m_friendBtn->setTouchPriority(0);
         m_rwdBtn->setTouchPriority(0);
         m_friendBtn->setOpacity(20);
+        
+        m_rwdBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::DISABLED)->setState(cocos2d::ui::Scale9Sprite::State::GRAY);//fusheng add
     }else{
         bg = CCBLoadFile("qiandaoView",this,this);
         FBUtilies::addEvent_loginDay_7rwd_click();
@@ -296,6 +298,7 @@ bool DailyRwdView::init(int type)
         m_selectBtn->setTouchPriority(Touch_Popup);
         m_friendBtn->setTouchPriority(Touch_Popup);
         m_rwdBtn->setTouchPriority(Touch_Popup);
+        m_rwdBtn->getBackgroundSpriteForState(cocos2d::extension::Control::State::DISABLED)->setState(cocos2d::ui::Scale9Sprite::State::GRAY);//fusheng add
         
         m_scrollView = CCScrollView::create(m_scNode->getContentSize());
         m_scrollView->setDirection(kCCScrollViewDirectionVertical);
@@ -333,6 +336,8 @@ bool DailyRwdView::init(int type)
         m_selectBtn->setOpacity(20);
         m_friendBtn->setOpacity(20);
     }
+    
+    m_listPositionNodes->setVisible(false);
     
     m_friendTxt->setString(_lang("111064"));
     
@@ -472,27 +477,13 @@ void DailyRwdView::generateData(CCObject *p)
 {
     m_data->removeAllObjects();
     m_listNode->removeAllChildrenWithCleanup(true);
+    CCSafeObject<CCSprite> positions[] = {m_CCSprite_0, m_CCSprite_1, m_CCSprite_2, m_CCSprite_3, m_CCSprite_4, m_CCSprite_5, m_CCSprite_6};
     for (int i = 1; i <= PortActController::getInstance()->m_loginDayMap.size(); ++i)
     {
         //m_data->addObject(CCInteger::create(i));
         DailyCell* cell =DailyCell::create(i,m_scNode);
         
-//        if (CCCommonUtils::isIosAndroidPad())
-//        {
-//            if(i<=4){
-//                cell->setPosition(ccp(i*255-100, 361));
-//            }else{
-//                cell->setPosition(ccp((i-4)*300 , 50));
-//            }
-//        }
-//        else
-//        {
-            if(i<=4){
-                cell->setPosition(ccp(i*140 - 125, 190));
-            }else{
-                cell->setPosition(ccp((i-4)*140 -50 , 20));
-            }
-//        }
+        cell->setPosition(positions[i - 1]->getPosition() - ccp(0.0, m_CCSprite_0->getContentSize().height / 2.0));
         
         m_listNode->addChild(cell);
         
@@ -513,7 +504,7 @@ void DailyRwdView::gridTouched(cocos2d::extension::CCMultiColTableView* table, C
 
 CCSize DailyRwdView::gridSizeForTable(cocos2d::extension::CCMultiColTableView *table)
 {
-    return CCSize(114, 112 + 25);
+    return CCSize(136+2 , 196 + 25);
 }
 
 CCTableViewCell* DailyRwdView::gridAtIndex(cocos2d::extension::CCMultiColTableView *table, ssize_t idx)
@@ -737,6 +728,15 @@ bool DailyRwdView::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const 
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_infoNode", CCNode*, this->m_infoNode);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_touchNode", CCNode*, this->m_touchNode);
     
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_listPositionNodes", CCNode*, this->m_listPositionNodes);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_CCSprite_0", CCSprite*, m_CCSprite_0);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_CCSprite_1", CCSprite*, m_CCSprite_1);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_CCSprite_2", CCSprite*, m_CCSprite_2);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_CCSprite_3", CCSprite*, m_CCSprite_3);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_CCSprite_4", CCSprite*, m_CCSprite_4);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_CCSprite_5", CCSprite*, m_CCSprite_5);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_CCSprite_6", CCSprite*, m_CCSprite_6);
+    
     return false;
 }
 
@@ -864,18 +864,9 @@ DailyCell* DailyCell::create(int itemId,CCNode* clickArea)
 bool DailyCell::init(int itemId)
 {
     CCBLoadFile("qiandaoCell",this,this);
-//    if (CCCommonUtils::isIosAndroidPad())
-//    {
-//        setContentSize(CCSize(228, 224 + 25));
-//        m_touchNode->setPosition(228 / 2, 25 + 224 / 2);
-//        m_particleNode->setPosition(228 / 2, 27 + 224 / 2);
-//    }
-//    else
-//    {
-        setContentSize(CCSize(114, 112 + 25));
-        m_touchNode->setPosition(114 / 2, 25 + 112 / 2);
-        m_particleNode->setPosition(114 / 2, 27 + 112 / 2);
-//    }
+	setContentSize(CCSize(136+2, 196 + 25));
+	m_touchNode->setPosition(138 / 2, 25 + 196 / 2);
+
     setData(itemId);
     return true;
 }
@@ -893,9 +884,16 @@ void DailyCell::setData(int itemId)
     m_dayLabel->setString("");
     m_bgNode->removeAllChildren();
     m_picNode->removeAllChildren();
-    m_particleNode->setVisible(false);
+    
+    setGlowVisible(false);
     
     m_itemId = itemId;
+    
+    //fusheng test
+//    PortActController::getInstance()->m_loginDay = 7;
+//    PortActController::getInstance()->m_isRdLoginDay = 0;
+//    PortActController::getInstance()->m_isVipRdLoginDay = 1;
+    
     if (!PortActController::getInstance()->m_loginDayMap[m_itemId].reward) {
         return;
     }
@@ -916,7 +914,7 @@ void DailyCell::setData(int itemId)
     
     if (arr->count() > 1)
     {
-        m_particleNode->setScale(1.3);
+//        m_particleNode->setScale(1.3);
         m_dayLabel->setString(_lang_1("111058", CC_ITOA(m_itemId)));
         m_rdNode->setVisible(true);
         
@@ -926,7 +924,7 @@ void DailyCell::setData(int itemId)
         } else if (m_itemId == PortActController::getInstance()->m_loginDay){
             if (PortActController::getInstance()->m_isRdLoginDay == 0 && PortActController::getInstance()->m_isVipRdLoginDay == 1)
             {
-                m_particleNode->setVisible(true);
+                setGlowVisible(true);
             }
             else {
                 onRefreshBaoXiang(true);
@@ -934,7 +932,7 @@ void DailyCell::setData(int itemId)
             }
         } else if (m_itemId == (PortActController::getInstance()->m_loginDay + 1)){
             if (PortActController::getInstance()->m_isRdLoginDay == 0 && PortActController::getInstance()->m_isVipRdLoginDay == 0) {//这一天啥奖也没领
-                m_particleNode->setVisible(true);
+                setGlowVisible(true);
             }
         } else {
             
@@ -977,47 +975,68 @@ void DailyCell::setData(int itemId)
 //            CCCommonUtils::setSpriteMaxSize(m_picSpr, 90*2, true);
 //        }
 //        else
-            CCCommonUtils::setSpriteMaxSize(m_picSpr, 90, true);
+//            CCCommonUtils::setSpriteMaxSize(m_picSpr, 90, true);
+
+		if(m_itemId == 7)//fusheng 第七天 特殊处理
+        {
+            CCCommonUtils::setSpriteMaxSize(m_picSpr, 152, true);
+        }
+        else
+        {
+            CCCommonUtils::setSpriteMaxSize(m_picSpr, 110, true);
+        }
         
         m_bgNode->addChild(m_bgSpr);
         m_picNode->addChild(m_picSpr);
         m_numLabel->setString(num);
-        int isShowDay = PortActController::getInstance()->m_loginDayMap[m_itemId].showDay;
-        if (true) {//isShowDay == 1
+//        int isShowDay = PortActController::getInstance()->m_loginDayMap[m_itemId].showDay;
+//        if (true) {//isShowDay == 1
             m_dayLabel->setString(_lang_1("111058", CC_ITOA(m_itemId)));
             m_dayLabel->setVisible(true);
-        } else {
-            m_dayLabel->setString("");
-            m_dayLabel->setVisible(false);
-        }
+//        } else {
+//            m_dayLabel->setString("");
+//            m_dayLabel->setVisible(false);
+//        }
         
         CCCommonUtils::setSpriteGray(m_bgSpr, false);
         CCCommonUtils::setSpriteGray(m_picSpr, false);
+        
         if (m_itemId < PortActController::getInstance()->m_loginDay) {
             CCCommonUtils::setSpriteGray(m_bgSpr, true);
             CCCommonUtils::setSpriteGray(m_picSpr, true);
+            
+            m_dayLabel->setColor(ccWHITE);
+            
             m_flashSpr->setVisible(true);
-            m_particleNode->setVisible(false);
+            setGlowVisible(false);
         } else if (m_itemId == PortActController::getInstance()->m_loginDay){
             if (PortActController::getInstance()->m_isRdLoginDay == 0 && PortActController::getInstance()->m_isVipRdLoginDay == 1)
             {
                 CCCommonUtils::setSpriteGray(m_bgSpr, false);
                 CCCommonUtils::setSpriteGray(m_picSpr, false);
+                
+                
+
                 m_flashSpr->setVisible(false);
-                m_particleNode->setVisible(true);
+                setGlowVisible(true);
             }
             else {
                 CCCommonUtils::setSpriteGray(m_bgSpr, true);
                 CCCommonUtils::setSpriteGray(m_picSpr, true);
+
+                m_dayLabel->setColor(ccWHITE);
+                
                 m_flashSpr->setVisible(true);
-                m_particleNode->setVisible(false);
+                setGlowVisible(false);
             }
         } else if (m_itemId == (PortActController::getInstance()->m_loginDay + 1)){
             if (PortActController::getInstance()->m_isRdLoginDay == 0 && PortActController::getInstance()->m_isVipRdLoginDay == 0) {//这一天啥奖也没领
                 CCCommonUtils::setSpriteGray(m_bgSpr, false);
                 CCCommonUtils::setSpriteGray(m_picSpr, false);
+                
+                
                 m_flashSpr->setVisible(false);
-                m_particleNode->setVisible(true);
+                setGlowVisible(true);
             }
         } else {
             
@@ -1127,6 +1146,7 @@ void DailyCell::refreshRd(CCObject* params)
         } else {
             if (m_bgSpr) {
                 CCCommonUtils::setSpriteGray(m_bgSpr, true);
+
             }
             if (m_picSpr) {
                 CCCommonUtils::setSpriteGray(m_picSpr, true);
@@ -1135,8 +1155,10 @@ void DailyCell::refreshRd(CCObject* params)
                 onRefreshBaoXiang(true);
             }
             
+            m_dayLabel->setColor(ccWHITE);
+            
             m_flashSpr->setVisible(true);
-            m_particleNode->setVisible(false);
+            setGlowVisible(false);
         }
     }
 }
@@ -1153,10 +1175,32 @@ void DailyCell::onRefreshBaoXiang(bool st)
         CCCommonUtils::setSpriteGray(m_spr3, st);
     }
     CCCommonUtils::setSpriteGray(m_wenhao, st);
+
+    if(st)
+        m_dayLabel->setColor(ccWHITE);
+    
+}
+
+void DailyCell::setGlowVisible(bool b)
+{
+    if (b)
+    {
+        m_itemBG->setVisible(m_itemId != 7);
+        m_particleNode->setVisible(m_itemId == 7);
+    }
+    else
+    {
+        m_itemBG->setVisible(b);
+        m_particleNode->setVisible(b);
+    }
 }
 
 bool DailyCell::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, const char *pMemberVariableName, cocos2d::CCNode *pNode)
 {
+    
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_numBG", CCSprite*, m_numBG);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_itemBG", CCSprite*, m_itemBG);
+    
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_numLabel", CCLabelIF*, m_numLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_dayLabel", CCLabelIF*, m_dayLabel);
     CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_flashSpr", CCSprite*, m_flashSpr);
