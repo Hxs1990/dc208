@@ -66,10 +66,10 @@ FunBuild* FunBuild::create(int itemId, CCLabelBatchNode* nameLayer)
     return pRet;
 }
 
-FunBuild* FunBuild::createTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch)
+FunBuild* FunBuild::createTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch, Node * pSpineLayer)
 {
     FunBuild *pRet = new FunBuild();
-    if (pRet && pRet->initTmpBuild(itemId,x,y,batchNode,zOrder,blentbatch))
+    if (pRet && pRet->initTmpBuild(itemId,x,y,batchNode,zOrder,blentbatch, pSpineLayer))
     {
         pRet->autorelease();
     }
@@ -80,7 +80,7 @@ FunBuild* FunBuild::createTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* 
     return pRet;
 }
 
-bool FunBuild::initTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch)
+bool FunBuild::initTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch, Node * pSpineLayer)
 {
     if(m_sprArray) {
         m_sprArray->removeAllObjects();
@@ -155,6 +155,12 @@ bool FunBuild::initTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNo
     if(m_lvBG) {
         this->m_lvBG->setVisible(false);
     }
+    
+    //begin a by ljf
+    initSpineNode(pic + "_" + CC_ITOA(GlobalData::shared()->contryResType) + "_1", pSpineLayer);
+    //initParticle(itemId);
+    //end a by ljf
+    
     return true;
 }
 
@@ -180,7 +186,7 @@ bool FunBuild::initFunBuild(int itemId, CCLabelBatchNode* nameLayer)
         m_blentSprArray = CCArray::create();
     }
     
-    if(itemId > 1000)
+    if(itemId > 1000)  //ljf, 这代表已经创建过的建筑，itemId实际上是ItemSpec id="9990"这个字段
     {
         if (m_buildingKey/1000 == FUN_BUILD_PRISON) {
             return true;
@@ -277,8 +283,18 @@ bool FunBuild::initFunBuild(int itemId, CCLabelBatchNode* nameLayer)
             m_moveFrame->setScale(1.3);
             m_moveFrame->setPosition(ccp(131, 67));
         }
+        
+        //begin a by ljf
+        initEffectState();
+        initSpineNode(m_info->pic + "_" + CC_ITOA(GlobalData::shared()->contryResType) + "_1", nullptr);
+        initParticle(m_info->type);
+        if(m_spineNode and m_nameLayer)
+        {
+            m_spineNode->setCameraMask(m_nameLayer->getCameraMask(), true);
+        }
+        //end a by ljf
     }
-    else
+    else   //ljf, 这代表没有创建的空块，itemId对应的是position字段
     {
         string tileName = "build_tile.png";
         if(itemId>16) {
@@ -681,12 +697,13 @@ void FunBuild::initSpineNode(string picName, Node * spineParent)
     {
         const string spineJsonName = "Spine/Imperial/" + picName + "_spine.json";
         const string spineAtlasName = "Imperial/Imperial_30.atlas";
-
+        
         if (CCFileUtils::sharedFileUtils()->isFileExist(spineJsonName) &&
             CCFileUtils::sharedFileUtils()->isFileExist(spineAtlasName))
         {
             m_spineAni = new IFSkeletonAnimation(spineJsonName.c_str(), spineAtlasName.c_str());
             if (m_spineAni) {
+                
                 {
                     m_spineNode->addChild(m_spineAni);
                 }
@@ -823,6 +840,14 @@ void FunBuild::onBuildDelete()
         m_blentSprArray->removeAllObjects();
     }
     
+    if (m_spineLayer) {
+        if (m_spineAni) {
+            m_spineAni->removeFromParentAndCleanup(true);
+        }
+        if (m_spineLayer->getChildByTag(1)) {
+            m_spineLayer->getChildByTag(1)->removeAllChildrenWithCleanup(true);
+        }
+    }
     hideTmpBuild();
 }
 
@@ -2218,6 +2243,8 @@ void FunBuild::canShowState()
         }
     }
     else if (m_info->type == FUN_BUILD_WOOD || m_info->type == FUN_BUILD_FOOD || m_info->type == FUN_BUILD_IRON || m_info->type == FUN_BUILD_STONE) {
+        //begin d by ljf
+        /*
         if (!isEffectRunning && FunBuildController::getInstance()->canShowOutPut(m_info->itemId)) {
             addFunBuildState();
             isEffectRunning = true;
@@ -2232,6 +2259,113 @@ void FunBuild::canShowState()
                 this->getAnimationManager()->runAnimationsForSequenceNamed("Havest");
             }
         }
+        */
+        //end d by ljf
+        
+        //begin a by ljf
+        //未长出状态未显示0，未长出状态已显示1， 长出过程未显示2， 长出过程已显示3， 等收割未显示4， 等收割已显示5， 收割未显示6， 收割已显示7
+        //m_spineAni->setAnimation(0, "GrowthProcess", true);
+        
+        if(!FunBuildController::getInstance()->canShowOutPut(m_info->itemId))
+        {
+            
+            if(m_effectState == 0)
+            {
+                if(m_info->type == FUN_BUILD_FOOD) {
+                    m_spineAni->setToSetupPose();
+                    m_spineAni->setAnimation(0, "AfterHarvestWait", true);
+                    m_spineAni->update(0.00001);
+                }
+                if(m_info->type == FUN_BUILD_WOOD || m_info->type == FUN_BUILD_STONE || m_info->type == FUN_BUILD_IRON) {
+                    m_spineAni->setToSetupPose();
+                    m_spineAni->setAnimation(0, "Working", true);
+                    m_spineAni->update(0.00001);
+                    if(m_info->type == FUN_BUILD_STONE && m_particleNode)
+                    {
+                        if(m_particleNode->getChildByTag(WORKING_PARTICLE_NODE_TAG))
+                        {
+                            m_particleNode->getChildByTag(WORKING_PARTICLE_NODE_TAG)->setVisible(true);
+                        }
+                        if(m_particleNode->getChildByTag(FINISH_PARTICLE_NODE_TAG))
+                        {
+                            m_particleNode->getChildByTag(FINISH_PARTICLE_NODE_TAG)->setVisible(false);
+                        }
+                    }
+                }
+                m_effectState = 2;
+                
+            }
+            else if(m_effectState == 6)
+            {
+                if(m_buildState->CanDel)
+                {
+                    removeFunBuildState();
+                    if(m_info->type == FUN_BUILD_FOOD) {
+                        m_spineAni->setToSetupPose();
+                        m_spineAni->setAnimation(0, "Harvest", false);
+                        m_spineAni->update(0.00001);
+                        m_spineAni->addAnimation(0, "AfterHarvestWait", true);
+                    }
+                    if(m_info->type == FUN_BUILD_WOOD || m_info->type == FUN_BUILD_STONE || m_info->type == FUN_BUILD_IRON) {
+                        m_spineAni->setToSetupPose();
+                        m_spineAni->setAnimation(0, "Working", true);
+                        m_spineAni->update(0.00001);
+                        if(m_info->type == FUN_BUILD_STONE && m_particleNode)
+                        {
+                            if(m_particleNode->getChildByTag(WORKING_PARTICLE_NODE_TAG))
+                            {
+                                m_particleNode->getChildByTag(WORKING_PARTICLE_NODE_TAG)->setVisible(true);
+                            }
+                            if(m_particleNode->getChildByTag(FINISH_PARTICLE_NODE_TAG))
+                            {
+                                m_particleNode->getChildByTag(FINISH_PARTICLE_NODE_TAG)->setVisible(false);
+                            }
+                        }
+                    }
+                    m_effectState = 2;
+                }
+            }
+        }
+        else
+        {
+            if(m_effectState == 2)
+            {
+                addFunBuildState();
+                if(m_info->type == FUN_BUILD_FOOD) {
+                    m_spineAni->setToSetupPose();
+                    m_spineAni->setAnimation(0, "GrowthProcess", false);
+                    m_spineAni->update(0.00001);
+                    m_spineAni->addAnimation(0, "BeforeHarvestWait", true);
+                }
+                if(m_info->type == FUN_BUILD_STONE || m_info->type == FUN_BUILD_IRON) {
+                    m_spineAni->setToSetupPose();
+                    m_spineAni->setAnimation(0, "Finish", true);
+                    m_spineAni->update(0.00001);
+                    if(m_info->type == FUN_BUILD_STONE && m_particleNode)
+                    {
+                        if(m_particleNode->getChildByTag(WORKING_PARTICLE_NODE_TAG))
+                        {
+                            m_particleNode->getChildByTag(WORKING_PARTICLE_NODE_TAG)->setVisible(false);
+                        }
+                        if(m_particleNode->getChildByTag(FINISH_PARTICLE_NODE_TAG))
+                        {
+                            m_particleNode->getChildByTag(FINISH_PARTICLE_NODE_TAG)->setVisible(true);
+                        }
+                    }
+                }
+                if(m_info->type == FUN_BUILD_WOOD)
+                {
+                    m_spineAni->setToSetupPose();
+                    //                    m_spineAni->setAnimation(0, "Working", false);
+                    m_spineAni->setAnimation(0, "Finish", true);
+                    m_spineAni->update(0.00001);
+                }
+                m_effectState = 6;
+            }
+            
+        }
+        
+        //end a by ljf
     }
     else if (m_info->type == FUN_BUILD_SACRIFICE) {
         if (!isEffectRunning && GlobalData::shared()->sacrificeInfo.canFreePray()==true && FunBuildController::getInstance()->TalkViewBId.compare(CC_ITOA(FUN_BUILD_SACRIFICE)) != 0) {
@@ -2948,7 +3082,7 @@ void FunBuild::showTmpBuild(int itemId)
 {
     hideTmpBuild();
     
-    auto build = FunBuild::createTmpBuild(itemId, parentX, parentY, m_batchNode, m_zOrder, m_blentBatchNode);
+    auto build = FunBuild::createTmpBuild(itemId, parentX, parentY, m_batchNode, m_zOrder, m_blentBatchNode, m_spineLayer);
     build->setTag(9);
 //    build->playShadow();
     this->addChild(build);

@@ -38,7 +38,7 @@ class FunBuild: public CCAniNode
 public:
     FunBuild():m_key(0),m_type(0),isShowUping(false),mainWidth(0),mainHeight(0),m_buildingKey(0),m_info(NULL),isChange(true)
     ,parentX(0),parentY(0),arrY(0),isUnLock(false),isCanClick(true),isEffectRunning(false),m_zOrder(0),m_clickType(0),m_output(0),m_buildAnimatSt("")
-    ,m_nameLayer(NULL),m_signLayer(NULL),m_popLayer(NULL),m_batchNode(NULL),m_popBatchNode(NULL),m_blentBatchNode(NULL),m_tipNode(NULL),m_spr1(NULL),m_customSkinPar(NULL), m_customSkinSkBatch(nullptr),   m_spr1Zorder(-1), m_ccbSprPosition(Vec2(0, 0)){};
+    ,m_nameLayer(NULL),m_signLayer(NULL),m_popLayer(NULL),m_batchNode(NULL),m_popBatchNode(NULL),m_blentBatchNode(NULL), m_spineLayer(NULL), m_tipNode(NULL),m_spr1(NULL),m_customSkinPar(NULL), m_customSkinSkBatch(nullptr),   m_spr1Zorder(-1), m_ccbSprPosition(Vec2(0, 0)){};
     ~FunBuild(){};
     bool initFunBuild(int itemId, CCLabelBatchNode *nameLayer);
     static FunBuild* create(int itemId, CCLabelBatchNode *nameLayer);
@@ -46,8 +46,8 @@ public:
     CCNode* getGuideNode(string _key);
     void showTmpBuild(int itemId);
     void hideTmpBuild();
-    static FunBuild* createTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch=NULL);
-    bool initTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch=NULL);
+    static FunBuild* createTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch=NULL, Node * pSpineLayer = NULL);
+    bool initTmpBuild(int itemId, int x, int y, CCSpriteBatchNode* batchNode, int zOrder, CCSpriteBatchNode* blentbatch=NULL, Node * pSpineLayer = NULL);
     
     void setTime(int times, bool updateLv=false);
     void changeBg();
