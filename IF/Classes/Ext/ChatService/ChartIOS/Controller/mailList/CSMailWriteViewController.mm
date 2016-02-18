@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIImageView *backimageView =[[UIImageView alloc]initWithFrame:self.view.frame];
-    backimageView.image =[UIImage resizedImage:@"CSMailWriteViewController"];
+    backimageView.image =[UIImage imageNamed:@"bottom_bg"];
     backimageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     [backimageView addGestureRecognizer:tapGesturRecognizer];

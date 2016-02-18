@@ -7,7 +7,7 @@
             <key>treasure_01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{388,480},{103,109}}</string>
+                <string>{{407,242},{103,109}}</string>
                 <key>offset</key>
                 <string>{0,-2}</string>
                 <key>rotated</key>
@@ -20,7 +20,7 @@
             <key>treasure_02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{430,595},{103,101}}</string>
+                <string>{{516,233},{103,101}}</string>
                 <key>offset</key>
                 <string>{0,-6}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>treasure_03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{605,113},{103,95}}</string>
+                <string>{{440,587},{103,95}}</string>
                 <key>offset</key>
                 <string>{0,-9}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>treasure_04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{456,242},{104,101}}</string>
+                <string>{{515,4},{104,101}}</string>
                 <key>offset</key>
                 <string>{0,-6}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>treasure_05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{515,4},{103,103}}</string>
+                <string>{{380,478},{103,103}}</string>
                 <key>offset</key>
                 <string>{0,-5}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>treasure_06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{331,601},{93,111}}</string>
+                <string>{{379,361},{93,111}}</string>
                 <key>offset</key>
                 <string>{-5,-1}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>treasure_13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{332,361},{49,113}}</string>
+                <string>{{319,721},{49,113}}</string>
                 <key>offset</key>
                 <string>{27,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>treasure_14.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{222,721},{103,113}}</string>
+                <string>{{222,602},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,7 +189,7 @@
             <key>treasure_15.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{222,602},{103,113}}</string>
+                <string>{{406,4},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -202,7 +202,7 @@
             <key>treasure_16.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{230,123},{104,113}}</string>
+                <string>{{188,243},{104,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -215,7 +215,7 @@
             <key>treasure_17.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{406,4},{103,113}}</string>
+                <string>{{388,123},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>treasure_18.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,959},{59,113}}</string>
+                <string>{{158,959},{59,113}}</string>
                 <key>offset</key>
                 <string>{-22,0}</string>
                 <key>rotated</key>
@@ -241,7 +241,7 @@
             <key>treasure_19.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{407,242},{43,113}}</string>
+                <string>{{331,481},{43,113}}</string>
                 <key>offset</key>
                 <string>{30,0}</string>
                 <key>rotated</key>
@@ -254,7 +254,7 @@
             <key>treasure_20.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{340,123},{103,113}}</string>
+                <string>{{298,242},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -267,7 +267,7 @@
             <key>treasure_21.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{298,242},{103,113}}</string>
+                <string>{{223,362},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -280,7 +280,7 @@
             <key>treasure_22.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{188,244},{104,113}}</string>
+                <string>{{113,364},{104,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -293,7 +293,7 @@
             <key>treasure_23.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{223,363},{103,113}}</string>
+                <string>{{222,483},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,7 +306,7 @@
             <key>treasure_24.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{331,482},{51,113}}</string>
+                <string>{{315,840},{51,113}}</string>
                 <key>offset</key>
                 <string>{-26,0}</string>
                 <key>rotated</key>
@@ -319,7 +319,7 @@
             <key>treasure_25.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{387,361},{43,113}}</string>
+                <string>{{372,840},{43,113}}</string>
                 <key>offset</key>
                 <string>{30,0}</string>
                 <key>rotated</key>
@@ -332,7 +332,7 @@
             <key>treasure_26.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{222,483},{103,113}}</string>
+                <string>{{113,840},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -345,7 +345,7 @@
             <key>treasure_27.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{113,840},{103,113}}</string>
+                <string>{{113,721},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -358,7 +358,7 @@
             <key>treasure_28.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{113,364},{104,113}}</string>
+                <string>{{187,4},{104,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +371,7 @@
             <key>treasure_29.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{113,721},{103,113}}</string>
+                <string>{{113,602},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,7 +384,7 @@
             <key>treasure_30.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{449,123},{41,113}}</string>
+                <string>{{332,361},{41,113}}</string>
                 <key>offset</key>
                 <string>{-31,0}</string>
                 <key>rotated</key>
@@ -397,11 +397,11 @@
             <key>treasure_31.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{114,124},{55,114}}</string>
+                <string>{{38,964},{55,114}}</string>
                 <key>offset</key>
                 <string>{24,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{48,0},{55,114}}</string>
                 <key>sourceSize</key>
@@ -462,7 +462,7 @@
             <key>treasure_36.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{175,124},{49,114}}</string>
+                <string>{{114,124},{49,114}}</string>
                 <key>offset</key>
                 <string>{-27,0}</string>
                 <key>rotated</key>
@@ -475,7 +475,7 @@
             <key>treasure_37.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{319,840},{87,113}}</string>
+                <string>{{222,840},{87,113}}</string>
                 <key>offset</key>
                 <string>{8,0}</string>
                 <key>rotated</key>
@@ -488,7 +488,7 @@
             <key>treasure_38.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{113,602},{103,113}}</string>
+                <string>{{113,483},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -501,7 +501,7 @@
             <key>treasure_39.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{113,483},{103,113}}</string>
+                <string>{{297,4},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -514,7 +514,7 @@
             <key>treasure_40.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{187,4},{104,113}}</string>
+                <string>{{169,124},{104,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -527,7 +527,7 @@
             <key>treasure_41.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{297,4},{103,113}}</string>
+                <string>{{279,123},{103,113}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -540,7 +540,7 @@
             <key>treasure_42.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{222,840},{91,113}}</string>
+                <string>{{222,721},{91,113}}</string>
                 <key>offset</key>
                 <string>{-6,0}</string>
                 <key>rotated</key>
@@ -553,7 +553,7 @@
             <key>treasure_43.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{496,123},{103,103}}</string>
+                <string>{{331,600},{103,103}}</string>
                 <key>offset</key>
                 <string>{0,5}</string>
                 <key>rotated</key>
@@ -566,7 +566,7 @@
             <key>treasure_44.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{563,232},{103,99}}</string>
+                <string>{{374,709},{103,99}}</string>
                 <key>offset</key>
                 <string>{0,7}</string>
                 <key>rotated</key>
@@ -579,7 +579,7 @@
             <key>treasure_45.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{331,718},{103,101}}</string>
+                <string>{{478,357},{103,101}}</string>
                 <key>offset</key>
                 <string>{0,6}</string>
                 <key>rotated</key>
@@ -592,7 +592,7 @@
             <key>treasure_46.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{436,361},{104,101}}</string>
+                <string>{{497,123},{104,101}}</string>
                 <key>offset</key>
                 <string>{0,6}</string>
                 <key>rotated</key>
@@ -605,7 +605,7 @@
             <key>treasure_47.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{543,352},{103,99}}</string>
+                <string>{{622,4},{103,99}}</string>
                 <key>offset</key>
                 <string>{0,7}</string>
                 <key>rotated</key>
@@ -618,7 +618,7 @@
             <key>treasure_48.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{497,471},{103,99}}</string>
+                <string>{{604,114},{103,99}}</string>
                 <key>offset</key>
                 <string>{0,7}</string>
                 <key>rotated</key>
@@ -631,7 +631,7 @@
             <key>treasure_shuru.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{466,885},{46,37}}</string>
+                <string>{{480,944},{46,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -644,7 +644,7 @@
             <key>treasuremap_box.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{704,4},{62,66}}</string>
+                <string>{{421,818},{62,66}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -657,7 +657,7 @@
             <key>treasuremap_dian.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{319,959},{28,56}}</string>
+                <string>{{4,964},{28,56}}</string>
                 <key>offset</key>
                 <string>{0,1}</string>
                 <key>rotated</key>
@@ -670,7 +670,7 @@
             <key>treasuremap_kuang.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{624,4},{96,74}}</string>
+                <string>{{489,466},{96,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -683,33 +683,33 @@
             <key>treasuremap_left.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{103,964},{56,91}}</string>
+                <string>{{411,959},{50,63}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{2,1},{56,91}}</string>
+                <string>{{0,0},{50,63}}</string>
                 <key>sourceSize</key>
-                <string>{60,93}</string>
+                <string>{50,63}</string>
             </dict>
             <key>treasuremap_left1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{4,964},{56,93}}</string>
+                <string>{{411,959},{50,63}}</string>
                 <key>offset</key>
-                <string>{1,0}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{3,0},{56,93}}</string>
+                <string>{{0,0},{50,63}}</string>
                 <key>sourceSize</key>
-                <string>{60,93}</string>
+                <string>{50,63}</string>
             </dict>
             <key>treasuremap_longkuang.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{353,959},{52,70}}</string>
+                <string>{{277,959},{52,70}}</string>
                 <key>offset</key>
                 <string>{-2,-3}</string>
                 <key>rotated</key>
@@ -722,7 +722,7 @@
             <key>treasuremap_star-1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{412,827},{52,52}}</string>
+                <string>{{353,959},{52,52}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -735,7 +735,7 @@
             <key>treasuremap_star.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{429,939},{48,48}}</string>
+                <string>{{475,890},{48,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -748,7 +748,7 @@
             <key>treasuremap_tanhao.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{412,885},{48,48}}</string>
+                <string>{{421,890},{48,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -768,7 +768,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5cd49d069fd3d6aae030cfa0b9aa751e:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:5a1aa088b88da5d665560ddb4486ef71:1/1$</string>
             <key>textureFileName</key>
             <string>Common_508.pvr.ccz</string>
         </dict>

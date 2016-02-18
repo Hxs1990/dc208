@@ -19,6 +19,8 @@
 #include "CCGallery.h"
 #include "NBSlider.h"
 
+#define MSG_ProductionSoldiersView_m_sliderNode "MSG_ProductionSoldiersView_m_sliderNode"
+
 class ProductionSoldiersView: public PopupBaseView
 ,public CCBSelectorResolver
 ,public CCBMemberVariableAssigner
@@ -36,6 +38,7 @@ public:
     CCNode* getGuideNode(string _key);
     virtual void update(float time);
 	void setSoldierIdAndNum(string armyId, int num);
+    void showSliderNode(CCObject* p);
 public:
     virtual void slideBegan(CCGallery *gallery);
     virtual void slideEnded(CCGallery *gallery, CCGalleryItem *pGItem);

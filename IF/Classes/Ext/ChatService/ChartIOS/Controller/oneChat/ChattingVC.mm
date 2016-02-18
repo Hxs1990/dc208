@@ -1593,7 +1593,7 @@ static NSString *countryIdentify = @"countryIdentify";
      jionAllanceView.frame = CGRectMake(self.chatScrollView.width, 0, self.chatScrollView.width, winSize.height);
     
     
-    UIImageView *jionAllanceBack = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_bg_default.jpg"]];
+    UIImageView *jionAllanceBack = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bottom_bg.png"]];
     jionAllanceBack.frame=CGRectMake(0, 0, jionAllanceView.frame.size.width, jionAllanceView.frame.size.height);
     [jionAllanceView addSubview:jionAllanceBack];
     
@@ -1623,7 +1623,7 @@ static NSString *countryIdentify = @"countryIdentify";
 
     
     UIButton *jionAllanceBtn = [[UIButton alloc]init];
-    [jionAllanceBtn setBackgroundImage:[UIImage imageNamed:@"chat_bottom_smile_nor.png"] forState:UIControlStateNormal];
+    [jionAllanceBtn setBackgroundImage:[UIImage imageNamed:@"btn_green3.png"] forState:UIControlStateNormal];
     NSString *jionStr = [NSString stringWithMultilingualWithKey:@"115020"];//115020=//加入
     [jionAllanceBtn setTitle:jionStr forState:UIControlStateNormal];
     [jionAllanceBtn setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];

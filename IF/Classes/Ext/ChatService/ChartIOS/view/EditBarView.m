@@ -182,7 +182,7 @@
     
     
     self.textViewBackImageFrame=[[UIImageView alloc]initWithFrame:CGRectMake( self.speakerChangeButton.width-2, self.bodyView.height  * 0.25-5 , self.bodyView.width * 0.7 -self.speakerChangeButton.width, fontH+8)];
-    self.textViewBackImageFrame.image=[UIImage resizableImage:@"input"];
+//    self.textViewBackImageFrame.image=[UIImage resizableImage:@"input"];
     [self.bodyView addSubview:self.textViewBackImageFrame];
     self.textViewBackImageFrame.hidden=YES;
     

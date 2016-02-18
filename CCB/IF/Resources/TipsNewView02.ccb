@@ -94,7 +94,7 @@
 								<key>value</key>
 								<array>
 									<string>Common/Common_1.plist</string>
-									<string>Items_tips22.png</string>
+									<string>UI_paper_3.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -104,8 +104,8 @@
 								<string>Size</string>
 								<key>value</key>
 								<array>
-									<real>600</real>
-									<real>380</real>
+									<real>560</real>
+									<real>320</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -135,7 +135,7 @@
 								<key>type</key>
 								<string>Float</string>
 								<key>value</key>
-								<real>0.0</real>
+								<real>30</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -143,7 +143,7 @@
 								<key>type</key>
 								<string>Float</string>
 								<key>value</key>
-								<real>0.0</real>
+								<real>30</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -151,7 +151,7 @@
 								<key>type</key>
 								<string>Float</string>
 								<key>value</key>
-								<real>0.0</real>
+								<real>30</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -159,7 +159,7 @@
 								<key>type</key>
 								<string>Float</string>
 								<key>value</key>
-								<real>0.0</real>
+								<real>30</real>
 							</dict>
 						</array>
 					</dict>
@@ -178,6 +178,14 @@
 						<integer>2</integer>
 						<key>properties</key>
 						<array>
+							<dict>
+								<key>name</key>
+								<string>visible</string>
+								<key>type</key>
+								<string>Check</string>
+								<key>value</key>
+								<false/>
+							</dict>
 							<dict>
 								<key>name</key>
 								<string>position</string>
@@ -298,6 +306,8 @@
 								<real>0.0</real>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>baseClass</key>
@@ -682,8 +692,6 @@
 								<string>Sample Text Sample Text Sample Text Sample Text Sam</string>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>

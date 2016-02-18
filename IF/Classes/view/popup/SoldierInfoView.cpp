@@ -17,6 +17,7 @@
 #include "YesNoDialog.h"
 #include "TipsView.h"
 #include "NewTroopsView.h"
+#include "C3DShowView.hpp"
 
 SoldierInfoView* SoldierInfoView::create(ArmyInfo* info,int buildingId){
     SoldierInfoView* ret = new SoldierInfoView(info,buildingId);
@@ -548,11 +549,11 @@ bool SoldierMoreInfoView::init()
     //////
     m_BG->setContentSize(m_BG->getContentSize()+CCSizeMake(0, subExtH));
     ////
-    m_leftbar->setContentSize(m_leftbar->getContentSize()+CCSizeMake(subExtH, 0));
+    m_leftbar->setContentSize(m_leftbar->getContentSize()+CCSizeMake(0, subExtH));
     /////
     m_rightbar->setContentSize(m_rightbar->getContentSize()+CCSizeMake(subExtH, 0));
     //////
-    m_midBG->setContentSize(m_midBG->getContentSize()+CCSizeMake(0, subExtH));
+    m_midBG->setContentSize(m_midBG->getContentSize()+CCSizeMake(0, subExtH+45));
     //////
     //滚动区域设置
     m_infoList->setPositionY(m_infoList->getPositionY() - subExtH);
@@ -695,12 +696,12 @@ void SoldierMoreInfoView::sliderShow(){
     m_sliderBg->setInsetTop(5);
     m_sliderBg->setAnchorPoint(ccp(0.5,0.5));
     m_sliderBg->setPosition(ccp(304/2, 25));
-    m_sliderBg->setContentSize(CCSize(304,18));
+    m_sliderBg->setContentSize(CCSize(300,18));
     
-    auto bgSp = CCLoadSprite::createSprite("huadongtiao4.png");
+    auto bgSp = CCLoadSprite::createSprite("nb_bar_pro.png");
     bgSp->setVisible(false);
-    auto proSp = CCLoadSprite::createSprite("huadongtiao4.png");
-    auto thuSp = CCLoadSprite::createSprite("huadongtiao1.png");
+    auto proSp = CCLoadSprite::createSprite("nb_bar_pro.png");
+    auto thuSp = CCLoadSprite::createSprite("nb_cursor_icon.png");
     
     m_trainSlider = CCSliderBar::createSlider(m_sliderBg, proSp, thuSp);
     m_trainSlider->setMinimumValue(0.0f);
@@ -802,10 +803,59 @@ void SoldierMoreInfoView::arrowState(){
     return;
 }
 void SoldierMoreInfoView::soldierIconShow(){
-    CCPoint pos = ccp(0,0);
-    m_iconSp->setPosition(pos);
-    m_iconSp->setDisplayFrame(CCLoadSprite::loadResource(m_info->getBodyIcon().c_str()));
+    m_soldierNode->removeAllChildren();
+    CCPoint pos = ccp(30,-140);
+//    m_iconSp->setPosition(pos);
+//    m_iconSp->setDisplayFrame(CCLoadSprite::loadResource(m_info->getBodyIcon().c_str()));
 //    m_soldierNode->addChild(m_iconSp);
+    auto pic = C3DShowView::create(m_info->getModelName().c_str(),m_info->getModelTexName().c_str());
+    if (!pic) {
+        return;
+    }
+    pic->getModel().getObject()->setScale(m_info->getModelScale());
+    pic->setPosition3D(Vec3(pos.x,pos.y,200));
+    pic->setAnchorPoint(Vec2(0.0,0));
+    
+    Repeat* act1 = nullptr;
+    Repeat* act2 = nullptr;
+    
+    std::vector<std::string> stand;
+    int standActIndex = 0;
+    int idleActIndex = 1;
+    m_info->getModelAniByName(standActIndex,stand);
+    auto anim_stand = Animation3D::create(stand[0]);
+    if (anim_stand) {
+        auto pAnim = Animate3D::createWithFrames(anim_stand, atoi(stand[1].c_str()), atoi(stand[2].c_str()));
+        if (pAnim) {
+            act1 = Repeat::create(pAnim,rand()%2+2);
+        }
+    }
+    
+    std::vector<std::string> idle;
+    m_info->getModelAniByName(idleActIndex,idle);
+    
+    auto anim_idle = Animation3D::create(idle[0]);
+    if (anim_idle) {
+        auto pAnim = Animate3D::createWithFrames(anim_idle, atoi(idle[1].c_str()), atoi(idle[2].c_str()));
+        if (pAnim) {
+            act2 = Repeat::create(pAnim,1);
+        }
+    }
+    if (act1 && act2) {
+        Sequence* pSeq = Sequence::createWithTwoActions(act2, act1);
+        auto act = RepeatForever::create(pSeq);
+        pic->getModel().getObject()->stopAllActions();
+        pic->getModel().getObject()->runAction(act);
+    }
+    else if ((act1 && !act2) || (!act1 && act2))
+    {
+        auto action = act1 ? act1 : act2;
+        auto act = RepeatForever::create(action);
+        pic->getModel().getObject()->stopAllActions();
+        pic->getModel().getObject()->runAction(act);
+    }
+
+    m_soldierNode->addChild(pic);
 }
 
 void SoldierMoreInfoView::textAndDatashow(){
@@ -839,7 +889,7 @@ void SoldierMoreInfoView::textAndDatashow(){
 }
 
 void SoldierMoreInfoView::skillDatacellSet(){
-    int curX = 0;
+    int curX = 20;
     int curY = 0;
     int _itemH = 123;
     if(m_index < 0 || m_index >= m_Idvect.size()){
@@ -1030,17 +1080,20 @@ void SoldierMoreInfoView::refreshData(int index){
     m_curnum->setString(CC_CMDITOA(tempInfo.free));
     
     //////士兵图像
-    CCPoint pos = ccp(0,0);
-//    m_iconSp->cleanup();
-    m_iconSp->initWithSpriteFrame(CCLoadSprite::loadResource(tempInfo.getBodyIcon().c_str()));
-    m_iconSp->setPosition(pos);
+//    CCPoint pos = ccp(0,0);
+////    m_iconSp->cleanup();
+//    m_iconSp->initWithSpriteFrame(CCLoadSprite::loadResource(tempInfo.getBodyIcon().c_str()));
+//    m_iconSp->setPosition(pos);
 //    m_iconSp->setDisplayFrame(CCLoadSprite::loadResource(tempInfo.getBodyIcon().c_str()));
     ///
+    m_info= &tempInfo;//simon
+    soldierIconShow();
     skillDatacellSet();
 }
 
 void SoldierMoreInfoView::onCloseClick(CCObject * pSender, Control::EventType pCCControlEvent){
     CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(MSG_TROOP_NUMS_REFRESH);
+    CCSafeNotificationCenter::sharedNotificationCenter()->postNotification(MSG_ProductionSoldiersView_m_sliderNode);
     PopupViewController::getInstance()->goBackPopupView();
 //    this->closeSelf();
 }

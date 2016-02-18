@@ -625,7 +625,10 @@ void ProductionSoldiersView::addSoldierIcon(){
     auto func = CCCallFuncO::create(this, callfuncO_selector(ProductionSoldiersView::showSoldierIcon), m_soldierIconNode);
     m_soldierIconNode->runAction(CCSequence::create(delT, func, NULL));
 }
-
+void ProductionSoldiersView::showSliderNode(CCObject* p)
+{
+    m_soldierNode->setVisible(true);
+}
 void ProductionSoldiersView::showSoldierIcon(CCObject *obj)
 {
     m_soldierIconNode->setVisible(true);
@@ -983,7 +986,7 @@ void ProductionSoldiersView::onEnter(){
 //    this->refresh();
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(ProductionSoldiersView::refresh), MSG_UPDATE_ARMY_DATA, NULL);
     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(ProductionSoldiersView::refreshResource), MSG_CITY_RESOURCES_UPDATE, NULL);
-    
+     CCSafeNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(ProductionSoldiersView::showSliderNode), MSG_ProductionSoldiersView_m_sliderNode, NULL);
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(this, 0, false);
     setTouchMode(Touch::DispatchMode::ONE_BY_ONE);
     setTouchEnabled(true);
@@ -1879,6 +1882,7 @@ void ProductionSoldiersView::cilckInfoBtn()
         PopupViewController::getInstance()->addPopupInView(SoldierInfoView::create(m_info,m_buildingId));
     }
     else{
+        m_soldierNode->setVisible(false);
         PopupViewController::getInstance()->addPopupView(SoldierMoreInfoView::create(m_info,m_buildingId,m_armyIds));
     }
     if (m_newIcon->isVisible()) {
@@ -1886,7 +1890,6 @@ void ProductionSoldiersView::cilckInfoBtn()
         CCUserDefault::sharedUserDefault()->flush();
         m_newIcon->setVisible(false);
     }
-
     return;
 }
 
