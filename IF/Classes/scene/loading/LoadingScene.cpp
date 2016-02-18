@@ -566,6 +566,8 @@ bool LoadingScene::init()
         tipsBg->setAnchorPoint(ccp(0.5, 0.5));
         tipsBg->setScale(1.2f);
         tipsBg->setPosition(ccp(size.width/2,m_barClipNode->getPositionY()+ 78));// -lpsz.height/2
+        // tao.yu 现在没有loading_tips_bg.png 所以先隐藏
+        tipsBg->setVisible(false);
         
         addChild(tipsBg);
 

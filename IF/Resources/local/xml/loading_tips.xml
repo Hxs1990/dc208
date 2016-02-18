@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tns:database xmlns:tns="http://www.iw.com/sns/platform/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Group id="loadingTips">
+        <ItemSpec id="1000" description="4000049" level_range="1;19"/>
+        <ItemSpec id="1001" description="4000050;4000001;4000003;4000072;4000073;4000074" level_range="1;40"/>
+        <ItemSpec id="1002" description="4000016;4000017;4000051;4000052" level_range="12;19"/>
+        <ItemSpec id="1003" description="4000053;4000054;4000020;4000055;4000021" level_range="12;40"/>
+        <ItemSpec id="1004" description="4000056;4000071;4000075" level_range="15;40"/>
+        <ItemSpec id="1005" description="4000057;4000000;4000059;4000060" level_range="20;40"/>
+        <ItemSpec id="1006" description="4000061;4000062" level_range="3;11"/>
+        <ItemSpec id="1007" description="4000063" level_range="3;19"/>
+        <ItemSpec id="1008" description="4000064;4000065;4000066;4000006" level_range="3;6"/>
+        <ItemSpec id="1009" description="4000067;4000068;4000010" level_range="7;11"/>
+        <ItemSpec id="1010" description="4000069;4000070" level_range="7;19"/>
+    </Group>
+</tns:database>

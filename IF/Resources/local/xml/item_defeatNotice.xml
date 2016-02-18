@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tns:database xmlns:tns="http://www.iw.com/sns/platform/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Group id="defeatNotice">
+        <ItemSpec id="9100" type="0" description="108100"/>
+        <ItemSpec id="9101" type="1" description="108101" goto="ST"/>
+        <ItemSpec id="9102" type="2" description="108102" goto="UP" order_condition="HasW"/>
+        <ItemSpec id="9103" type="2" description="108103" goto="PVE" order_condition="!HasW"/>
+        <ItemSpec id="9104" type="3" description="108104" goto="ST" order_condition="HasGrade;!HasClass"/>
+        <ItemSpec id="9105" type="3" description="108105" goto="GET" order_condition="!HasGrade"/>
+        <ItemSpec id="9106" type="4" description="108106" goto="BT"/>
+    </Group>
+</tns:database>

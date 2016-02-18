@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tns:database xmlns:tns="http://www.iw.com/sns/platform/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Group id="ios_pay">
+        <ItemSpec id="79000" k1="532" k2="2.0.8" k3="CN|CN" k4="Appstore"/>
+        <ItemSpec id="79001" k1="5"/>
+        <ItemSpec id="79002" k1="1" k2="1"/>
+    </Group>
+</tns:database>

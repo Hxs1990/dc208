@@ -209,6 +209,7 @@ cocos2d::CCSpriteFrame* CCLoadSprite::loadResource(const char *fileName) {
     auto ret = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fileName);
     if (ret == NULL) {
         // Gets the texture by key firstly.
+        CCLOG("Warning === CCLoadSprite loadResource cannot find texture named:%s",fileName);
         auto texture = CCTextureCache::sharedTextureCache()->textureForKey(CC_2x2_WHITE_IMAGE_KEY);
         // If texture wasn't in cache, create it from RAW data.
         if (NULL == texture)
