@@ -282,7 +282,6 @@ void LocalController::init() {
         "local/xml/item_upgradeNotice.xml",
         "local/xml/item_vip.xml",
         "local/xml/item_wa_build.xml",
-        "local/xml/item.xml",
         "local/xml/item_wa_rank.xml",
         "local/xml/item_wb_skill.xml",
         "local/xml/item_wing.xml",
