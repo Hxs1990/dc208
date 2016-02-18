@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tns:database xmlns:tns="http://www.iw.com/sns/platform/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Group id="science">
+        <ItemSpec id="700100" tab="229990" name="120001" description="121001" icon="science_res_a_2" position="1;2" relation="2;4" show="1" lvpower="4|6|10|17|51"/>
+        <ItemSpec id="700200" tab="229990" name="120002" description="121002" icon="science_res_a_3" position="1;6" relation="2;4" show="1" lvpower="4|6|10|17|51"/>
+        <ItemSpec id="700300" tab="229990" name="120003" description="121003" icon="science_res_a_4" position="2;4" relation="3;2|3;6" show="2" lvpower="47|77|114|152|177"/>
+        <ItemSpec id="700400" tab="229990" name="120004" description="121004" icon="science_res_a_5" position="3;2" relation="4;4" show="1" lvpower="95|95|126|126|147|147|171|171|200|200|241|241|291|291|351"/>
+        <ItemSpec id="700500" tab="229990" name="120005" description="121005" icon="science_res_a_6" position="3;6" relation="4;4" show="1" lvpower="95|95|126|126|147|147|171|171|200|200|241|241|291|291|351"/>
+        <ItemSpec id="700600" tab="229990" name="120006" description="121006" icon="science_res_a_7" position="4;4" relation="5;4" show="1" lvpower="171|171|200|200|241"/>
+        <ItemSpec id="700700" tab="229990" name="120007" description="121007" icon="science_res_a_8" position="5;4" relation="6;4" show="1" lvpower="289|289|289|349|349|349|421|421|508|508|613|613|739|739|891"/>
+        <ItemSpec id="700800" tab="229990" name="120008" description="121008" icon="science_res_a_9" position="6;4" relation="7;2|7;6" show="1" lvpower="677|677|817|817|986"/>
+        <ItemSpec id="700900" tab="229990" name="120009" description="121009" icon="science_res_a_10" position="7;2" relation="8;2|8;6" show="1" lvpower="715|715|862|862|862|1040|1040|1040|1254|1254|1513|1513|1702|1702|1915"/>
+        <ItemSpec id="701000" tab="229990" name="120010" description="121010" icon="science_res_a_11" position="7;6" relation="8;2|8;6" show="1" lvpower="817|986|1189|1434|1729"/>
+        <ItemSpec id="701200" tab="229990" name="120012" description="121012" icon="science_res_a_2" position="8;2" relation="9;4" show="1" lvpower="594|717|864|864|972|972|1094|1094|1231|1231|1385|1385|1558|1558|1558"/>
+        <ItemSpec id="701300" tab="229990" name="120013" description="121013" icon="science_res_a_3" position="8;6" relation="9;4" show="1" lvpower="594|717|864|864|972|972|1094|1094|1231|1231|1385|1385|1558|1558|1558"/>
+        <ItemSpec id="701400" tab="229990" name="120014" description="121014" icon="science_res_a_4" position="9;4" relation="10;2|10;6" show="2" lvpower="1459|1459|1459|1641|1641|1641|1846|1846|1846|2077"/>
+        <ItemSpec id="701500" tab="229990" name="120015" description="121015" icon="science_res_a_5" position="10;2" relation="11;4" show="1" lvpower="1368|1368|1368|1368|1539|1539|1539|1539|1731|1731|1731|1731|1947|1947|1947"/>
+        <ItemSpec id="701600" tab="229990" name="120016" description="121016" icon="science_res_a_6" position="10;6" relation="11;4" show="1" lvpower="1368|1368|1368|1368|1539|1539|1539|1539|1731|1731|1731|1731|1947|1947|1947"/>
+        <ItemSpec id="701700" tab="229990" name="120017" description="121017" icon="science_res_a_7" position="11;4" relation="12;4" show="1" lvpower="1731|1731|1731|1731|1947|1947|1947|1947|2191|2191|2191|2191|2465|2465|2465"/>
+        <ItemSpec id="701800" tab="229990" name="120018" description="121018" icon="science_res_a_8" position="12;4" relation="13;4" show="1" lvpower="2337|2337|2337|2337|2629|2629|2629|2629|2958|2958|2958|2958|3328|3328|3328"/>
+        <ItemSpec id="701900" tab="229990" name="120019" description="121019" icon="science_res_a_9" position="13;4" relation="14;4|14;6" show="1" lvpower="3506|3506|3506|3506|3944|3944|3944|3944|4437|4437|4437|4437|4992|4992|4992"/>
+        <ItemSpec id="702000" tab="229990" name="120020" description="121020" icon="science_res_a_10" position="14;4" show="1" lvpower="3451|3451|3451|3451|3882|3882|3882|3882|4368|4368|4368|4368|4914|4914|4914"/>
+        <ItemSpec id="702100" tab="229990" name="120021" description="121021" icon="science_res_a_11" position="14;6" show="1" lvpower="3944|3944|3944|3944|4437|4437|4437|4437|4992|4992"/>
+        <ItemSpec id="710000" tab="229991" name="120026" description="121026" icon="science_dev_a_1" position="1;4" relation="2;2|3;4|2;6" show="1" lvpower="14|23|39|70|115|115|171|171|228|228"/>
+        <ItemSpec id="711400" tab="229991" name="120149" description="121149" icon="science_dev_a_6" position="2;2" show="1" lvpower="7|12|21|39|64"/>
+        <ItemSpec id="711500" tab="229991" name="120150" description="121150" icon="science_dev_a_7" position="2;6" show="1" lvpower="7|12|21|39|64"/>
+        <ItemSpec id="710300" tab="229991" name="120029" description="121029" icon="science_dev_a_2" position="3;4" relation="4;2|4;6" show="1" lvpower="190|253|295|343|400|483|582|702|847|1021"/>
+        <ItemSpec id="710500" tab="229991" name="120031" description="121031" icon="science_dev_a_4" position="4;2" relation="5;4" show="2" lvpower="137|137|160|160|193|193|233|233|281|281"/>
+        <ItemSpec id="710600" tab="229991" name="120032" description="121032" icon="science_dev_a_5" position="4;6" relation="5;4" show="1" lvpower="289|349|421|508|613|613|739|739|891|891"/>
+        <ItemSpec id="710400" tab="229991" name="120030" description="121030" icon="science_dev_a_3" position="5;4" relation="6;2|6;6|7;4" show="1" lvpower="491|491|593|593|715"/>
+        <ItemSpec id="711600" tab="229991" name="120151" description="121151" icon="science_dev_a_6" position="6;2" show="1" lvpower="423|423|510|510|616|616|743|743|896|896"/>
+        <ItemSpec id="711700" tab="229991" name="120152" description="121152" icon="science_dev_a_7" position="6;6" show="1" lvpower="423|423|510|510|616|616|743|743|896|896"/>
+        <ItemSpec id="710700" tab="229991" name="120033" description="121033" icon="science_dev_a_1" position="7;4" relation="8;4" show="1" lvpower="1337|1337|1613|1613|1945|1945|2188|2188|2462|2462|2770|2770|3116|3116|3506"/>
+        <ItemSpec id="711000" tab="229991" name="120036" description="121036" icon="science_dev_a_2" position="8;4" relation="9;2|9;6" show="1" lvpower="2161|2161|2432|2432|2736|2736|3078|3078|3462|3462|3895|3895|4382|4382|4930"/>
+        <ItemSpec id="711200" tab="229991" name="120038" description="121038" icon="science_dev_a_4" position="9;2" relation="10;4" show="2" lvpower="1094|1094|1231|1231|1385|1385|1558|1558|1753|1753|1972|1972|2218|2218|2496"/>
+        <ItemSpec id="711300" tab="229991" name="120039" description="121039" icon="science_dev_a_5" position="9;6" relation="10;4" show="1" lvpower="1641|1641|1846|1846|2077|2077|2337|2337|2629|2629|2958|2958|3328|3328|3744"/>
+        <ItemSpec id="711100" tab="229991" name="120037" description="121037" icon="science_dev_a_3" position="10;4" show="1" lvpower="3067|3067|3067|3067|3451|3451|3451|3451|3882|3882|3882|3882|4368|4368|4368"/>
+        <ItemSpec id="720000" tab="229992" name="120040" description="121040" icon="science_def_a_1" position="1;4" relation="2;2|2;6|4;2|3;4|4;6" show="2" lvpower="5|8|15|25|38|38|50|50|59|59"/>
+        <ItemSpec id="720100" tab="229992" name="120041" description="121041" icon="science_def_a_2" position="2;2" relation="3;1" show="1" lvpower="35|62|102|152|202"/>
+        <ItemSpec id="720200" tab="229992" name="120042" description="121042" icon="science_def_a_3" position="2;6" relation="3;7" show="1" lvpower="35|62|102|152|202"/>
+        <ItemSpec id="720300" tab="229992" name="120043" description="121043" icon="science_def_a_4" position="3;1" show="1" lvpower="90|133|177|206|240"/>
+        <ItemSpec id="720400" tab="229992" name="120044" description="121044" icon="science_def_a_5" position="3;7" show="2" lvpower="51|51|76|76|101|101|118|118|137|137"/>
+        <ItemSpec id="720500" tab="229992" name="120045" description="121045" icon="science_def_a_6" position="4;2" relation="5;4" show="1" lvpower="240|280|338|407|491"/>
+        <ItemSpec id="720600" tab="229992" name="120046" description="121046" icon="science_def_a_7" position="3;4" relation="5;4" show="1" lvpower="240|280|338|407|491"/>
+        <ItemSpec id="720700" tab="229992" name="120047" description="121047" icon="science_def_a_8" position="4;6" relation="5;4" show="1" lvpower="240|280|338|407|491"/>
+        <ItemSpec id="720800" tab="229992" name="120048" description="121048" icon="science_def_a_9" position="5;4" relation="6;4" show="1" lvpower="280|280|338|338|407|407|491|491|593|593"/>
+        <ItemSpec id="720900" tab="229992" name="120049" description="121049" icon="science_def_a_10" position="6;4" relation="7;4" show="1" lvpower="762|762|919|919|1109|1109|1337|1337|1613|1613"/>
+        <ItemSpec id="721000" tab="229992" name="120050" description="121050" icon="science_def_a_1" position="7;4" relation="8;2|8;6|10;2|10;4|10;6" show="2" lvpower="204|204|204|246|246|246|297|297|297|358|358|358|432|432|432"/>
+        <ItemSpec id="721100" tab="229992" name="120051" description="121051" icon="science_def_a_2" position="8;2" show="1" lvpower="1434|1434|1434|1729|1729|1729|1945|1945|1945|2188"/>
+        <ItemSpec id="721200" tab="229992" name="120052" description="121052" icon="science_def_a_3" position="8;6" relation="9;7" show="1" lvpower="1434|1434|1434|1729|1729|1729|1945|1945|1945|2188"/>
+        <ItemSpec id="721400" tab="229992" name="120054" description="121054" icon="science_def_a_5" position="9;7" show="2" lvpower="1094|1094|1094|1094|1094|1231|1231|1231|1231|1231|1385|1385|1385|1385|1385|1558|1558|1558|1558|1558"/>
+        <ItemSpec id="721500" tab="229992" name="120055" description="121055" icon="science_def_a_6" position="10;2" relation="11;4" show="1" lvpower="2727|2727|2727|3067|3067|3067|3451|3451|3451|3882"/>
+        <ItemSpec id="721600" tab="229992" name="120056" description="121056" icon="science_def_a_7" position="10;4" relation="11;4" show="1" lvpower="2727|2727|2727|3067|3067|3067|3451|3451|3451|3882"/>
+        <ItemSpec id="721700" tab="229992" name="120057" description="121057" icon="science_def_a_8" position="10;6" relation="11;4" show="1" lvpower="2727|2727|2727|3067|3067|3067|3451|3451|3451|3882"/>
+        <ItemSpec id="721800" tab="229992" name="120058" description="121058" icon="science_def_a_9" position="11;4" show="1" lvpower="3451|3451|3451|3451|3451|3882|3882|3882|3882|3882|4368|4368|4368|4368|4368|4914|4914|4914|4914|4914"/>
+        <ItemSpec id="730000" tab="229993" name="120060" description="121060" icon="science_mil_a_1" position="1;4" relation="2;1|3;2|2;7|3;6|4;4" show="1" lvpower="10|15|25|43|78|128|190|253|295|343"/>
+        <ItemSpec id="730100" tab="229993" name="120061" description="121061" icon="science_mil_a_2" position="2;1" show="1" lvpower="10|17|30"/>
+        <ItemSpec id="730200" tab="229993" name="120062" description="121062" icon="science_mil_a_3" position="3;2" show="1" lvpower="10|17|30"/>
+        <ItemSpec id="730300" tab="229993" name="120063" description="121063" icon="science_mil_a_4" position="2;7" show="1" lvpower="10|17|30"/>
+        <ItemSpec id="730400" tab="229993" name="120064" description="121064" icon="science_mil_a_5" position="3;6" show="1" lvpower="10|17|30"/>
+        <ItemSpec id="730500" tab="229993" name="120065" description="121065" icon="science_mil_a_6" position="4;4" relation="5;1|6;2|5;7|6;6|7;4" show="1" lvpower="39|70|115|171|228|265|309|360|434|524"/>
+        <ItemSpec id="730600" tab="229993" name="120066" description="121066" icon="science_mil_a_7" position="5;1" show="1" lvpower="54|90|133"/>
+        <ItemSpec id="730700" tab="229993" name="120067" description="121067" icon="science_mil_a_8" position="6;2" show="1" lvpower="54|90|133"/>
+        <ItemSpec id="730800" tab="229993" name="120068" description="121068" icon="science_mil_a_9" position="5;7" show="1" lvpower="54|90|133"/>
+        <ItemSpec id="730900" tab="229993" name="120069" description="121069" icon="science_mil_a_10" position="6;6" show="1" lvpower="54|90|133"/>
+        <ItemSpec id="731000" tab="229993" name="120070" description="121070" icon="science_mil_a_11" position="7;4" relation="8;1|9;2|8;7|9;6|10;4" show="2" lvpower="128"/>
+        <ItemSpec id="731100" tab="229993" name="120071" description="121071" icon="science_mil_a_12" position="8;1" show="1" lvpower="202|236|275"/>
+        <ItemSpec id="731200" tab="229993" name="120072" description="121072" icon="science_mil_a_13" position="9;2" show="1" lvpower="202|236|275"/>
+        <ItemSpec id="731300" tab="229993" name="120073" description="121073" icon="science_mil_a_14" position="8;7" show="1" lvpower="202|236|275"/>
+        <ItemSpec id="731400" tab="229993" name="120074" description="121074" icon="science_mil_a_15" position="9;6" show="1" lvpower="202|236|275"/>
+        <ItemSpec id="731500" tab="229993" name="120075" description="121075" icon="science_mil_a_16" position="10;4" relation="11;4" show="2" lvpower="177|206|240"/>
+        <ItemSpec id="731600" tab="229993" name="120076" description="121076" icon="science_mil_a_11" position="11;4" relation="12;1|13;2|12;7|13;6|14;4" show="2" lvpower="400"/>
+        <ItemSpec id="731700" tab="229993" name="120077" description="121077" icon="science_mil_a_2" position="12;1" show="1" lvpower="407|491|593|715|862"/>
+        <ItemSpec id="731800" tab="229993" name="120078" description="121078" icon="science_mil_a_3" position="13;2" show="1" lvpower="407|491|593|715|862"/>
+        <ItemSpec id="731900" tab="229993" name="120079" description="121079" icon="science_mil_a_4" position="12;7" show="1" lvpower="407|491|593|715|862"/>
+        <ItemSpec id="732000" tab="229993" name="120080" description="121080" icon="science_mil_a_5" position="13;6" show="1" lvpower="407|491|593|715|862"/>
+        <ItemSpec id="732100" tab="229993" name="120081" description="121081" icon="science_mil_a_1" position="14;4" relation="15;1|16;2|15;7|16;6|17;4" show="1" lvpower="702|702|847|847|1021|1021|1232|1232|1486|1486|1792|1792|2161|2161|2432"/>
+        <ItemSpec id="732200" tab="229993" name="120082" description="121082" icon="science_mil_a_7" position="15;1" show="1" lvpower="715|862|1040|1254|1513"/>
+        <ItemSpec id="732300" tab="229993" name="120083" description="121083" icon="science_mil_a_8" position="16;2" show="1" lvpower="715|862|1040|1254|1513"/>
+        <ItemSpec id="732400" tab="229993" name="120084" description="121084" icon="science_mil_a_9" position="15;7" show="1" lvpower="715|862|1040|1254|1513"/>
+        <ItemSpec id="732500" tab="229993" name="120085" description="121085" icon="science_mil_a_10" position="16;6" show="1" lvpower="715|862|1040|1254|1513"/>
+        <ItemSpec id="732600" tab="229993" name="120086" description="121086" icon="science_mil_a_6" position="17;4" relation="18;1|19;2|18;7|19;6|20;4" show="1" lvpower="1109|1109|1337|1337|1613|1613|1945|1945|2188|2188|2462|2462|2770|2770|3116"/>
+        <ItemSpec id="732700" tab="229993" name="120087" description="121087" icon="science_mil_a_12" position="18;1" show="1" lvpower="1189|1434|1729|1945|2188"/>
+        <ItemSpec id="732800" tab="229993" name="120088" description="121088" icon="science_mil_a_13" position="19;2" show="1" lvpower="1189|1434|1729|1945|2188"/>
+        <ItemSpec id="732900" tab="229993" name="120089" description="121089" icon="science_mil_a_14" position="18;7" show="1" lvpower="1189|1434|1729|1945|2188"/>
+        <ItemSpec id="733000" tab="229993" name="120090" description="121090" icon="science_mil_a_15" position="19;6" show="1" lvpower="1189|1434|1729|1945|2188"/>
+        <ItemSpec id="733100" tab="229993" name="120091" description="121091" icon="science_mil_a_16" position="20;4" relation="21;4" show="2" lvpower="1075|1075|1297|1297|1459|-6203|2161"/>
+        <ItemSpec id="733200" tab="229993" name="120092" description="121092" icon="science_mil_a_11" position="21;4" relation="22;1|23;2|22;7|23;6|24;4" show="2" lvpower="0"/>
+        <ItemSpec id="733300" tab="229993" name="120093" description="121093" icon="science_mil_a_2" position="22;1" show="1" lvpower="1915|2154|2424|2727|3067|3451|3882"/>
+        <ItemSpec id="733400" tab="229993" name="120094" description="121094" icon="science_mil_a_3" position="23;2" show="1" lvpower="1915|2154|2424|2727|3067|3451|3882"/>
+        <ItemSpec id="733500" tab="229993" name="120095" description="121095" icon="science_mil_a_4" position="22;7" show="1" lvpower="1915|2154|2424|2727|3067|3451|3882"/>
+        <ItemSpec id="733600" tab="229993" name="120096" description="121096" icon="science_mil_a_5" position="23;6" show="1" lvpower="1915|2154|2424|2727|3067|3451|3882"/>
+        <ItemSpec id="733700" tab="229993" name="120097" description="121097" icon="science_mil_a_1" position="24;4" relation="25;1|26;2|25;7|26;6|27;4" show="1" lvpower="3462|3462|3462|3895|3895|3895|4382|4382|4382|4930|4930|4930|5546|5546|5546|6240|6240|6240|7020|7020"/>
+        <ItemSpec id="733800" tab="229993" name="120098" description="121098" icon="science_mil_a_7" position="25;1" show="1" lvpower="2727|3067|3451|3882|4368|4914|4914"/>
+        <ItemSpec id="733900" tab="229993" name="120099" description="121099" icon="science_mil_a_8" position="26;2" show="1" lvpower="2727|3067|3451|3882|4368|4914|4914"/>
+        <ItemSpec id="734000" tab="229993" name="120100" description="121100" icon="science_mil_a_9" position="25;7" show="1" lvpower="2727|3067|3451|3882|4368|4914|4914"/>
+        <ItemSpec id="734100" tab="229993" name="120101" description="121101" icon="science_mil_a_10" position="26;6" show="1" lvpower="2727|3067|3451|3882|4368|4914|4914"/>
+        <ItemSpec id="734200" tab="229993" name="120102" description="121102" icon="science_mil_a_6" position="27;4" relation="28;1|29;2|28;7|29;6|30;4" show="1" lvpower="4437|4437|4437|4437|4437|4992|4992|4992|4992|4992|5616|5616|5616|5616|5616|6318|6318|6318|6318|6318"/>
+        <ItemSpec id="734300" tab="229993" name="120103" description="121103" icon="science_mil_a_12" position="28;1" show="1" lvpower="4437|4992|5616|5616|5616|5616|5616"/>
+        <ItemSpec id="734400" tab="229993" name="120104" description="121104" icon="science_mil_a_13" position="29;2" show="1" lvpower="4437|4992|5616|5616|5616|5616|5616"/>
+        <ItemSpec id="734500" tab="229993" name="120105" description="121105" icon="science_mil_a_14" position="28;7" show="1" lvpower="4437|4992|5616|5616|5616|5616|5616"/>
+        <ItemSpec id="734600" tab="229993" name="120106" description="121106" icon="science_mil_a_15" position="29;6" show="1" lvpower="4437|4992|5616|5616|5616|5616|5616"/>
+        <ItemSpec id="734700" tab="229993" name="120107" description="121107" icon="science_mil_a_16" position="30;4" show="2" lvpower="4212|4212|4212|4212|4212|4212|4212"/>
+        <ItemSpec id="750100" tab="229994" name="111762" description="111781" icon="science_equipment_1" position="1;4" relation="2;2|3;4|2;6" show="1" lvpower="48|70|82|91|99|109|116|123|158|209"/>
+        <ItemSpec id="750200" tab="229994" name="111763" description="111782" icon="science_equipment_2" position="3;4" show="1" lvpower="143|207|244|269|292|322|343|364|468|621"/>
+        <ItemSpec id="750300" tab="229994" name="111764" description="111783" icon="science_equipment_3" position="2;6" relation="4;6" show="1" lvpower="166|383|456|583|852"/>
+        <ItemSpec id="750400" tab="229994" name="111765" description="111784" icon="science_equipment_4" position="2;2" relation="4;2" show="1" lvpower="155|303|461|801|1347"/>
+        <ItemSpec id="750500" tab="229994" name="111766" description="111785" icon="science_equipment_5" position="4;6" relation="5;4" show="1" lvpower="187|248|295|342|398"/>
+        <ItemSpec id="750600" tab="229994" name="111767" description="111786" icon="science_equipment_6" position="4;2" relation="5;4" show="1" lvpower="203|317|482|839|1411"/>
+        <ItemSpec id="750700" tab="229994" name="111768" description="111787" icon="science_equipment_7" position="5;4" relation="6;2|6;6" show="1" lvpower="427|574|750|858|1038"/>
+        <ItemSpec id="750800" tab="229994" name="111769" description="111788" icon="science_equipment_8" position="6;6" relation="7;4" show="1" lvpower="188|252|300|349|409"/>
+        <ItemSpec id="750900" tab="229994" name="111770" description="111789" icon="science_equipment_9" position="6;2" relation="7;4" show="1" lvpower="205|361|548|954|1603"/>
+        <ItemSpec id="751000" tab="229994" name="111771" description="111781" icon="science_equipment_1" position="7;4" relation="9;2|8;4|9;6" show="1" lvpower="124|180|212|234|254|280|299|316|407|540"/>
+        <ItemSpec id="751100" tab="229994" name="111772" description="111782" icon="science_equipment_2" position="8;4" show="1" lvpower="133|193|227|251|273|300|320|339|436|579"/>
+        <ItemSpec id="751200" tab="229994" name="111773" description="111783" icon="science_equipment_3" position="9;6" relation="10;4" show="1" lvpower="321|436|519|605|717"/>
+        <ItemSpec id="751300" tab="229994" name="111774" description="111790" icon="science_equipment_10" position="9;2" relation="10;4" show="1" lvpower="328|373|568|988|1660"/>
+        <ItemSpec id="751400" tab="229994" name="111775" description="111787" icon="science_equipment_7" position="10;4" relation="11;2|11;6" show="1" lvpower="540|727|950|1088|1317"/>
+        <ItemSpec id="751500" tab="229994" name="111776" description="111785" icon="science_equipment_5" position="11;6" relation="12;6" show="1" lvpower="372|515|613|718|862"/>
+        <ItemSpec id="751600" tab="229994" name="111777" description="111791" icon="science_equipment_11" position="11;2" relation="12;2" show="1" lvpower="372|393|597|1040|1748"/>
+        <ItemSpec id="751700" tab="229994" name="111778" description="111788" icon="science_equipment_8" position="12;6" relation="13;4" show="1" lvpower="383|551|656|776|958"/>
+        <ItemSpec id="751800" tab="229994" name="111779" description="111792" icon="science_equipment_12" position="12;2" relation="13;4" show="1" lvpower="376|411|625|1088|1828"/>
+        <ItemSpec id="751900" tab="229994" name="111780" description="111793" icon="science_equipment_13" position="13;4" show="1" lvpower="703|1153|1993|2280|3180"/>
+    </Group>
+</tns:database>
