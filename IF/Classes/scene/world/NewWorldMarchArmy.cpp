@@ -286,15 +286,20 @@ void Soldier::attack(){
         playAttackAnimation(0);
         playAttackAnimation(0);
         CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(Soldier::playAttackAnimation), this, 1.3, 5, 0.0, false);
+        
     }else if(m_type == CHE){
-        CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(Soldier::playRockAttackAnimation), this, 2.6, 3, 0.4, false);
+//        CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(Soldier::playRockAttackAnimation), this, 2.6, 3, 0.4, false);
+        CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(Soldier::playRockAttackAnimation), this, 2, 3, 0.4, false);
+    }
+    else
+    {
+        CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(Soldier::playNBAttackAnimation), this, 1.5, 5, 0.4, false);//fusheng 粒子效果
     }
     
     
     
     
     
-    CCDirector::sharedDirector()->getScheduler()->scheduleSelector(schedule_selector(Soldier::playNBAttackAnimation), this, 1, 7, 0.4, false);//fusheng 粒子效果
     
 }
 
@@ -364,14 +369,31 @@ void Soldier::playNBAttackAnimation(float _time){
    
     auto node = Node::create();
     
-    for (int i = 0; i < 4; i++) {
-        auto part = ParticleController::createParticle(CCString::createWithFormat("AttackTail_%d",i)->getCString());
+    if(m_type == BU)
+    {
+        for (int i = 0; i < 4; i++) {
+            auto part = ParticleController::createParticle(CCString::createWithFormat("AttackTail_%d",i)->getCString());
+            
+            part->setAutoRemoveOnFinish(true);
+            
+            node->addChild(part);
+            
+        }
 
-        part->setAutoRemoveOnFinish(true);
-        
-        node->addChild(part);
-    
     }
+    else if(m_type == QI)
+    {
+        for (int i = 0; i < 3; i++) {
+            auto part = ParticleController::createParticle(CCString::createWithFormat("Lash_%d",i)->getCString());
+            
+            part->setAutoRemoveOnFinish(true);
+            
+            node->addChild(part);
+            
+        }
+
+    }
+    
     
     node->setRotation(45);//以左方向为0 ， 逆时针为正方向建系
     
@@ -383,9 +405,11 @@ void Soldier::playNBAttackAnimation(float _time){
         node->setPosition(particleNode->getPosition());
     }
     
+    node->setScale(0.5);
+    
     m_sprite->addChild(node);
     
-//    this->m_direction;
+
     
 }
 
@@ -410,8 +434,52 @@ void Soldier::playRockAttackAnimation(float _time){
         m_endPoint = attCross - crossPt + ccp(40 - rand() % 80, 50 - rand() % 70);
     }
 
-    auto rock = RockAni::create(m_parent);
-    rock->attack(m_startPoint, m_endPoint, 3.1, MarchArmy::getStartIndex(m_uuid), m_col + 1);
+//    auto rock = RockAni::create(m_parent);
+//    rock->attack(m_startPoint, m_endPoint, 3.1, MarchArmy::getStartIndex(m_uuid), m_col + 1);
+    
+    
+    auto node = Node::create();
+    
+    for (int i = 0; i < 5; i++) {
+        auto part = ParticleController::createParticle(CCString::createWithFormat("AttackFireball_%d",i)->getCString());
+        
+        
+        part->setAutoRemoveOnFinish(true);
+        
+        node->addChild(part);
+        
+        if (i == 0 || i == 1) {
+            part->setPositionType(cocos2d::ParticleSystem::PositionType::FREE);
+            
+            
+//            auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d",tmpStart.c_str(),i)->getCString(), CCPointZero,maxP);
+        }
+        else
+        {
+            part->setPositionType(cocos2d::ParticleSystem::PositionType::GROUPED);
+        }
+        
+
+    }
+    
+    m_parent->addChild(node);
+    
+    node->setPosition(m_startPoint);
+    
+    node->setRotation(180);
+    
+    auto startPos = m_startPoint;
+    
+    auto midPos = m_startPoint + Vec2(0,100);
+    
+    auto endPos = m_endPoint;
+    
+    float angle = CCMathUtils::getAngle(endPos,midPos);
+    
+    node->setScale(0.5);
+//    node->runAction(Sequence::create(MoveTo::create(0.3, midPos),RotateTo::create(0.3, 90 - angle ),MoveTo::create(0.3, endPos),RemoveSelf::create(),nullptr));
+    node->runAction(Sequence::create(MoveTo::create(0.5, midPos),MoveTo::create(0.3, endPos),RemoveSelf::create(),nullptr));
+
 }
 
 FiniteTimeAction *Soldier::getAnimate(float direction, int state){
@@ -496,6 +564,9 @@ FiniteTimeAction *Soldier::getAnimate(float direction, int state){
         posX = 0;
         posY = m_sprite->getBoundingBox().size.height;
     }
+    posX = m_sprite->getBoundingBox().size.width/2;
+    posY = m_sprite->getBoundingBox().size.height/2;
+    
     int spriteW = 0;
     int index = 0;
     while(index < totalFrame){
@@ -1310,41 +1381,41 @@ bool Phalanx::init(){
     auto &map = MarchArmy::getMap(m_uuid);
     if(m_type == BU){
         //1*4, 2 * 5, 3 * 6
-        m_row = 3;
-        m_col = 6;
+        m_row = 1;
+        m_col = 3;
         int num = map[BU].total;
         if(num < vector[0]){
             m_row = 1;
             m_col = 1;
         }else if(num >= vector[0] && num <= vector[1]){
-            m_row = 2;
-            m_col = 5;
+            m_row = 1;
+            m_col = 2;
         }
         gapX = 30;
     }else if(m_type == QI){
         //1*3, 2 * 3, 2 * 5
-        m_row = 2;
-        m_col = 5;
+        m_row = 1;
+        m_col = 3;
         int num = map[QI].total;
         if(num < vector[0]){
             m_row = 1;
             m_col = 1;
         }else if(num >= vector[0] && num <= vector[1]){
-            m_row = 2;
-            m_col = 3;
+            m_row = 1;
+            m_col = 2;
         }
         gapX = 30;
     }else if(m_type == GONG){
         //1*4, 2 * 5, 3 * 6
-        m_row = 3;
-        m_col = 6;
+        m_row = 1;
+        m_col = 3;
         int num = map[GONG].total;
         if(num < vector[0]){
             m_row = 1;
             m_col = 1;
         }else if(num >= vector[0] && num <= vector[1]){
-            m_row = 2;
-            m_col = 5;
+            m_row = 1;
+            m_col = 2;
         }
         gapX = 30;
     }else if(m_type == CHE){
