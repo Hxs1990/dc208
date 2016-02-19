@@ -196,7 +196,7 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>0.95999997854232788</real>
+									<real>-1</real>
 									<real>1</real>
 									<false/>
 									<integer>0</integer>
@@ -217,8 +217,8 @@
 								<string>SpriteFrame</string>
 								<key>value</key>
 								<array>
-									<string>Common/Common_11.plist</string>
-									<string>Businessman_kuang.png</string>
+									<string>Common/Common_1.plist</string>
+									<string>nb_use_tool_cell_bg.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -279,7 +279,7 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>0.95999997854232788</real>
+									<real>-1</real>
 									<real>1</real>
 									<false/>
 									<integer>0</integer>
@@ -300,8 +300,8 @@
 								<string>SpriteFrame</string>
 								<key>value</key>
 								<array>
-									<string>Common/Common_11.plist</string>
-									<string>Businessman_kuang.png</string>
+									<string>Common/Common_1.plist</string>
+									<string>nb_use_tool_cell_bg.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -467,9 +467,9 @@
 										<string>Color3</string>
 										<key>value</key>
 										<array>
-											<integer>194</integer>
-											<integer>158</integer>
-											<integer>116</integer>
+											<integer>52</integer>
+											<integer>54</integer>
+											<integer>24</integer>
 										</array>
 									</dict>
 									<dict>
@@ -555,9 +555,9 @@
 										<string>ScaleLock</string>
 										<key>value</key>
 										<array>
-											<real>1</real>
-											<real>1</real>
-											<false/>
+											<real>0.80000001192092896</real>
+											<real>0.80000001192092896</real>
+											<true/>
 											<integer>0</integer>
 										</array>
 									</dict>
@@ -576,8 +576,8 @@
 										<string>SpriteFrame</string>
 										<key>value</key>
 										<array>
-											<string>Common/Common_11.plist</string>
-											<string>Items_icon_kuang2.png</string>
+											<string>Common/Common_1.plist</string>
+											<string>use_tool__icon_kuang.png</string>
 										</array>
 									</dict>
 									<dict>
@@ -1769,7 +1769,7 @@
 												<key>value</key>
 												<array>
 													<string>Common/Common_1.plist</string>
-													<string>btn_gold.png</string>
+													<string>nb_but_2.png</string>
 												</array>
 											</dict>
 											<dict>
@@ -1779,8 +1779,8 @@
 												<string>Size</string>
 												<key>value</key>
 												<array>
-													<real>186</real>
-													<real>70</real>
+													<real>240</real>
+													<real>72</real>
 													<integer>0</integer>
 												</array>
 											</dict>
@@ -1984,9 +1984,9 @@
 												<string>Color3</string>
 												<key>value</key>
 												<array>
-													<integer>255</integer>
-													<integer>225</integer>
-													<integer>0</integer>
+													<integer>131</integer>
+													<integer>71</integer>
+													<integer>17</integer>
 												</array>
 											</dict>
 											<dict>
@@ -2026,6 +2026,8 @@
 												<string>999</string>
 											</dict>
 										</array>
+										<key>selected</key>
+										<true/>
 									</dict>
 									<dict>
 										<key>baseClass</key>
@@ -2298,7 +2300,7 @@
 										<string>Position</string>
 										<key>value</key>
 										<array>
-											<real>186</real>
+											<real>179</real>
 											<real>-24</real>
 											<integer>0</integer>
 										</array>
@@ -3201,7 +3203,7 @@ alien
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>512.93597412109375</real>
+									<real>527.93597412109375</real>
 									<real>137.18399047851562</real>
 									<integer>0</integer>
 								</array>
@@ -3224,7 +3226,7 @@ alien
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>0.55000001192092896</real>
+									<real>-1</real>
 									<real>1</real>
 									<false/>
 									<integer>0</integer>
@@ -3295,8 +3297,8 @@ alien
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>523.298583984375</real>
-									<real>140.81790161132812</real>
+									<real>539.298583984375</real>
+									<real>138.81790161132812</real>
 									<integer>0</integer>
 								</array>
 							</dict>
@@ -3389,7 +3391,7 @@ alien
 								<key>type</key>
 								<string>IntegerLabeled</string>
 								<key>value</key>
-								<integer>0</integer>
+								<integer>1</integer>
 							</dict>
 							<dict>
 								<key>name</key>
