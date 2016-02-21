@@ -37,7 +37,7 @@ void ArcPopupBaseView::showArcModel(int type)
         _hf = 0.63;
     }else if(type == TYPE_POS_MID_UP){
         _wf = 0.5;
-        _hf = 0.60;
+        _hf = 0.7;
     }else if(type == TYPE_POS_MID){
         _wf = 0.5;
         _hf = 0.5;
@@ -57,7 +57,7 @@ void ArcPopupBaseView::showArcModel(int type)
         spr->setBlendFunc(cbf);
         spr->setPosition(ccp(size.width*0.21, size.height*0.64));
     }
-    m_selfModelLayer->beginWithClear(0.0f, 0.0f, 0.0f, 1.0f);
+    m_selfModelLayer->beginWithClear(0.15f, 0.22f, 0.34f, 1.0f);//0.35f, 0.68f, 1.0f, 1.0f
     spr->visit();
     m_selfModelLayer->end();
     setContentSize(size);
