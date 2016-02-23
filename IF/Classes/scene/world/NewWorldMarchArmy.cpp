@@ -739,6 +739,35 @@ bool Soldier::init(){
 //        m_parent->addChild(m_kingSprite2, 2);
 //        m_kingSprite2->setVisible(false);
 //    }
+    string str = "";
+    
+    switch (m_type) {
+        case BU:
+            str = "nb_world_infantry_icon.png";
+            break;
+        case QI:
+            str = "nb_world_ride_icon.png";
+            break;
+        case GONG:
+            str = "nb_world_archer_icon.png";
+            break;
+        case CHE:
+            str = "nb_world_master_icon.png";
+            break;
+            
+        default:
+            break;
+    }
+    
+    auto icon = CCLoadSprite::createSprite(str.c_str());
+    
+    icon->setPosition(Vec2(60, 70));
+    
+    icon->setScale(0.5);
+    
+    m_sprite->addChild(icon,10086);
+    
+    m_sprite->setCascadeOpacityEnabled(true);
 
     walk();
 
@@ -1376,7 +1405,8 @@ bool Phalanx::init(){
     m_killed = 0;
     m_row = 1;
     m_col = 3;
-    std::vector<int> vector = {10000, 50000};
+//    std::vector<int> vector = {10000, 50000};
+    std::vector<int> vector = {1, 2};
     //    std::vector<int> vector = {1, 2};
     auto &map = MarchArmy::getMap(m_uuid);
     if(m_type == BU){
@@ -1432,12 +1462,13 @@ bool Phalanx::init(){
         }
         gapX = 50;
     }
+    gapX = 50;
     int i = 0;
     int j = 0;
     while(i < m_row){
         j = 0;
         while(j < m_col){
-            CCPoint realPt = getSoldierPosByRowAndCol(i, j, m_direction, m_row, m_col, startPt);
+            CCPoint realPt = getSoldierPosByRowAndCol(i, j, m_direction, m_row, m_col, startPt ,80,160);
             Soldier *soldier = Soldier::create(m_sprite, m_type, m_direction, realPt, m_uuid, i, j);
             soldier->setZorder(i * m_col + (m_row - j));
             m_soldiers[i * m_col + j] = soldier;

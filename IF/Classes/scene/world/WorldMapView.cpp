@@ -4736,7 +4736,8 @@ bool WorldMapView::updateMarchTarget(MarchInfo &info, double now, float delta) {
         
         if (node)
         {
-            // 船进出岛屿时的半透明效果
+            // guo.jiang 船进出岛屿时的半透明效果
+            int count = node->getChildrenCount();
             for (auto c : node->getChildren())
             {
                 if (c->getTag() == SOILDERTYPE::TITAN)
