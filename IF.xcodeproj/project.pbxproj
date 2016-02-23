@@ -1309,6 +1309,7 @@
 		96FBF1E91A4AA7C200281C55 /* PushKingdomWinner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FBF1E71A4AA7C200281C55 /* PushKingdomWinner.cpp */; };
 		96FBF1EC1A4AB06200281C55 /* CountryChooseFlagView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FBF1EA1A4AB06200281C55 /* CountryChooseFlagView.cpp */; };
 		96FBF1EF1A4AC10C00281C55 /* KingdomBannerCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 96FBF1ED1A4AC10C00281C55 /* KingdomBannerCommand.cpp */; };
+		9707F6D21C7BF3B600AA62A6 /* Pickaroon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9707F6D01C7BF3B600AA62A6 /* Pickaroon.cpp */; };
 		97F44CEC1C7485F300591FA5 /* TitanInfoCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97F44CEA1C7485F300591FA5 /* TitanInfoCommand.cpp */; };
 		97F44CF31C74860000591FA5 /* TitanController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97F44CF11C74860000591FA5 /* TitanController.cpp */; };
 		97F44CF61C74861000591FA5 /* TitanInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97F44CF41C74861000591FA5 /* TitanInfo.cpp */; };
@@ -4101,6 +4102,8 @@
 		96FBF1EB1A4AB06200281C55 /* CountryChooseFlagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryChooseFlagView.h; sourceTree = "<group>"; };
 		96FBF1ED1A4AC10C00281C55 /* KingdomBannerCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KingdomBannerCommand.cpp; sourceTree = "<group>"; };
 		96FBF1EE1A4AC10C00281C55 /* KingdomBannerCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KingdomBannerCommand.h; sourceTree = "<group>"; };
+		9707F6D01C7BF3B600AA62A6 /* Pickaroon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pickaroon.cpp; sourceTree = "<group>"; };
+		9707F6D11C7BF3B600AA62A6 /* Pickaroon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pickaroon.h; sourceTree = "<group>"; };
 		97F44CEA1C7485F300591FA5 /* TitanInfoCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitanInfoCommand.cpp; sourceTree = "<group>"; };
 		97F44CEB1C7485F300591FA5 /* TitanInfoCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitanInfoCommand.h; sourceTree = "<group>"; };
 		97F44CF11C74860000591FA5 /* TitanController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitanController.cpp; sourceTree = "<group>"; };
@@ -6313,6 +6316,8 @@
 				ED82CF621C72C25E005C590C /* Enemy.cpp */,
 				ED82CF631C72C25E005C590C /* Enemy.h */,
 				ED82CF5B1C72C0DC005C590C /* Walker.cpp */,
+				9707F6D01C7BF3B600AA62A6 /* Pickaroon.cpp */,
+				9707F6D11C7BF3B600AA62A6 /* Pickaroon.h */,
 				ED82CF5C1C72C0DC005C590C /* Walker.h */,
 				5736A1A918224071007C431C /* ImperialScene.h */,
 				5736A1AA1822407D007C431C /* ImperialScene.cpp */,
@@ -9831,6 +9836,7 @@
 				60015CDD1B57A2E90065C4C5 /* AnniversaryInfoView.cpp in Sources */,
 				272AB6771B15C7BC0052E896 /* ChatCellFrame.m in Sources */,
 				27AD60571B5D014A00B6AD40 /* MJRefreshStateHeader.m in Sources */,
+				9707F6D21C7BF3B600AA62A6 /* Pickaroon.cpp in Sources */,
 				6CD847BF1B2EE5C500C8AF0D /* MemberTableCell.m in Sources */,
 				E69615FB1BB4E4D600D54187 /* CaptchaView.cpp in Sources */,
 				9441E48C1ADBDB500077035B /* AllianceTerritoryView.cpp in Sources */,

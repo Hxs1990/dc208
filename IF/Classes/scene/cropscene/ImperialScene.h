@@ -48,6 +48,16 @@
 #include "Enemy.h"
 //end a by ljf
 
+//fusheng begin pickaroon
+#include "Pickaroon.h"
+
+enum PickaroonMoveType
+{
+    ENTER,
+    OUT
+};
+//fusheng end
+
 // traps max number
 #define TRAP_MAX_NUMBER 36
 #define TRAP_EVERY_TYPE_NUMBER 12
@@ -206,6 +216,39 @@ public:
     Node* getTouchLayer();
     void setPointArrowAni(int buildId);
 private:
+#pragma mark 添加新手引导中敌人的船
+//fusheng begin 添加新手引导中敌人的船
+    void pickaroonMove(PickaroonMoveType type);//沿着固定路线进入
+    Pickaroon* createOnePickaroon(int index, Point initPos);//创建一艘船
+    void pickaroonCompleteEnterActionCallBack(CCNode* pNode, void *pObj);
+    
+    
+    CCSafeObject<CCNode> m_pickaroonEnterPaths;//敌人进入的路线图
+    CCSafeObject<CCNode> vikingNodes;
+    CCSafeObject<CCDictionary> m_pickaroonDict;
+    int pickaroonTotalNum;//一共有多少艘船
+    int pickaroonCompleteEnterActionCount;//多少艘船完成开入主城动作
+    
+    
+    
+    VikingShip* m_defendShip;//防守的船
+    CCSafeObject<CCNode> m_defendShipPaths;//防守的船的路线
+    
+    bool defendShipMoveComplete;
+    
+    void defendShipMove();
+    
+    VikingShip* createOneDefendShip(Point initPos);
+    
+    void checkBattleBeginMoveComplete();
+    
+    void createBigDragon(Vec2 initPos);
+    
+    NBSprite3D* bigDragon;
+    
+    
+//fusheng end
+    
     int lastTouchBuildId;
     int curTouchBuildId;
     void onResourcesUpdate(cocos2d::CCObject* params);

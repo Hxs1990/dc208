@@ -75,6 +75,9 @@
 #include "TransitionLayer.hpp"
 #include "PrincessQuestView.hpp"
 #include "PrincessQuestController.hpp"
+//fusheng begin
+#include "NewWorldMarchArmy.h"
+//fusheng end
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/jni/JniHelper.h"
 #endif
@@ -92,6 +95,819 @@ using namespace cocos2d;
 static const ccBlendFunc kCCBlendFuncTree = {GL_ONE, GL_ONE};
 static int guideTypeNew = 0;
 static int enterMainCityTime = 0;
+
+#pragma mark 海盗船
+//fusheng begin
+void ImperialScene::pickaroonMove(PickaroonMoveType type)
+{
+    
+    
+    
+    CCNode* usePaths = nullptr;
+    switch (type) {
+        case ENTER:
+            usePaths = m_pickaroonEnterPaths;
+            break;
+        case OUT:
+            usePaths = m_pickaroonEnterPaths;
+            break;
+            
+        default:
+            break;
+    }
+    if (usePaths) {
+        
+        
+        int pickaroonPathCount = usePaths->getChildrenCount();
+        
+        for (int index = 0; index < pickaroonPathCount; index++ ) {
+            auto pickaroonPath = usePaths->getChildByTag(index);
+            
+            if (!pickaroonPath) {
+                continue;
+            }
+            
+            Pickaroon* pickaroon = nullptr;
+            if (type == ENTER ) {
+                
+                auto initPosNode = pickaroonPath->getChildByTag(0);//fusheng 初始化位置
+                
+                pickaroon = createOnePickaroon(index, initPosNode->getPosition());
+            }
+            else if (type == OUT)
+            {
+                pickaroon =dynamic_cast<Pickaroon*>(m_pickaroonDict->objectForKey(index)) ;
+                
+            }
+            
+            
+            if(!pickaroon)
+                continue;
+            NBSprite3D * pSprite3d = pickaroon->getPickaroon3D();
+            CCNode * m_vikingsParticleNode = pickaroon->getParticleNode();
+            
+            if(!pSprite3d)
+            {
+                continue;
+            }
+            pickaroonTotalNum++;
+            
+            
+            auto particleNode = Node::create();
+            particleNode->setTag(233632);
+            //pSprite3d->addChild(particleNode);
+            m_vikingsParticleNode->addChild(particleNode);
+            //船尾水花
+            float scale = pSprite3d->getScale();
+            
+            //            for( int i = 0; i <= 1; i++)
+            //            {
+            //                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","CityBoat_back_",i)->getCString());
+            //                //float posZ = scale * 100 + (level - 2) * 20; //120, 3
+            //                float posZ = scale * 100 * 0.85;
+            //                particle->setPosition3D(Vec3(0, 0, posZ) );
+            //                particle->setRotation3D(Vec3(90, -60 , 0));
+            //
+            //                particleNode->addChild(particle);
+            //                particle->setGlobalZOrder(-1);
+            //                particle->setCameraMask(particleNode->getParent()->getCameraMask());
+            //
+            //            }
+            //船浆水花
+            for( int i = 0; i <= 1; i++)
+            {
+                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s","CityBoat_spray")->getCString());
+                particle->setRotation3D(Vec3(90, 90 , 0));
+                //float posX = scale * 100 + (level - 0.3) * 20; //155, 3
+                float posX = scale * 100 * 0.8;
+                particle->setPosition3D(Vec3(posX - i * 2 * posX, 0, 20)); //左侧船桨位置
+                particleNode->addChild(particle);
+                particle->setGlobalZOrder(-1);
+                particle->setCameraMask(particleNode->getParent()->getCameraMask());
+            }
+            //                        //船侧水花
+            //                        for(int i = 0; i <= 1; i++)
+            //                        {
+            //                            for(int j = 0; j <=1; j++)
+            //                            {
+            //                                auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","CityBoat_water_",i)->getCString());
+            //                                //float posX = scale * 50 + (level - 3.5) * 10; //45, 3
+            //                                float posX = scale * 50 * 0.75;
+            //                                particle->setRotation3D(Vec3(90, 0 , 180 * j));
+            //                                particle->setPosition3D(Vec3(posX - j * 2 * posX, 0, 20));
+            //                                particleNode->addChild(particle);
+            //                                particle->setGlobalZOrder(-1);
+            //                                particle->setCameraMask(particleNode->getParent()->getCameraMask());
+            //                            }
+            //                        }
+            
+            
+            if (type == ENTER ) {
+                
+                pickaroon->changeActionByStatus(PickaroonActionStatus::PICKAROON_ACTION_NORMAL_MOVE);
+                pickaroon->setNextAnimationStatus(PickaroonActionStatus::PICKAROON_ACTION_NONE);
+                
+                
+                
+            }
+            else if (type == OUT)
+            {
+                pickaroon->changeActionByStatus(PickaroonActionStatus::PICKAROON_ACTION_BROKEN_MOVE);
+                pickaroon->setNextAnimationStatus(PickaroonActionStatus::PICKAROON_ACTION_NONE);
+            }
+            
+            
+            
+            
+            
+            auto viking3dPositon = pSprite3d->getPosition3D();
+            
+            
+            vector<CCPoint> path;
+            
+            Vec2 lastPos ;
+            
+            
+            if (type == ENTER ) {
+                
+                for(int i = 1; i < pickaroonPath->getChildrenCount() ; i++)
+                {
+                    path.push_back(pickaroonPath->getChildByTag(i)->getPosition());
+                }
+            }
+            else if (type == OUT)
+            {
+                //                path.push_back(pickaroonPath->getChildByTag(pickaroonPath->getChildrenCount()-1)->getPosition()-Vec2(1, 1));
+                for(int i = pickaroonPath->getChildrenCount()-2; i >=0 ; i--)//当前位置不加入vector
+                {
+                    path.push_back(pickaroonPath->getChildByTag(i)->getPosition());
+                }
+                
+            }
+            
+            
+            
+            
+            float moveSpeed = 140;
+            
+            float lastAngle = -90.0 + pSprite3d->getRotation3D().y + pSprite3d->getParent()->getRotation3D().y + pSprite3d->getParent()->getParent()->getRotation3D().y;
+            
+            
+            if (type == ENTER ) {//fusheng 设置初始的选择角度
+                
+                lastPos = m_touchLayer->convertToNodeSpace(pSprite3d->getParent()->convertToWorldSpace(Point::ZERO));
+                
+                auto firstPos = pickaroonPath->getChildByTag(1)->getPosition();
+                
+                
+                float oneAngle=CCMathUtils::getAngle(lastPos, firstPos);
+                float rotateAngle = fabsf(oneAngle);
+                float rotateDirection = 1.0;
+                if(oneAngle < lastAngle)
+                    rotateDirection = -1.0 * rotateDirection;
+                if (rotateAngle > 180)
+                {
+                    rotateAngle = 360 - rotateAngle;
+                    rotateDirection = -1.0 * rotateDirection;
+                }
+                
+                pSprite3d->getParent()->setRotation3D(pSprite3d->getParent()->getRotation3D() + Vec3(0, (rotateAngle) * rotateDirection, 0));
+                
+                
+                lastAngle = oneAngle;
+                
+                
+            }
+            else if (type == OUT)
+            {
+                lastPos = m_touchLayer->convertToNodeSpace(pSprite3d->getParent()->convertToWorldSpace(Point::ZERO));
+            }
+            
+            
+            
+            
+            
+            
+            float originalAngle = lastAngle;
+            
+            
+            bool isResetAngle = false;
+            float rotateSeppd = 360;
+            Vector<FiniteTimeAction*> arrayOfMoveActions;
+            Vector<FiniteTimeAction*> arrayOfRotateActions;
+            //arrayOfRotateActions.pushBack(actionBeforeMove);
+            int seq = 0;
+            float pastTime = 0;
+            vector<float> openBridgeTimes;
+            vector<float> closeBridgeTimes;
+            for(auto iter = path.begin(); iter != path.end(); ++iter)
+            {
+                Vec2 onePos = *iter;
+                CCPoint gap = ccpSub(onePos, lastPos);
+                float len = ccpLength(gap);
+                float moveTime = len/moveSpeed;
+                
+                float oneAngle=CCMathUtils::getAngle(lastPos, onePos);
+                float rotateAngle = fabsf(oneAngle - lastAngle);
+                float rotateDirection = 1.0;
+                if(oneAngle < lastAngle)
+                    rotateDirection = -1.0 * rotateDirection;
+                if (rotateAngle > 180)
+                {
+                    rotateAngle = 360 - rotateAngle;
+                    rotateDirection = -1.0 * rotateDirection;
+                }
+                float rotateTime = rotateAngle / rotateSeppd;
+                
+                auto move1 = MoveBy::create(moveTime, gap);
+                auto moveDelay = DelayTime::create(rotateTime);
+                arrayOfMoveActions.pushBack(moveDelay);
+                arrayOfMoveActions.pushBack(move1);
+                
+                
+                auto rotate1 = RotateBy::create(rotateTime, Vec3(0, (rotateAngle) * rotateDirection, 0));
+                auto rotateDelay = CCDelayTime::create(moveTime);
+                arrayOfRotateActions.pushBack(rotate1);
+                arrayOfRotateActions.pushBack(rotateDelay);
+                
+                lastPos = onePos;
+                lastAngle = oneAngle;
+                
+                pastTime += moveTime + rotateTime;
+                seq += 1;
+            }
+            if(isResetAngle)
+            {
+                auto rotate1 = RotateBy::create(fabsf(originalAngle - lastAngle) / rotateSeppd, Vec3(0, originalAngle - lastAngle, 0));
+                arrayOfRotateActions.pushBack(rotate1);
+            }
+            
+            
+            
+            
+            
+            CCString* str = CCString::createWithFormat("%d",index);
+            
+            ActionInstant* actionAfterMove = nullptr;
+            
+            if (type == ENTER ) {
+                
+                pSprite3d->getParent()->getParent()->getParent()->setUserObject(str);
+                actionAfterMove = CallFuncN::create([this](CCNode *pNode){
+                    
+                    auto str = dynamic_cast<CCString*>(pNode->getUserObject()) ;
+                    
+                    if (str) {
+                        Pickaroon* pickaroon = dynamic_cast<Pickaroon*>(m_pickaroonDict->objectForKey(str->intValue()));
+                        
+                        if (pickaroon) {
+                            pickaroon->setNextAnimationStatus(PickaroonActionStatus::PICKAROON_ACTION_NORMAL_IDLE);
+                            //                            pickaroon->changeActionByStatus(PickaroonActionStatus::PICKAROON_ACTION_BROKEN_IDLE);
+                            //                            pickaroon->changeActionByStatus(PickaroonActionStatus::PICKAROON_ACTION_NORMAL_IDLE);
+                            pickaroonCompleteEnterActionCount++;
+                            
+                            if (pickaroonCompleteEnterActionCount == pickaroonTotalNum) {
+                                CCLog("fuck fuck");
+                                //                                pickaroonMove(PickaroonMoveType::OUT);
+                                
+                                
+                                pickaroonCompleteEnterActionCount = 0;
+                                
+                                pickaroonTotalNum = 0;
+                                
+                                
+                                auto arr = Arrow::create(m_touchLayer);
+                                
+                                
+                                auto pos = pickaroon->getPickaroon3D()->getParent()->getParent()->getParent()->getPosition() + pickaroon->getPickaroon3D()->getParent()->getParent()->getPosition();//移动使用的是MoveBy
+                                
+                                CCPoint m_startPos = pos;
+                                
+                                LayerColor* lc = LayerColor::create({255,0,0,128}, 100, 100);
+                                
+                                lc->setPosition(m_startPos);
+                                
+                                m_node3d->addChild(lc);
+                                
+                                auto m_arrow = CCLoadSprite::createSprite("world_jian.png");
+                                m_touchLayer->addChild(m_arrow);
+                                
+                                m_arrow->setPosition(m_startPos);
+                                m_arrow->setScale(5);
+                                
+                                m_touchLayer->setCameraMask((unsigned short)CameraFlag::USER4, true);
+                                m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
+                                CCPoint m_endPos = pos + Vec2(-100, -100);
+                                
+                                arr->attack(m_startPos, m_endPos, 200);
+                                
+                                
+                            }
+                            
+                            pickaroon->getParticleNode()->removeAllChildren();
+                        }
+                    }
+                    
+                    
+                });
+                
+                
+            }
+            else if (type == OUT)
+            {
+                pSprite3d->getParent()->getParent()->getParent()->setUserObject(str);
+                actionAfterMove = CallFuncN::create([this](CCNode *pNode){
+                    
+                    auto str = dynamic_cast<CCString*>(pNode->getUserObject()) ;
+                    
+                    int index = str->intValue();
+                    
+                    int i =0;
+                    auto pickaroon = dynamic_cast<Pickaroon*>(m_pickaroonDict->objectForKey(index)) ;
+                    
+                    pickaroon->clearResources();
+                    
+                    m_pickaroonDict->removeObjectForKey(index);
+                    
+                    
+                    
+                });
+                
+            }
+            
+            
+            arrayOfMoveActions.pushBack(actionAfterMove);
+            pSprite3d->getParent()->getParent()->getParent()->runAction(CCSequence::create(arrayOfMoveActions));
+            CCSequence * rotateSeq = CCSequence::create(arrayOfRotateActions);
+            pSprite3d->getParent()->runAction(rotateSeq);
+            particleNode->runAction(rotateSeq->clone());
+            
+            
+        }
+    }
+    
+}
+
+void ImperialScene::pickaroonCompleteEnterActionCallBack(CCNode *pNode, void *pObj)
+{
+    CCString* str = (CCString*)pObj;
+    
+    if (str) {
+        Pickaroon* pickaroon = dynamic_cast<Pickaroon*>(m_pickaroonDict->objectForKey(str->intValue()));
+        
+        if (pickaroon) {
+            pickaroon->setNextAnimationStatus(PickaroonActionStatus::PICKAROON_ACTION_NORMAL_IDLE);
+            
+            pickaroonCompleteEnterActionCount++;
+            
+            if (pickaroonCompleteEnterActionCount == pickaroonTotalNum) {
+                CCLog("fuck fuck");
+                pickaroonMove(PickaroonMoveType::OUT);
+                
+                checkBattleBeginMoveComplete();
+                
+            }
+        }
+        str->release();
+    }
+}
+
+Pickaroon* ImperialScene::createOnePickaroon(int index, Point initPos)
+{
+    
+    
+    if(m_pickaroonDict->objectForKey(index) != nullptr)
+    {
+        return nullptr;
+    }
+    
+    //    char modelPath[256];
+    //    sprintf(modelPath, "%s%d%s", "3d/ship/ship_", modelLevel, "_skin.c3b");
+    //    char texturePath[256];
+    //    sprintf(texturePath, "%s%d%s", "3d/ship/ship_", modelLevel, ".jpg");
+    //    //NBSprite3D * m_vikings3D = NBSprite3D::create("3d/ship/ship_3_skin.c3b");
+    //    //m_vikings3D->setTexture("3d/ship/ship_3.jpg");
+    string modelPath = "3d/ship/pickaroon_skin.c3b";
+    string texturePath = "3d/ship/pickaroon_texture.jpg";
+    NBSprite3D * m_vikings3D = NBSprite3D::create(modelPath);
+    m_vikings3D->setTexture(texturePath);
+    m_vikings3D->setScale(2.5);
+    //m_vikings3D->setRotation3D(Vec3(0, -80, 0));
+    
+    auto vikingsRootNode = CCNode::create();
+    vikingsRootNode->setRotation3D(Vec3(38, 39, -24));
+    auto rotateNode = CCNode::create();
+    rotateNode->addChild(m_vikings3D);
+    rotateNode->setRotation3D(Vec3(0, 51, 0));
+    vikingsRootNode->addChild(rotateNode);
+    //vikingsRootNode->addChild(m_vikings3D);
+    
+    vikingsRootNode->setPosition(initPos);
+    
+    Node * m_vikingsParticleNode = Node::create();
+    vikingsRootNode->addChild(m_vikingsParticleNode);
+    auto pVikingNode = Node::create();
+    pVikingNode->addChild(vikingsRootNode);
+    
+    m_node3d->addChild(pVikingNode);
+    
+    m_vikingsParticleNode->setRotation3D(Vec3(0, 51, 0));
+    
+    LayerColor* layerColor = LayerColor::create({255,0,0,0},150,150);
+    
+    
+    
+    layerColor->setPosition(initPos - Vec2(layerColor->getContentSize().width/2,layerColor->getContentSize().height/2 - 20));
+    
+    layerColor->setScale(m_vikings3D->getScale());
+    
+    pVikingNode->addChild(layerColor);
+    
+    Pickaroon * pShip = Pickaroon::create(layerColor, index, m_vikings3D, m_vikingsParticleNode);
+    m_pickaroonDict->setObject(pShip, index);
+    
+    
+    if(pShip)
+        pShip->playIdle();
+    
+    m_touchLayer->setCameraMask((unsigned short)CameraFlag::USER4, true);
+    m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
+    
+    
+    
+    return pShip;
+}
+void ImperialScene::cartoonHander(CCObject* params)
+{
+    if(params)
+    {
+        string str = ((CCString*)params)->_string;
+        if (str == "cartoon2") {
+            m_enemyNum = 30;
+            createEnemy(0);
+        }
+        else if (str == "cartoon3") {
+            this->pauseEnemy(true);
+        }
+        else if (str == "cartoon4") {
+            this->resumeEnemy(true);
+        }
+        else if (str == "cartoon5") {
+            //            UIComponent::getInstance()->showUIQuestNode(true);
+            //            UIComponent::getInstance()->questStatRefreshNewOn();
+//            UIComponent::getInstance()->playQuestAnimation();//fusheng
+        }
+        else if (str == "battle_begin")
+        {
+            //            SceneController::getInstance()->removeGUI();
+            
+            onMoveToPos(4000, 1937,TYPE_POS_MID,0.5,0.55,true);
+            
+            vikingNodes->setVisible(false);
+            
+            for (int i = 0; i<5; i++) {//隐藏船
+                CCNode * removeNode = m_node3d->getChildByTag(238893 + i);
+                if(removeNode)
+                    removeNode->setVisible(false);
+            }
+            
+            
+            
+            this->runAction(Sequence::createWithTwoActions(DelayTime::create(0.5 + 0.1), CallFunc::create([this]{
+                
+                CCLog("battle_begin");
+                
+                pickaroonMove(PickaroonMoveType::ENTER);
+                
+                defendShipMove();
+                
+                //            GuideController::share()->next();
+                m_viewPort->notMove = false;//可以移动
+                onMoveToPos(3400.0, 2496.0,TYPE_POS_MID,5,0.55,true);
+                
+            })));
+            //            m_touchLayer->setVisible(false);
+        }
+    }
+}
+
+
+void ImperialScene::defendShipMove()
+{
+    
+    if(m_defendShip)
+    {
+        return;
+    }
+    
+    if(!m_defendShipPaths)
+    {
+        return;
+    }
+    
+    auto initPosNode = m_defendShipPaths->getChildByTag(0);
+    
+    createOneDefendShip(initPosNode->getPosition());
+    
+    if( !m_defendShip )
+    {
+        return;
+    }
+    
+    NBSprite3D * pSprite3d = m_defendShip->getViking3D();
+    CCNode * m_vikingsParticleNode = m_defendShip->getParticleNode();
+    if(!pSprite3d)
+    {
+        return;
+    }
+    //pSprite3d->stopAllActions();
+    
+    //auto anim_stand = Animation3D::create("3d/ship/ship_3_move.c3b");
+    /*
+     int level = pShipInfo->getModelLevel();
+     char modelPath[256];
+     sprintf(modelPath, "%s%d%s", "3d/ship/ship_", level, "_move.c3b");
+     //auto anim_stand = Animation3D::create("3d/ship/ship_3_stand.c3b");
+     auto anim_stand = Animation3D::create(modelPath);
+     if (anim_stand) {
+     auto pAnim = Animate3D::createWithFrames(anim_stand, 1, 9, 8.f);
+     if (pAnim) {
+     auto act = RepeatForever::create(pAnim);
+     pSprite3d->stopAllActions();
+     pSprite3d->runAction(act);
+     }
+     }
+     */
+    m_defendShip->playMove();
+    //auto actionBeforeMove = CallFuncN::create([&](Node* sender){
+    
+    
+    
+    auto viking3dPositon = pSprite3d->getPosition3D();
+    auto particleNode = Node::create();
+    particleNode->setTag(233632);
+    //pSprite3d->addChild(particleNode);
+    m_vikingsParticleNode->addChild(particleNode);
+    //船尾水花
+    float scale = pSprite3d->getScale();
+    
+    for( int i = 0; i <= 1; i++)
+    {
+        auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","CityBoat_back_",i)->getCString());
+        //float posZ = scale * 100 + (level - 2) * 20; //120, 3
+        float posZ = scale * 100 * 0.85;
+        particle->setPosition3D(Vec3(0, 0, 0 - posZ) );
+        particle->setRotation3D(Vec3(90, -60 , 0));
+        
+        particleNode->addChild(particle);
+        particle->setGlobalZOrder(-1);
+        particle->setCameraMask(particleNode->getParent()->getCameraMask());
+        
+    }
+    //船浆水花
+    for( int i = 0; i <= 1; i++)
+    {
+        auto particle = ParticleController::createParticle(CCString::createWithFormat("%s","CityBoat_spray")->getCString());
+        particle->setRotation3D(Vec3(90, 90 , 0));
+        //float posX = scale * 100 + (level - 0.3) * 20; //155, 3
+        float posX = scale * 100 * 1.3;
+        particle->setPosition3D(Vec3(posX - i * 2 * posX, 0, 20)); //左侧船桨位置
+        particleNode->addChild(particle);
+        particle->setGlobalZOrder(-1);
+        particle->setCameraMask(particleNode->getParent()->getCameraMask());
+    }
+    //船侧水花
+    for(int i = 0; i <= 1; i++)
+    {
+        for(int j = 0; j <=1; j++)
+        {
+            auto particle = ParticleController::createParticle(CCString::createWithFormat("%s%d","CityBoat_water_",i)->getCString());
+            //float posX = scale * 50 + (level - 3.5) * 10; //45, 3
+            float posX = scale * 50 * 0.75;
+            particle->setRotation3D(Vec3(90, 0 , 180 * j));
+            particle->setPosition3D(Vec3(posX - j * 2 * posX, 0, 20));
+            particleNode->addChild(particle);
+            particle->setGlobalZOrder(-1);
+            particle->setCameraMask(particleNode->getParent()->getCameraMask());
+        }
+    }
+    
+    //});
+    
+    vector<CCPoint> path;
+    Vec2 lastPos = m_touchLayer->convertToNodeSpace(pSprite3d->getParent()->convertToWorldSpace(Point::ZERO));
+    //    path.push_back(Vec2(lastPos.x - 200, lastPos.y - 200));
+    //    path.push_back(Vec2(m_vikingPath1->getPositionX(), m_vikingPath1->getPositionY()));
+    //    path.push_back(Vec2(m_vikingPath2->getPositionX(), m_vikingPath2->getPositionY()));
+    //
+    //    path.push_back(Vec2(m_vikingPath3->getPositionX(), m_vikingPath3->getPositionY()));
+    //
+    //    path.push_back(Vec2(m_vikingPath4->getPositionX(), m_vikingPath4->getPositionY()));
+    //    path.push_back(Vec2(m_vikingPath5->getPositionX(), m_vikingPath5->getPositionY()));
+    //    path.push_back(Vec2(m_vikingPath4->getPositionX(), m_vikingPath4->getPositionY()));
+    //    path.push_back(Vec2(m_vikingPath3->getPositionX(), m_vikingPath3->getPositionY()));
+    //
+    //    path.push_back(Vec2(m_vikingPath2->getPositionX(), m_vikingPath2->getPositionY()));
+    //
+    //    path.push_back(Vec2(m_vikingPath1->getPositionX(), m_vikingPath1->getPositionY()));
+    //    //path.push_back(Vec2(m_vikingNode->getPositionX(), m_vikingNode->getPositionY()));
+    //    path.push_back(Vec2(lastPos.x - 200, lastPos.y - 200));
+    //    path.push_back(lastPos);
+    //    //Vec2 lastPos = Vec2(m_vikingNode->getPositionX(), m_vikingNode->getPositionY());
+    
+    
+    
+    for(int i = 1; i < m_defendShipPaths->getChildrenCount() ; i++)
+    {
+        path.push_back(m_defendShipPaths->getChildByTag(i)->getPosition());
+    }
+    
+    
+    float moveSpeed = 70;
+    //float lastAngle = -52.5;
+    //float lastAngle = pSprite3d->getRotationY();
+    //Vec3 angle = pSprite3d->getRotation3D();
+    //float lastAngle = angle.y;
+    //lastAngle = lastAngle + pSprite3d->getParent()->getRotation3D().y;
+    float lastAngle = -90.0 + pSprite3d->getRotation3D().y + pSprite3d->getParent()->getRotation3D().y + pSprite3d->getParent()->getParent()->getRotation3D().y;
+    float originalAngle = lastAngle;
+    bool isResetAngle = true;
+    float rotateSeppd = 50.0;
+    Vector<FiniteTimeAction*> arrayOfMoveActions;
+    Vector<FiniteTimeAction*> arrayOfRotateActions;
+    //arrayOfRotateActions.pushBack(actionBeforeMove);
+    int seq = 0;
+    float pastTime = 0;
+    vector<float> openBridgeTimes;
+    vector<float> closeBridgeTimes;
+    for(auto iter = path.begin(); iter != path.end(); ++iter)
+    {
+        Vec2 onePos = *iter;
+        CCPoint gap = ccpSub(onePos, lastPos);
+        float len = ccpLength(gap);
+        float moveTime = len/moveSpeed;
+        
+        float oneAngle=CCMathUtils::getAngle(lastPos, onePos);
+        float rotateAngle = fabsf(oneAngle - lastAngle);
+        float rotateDirection = 1.0;
+        if(oneAngle < lastAngle)
+            rotateDirection = -1.0 * rotateDirection;
+        if (rotateAngle > 180)
+        {
+            rotateAngle = 360 - rotateAngle;
+            rotateDirection = -1.0 * rotateDirection;
+        }
+        float rotateTime = rotateAngle / rotateSeppd;
+        
+        auto move1 = MoveBy::create(moveTime, gap);
+        auto moveDelay = DelayTime::create(rotateTime);
+        arrayOfMoveActions.pushBack(moveDelay);
+        arrayOfMoveActions.pushBack(move1);
+        
+        
+        auto rotate1 = RotateBy::create(rotateTime, Vec3(0, (rotateAngle) * rotateDirection, 0));
+        auto rotateDelay = CCDelayTime::create(moveTime);
+        arrayOfRotateActions.pushBack(rotate1);
+        arrayOfRotateActions.pushBack(rotateDelay);
+        
+        lastPos = onePos;
+        lastAngle = oneAngle;
+        
+        pastTime += moveTime + rotateTime;
+        seq += 1;
+    }
+    if(isResetAngle)
+    {
+        auto rotate1 = RotateBy::create(fabsf(originalAngle - lastAngle) / rotateSeppd, Vec3(0, originalAngle - lastAngle, 0));
+        arrayOfRotateActions.pushBack(rotate1);
+    }
+    
+    //    CCCallFuncND* actionAfterMove = CCCallFuncND::create(this, callfuncND_selector(ImperialScene::shipActionAfterMove), (void *)(m_defendShip));
+    auto actionAfterMove = CallFunc::create([this]{
+        CCLog("what fuck");
+        m_defendShip->playIdle();
+        auto particleNode = m_defendShip->getParticleNode();
+        if(particleNode)
+        {
+            auto node = particleNode->getChildByTag(233632);
+            if (node) {
+                node->removeFromParent();
+            }
+        }
+        defendShipMoveComplete = true;
+        checkBattleBeginMoveComplete();
+        
+    });
+    arrayOfMoveActions.pushBack(actionAfterMove);
+    pSprite3d->getParent()->getParent()->getParent()->runAction(CCSequence::create(arrayOfMoveActions));
+    CCSequence * rotateSeq = CCSequence::create(arrayOfRotateActions);
+    pSprite3d->getParent()->runAction(rotateSeq);
+    particleNode->runAction(rotateSeq->clone());
+    
+    
+}
+
+void ImperialScene::checkBattleBeginMoveComplete()
+{
+    if (defendShipMoveComplete && ((pickaroonCompleteEnterActionCount == pickaroonTotalNum) && pickaroonTotalNum!=0)) {
+        CCLog("fuck checkBattleBeginMoveComplete ");
+    }
+}
+
+VikingShip* ImperialScene::createOneDefendShip(Point initPos)
+{
+    
+    if(m_defendShip != nullptr)
+    {
+        return m_defendShip;
+    }
+    
+    
+    //NBSprite3D * m_vikings3D = p3d;
+    char modelPath[256];
+    sprintf(modelPath, "%s%d%s", "3d/ship/ship_", 1, "_skin.c3b");
+    char texturePath[256];
+    sprintf(texturePath, "%s%d%s", "3d/ship/ship_", 1, ".jpg");
+    //NBSprite3D * m_vikings3D = NBSprite3D::create("3d/ship/ship_3_skin.c3b");
+    //m_vikings3D->setTexture("3d/ship/ship_3.jpg");
+    NBSprite3D * m_vikings3D = NBSprite3D::create(modelPath);
+    m_vikings3D->setTexture(texturePath);
+    m_vikings3D->setScale(1.1);
+    //m_vikings3D->setRotation3D(Vec3(0, -80, 0));
+    
+    auto vikingsRootNode = CCNode::create();
+    vikingsRootNode->setRotation3D(Vec3(38, 39, -24));
+    auto rotateNode = CCNode::create();
+    rotateNode->addChild(m_vikings3D);
+    rotateNode->setRotation3D(Vec3(0, 51, 0));
+    vikingsRootNode->addChild(rotateNode);
+    //vikingsRootNode->addChild(m_vikings3D);
+    
+    vikingsRootNode->setPosition(initPos);
+    
+    Node * m_vikingsParticleNode = Node::create();
+    vikingsRootNode->addChild(m_vikingsParticleNode);
+    auto pVikingNode = Node::create();
+    pVikingNode->addChild(vikingsRootNode);
+    
+    m_node3d->addChild(pVikingNode);
+    
+    m_vikingsParticleNode->setRotation3D(Vec3(0, 51, 0));
+    
+    m_defendShip = VikingShip::create(nullptr, nullptr,  1, m_vikings3D, m_vikingsParticleNode, 1);
+    
+    this->addChild(m_defendShip);//fusheng 自动内存释放
+    
+    if(m_defendShip)
+        m_defendShip->playIdle();
+    
+    m_touchLayer->setCameraMask((unsigned short)CameraFlag::USER4, true);
+    m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
+    return m_defendShip;
+}
+
+void ImperialScene::createBigDragon(cocos2d::Vec2 initPos)
+{
+    bigDragon = NBSprite3D::create("3d/dragon_animate_skin.c3b");
+    
+    bigDragon->setTexture("3d/dragon_animate_texture.jpg");
+    
+    auto rootNode = CCNode::create();
+    
+    rootNode->setRotation3D(Vec3(90, 0, 0));
+    
+    rootNode->addChild(bigDragon);
+    
+    rootNode->setPosition(initPos);
+    
+    m_node3d->addChild(rootNode);
+    
+    m_node3d->setCameraMask((unsigned short) CameraFlag::USER2, true);
+    
+    auto ani = Animation3D::create("3d/dragon_animate_flyOut.c3b");
+    
+    //    auto act = Animate3D::createWithFrames(ani, 0, 1);
+    
+    //    auto act1 = Animate3D::createWithFrames(ani, 0, 80);
+    //    auto act2 = Animate3D::createWithFrames(ani, 80, 140);
+    //    
+    //    auto seq = Sequence::create(act1, ScaleTo::create(1, 1),act2, NULL);
+    
+    auto seq = Animate3D::create(ani);
+    
+    bigDragon->runAction(seq);
+    
+    
+    
+    bigDragon->setScale(0.5);
+    
+    
+    
+    
+}
+
+//fusheng end
+
 
 bool ImperialScene::init()
 {
@@ -491,6 +1307,16 @@ bool ImperialScene::init()
     //RecommendAllianceController::getInstance()->checkToSendRecommendRequest();
     
     //end a by ljf
+	
+#pragma mark 海盗船的初始化
+//fusheng begin
+    m_pickaroonDict = CCDictionary::create();
+    pickaroonTotalNum = 0;
+    pickaroonCompleteEnterActionCount = 0;
+    
+    m_defendShip = nullptr;
+    defendShipMoveComplete = false;
+    //fusheng end
     return true;
 }
 void ImperialScene::downloadXML(float _time)
@@ -4126,6 +4952,12 @@ bool ImperialScene::onAssignCCBMemberVariable(cocos2d::CCObject * pTarget, const
         m_bigTileNodes[idx] = pNode;
         return true;
     }
+    //fusheng begin
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "vikingNodes", CCNode*, this->vikingNodes);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_pickaroonEnterPaths", CCNode*, this->m_pickaroonEnterPaths);
+    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_defendShipPaths", CCNode*, this->m_defendShipPaths);
+    
+    //fusheng end
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_sprBG1", CCSprite*, this->m_sprBG1);
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg1", CCNode*, this->m_bg1);
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE_WEAK(this, "m_bg2", CCNode*, this->m_bg2);
@@ -7019,6 +7851,8 @@ void ImperialScene::updateVikingsShipNum()
 
 void ImperialScene::onVikingsShipMove(VikingShip * pShipInfo)
 {
+    createBigDragon(m_nodeBuildings[52]->getPosition());
+    return;
     if(m_isVikingShipMove)
     {
         return;
@@ -7618,26 +8452,4 @@ void ImperialScene::onRefreshOutsideTraps(CCObject* obj)
     
 }
 
-void ImperialScene::cartoonHander(CCObject* params)
-{
-    /*
-    if(params)
-    {
-        string str = ((CCString*)params)->_string;
-        if (str == "cartoon2") {
-            m_enemyNum = 30;
-            createEnemy(0);
-        }
-        else if (str == "cartoon3") {
-            this->pauseEnemy(true);
-        }
-        else if (str == "cartoon4") {
-            this->resumeEnemy(true);
-        }
-        else if (str == "cartoon5") {
-            UIComponent::getInstance()->playQuestAnimation();
-        }
-    }
-    */
-}
 
