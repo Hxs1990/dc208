@@ -44,6 +44,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/controller/SoundController.cpp \
 ../../IF/Classes/controller/TestFeedBackController.cpp \
 ../../IF/Classes/controller/TimerController.cpp \
+../../IF/Classes/controller/TitanController.cpp \
 ../../IF/Classes/controller/ToolController.cpp \
 ../../IF/Classes/controller/TroopsController.cpp \
 ../../IF/Classes/controller/UpdateManager.cpp \
@@ -188,6 +189,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/model/ServerInfo.cpp \
 ../../IF/Classes/model/SettingObject.cpp \
 ../../IF/Classes/model/TileInfo.cpp \
+../../IF/Classes/model/TitanInfo.cpp \
 ../../IF/Classes/model/ToolInfo.cpp \
 ../../IF/Classes/model/TreatInfo.cpp \
 ../../IF/Classes/model/TypeDefinition.cpp \
@@ -410,6 +412,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/Net/command/SuggestionCommand.cpp \
 ../../IF/Classes/Net/command/TavernCommand.cpp \
 ../../IF/Classes/Net/command/TestFeedBackCommand.cpp \
+../../IF/Classes/Net/command/TitanInfoCommand.cpp \
 ../../IF/Classes/Net/command/ToolCommand.cpp \
 ../../IF/Classes/Net/command/TrainSoldierCommand.cpp \
 ../../IF/Classes/Net/command/TrainSoldiertimeCommand.cpp \
@@ -535,6 +538,7 @@ LOCAL_SRC_FILES := main.cpp \
 ../../IF/Classes/scene/cropscene/FunBuildBtnsView.cpp \
 ../../IF/Classes/scene/cropscene/ImperialScene.cpp \
 ../../IF/Classes/scene/cropscene/Person.cpp \
+../../IF/Classes/scene/cropscene/Pickaroon.cpp \
 ../../IF/Classes/scene/cropscene/SpeBuild.cpp \
 ../../IF/Classes/scene/cropscene/SpeBuildBtnsView.cpp \
 ../../IF/Classes/scene/cropscene/TalkNoticeCell.cpp \

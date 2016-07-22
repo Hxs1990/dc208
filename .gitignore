@@ -41,20 +41,6 @@ userconf.ini
 *.pyc
 cocos2d/plugin/plugins/*
 
-# Branch.framework
-
-IF/libs/boost.framework/boost
-IF/libs/boost.framework/Versions/A/boost
-IF/libs/Chartboost.framework/Chartboost
-IF/libs/Chartboost.framework/Versions/A/Chartboost
-IF/libs/extensions/inmobi/libInMobi-4.5.1.a
-IF/libs/Parse.framework/Parse
-
-CCB/art_resources
-# CCB/dynamicResource
-# CCB/IF/DynamicResources
-# CCB/IF/DynamicCCB.ccbproj
-
 Android_Resource
 proj.android/obj
 proj.android/ChatServices/bin/
